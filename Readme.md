@@ -11,6 +11,10 @@ Al controlador se le delega la responsabilidad se actuar como intermediario entr
 Consideramos como grupo que es la mejor arquitectura a escoger ya que también es fácil de mantener y de trabajar con ella. Y permite trabajar con varios patrones de diseño y modularizar el código.
 
 
+## 8. Modelo Entidad Relacion
+
+![image](/model/entidadrelacion.png)
+
 
 ## 11. Tablero Kanban
 
