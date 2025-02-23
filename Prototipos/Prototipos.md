@@ -37,10 +37,22 @@ ___
     3. [Agregar Supervisor](#2Agregar-Supervisor) 
     4. [Eliminar Supervisor](#2Eliminar-Supervisor) 
     5. [Modificar Supervisor](#2Modificar-Supervisor) 
-    6. [Facturas Emitidas](#2Reporte-de-ventas)  
-    6. [Reporte de ventas](#2Reporte-de-ventas)  
-    6. [Reporte de ganancias](#2Reporte-de-ganancias)  
-3. [ROL SUPERVISOR](#3Diagrama-de-CDU-expandidos)
+    7. [Facturas Emitidas](#2Reporte-de-ventas)  
+    8. [Reporte de ventas](#2Reporte-de-ventas)  
+    9. [Reporte de ganancias](#2Reporte-de-ganancias)  
+3. [ROL SUPERVISOR](#3ROL-SUPERVISOR)
+    1. [Ver Empleados](#31Ver-Empleados)
+    2. [Ver Informacion Empleados](#326ver-Informacion-Empleados)  
+    3. [Agregar Empleados](#33Agregar-Empleados) 
+    4. [Eliminar Empleados](#34Eliminar-Empleados) 
+    5. [Modificar Empleados](#35Modificar-Empleados)      
+    6. [Ver productos](#38Ver-productos)  
+    7. [Agegar productos](#37Agegar-productos)
+    8. [Actualizar productos](#38Actualizar-productos)
+    9. [Eliminar productos](#39Eliminar-Productos)
+    10. [Facturas Emitidas](#310Facturas-Emitidas)
+    11. [Ver opiniones  de libros](#313Ver-opiniones-de-libross)
+    12. [Agregar libros](#312Agregar-libros)
 4. [ROL EMPLEADO](#4Matrices-de-trazabilidad)
 5. [ROL USUARIO](#5Selección-de-patrón-de-arquitectura)
 
@@ -75,8 +87,43 @@ ___
 ![image](https://github.com/SeZamora/AYD2_B_1S2025_PROYECTO_G2/blob/feature/202113293/Prototipos/8RolGerente_Reportedeganancias.png)
 
 
-
-
 ## 3. ROL SUPERVISOR
+
+### 1 Ver Empleados
+![image](https://github.com/SeZamora/AYD2_B_1S2025_PROYECTO_G2/blob/feature/202113293/Prototipos/9Rol_Supervisor_Verempleados.png)
+
+### 2 Ver Informacion Empleado
+![image](https://github.com/SeZamora/AYD2_B_1S2025_PROYECTO_G2/blob/feature/202113293/Prototipos/13Rol_Supervisor_verinformacionempleado.png)
+
+### 3 Agregar Empleados
+![image](https://github.com/SeZamora/AYD2_B_1S2025_PROYECTO_G2/blob/feature/202113293/Prototipos/10Rol_Supervisor_AgregarEmpleado.png)
+
+### 4 Eliminar Empleados
+![image](https://github.com/SeZamora/AYD2_B_1S2025_PROYECTO_G2/blob/feature/202113293/Prototipos/11Rol_Supervisor_EliminarEmpleado.png)
+
+### 5 Modificar Empleados
+![image](https://github.com/SeZamora/AYD2_B_1S2025_PROYECTO_G2/blob/feature/202113293/Prototipos/12Rol_Supervisor_ModificarEmpleado.png)
+
+### 7 Ver productos 
+![image](hhttps://github.com/SeZamora/AYD2_B_1S2025_PROYECTO_G2/blob/feature/202113293/Prototipos/14Rol_Supervisor_verProductos.png)
+
+### 8 Agegar productos
+![image](https://github.com/SeZamora/AYD2_B_1S2025_PROYECTO_G2/blob/feature/202113293/Prototipos/15Rol_Supervisor_AgregarProducto.png)
+
+### 9 Actualizar productos
+![image](https://github.com/SeZamora/AYD2_B_1S2025_PROYECTO_G2/blob/feature/202113293/Prototipos/16Rol_Supervisor_ActualizarProducto.png)
+
+### 10 Eliminar productos
+![image](https://github.com/SeZamora/AYD2_B_1S2025_PROYECTO_G2/blob/feature/202113293/Prototipos/17Rol_Supervisor_EliminarProducto.png)
+
+### 11 Facturas Emitidas
+![image](https://github.com/SeZamora/AYD2_B_1S2025_PROYECTO_G2/blob/feature/202113293/Prototipos/18Rol_Supervisor_acturasemitidas.png)
+
+### 12 Ver opiniones  de libros
+![image](https://github.com/SeZamora/AYD2_B_1S2025_PROYECTO_G2/blob/feature/202113293/Prototipos/19Rol_Supervisor_veropinionescomentariosdlibro.png)
+
+### 13 Agregar libros
+![image](https://github.com/SeZamora/AYD2_B_1S2025_PROYECTO_G2/blob/feature/202113293/Prototipos/20Rol_SupervisorAgregarlibros.png)
+
 ## 4. ROL EMPLEADO
 ## 5. ROL USUARIO
