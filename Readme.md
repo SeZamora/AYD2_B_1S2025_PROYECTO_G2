@@ -12,8 +12,8 @@ title: PROYECTO FASE 1
 
 *Universidad de San Carlos de Guatemala*  
 *Escuela de Ingeniería en Ciencias y Sistemas, Facultad de Ingenieria*  
-*Analisis y Diseño de sistemas 2, Vacaciones de Diciembre 2024.*  
-*Seccion P - Grupo 1*  
+*Analisis y Diseño de sistemas 2 2025.*  
+*Seccion  - Grupo 2*  
 
 
 | Nombre | Carnet |
@@ -36,9 +36,9 @@ ___
     2. [Requerimientos no funcionales](#21Requerimientos-no-funcionales)
 3. [Diagrama de CDU expandidos](#3Diagrama-de-CDU-expandidos)
 4. [Matrices de trazabilidad](#4Matrices-de-trazabilidad)
-    1.[Stakeholders vrs Requerimientos](#41Stakeholders-vrs-Requerimientos)
-    2.[RStakeholders vrs CDU](#42RStakeholders-vr-CDU)
-    3.[Requerimiento vrs CDU](#43Requerimiento-vrs-CDU )
+    1. [Stakeholders vrs Requerimientos](#41Stakeholders-vrs-Requerimientos)
+    2. [RStakeholders vrs CDU](#42RStakeholders-vr-CDU)
+    3. [Requerimiento vrs CDU](#43Requerimiento-vrs-CDU)
 5. [Selección de patrón de arquitectura](#5Selección-de-patrón-de-arquitectura)
 6. [Diagrama de bloques](#6Diagrama-de-bloques)
 7. [Diagrama de despliegue](#7Diagrama-de-despliegue)
@@ -76,7 +76,7 @@ ___
 
 - **RF12**: El sistema debe permitir la visualización de todas las facturas emitidas por los empleados, mostrando detalles como la fecha de emisión, el nombre del empleado responsable, el nombre del cliente y los productos vendidos.
 
-- **RF13*: El sistema debe permitir la búsqueda de facturas mediante filtros como fecha, empleado responsable y cliente.
+- **RF13**: El sistema debe permitir la búsqueda de facturas mediante filtros como fecha, empleado responsable y cliente.
 
 - **RF14**: El sistema debe permitir a los supervisores acceder a las opiniones y comentarios de los clientes sobre los libros vendidos.
 
