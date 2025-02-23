@@ -46,24 +46,33 @@ ___
 
 
 ## 1. LOGIN
+![image](https://github.com/SeZamora/AYD2_B_1S2025_PROYECTO_G2/blob/feature/202113293/Prototipos/0Login.png)
 
 ## 2. ROL GERENTE 
 
-### 1. ver lista de supervisores 
 
+### 1. ver lista de supervisores 
+![image](https://github.com/SeZamora/AYD2_B_1S2025_PROYECTO_G2/blob/feature/202113293/Prototipos/1RolGerente_Supervisores.png)
 ### 2. ver Supervisor 
+![image](https://github.com/SeZamora/AYD2_B_1S2025_PROYECTO_G2/blob/feature/202113293/Prototipos/6RolGerente_VerSupervisores.png)
 
 ### 3. Agregar Supervisor
+![image](https://github.com/SeZamora/AYD2_B_1S2025_PROYECTO_G2/blob/feature/202113293/Prototipos/2RolGerente_AgregarSupervisores.png)
 
 ### 4. Eliminar Supervisor
+![image](https://github.com/SeZamora/AYD2_B_1S2025_PROYECTO_G2/blob/feature/202113293/Prototipos/3RolGerente_EliminarSupervisores.png)
 
 ### 5. Modificar Supervisor
+![image](https://github.com/SeZamora/AYD2_B_1S2025_PROYECTO_G2/blob/feature/202113293/Prototipos/4RolGerente_ModificarSupervisores.png)
 
 ### 6. Facturas Emitidas 
+![image](https://github.com/SeZamora/AYD2_B_1S2025_PROYECTO_G2/blob/feature/202113293/Prototipos/5RolGerente_Facturasemitidas.png)
 
 ### 7. Reporte de ventas 
+![image](https://github.com/SeZamora/AYD2_B_1S2025_PROYECTO_G2/blob/feature/202113293/Prototipos/7RolGerente_Reportedeventas.png)
 
 ### 8. Reporte de ganancias
+![image](https://github.com/SeZamora/AYD2_B_1S2025_PROYECTO_G2/blob/feature/202113293/Prototipos/8RolGerente_Reportedeganancias.png)
 
 
 
