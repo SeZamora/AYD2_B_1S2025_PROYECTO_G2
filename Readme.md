@@ -52,7 +52,7 @@ ___
 ##  2. Lista de requerimientos
 
 ### 2.1 Requerimientos funcionales 
-- **RF01: El sistema debe permitir el registro de nuevos empleados, solicitando los siguientes datos: nombre, apellido, CUI, teléfono, correo electrónico, edad, género, fecha de contratación y fotografía.
+- **RF01**: El sistema debe permitir el registro de nuevos empleados, solicitando los siguientes datos: nombre, apellido, CUI, teléfono, correo electrónico, edad, género, fecha de contratación y fotografía.
 
 - **RF02**: El sistema debe enviar automáticamente un correo de confirmación al nuevo empleado con su contraseña de acceso y un enlace de verificación de cuenta.
 
@@ -175,6 +175,10 @@ Al controlador se le delega la responsabilidad se actuar como intermediario entr
 
 Consideramos como grupo que es la mejor arquitectura a escoger ya que también es fácil de mantener y de trabajar con ella. Y permite trabajar con varios patrones de diseño y modularizar el código.
 
+
+## 8. Modelo Entidad Relacion
+
+![image](/model/entidadrelacion.png)
 
 
 
