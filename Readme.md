@@ -12,8 +12,8 @@
 
 *Universidad de San Carlos de Guatemala*  
 *Escuela de Ingeniería en Ciencias y Sistemas, Facultad de Ingenieria*  
-*Analisis y Diseño de sistemas 2, Vacaciones de Diciembre 2024.*  
-*Seccion P - Grupo 1*  
+*Analisis y Diseño de sistemas 2 2025.*  
+*Seccion  - Grupo 2*  
 
 
 | Nombre | Carnet |
@@ -36,9 +36,9 @@ ___
     2. [Requerimientos no funcionales](#21Requerimientos-no-funcionales)
 3. [Diagrama de CDU expandidos](#3Diagrama-de-CDU-expandidos)
 4. [Matrices de trazabilidad](#4Matrices-de-trazabilidad)
-    1.[Stakeholders vrs Requerimientos](#41Stakeholders-vrs-Requerimientos)
-    2.[RStakeholders vrs CDU](#42RStakeholders-vr-CDU)
-    3.[Requerimiento vrs CDU](#43Requerimiento-vrs-CDU )
+    1. [Stakeholders vrs Requerimientos](#41Stakeholders-vrs-Requerimientos)
+    2. [RStakeholders vrs CDU](#42RStakeholders-vr-CDU)
+    3. [Requerimiento vrs CDU](#43Requerimiento-vrs-CDU)
 5. [Selección de patrón de arquitectura](#5Selección-de-patrón-de-arquitectura)
 6. [Diagrama de bloques](#6Diagrama-de-bloques)
 7. [Diagrama de despliegue](#7Diagrama-de-despliegue)
@@ -47,7 +47,27 @@ ___
 10. [Patrones de diseño](#10Patrones-de-diseño)
 11. [Tablero Kanban](#11Tablero-Kanban)
 
+# 1. Core del Negocio
+- Descripción
 
+    El núcleo del negocio para la "Librería de Don Héctor" se centra en la gestión integral y optimizada de las operaciones del negocio, abarcando tanto la parte física como la digital. Se busca transformar y automatizar los procesos tradicionales, que se realizaban de forma manual, en un sistema que permita gestionar de manera centralizada y eficiente los siguientes aspectos:
+
+    - Gestión de Inventario y Productos: Automatización en el registro, actualización y control de stock de los productos, evitando discrepancias en la disponibilidad y facilitando la identificación de productos obsoletos o de temporada.
+
+    - Procesos de Ventas y Facturación: Implementación de un sistema que registre las ventas en tiempo real, genere facturas digitales y ofrezca un historial detallado de transacciones, lo que permite un mejor seguimiento y auditoría financiera.
+
+    - Administración de Personal: Centralización de la información y gestión de roles para supervisores, empleados y gerentes. Esto incluye procesos de agregación , modificación y eliminación de perfiles, con un seguimiento a través de registros de auditoría.
+
+    - Integración Digital y Experiencia del Cliente: Desarrollo de un portal en línea que complemente la operación física. Los usuarios podrán navegar por el catálogo de libros digitales, gestionar sus cuentas, agregar productos al carrito, dejar comentarios y calificaciones, y generar facturas digitales, lo cual amplía el alcance del negocio y mejora la experiencia del cliente.
+
+    - Análisis y Reportes: Generación de reportes gráficos y analíticos que permitan evaluar el rendimiento de ventas, el margen de ganancia y otras métricas clave. Esta información es esencial para la toma de decisiones estratégicas y la planificación de futuras expansiones.
+
+- Diagrama de CDU de Alto nivel con su primera descomposición
+    - Inicio de sesion
+        ![CDU_Sesion](./Diagramas/CDUSesion.png)
+    
+    - Gestiones de Roles
+        ![CDU_gestiones](./Diagramas/CDU.png)
 
 ##  2. Lista de requerimientos
 
@@ -76,7 +96,7 @@ ___
 
 - **RF12**: El sistema debe permitir la visualización de todas las facturas emitidas por los empleados, mostrando detalles como la fecha de emisión, el nombre del empleado responsable, el nombre del cliente y los productos vendidos.
 
-- **RF13*: El sistema debe permitir la búsqueda de facturas mediante filtros como fecha, empleado responsable y cliente.
+- **RF13**: El sistema debe permitir la búsqueda de facturas mediante filtros como fecha, empleado responsable y cliente.
 
 - **RF14**: El sistema debe permitir a los supervisores acceder a las opiniones y comentarios de los clientes sobre los libros vendidos.
 
@@ -160,7 +180,8 @@ ___
 
 - **RNF13**: El sistema debe garantizar que no haya registros duplicados en la base de datos, especialmente en el inventario y las transacciones. Esto se logrará mediante la implementación de restricciones de unicidad en la base de datos, así como procesos de validación de datos en el backend para prevenir la creación de registros repetidos.
 
-
+## 3 Diagrama de CDU expandidos
+### [CDU Extendido](./CDU_extendido.md)
 
 
 ## 5. Selección de patrón de arquitectura
@@ -193,7 +214,8 @@ Consideramos como grupo que es la mejor arquitectura a escoger ya que también e
 
 ![image](/model/entidadrelacion.png)
 
-
+## 9 Prototipos
+[prototipos realizados](https://github.com/SeZamora/AYD2_B_1S2025_PROYECTO_G2/blob/feature/202113293/Prototipos/Prototipos.md)
 
 
 ## 11. Tablero Kanban
