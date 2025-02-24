@@ -1,6 +1,6 @@
 
 ---
-title: PROYECTO FASE 1
+# PROYECTO FASE 1
 
 ---
 
@@ -175,6 +175,19 @@ Al controlador se le delega la responsabilidad se actuar como intermediario entr
 
 Consideramos como grupo que es la mejor arquitectura a escoger ya que también es fácil de mantener y de trabajar con ella. Y permite trabajar con varios patrones de diseño y modularizar el código.
 
+
+## 7. Diagramas de despliegue-componentes
+- Despliegue
+  ![Diagrama de despliegue](https://github.com/user-attachments/assets/314be315-f522-4994-bb40-30439bc52ecc)
+
+- Componentes
+  ![Diagrama de componentes](https://github.com/user-attachments/assets/05d0c124-7925-4f30-a47e-735f795ea8ac)
+
+- Despliegue-componentes
+  ![Diagrama en blanco](https://github.com/user-attachments/assets/825dc106-764f-4c06-a6ac-72fccb5ca829)
+
+
+  
 
 ## 8. Modelo Entidad Relacion
 
