@@ -180,10 +180,10 @@ ___
 
 - **RNF13**: El sistema debe garantizar que no haya registros duplicados en la base de datos, especialmente en el inventario y las transacciones. Esto se logrará mediante la implementación de restricciones de unicidad en la base de datos, así como procesos de validación de datos en el backend para prevenir la creación de registros repetidos.
 
-## 3 Diagrama de CDU expandidos
+## 3. Diagrama de CDU expandidos
 ### [CDU Extendido](./CDU_extendido.md)
 
-## 4 Matrices de trazabilidad
+## 4. Matrices de trazabilidad
 
 ### Stakeholders vs Requerimientos
 
@@ -249,7 +249,7 @@ Al controlador se le delega la responsabilidad se actuar como intermediario entr
 
 Consideramos como grupo que es la mejor arquitectura a escoger ya que también es fácil de mantener y de trabajar con ella. Y permite trabajar con varios patrones de diseño y modularizar el código.
 
-## Diagrama de bloques
+## 6. Diagrama de bloques
 
 ### Diagrama de bloques que represente la arquitectura implementada
 
