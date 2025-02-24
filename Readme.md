@@ -64,9 +64,11 @@ ___
 
 - Diagrama de CDU de Alto nivel con su primera descomposición
     - Inicio de sesion
+
         ![CDU_Sesion](./Diagramas/CDUSesion.png)
     
     - Gestiones de Roles
+    
         ![CDU_gestiones](./Diagramas/CDU.png)
 
 ##  2. Lista de requerimientos
@@ -274,7 +276,40 @@ Consideramos como grupo que es la mejor arquitectura a escoger ya que también e
 
 ## 9 Prototipos
 [prototipos realizados](https://github.com/SeZamora/AYD2_B_1S2025_PROYECTO_G2/blob/feature/202113293/Prototipos/Prototipos.md)
+## 10. Patrones de diseño
 
+### Patron Adapter
+Uno de los patrones que se utiliza en este sistema es el Adapter, que es un patrón de diseño estructural. Este patrón tiene la capacidad de facilitar la colaboración entre objetos con interfaces incompatibles. En nuestro caso, se aplica para manejar el almacenamiento de imágenes de productos y empleados, las cuales se reciben en formato Base64.Por consiguiente, se utiliza una clase que permita adaptar estos elementos a un enlace de s3 para poder almacenar dicho enlace en la base de datos y poder acceder a el posteriormente. Además, resalta cómo este patrón facilita el almacenamiento de la URL de la imagen en lugar del archivo mismo, mejorando la eficiencia en la base de datos.
+
+
+![alt text](./DesignPatterns/adapter.png)
+
+
+### Patron Factory Method
+El patron Factory Method al ser de diseño creacional proporciona una interfaz para crear objetos en una superclase, por lo que permite a las subclases alterar el tipo de objetos que se van a crear. En el contexto de este proyecto, se utiliza el patrón Factory Method para la creación de notificaciones por correo, que varían según el contexto de la operación. Por ejemplo, las notificaciones pueden ser de creación de empleados, creación de productos, eliminación de empleados, o cualquier otro tipo de evento relacionado con el sistema. Al utilizar este patrón, la lógica de notificación se centraliza en un único punto de creación, permitiendo que se agreguen o modifiquen tipos de notificación de forma sencilla, sin afectar otras partes del sistema. 
+
+
+![alt text](./DesignPatterns/factorymethod.png)
+
+
+### Patron Singleton
+Uno de los patrones utilizados en el proyecto es el patrón Singleton, el cual pertenece a la categoría de patrones creacionales y garantiza la creación de una única instancia de una clase de manera segura, de este modo, este patrón es especialmente útil para el manejo de la conexión con la base de datos, ya que asegura que solo exista una única instancia de la conexión, evitando la creación innecesaria de múltiples conexiones y permitiendo que la instancia sea accesible de forma global.
+
+Una de las ventajas es que esta instancia de la base de datos se puede utilizar en distintas partes donde es funcional.
+
+
+![alt text](./DesignPatterns/singleton.png)
+
+### Patron proxy
+Proxy es de diseño estructural y permite proporcionar un sustituto o marcador de posicion para otro objeto. Este proxy controla el acceso al objeto original, en este caso se tiene como referencia la base de datos. Por consiguiente, el patron permite en este proyecto el control del acceso a la base de datos funcionando como un intermediario entre el cliente y la base de datos. El proxy incluye logica para validar permisos antes de permitir que se hagan consultas o modificaciones
+
+
+![alt text](./DesignPatterns/proxy.png)
+
+### Patron commnad
+El patrón Command es un patrón de comportamiento que convierte una solicitud en un objeto, encapsulando toda la información necesaria para ejecutar la acción solicitada, de este modo, su principal propósito es parametrizar métodos con diferentes tipos de solicitudes, facilitando la extensibilidad y el mantenimiento del sistema. En el contexto de las reseñas y valoraciones de libros, este patrón resulta ideal, ya que define una interfaz común para los comandos de agregar, editar y eliminar valoraciones. Por otro lado, este enfoque no solo permite gestionar de manera flexible las acciones sobre las valoraciones existentes, sino que también proporciona una base sólida para añadir nuevas funcionalidades en el futuro, lo que lo convierte en una opción altamente eficiente para gestionar las interacciones con las valoraciones de los libros.
+
+![alt text](./DesignPatterns/command.png)
 
 ## 11. Tablero Kanban
 
