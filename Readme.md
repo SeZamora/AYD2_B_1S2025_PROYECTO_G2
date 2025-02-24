@@ -180,7 +180,8 @@ Consideramos como grupo que es la mejor arquitectura a escoger ya que también e
 
 ![image](/model/entidadrelacion.png)
 
-
+## 9 Prototipos
+[prototipos realizados](https://github.com/SeZamora/AYD2_B_1S2025_PROYECTO_G2/blob/feature/202113293/Prototipos/Prototipos.md)
 
 
 ## 11. Tablero Kanban
