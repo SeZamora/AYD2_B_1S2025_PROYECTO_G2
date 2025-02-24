@@ -30,24 +30,24 @@ ___
 
 ## Índice
 
-1. [Core del negocio](#1Core-del-negocio )
-2. [Lista de requerimientos](#2Lista-de-requerimientos)
-    1. [Requerimientos funcionales](#21Requerimientos-funcionales)
-    2. [Requerimientos no funcionales](#21Requerimientos-no-funcionales)
-3. [Diagrama de CDU expandidos](#3Diagrama-de-CDU-expandidos)
-4. [Matrices de trazabilidad](#4Matrices-de-trazabilidad)
-    1. [Stakeholders vrs Requerimientos](#41Stakeholders-vrs-Requerimientos)
-    2. [RStakeholders vrs CDU](#42RStakeholders-vr-CDU)
-    3. [Requerimiento vrs CDU](#43Requerimiento-vrs-CDU)
-5. [Selección de patrón de arquitectura](#5Selección-de-patrón-de-arquitectura)
-6. [Diagrama de bloques](#6Diagrama-de-bloques)
-7. [Diagrama de despliegue](#7Diagrama-de-despliegue)
-8. [Diagrama entidad relación](#8diagrama-entidad-relación)
-9. [Prototipos](#9Prototipos)
-10. [Patrones de diseño](#10Patrones-de-diseño)
-11. [Tablero Kanban](#11Tablero-Kanban)
+1. [Core del Negocio](#1-Core-del-Negocio)
+2. [Lista de requerimientos](#2-Lista-de-requerimientos)
+    1. [Requerimientos funcionales](#21-Requerimientos-funcionales)
+    2. [Requerimientos no funcionales](#21-Requerimientos-no-funcionales)
+3. [Diagrama de CDU expandidos](#3-Diagrama-de-CDU-expandidos)
+4. [Matrices de trazabilidad](#4-Matrices-de-trazabilidad)
+    1. [Stakeholders vrs Requerimientos](#41-Stakeholders-vrs-Requerimientos)
+    2. [RStakeholders vrs CDU](#42-RStakeholders-vr-CDU)
+    3. [Requerimiento vrs CDU](#43-Requerimiento-vrs-CDU)
+5. [Selección de patrón de arquitectura](#5-Selección-de-patrón-de-arquitectura)
+6. [Diagrama de bloques](#6-Diagrama-de-bloques)
+7. [Diagrama de despliegue](#7-Diagrama-de-despliegue)
+8. [Diagrama entidad relación](#8-diagrama-entidad-relación)
+9. [Prototipos](#9-Prototipos)
+10. [Patrones de diseño](#10-Patrones-de-diseño)
+11. [Tablero Kanban](#11-Tablero-Kanban)
 
-# 1. Core del Negocio
+## 1. Core del Negocio
 - Descripción
 
     El núcleo del negocio para la "Librería de Don Héctor" se centra en la gestión integral y optimizada de las operaciones del negocio, abarcando tanto la parte física como la digital. Se busca transformar y automatizar los procesos tradicionales, que se realizaban de forma manual, en un sistema que permita gestionar de manera centralizada y eficiente los siguientes aspectos:
@@ -71,7 +71,7 @@ ___
     
         ![CDU_gestiones](./Diagramas/CDU.png)
 
-##  2. Lista de requerimientos
+## 2. Lista de requerimientos
 
 ### 2.1 Requerimientos funcionales 
 - **RF01**: El sistema debe permitir el registro de nuevos empleados, solicitando los siguientes datos: nombre, apellido, CUI, teléfono, correo electrónico, edad, género, fecha de contratación y fotografía.
