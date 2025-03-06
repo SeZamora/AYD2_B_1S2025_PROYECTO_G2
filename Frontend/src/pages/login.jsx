@@ -1,19 +1,54 @@
 import React, { useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
-
+import useAuth from '../hook/useAuth';
 import './login.css';
 
 const LoginPage = () => {
-
+    
+    const  { login } = useAuth();
     const notifySuccess = (message) => toast.success(message);
     const notifyError = (message) => toast.error(message);
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleSubmit = async (e) => {
+
+        e.preventDefault();
+       
+        if(username==="Admin" || password==="Admin"){
+            console.log(username);
+            login('Admin');
+
+            
+        }else if(username==="User" || password==="User"){
+            console.log(username);
+            login('User');
+        }else if (username==="Empleado" || password==="Empleado"){
+            console.log(username);
+            login('Empleado');
+            
+
+        }else if (username==="Supervisor" || password==="Supervisor"){
+            
+            console.log(username);
+            login('Supervisor');
+        }else{
+            notifyError('Usuario o contraseña incorrectos');
+        }
+
+
+        
+    };
+
+
+
 
 
     return (
         <div className="login-page">
             <div className="container-form sign-in">
-                <form className="formulario" id="loginForm" >
-                    <h2 className="create-account">Iniciar Sesión</h2>
+            <form className="formulario" id="loginForm" onSubmit={handleSubmit}>
+            <h2 className="create-account">Iniciar Sesión</h2>
 
                     <div className="input-group">
                         <label className="input-label">Usuario</label>
@@ -22,6 +57,8 @@ const LoginPage = () => {
                             name="username"
                             id="username"
                             required
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)} 
                             
                             
                         />
@@ -33,6 +70,9 @@ const LoginPage = () => {
                             type="password"
                             name="password"
                             id="password"
+                            
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)} 
                             required
                             
                         />
@@ -51,7 +91,7 @@ const LoginPage = () => {
                     <div className="message">
                         <h2>Bienvenido de nuevo</h2>
                         <p>Si aún no tienes una cuenta, por favor regístrate aquí</p>
-                        <button className="input-button" >Registrarse</button>
+                        <button className="input-button"  >Registrarse</button>
                     </div>
                 </div>
                 <ToastContainer position="bottom-right" autoClose={3000} pauseOnHover theme="colored" />
