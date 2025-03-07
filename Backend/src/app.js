@@ -5,20 +5,8 @@ const bodyParser=require('body-parser');
 const app = express();
 const PORT= process.env.PORT || 3000;
 
-const patientRoutes = require('./routes/patientRoutes')
-//const scheleRoutes = require('./routes/scheduleRoutes')
 
-
-const appointmentRoutes = require('./routes/appointmentRoutes')
-
-
-const doctorRoutes = require('./routes/doctorRoutes')
-const citaRoutes = require('./routes/appointmentRoutes')
-//const perfilDrRoutes = require('./routes/perfilDrRoutes')
-// const userRoutes = require('./routes/userRoutes')
-
-
-
+const authRoutes = require('./routes/auth')
 
 app.use(cors({
     origin: '*', // Permitir cualquier origen
@@ -27,15 +15,11 @@ app.use(cors({
 }));
 
 
-app.use(express.json())//body en formato JSONrs
+app.use(express.json())
 app.use(bodyParser.json());
 
-app.use('/MediCare',doctorRoutes);
-app.use('/MediCare',citaRoutes);
-//app.use('/MediCare',perfilDrRoutes);
-app.use('/MediCare',appointmentRoutes);
-//app.use('/MediCare',scheleRoutes);
-app.use('/MediCare',patientRoutes);
+app.use('/auth',authRoutes);
+
 app.use(bodyParser.json({limit: '15mb'}));
 
 //app.use(cors());

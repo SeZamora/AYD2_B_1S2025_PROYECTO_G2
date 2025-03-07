@@ -1,16 +1,16 @@
-const doctorService = require('../services/doctorService');
+const authService = require('../services/authService');
 
 
 
-const generarReceta = async (req, res) => {
+const login = async (req, res) => {
     try {
-        const { cuiPaciente, medicamentos } = req.body;
+        const { username, password } = req.body;
 
-        if (!cuiPaciente || !medicamentos || medicamentos.length === 0) {
+        if (!username || !password || password.length === 0) {
             return res.status(400).json({ message: 'Se requiere el CUI del paciente y al menos un medicamento' });
         }
 
-        const { success, message } = await doctorService.generarReceta({ pacienteCui: cuiPaciente, medicamentos });
+        const { success, message } = await authService.login({  username,  password });
 
         if (!success) {
             return res.status(400).json({ message });
@@ -28,5 +28,5 @@ const generarReceta = async (req, res) => {
 
 module.exports = {
     
-    generarReceta
+    login
 };
