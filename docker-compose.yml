@@ -1,0 +1,44 @@
+
+services:
+  backend:
+    build:
+      context: ./Backend
+      dockerfile: ./dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./Backend:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    depends_on:
+      - database
+
+  frontend:
+    build:
+      context: ./Frontend
+      dockerfile: ./dockerfile
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./Frontend:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    depends_on:
+      - backend
+
+  database:
+    image: mysql:8
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: ayd2_proyecto
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysqldata:/var/lib/mysql
+      - ./model/script.sql:/docker-entrypoint-initdb.d/script.sql
+
+volumes:
+  mysqldata:

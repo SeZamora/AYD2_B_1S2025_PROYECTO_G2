@@ -2,9 +2,12 @@ const pool = require('../database/connection');
 
 
 
-const login = async ({ username, password }) => {
+const login = async ({ username, password, userType }) => {
     try {
-        console.log(username, password)
+        console.log(username, password, userType);
+
+
+
         return { success: true , message: 'wujuuu' };
 
 

@@ -4,13 +4,13 @@ const authService = require('../services/authService');
 
 const login = async (req, res) => {
     try {
-        const { username, password } = req.body;
+        const { username, password, userType } = req.body;
 
         if (!username || !password || password.length === 0) {
             return res.status(400).json({ message: 'Se requiere el CUI del paciente y al menos un medicamento' });
         }
 
-        const { success, message } = await authService.login({  username,  password });
+        const { success, message } = await authService.login({  username,  password, userType });
 
         if (!success) {
             return res.status(400).json({ message });
