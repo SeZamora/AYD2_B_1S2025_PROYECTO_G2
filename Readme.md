@@ -30,24 +30,24 @@ ___
 
 ## Índice
 
-1. [Core del negocio](#1Core-del-negocio )
-2. [Lista de requerimientos](#2Lista-de-requerimientos)
-    1. [Requerimientos funcionales](#21Requerimientos-funcionales)
-    2. [Requerimientos no funcionales](#21Requerimientos-no-funcionales)
-3. [Diagrama de CDU expandidos](#3Diagrama-de-CDU-expandidos)
-4. [Matrices de trazabilidad](#4Matrices-de-trazabilidad)
-    1. [Stakeholders vrs Requerimientos](#41Stakeholders-vrs-Requerimientos)
-    2. [RStakeholders vrs CDU](#42RStakeholders-vr-CDU)
-    3. [Requerimiento vrs CDU](#43Requerimiento-vrs-CDU)
-5. [Selección de patrón de arquitectura](#5Selección-de-patrón-de-arquitectura)
-6. [Diagrama de bloques](#6Diagrama-de-bloques)
-7. [Diagrama de despliegue](#7Diagrama-de-despliegue)
-8. [Diagrama entidad relación](#8diagrama-entidad-relación)
-9. [Prototipos](#9Prototipos)
-10. [Patrones de diseño](#10Patrones-de-diseño)
-11. [Tablero Kanban](#11Tablero-Kanban)
+1. [Core del Negocio](#1-Core-del-Negocio)
+2. [Lista de requerimientos](#2-Lista-de-requerimientos)
+    1. [Requerimientos funcionales](#21-Requerimientos-funcionales)
+    2. [Requerimientos no funcionales](#21-Requerimientos-no-funcionales)
+3. [Diagrama de CDU expandidos](#3-Diagrama-de-CDU-expandidos)
+4. [Matrices de trazabilidad](#4-Matrices-de-trazabilidad)
+    1. [Stakeholders vrs Requerimientos](#41-Stakeholders-vrs-Requerimientos)
+    2. [RStakeholders vrs CDU](#42-RStakeholders-vr-CDU)
+    3. [Requerimiento vrs CDU](#43-Requerimiento-vrs-CDU)
+5. [Selección de patrón de arquitectura](#5-Selección-de-patrón-de-arquitectura)
+6. [Diagrama de bloques](#6-Diagrama-de-bloques)
+7. [Diagrama de despliegue](#7-Diagrama-de-despliegue)
+8. [Diagrama entidad relación](#8-diagrama-entidad-relación)
+9. [Prototipos](#9-Prototipos)
+10. [Patrones de diseño](#10-Patrones-de-diseño)
+11. [Tablero Kanban](#11-Tablero-Kanban)
 
-# 1. Core del Negocio
+## 1. Core del Negocio
 - Descripción
 
     El núcleo del negocio para la "Librería de Don Héctor" se centra en la gestión integral y optimizada de las operaciones del negocio, abarcando tanto la parte física como la digital. Se busca transformar y automatizar los procesos tradicionales, que se realizaban de forma manual, en un sistema que permita gestionar de manera centralizada y eficiente los siguientes aspectos:
@@ -64,12 +64,14 @@ ___
 
 - Diagrama de CDU de Alto nivel con su primera descomposición
     - Inicio de sesion
+
         ![CDU_Sesion](./Diagramas/CDUSesion.png)
     
     - Gestiones de Roles
+    
         ![CDU_gestiones](./Diagramas/CDU.png)
 
-##  2. Lista de requerimientos
+## 2. Lista de requerimientos
 
 ### 2.1 Requerimientos funcionales 
 - **RF01**: El sistema debe permitir el registro de nuevos empleados, solicitando los siguientes datos: nombre, apellido, CUI, teléfono, correo electrónico, edad, género, fecha de contratación y fotografía.
@@ -180,8 +182,61 @@ ___
 
 - **RNF13**: El sistema debe garantizar que no haya registros duplicados en la base de datos, especialmente en el inventario y las transacciones. Esto se logrará mediante la implementación de restricciones de unicidad en la base de datos, así como procesos de validación de datos en el backend para prevenir la creación de registros repetidos.
 
-## 3 Diagrama de CDU expandidos
+## 3. Diagrama de CDU expandidos
 ### [CDU Extendido](./CDU_extendido.md)
+
+## 4. Matrices de trazabilidad
+
+### Stakeholders vs Requerimientos
+
+| Stakeholder               | Requerimientos Relacionados |
+|---------------------------|----------------------------|
+| **GERENTE (DON HÉCTOR)**  | Agregar, eliminar y modificar supervisores,Generar reportes de ventas y ganancias, Visualizar facturas emitidas, Supervisar el desempeño de empleados y supervisores, Recibir notificaciones automáticas (ej: correo de bienvenida a nuevos supervisores). |
+| **SUPERVISOR (JOSÉ Y SU HERMANOS)**   | Agregar, eliminar y modificar empleados, Gestionar productos (agregar, actualizar, eliminar), Visualizar facturas emitidas por empleados, Acceder a reportes de ventas y comentarios de clientes, Recibir notificaciones automáticas (ej: confirmación de registro de empleados). |
+| **EMPLEADO (FAMILIARES Y PERSONAS EXTERNAS)** | Iniciar sesión con credenciales seguras, Registrar ventas y generar facturas, Consultar información de productos en inventario, Gestionar métodos de pago (efectivo), Acceder a historial de ventas y facturas emitidas. |
+| **USUARIO en plataforma**| Registrarse y confirmar cuenta mediante correo electrónico, Iniciar sesión y recuperar contraseña, Navegar y buscar libros digitales, Agregar libros al carrito y gestionar lista de deseos, Calificar y comentar libros, Elegir método de pago (contra entrega o recoger en tienda), Generar y descargar facturas digitales.  |
+
+
+### Stakeholders vs CDU
+
+| Stakeholder               | CDU Relacionados |
+|---------------------------|------------------|
+| **GERENTE (DON HÉCTOR)** | Agregar nuevo supervisor, Eliminar supervisor, Modificar información de supervisores, Ver reportes de ventas y ganancias, Visualizar facturas emitidas, Supervisar actividades de empleados y supervisores. |
+| **SUPERVISOR (JOSÉ Y SU HERMANOS)**    | Agregar nuevo empleado, Eliminar empleado, Modificar información de empleados, Agregar, actualizar y eliminar productos, Visualizar facturas emitidas por empleados, Revisar comentarios y calificaciones de clientes. |
+| **EMPLEADO (FAMILIARES Y PERSONAS EXTERNAS)** |  Iniciar sesión, Registrar venta, Consultar información de productos, Generar factura o recibo, Ver historial de facturas emitidas, Gestionar métodos de pago (efectivo) |
+| **USUARIO en plataforma**| Registrarse en la plataforma, Iniciar sesión, Buscar libros por título, autor o género, Agregar libros al carrito, Gestionar lista de deseos, Calificar y comentar libros, Realizar compra y seleccionar método de pago, Descargar factura digital |
+
+
+### Requerimiento vs CDU
+
+| **Requerimiento**                                                                 | **CDU Relacionados**                                                                 |
+|-----------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
+| **Requerimientos del Gerente (Don Héctor)**                                       |                                                                                     |
+| - Agregar, eliminar y modificar supervisores.                                     | - Agregar nuevo supervisor.<br>- Eliminar supervisor.<br>- Modificar información de supervisores. |
+| - Generar reportes de ventas y ganancias.                                         | - Ver reportes de ventas.<br>- Ver reportes de ganancias.                           |
+| - Visualizar facturas emitidas.                                                   | - Visualizar facturas emitidas.                                                     |
+| - Supervisar el desempeño de empleados y supervisores.                            | - Supervisar actividades de empleados y supervisores.                               |
+| - Recibir notificaciones automáticas (ej: correo de bienvenida a nuevos supervisores). | - Enviar correo de bienvenida a nuevos supervisores.                                |
+| **Requerimientos del Supervisor (José y sus hermanos)** ||
+| - Agregar, eliminar y modificar empleados.                                        | - Agregar nuevo empleado.<br>- Eliminar empleado.<br>- Modificar información de empleados. |
+| - Gestionar productos (agregar, actualizar, eliminar).                            | - Agregar nuevo producto.<br>- Actualizar producto.<br>- Eliminar producto.         |
+| - Visualizar facturas emitidas por empleados.                                     | - Visualizar facturas emitidas por empleados.                                       |
+| - Acceder a reportes de ventas y comentarios de clientes.                         | - Ver reportes de ventas.<br>- Revisar comentarios y calificaciones de clientes.    |
+| - Recibir notificaciones automáticas (ej: confirmación de registro de empleados). | - Enviar correo de confirmación a nuevos empleados.                                 |
+| **Requerimientos del Empleado (Familiares y personas externas)**                  |                                                                                     |
+| - Iniciar sesión con credenciales seguras.                                        | - Iniciar sesión.                                                                   |
+| - Registrar ventas y generar facturas.                                            | - Registrar venta.<br>- Generar factura o recibo.                                   |
+| - Consultar información de productos en inventario.                               | - Consultar información de productos.                                               |
+| - Gestionar métodos de pago (efectivo).                                           | - Gestionar métodos de pago.                                                        |
+| - Acceder a historial de ventas y facturas emitidas.                              | - Ver historial de facturas emitidas.                                               |
+| **Requerimientos del Usuario en  plataforma plataforma** |                                                                         
+| - Registrarse y confirmar cuenta mediante correo electrónico.                     | - Registrarse en la plataforma.<br>- Confirmar cuenta mediante correo.              |
+| - Iniciar sesión y recuperar contraseña.                                          | - Iniciar sesión.<br>- Recuperar contraseña.                                        |
+| - Navegar y buscar libros digitales.                                              | - Buscar libros por título, autor o género.                                         |
+| - Agregar libros al carrito y gestionar lista de deseos.                          | - Agregar libros al carrito.<br>- Gestionar lista de deseos.                        |
+| - Calificar y comentar libros.                                                    | - Calificar y comentar libros.                                                      |
+| - Elegir método de pago (contra entrega o recoger en tienda).                     | - Seleccionar método de pago.                                                       |
+| - Generar y descargar facturas digitales.                                         | - Generar factura digital.<br>- Descargar factura digital.                          |
 
 
 ## 5. Selección de patrón de arquitectura
@@ -196,6 +251,11 @@ Al controlador se le delega la responsabilidad se actuar como intermediario entr
 
 Consideramos como grupo que es la mejor arquitectura a escoger ya que también es fácil de mantener y de trabajar con ella. Y permite trabajar con varios patrones de diseño y modularizar el código.
 
+## 6. Diagrama de bloques
+
+### Diagrama de bloques que represente la arquitectura implementada
+
+![image](/Diagramas/DiagramaBloques.png)
 
 ## 7. Diagramas de despliegue-componentes
 - Despliegue
@@ -216,7 +276,40 @@ Consideramos como grupo que es la mejor arquitectura a escoger ya que también e
 
 ## 9 Prototipos
 [prototipos realizados](https://github.com/SeZamora/AYD2_B_1S2025_PROYECTO_G2/blob/feature/202113293/Prototipos/Prototipos.md)
+## 10. Patrones de diseño
 
+### Patron Adapter
+Uno de los patrones que se utiliza en este sistema es el Adapter, que es un patrón de diseño estructural. Este patrón tiene la capacidad de facilitar la colaboración entre objetos con interfaces incompatibles. En nuestro caso, se aplica para manejar el almacenamiento de imágenes de productos y empleados, las cuales se reciben en formato Base64.Por consiguiente, se utiliza una clase que permita adaptar estos elementos a un enlace de s3 para poder almacenar dicho enlace en la base de datos y poder acceder a el posteriormente. Además, resalta cómo este patrón facilita el almacenamiento de la URL de la imagen en lugar del archivo mismo, mejorando la eficiencia en la base de datos.
+
+
+![alt text](./DesignPatterns/adapter.png)
+
+
+### Patron Factory Method
+El patron Factory Method al ser de diseño creacional proporciona una interfaz para crear objetos en una superclase, por lo que permite a las subclases alterar el tipo de objetos que se van a crear. En el contexto de este proyecto, se utiliza el patrón Factory Method para la creación de notificaciones por correo, que varían según el contexto de la operación. Por ejemplo, las notificaciones pueden ser de creación de empleados, creación de productos, eliminación de empleados, o cualquier otro tipo de evento relacionado con el sistema. Al utilizar este patrón, la lógica de notificación se centraliza en un único punto de creación, permitiendo que se agreguen o modifiquen tipos de notificación de forma sencilla, sin afectar otras partes del sistema. 
+
+
+![alt text](./DesignPatterns/factorymethod.png)
+
+
+### Patron Singleton
+Uno de los patrones utilizados en el proyecto es el patrón Singleton, el cual pertenece a la categoría de patrones creacionales y garantiza la creación de una única instancia de una clase de manera segura, de este modo, este patrón es especialmente útil para el manejo de la conexión con la base de datos, ya que asegura que solo exista una única instancia de la conexión, evitando la creación innecesaria de múltiples conexiones y permitiendo que la instancia sea accesible de forma global.
+
+Una de las ventajas es que esta instancia de la base de datos se puede utilizar en distintas partes donde es funcional.
+
+
+![alt text](./DesignPatterns/singleton.png)
+
+### Patron proxy
+Proxy es de diseño estructural y permite proporcionar un sustituto o marcador de posicion para otro objeto. Este proxy controla el acceso al objeto original, en este caso se tiene como referencia la base de datos. Por consiguiente, el patron permite en este proyecto el control del acceso a la base de datos funcionando como un intermediario entre el cliente y la base de datos. El proxy incluye logica para validar permisos antes de permitir que se hagan consultas o modificaciones
+
+
+![alt text](./DesignPatterns/proxy.png)
+
+### Patron commnad
+El patrón Command es un patrón de comportamiento que convierte una solicitud en un objeto, encapsulando toda la información necesaria para ejecutar la acción solicitada, de este modo, su principal propósito es parametrizar métodos con diferentes tipos de solicitudes, facilitando la extensibilidad y el mantenimiento del sistema. En el contexto de las reseñas y valoraciones de libros, este patrón resulta ideal, ya que define una interfaz común para los comandos de agregar, editar y eliminar valoraciones. Por otro lado, este enfoque no solo permite gestionar de manera flexible las acciones sobre las valoraciones existentes, sino que también proporciona una base sólida para añadir nuevas funcionalidades en el futuro, lo que lo convierte en una opción altamente eficiente para gestionar las interacciones con las valoraciones de los libros.
+
+![alt text](./DesignPatterns/command.png)
 
 ## 11. Tablero Kanban
 
