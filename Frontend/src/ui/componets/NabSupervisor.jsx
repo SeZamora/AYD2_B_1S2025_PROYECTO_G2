@@ -1,6 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
+
+
+    const navigate = useNavigate();
     const navbarStyle = {
         background: 'linear-gradient(to right, #268b8f,rgb(106, 95, 145))',
         position: 'fixed',
@@ -34,7 +38,7 @@ const Navbar = () => {
                         <li className="nav-item text-center mx-2 mx-lg-2">
                             <a className="nav-link">
                                 <div>
-                                    <i class="fa fa-users fa-2x" aria-hidden="true"></i>
+                                    <i class="fa fa-users fa-2x" aria-hidden="true" onClick={() => navigate('/SuperPrincipal')}></i>
                                 </div>
                                 Empleados
                             </a>
@@ -42,7 +46,7 @@ const Navbar = () => {
                         <li className="nav-item text-center mx-2 mx-lg-2 ">
                             <a className="nav-link">
                                 <div>
-                                <i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i>
+                                <i class="fa fa-shopping-cart fa-2x" aria-hidden="true" onClick={() => navigate('/Productos')}></i>
                                 </div>
                                 Productos
                             </a>
@@ -59,7 +63,7 @@ const Navbar = () => {
                         <li className="nav-item text-center mx-2 mx-lg-2">
                             <a className="nav-link">
                                 <div>
-                                <i className="fa fa-book fa-2x" aria-hidden="true" ></i>
+                                <i className="fa fa-book fa-2x" aria-hidden="true"onClick={() => navigate('/Libros')} ></i>
 
                                 </div>
                                 libros

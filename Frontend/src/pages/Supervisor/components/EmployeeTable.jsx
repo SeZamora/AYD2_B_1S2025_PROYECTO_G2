@@ -43,6 +43,15 @@ const EmployeeTable = () => {
     
 
     return (
+        <>
+        <div class="d-flex justify-content-center" style={{ height: "20%" }}>
+                  <div class="search">
+                    <input type="text" class="search-input" name="" />
+                    <a href="#" class="search-icon">
+                      <i class="fa fa-search"></i>
+                    </a>
+                  </div>
+                </div>
         <div className="container">
             <div className="table-responsive">
                 <div className="table-wrapper">
@@ -94,6 +103,7 @@ const EmployeeTable = () => {
 
             <AddEmployeeModal showModal={showModal} toggleModal={toggleModal} role={role2}/>
         </div>
+        </>
     );
 };
 
