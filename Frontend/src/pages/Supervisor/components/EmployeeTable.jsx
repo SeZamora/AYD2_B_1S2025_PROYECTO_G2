@@ -2,9 +2,13 @@ import React, { useState } from 'react';
 import '../../../styles/Employetable.css';
 import AddEmployeeModal from './AddEmployeeModal'; // Asegúrate de importar correctamente el archivo
 
+import DeleteLibroModal from './EliminarEm';
+
 const EmployeeTable = () => {
     const [showModal, setShowModal] = useState(false);
     const [role2, setRole] = useState('');
+    const [showDeleteModal, setShowDeleteModal] = useState(false); // Estado para el modal de eliminación
+    
 
     const employees = [
         { id: 1, nombre: "Thomas", apellido: "Hardy", cui: "123456789", telefono: "(171) 555-2222", fecha: "2023-05-14" },
@@ -40,6 +44,9 @@ const EmployeeTable = () => {
     };
     
     
+    const toggleDeleteModal = () => {
+        setShowDeleteModal(prev => !prev);
+    };
     
 
     return (
@@ -90,7 +97,7 @@ const EmployeeTable = () => {
                                         <a onClick={toggleModalM} className="edit" data-toggle="modal">
                                             <i className="fa fa-pencil" aria-hidden="true"></i>
                                         </a>
-                                        <a href="#deleteEmployeeModal" className="delete" data-toggle="modal">
+                                        <a onClick={toggleDeleteModal} className="delete" data-toggle="modal">
                                             <i className="fa fa-trash" aria-hidden="true"></i>
                                         </a>
                                     </td>
@@ -102,6 +109,8 @@ const EmployeeTable = () => {
             </div>
 
             <AddEmployeeModal showModal={showModal} toggleModal={toggleModal} role={role2}/>
+            <DeleteLibroModal showDeleteModal={showDeleteModal} toggleDeleteModal={toggleDeleteModal}  />
+
         </div>
         </>
     );

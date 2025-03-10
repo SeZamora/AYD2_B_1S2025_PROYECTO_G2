@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import '../../../styles/Employetable.css';
 import AddProdutoModal from './AddProdutoModal'; // Asegúrate de importar correctamente el archivo
+import DeleteLibroModal from './Eliminar';
+
 
 const ProductTable = () => {
     const [showModal, setShowModal] = useState(false);
     const [role2, setRole] = useState('');
+    const [showDeleteModal, setShowDeleteModal] = useState(false); // Estado para el modal de eliminación
+    const [estado, setEstado] = useState('');
+
 
     const Produto = [
         { codigo: "P001", nombre: "Producto 1", categoria: "Categoría A", precioCompra: 100, precioVenta: 150, cantidad: 50 },
@@ -36,6 +41,14 @@ const ProductTable = () => {
             return newShowModal;
         });
     };
+
+ // Cambié esta parte para actualizar el estado antes de pasar la prop
+ const toggleDeleteModal = (elemento) => {
+    setShowDeleteModal(prev => !prev);
+    setEstado(elemento);  // Actualizar el estado con el valor correcto
+};
+
+
 
     return (
         <>
@@ -87,8 +100,8 @@ const ProductTable = () => {
                                         <a onClick={toggleModalM} className="edit" data-toggle="modal">
                                             <i className="fa fa-pencil" aria-hidden="true"></i>
                                         </a>
-                                        <a href="#deleteProdutoModal" className="delete" data-toggle="modal">
-                                            <i className="fa fa-trash" aria-hidden="true"></i>
+                                        <a onClick={() => toggleDeleteModal('Producto')} className="delete" data-toggle="modal">
+                                        <i className="fa fa-trash" aria-hidden="true"></i>
                                         </a>
                                     </td>
                                 </tr>
@@ -99,6 +112,8 @@ const ProductTable = () => {
             </div>
 
             <AddProdutoModal showModal={showModal} toggleModal={toggleModal} role={role2}/>
+            <DeleteLibroModal showDeleteModal={showDeleteModal} toggleDeleteModal={toggleDeleteModal} estado={estado} />
+
         </div>
         </>
     );

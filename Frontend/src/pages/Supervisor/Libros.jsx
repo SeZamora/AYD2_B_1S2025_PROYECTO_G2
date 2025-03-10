@@ -18,13 +18,7 @@ const Libros = () => {
        
         <LibrosTable />
       </div>
-      {/* 
-        
-
-       
-      */}
-
-
+     
     </div>
   );
 };

@@ -77,7 +77,7 @@ const AddLibrosModal = ({ showModal, toggleModal, role }) => {
                                         </div>
                                         <div className="form-group">
                                             <label htmlFor="employeeHireDate">género</label>
-                                            <input type="file" className="form-control" id="employeeHireDate" />
+                                            <input type="text" className="form-control" id="employeeHireDate" />
                                         </div>
                                        
                                     </>
@@ -90,7 +90,7 @@ const AddLibrosModal = ({ showModal, toggleModal, role }) => {
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="employeeEmail">Precio</label>
-                                    <input type="email" className="form-control" id="employeeEmail"/>
+                                    <input type="text" className="form-control" id="employeeEmail"/>
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="employeeAge">Descripción</label>
