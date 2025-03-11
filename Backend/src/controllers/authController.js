@@ -1,0 +1,32 @@
+const authService = require('../services/authService');
+
+
+
+const login = async (req, res) => {
+    try {
+        const { username, password, userType } = req.body;
+
+        if (!username || !password || password.length === 0) {
+            return res.status(400).json({ message: 'Se requiere el CUI del paciente y al menos un medicamento' });
+        }
+
+        const { success, message } = await authService.login({  username,  password, userType });
+
+        if (!success) {
+            return res.status(400).json({ message });
+        }
+
+        res.status(201).json({ success, message });
+
+    } catch (error) {
+        console.error('Error en generarReceta:', error);
+        res.status(500).json({ message: 'Error interno del servidor' });
+    }
+};
+
+
+
+module.exports = {
+    
+    login
+};
