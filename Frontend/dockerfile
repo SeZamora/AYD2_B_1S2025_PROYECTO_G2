@@ -14,9 +14,9 @@ RUN npm install
 # Copia el resto de la aplicación
 COPY . .
 
-# Expone el puerto en el que corre el backend
+
 EXPOSE 5173
 
-# Comando para ejecutar el backend
+
 CMD ["npm", "run", "dev"]
 

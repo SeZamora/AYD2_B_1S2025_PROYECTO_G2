@@ -49,7 +49,7 @@ CREATE TABLE supervisores (
     correo             VARCHAR(255) NOT NULL,
     telefono           VARCHAR(20) NOT NULL,
     fecha              DATE NOT NULL,
-    verificado INT NOT NULL,
+    verificado         INT NOT NULL,
     PRIMARY KEY (id_supervisor),
     FOREIGN KEY (gerente_id_gerente) REFERENCES gerente (id_gerente)
 );
@@ -66,6 +66,7 @@ CREATE TABLE empleados (
     fecha                    DATE NOT NULL,
     fotografia               VARCHAR(255) NOT NULL,
     supervisores_id_supervisor INT NOT NULL,
+    verificado               INT NOT NULL,
     PRIMARY KEY (empleados_id),
     FOREIGN KEY (supervisores_id_supervisor) REFERENCES supervisores (id_supervisor)
 );
@@ -146,8 +147,8 @@ VALUES
 (3, 'Andres Medina', 'andres.supervisor@example.com', '555-9101', '2024-03-03', 1);
 
 -- Insertar datos en la tabla empleados
-INSERT INTO empleados (nombre, apellido, cui, telefono, correo, edad, genero, fecha, fotografia, supervisores_id_supervisor) 
+INSERT INTO empleados (nombre, apellido, cui, telefono, correo, edad, genero, fecha, fotografia, supervisores_id_supervisor, verificado) 
 VALUES 
-('Ricardo', 'Garcoa', 1234567890123, '555-0001', 'ricardo.empleado@example.com', 28, 'Masculino', '2024-03-05', 'foto1.jpg', 1),
-('Fernanda', 'Lopez', 9876543210987, '555-0002', 'fernanda.empleado@example.com', 32, 'Femenino', '2024-03-06', 'foto2.jpg', 2),
-('David', 'Martinez', 4567891230456, '555-0003', 'david.empleado@example.com', 26, 'Masculino', '2024-03-07', 'foto3.jpg', 3);
+('Ricardo', 'Garcoa', 1234567890123, '555-0001', 'ricardo.empleado@example.com', 28, 'Masculino', '2024-03-05', 'foto1.jpg', 1,1),
+('Fernanda', 'Lopez', 9876543210987, '555-0002', 'fernanda.empleado@example.com', 32, 'Femenino', '2024-03-06', 'foto2.jpg', 2, 0),
+('David', 'Martinez', 4567891230456, '555-0003', 'david.empleado@example.com', 26, 'Masculino', '2024-03-07', 'foto3.jpg', 3, 1);
