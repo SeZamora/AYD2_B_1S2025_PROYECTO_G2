@@ -125,3 +125,28 @@ CREATE TABLE reseñas (
     FOREIGN KEY (cuenta_id_cuenta) REFERENCES cuenta(id_cuenta),
     FOREIGN KEY (libros_producto_id, libros_id_libro) REFERENCES libros(producto_id_producto, id_libro)
 );
+
+-- Insertar usuarios en la tabla cuenta
+INSERT INTO cuenta (correo, contraseña, nombre, edad, verificado)
+VALUES 
+('juan.perez@mail.com', 'password123', 'Juan Perez', 30, 'S'),
+('ana.garcia@mail.com', 'password456', 'Ana Garcia', 28, 'N');
+
+-- Insertar usuarios en la tabla gerente
+INSERT INTO gerente (nombre, correo)
+VALUES 
+('Carlos Lopez', 'carlos.lopez@empresa.com'),
+('Maria Gonzalez', 'maria.gonzalez@empresa.com');
+
+-- Insertar supervisores en la tabla supervisores (referencia a la tabla gerente)
+INSERT INTO supervisores (gerente_id, nombre_completo, correo, telefono, fecha)
+VALUES
+(1, 'Pedro Ramirez', 'pedro.ramirez@empresa.com', '555-1234', '2025-03-01'),
+(2, 'Laura Fernandez', 'laura.fernandez@empresa.com', '555-5678', '2025-03-02');
+
+-- Insertar empleados en la tabla empleados (referencia a la tabla supervisores y gerente)
+INSERT INTO empleados (nombre, apellido, cui, telefono, correo, edad, genero, fecha, fotografia, supervisor_id, gerente_id)
+VALUES
+('Luis', 'Martinez', 123456789012, '555-8765', 'luis.martinez@empresa.com', 25, 'Masculino', '2025-03-01', 'foto1.jpg', 1, 1),
+('Sofia', 'Rodriguez', 987654321098, '555-4321', 'sofia.rodriguez@empresa.com', 22, 'Femenino', '2025-03-02', 'foto2.jpg', 2, 2);
+

@@ -29,16 +29,8 @@ services:
       - backend
 
   database:
-    image: mysql:8
+    build: ./model
     restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: ayd2_proyecto
     ports:
       - "3306:3306"
-    volumes:
-      - mysqldata:/var/lib/mysql
-      - ./model/script.sql:/docker-entrypoint-initdb.d/script.sql
 
-volumes:
-  mysqldata:
