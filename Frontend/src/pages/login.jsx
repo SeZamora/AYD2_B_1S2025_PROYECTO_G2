@@ -35,7 +35,31 @@ const LoginPage = () => {
         } catch (error) {
             notifyError('Error en la conexión con el servidor');
         }
+
+        try {
+            const response = await fetch('http://localhost:3000/dbroute/dbtest', {
+                method: 'GET',
+            });
+            
+            const data = await response.json();
+            
+            console.log(data);
+
+            // if (response.ok) {
+            //     notifySuccess('Inicio de sesión exitoso');
+            //     login(userType);
+            // } else {
+            //     notifyError(data.message || 'Usuario o contraseña incorrectos');
+            // }
+        } catch (error) {
+            notifyError('Error en la conexión con el servidor');
+        }
+
+
+      
     };
+
+    
 
     return (
         <div className="login-page">
