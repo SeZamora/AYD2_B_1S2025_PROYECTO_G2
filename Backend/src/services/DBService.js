@@ -1,5 +1,6 @@
 import mysql from 'mysql2/promise';
 
+// Implementación de Singleton para la conexión con la base de datos
 class DBService {
     static instance;
 
@@ -49,4 +50,25 @@ class DBService {
     }
 }
 
-export default new DBService();
+// Proxy para interceptar las llamadas y garantizar el acceso único a la instancia
+class DBServiceProxy {
+    constructor() {
+        if (!DBServiceProxy.instance) {
+            DBServiceProxy.instance = new DBService();
+        }
+
+        return DBServiceProxy.instance;
+    }
+
+    async query(sql, params) {
+        console.log('Proxy: Ejecutando consulta');
+        return await DBServiceProxy.instance.query(sql, params);
+    }
+
+    async close() {
+        console.log('Proxy: Cerrando conexión');
+        return await DBServiceProxy.instance.close();
+    }
+}
+
+export default new DBServiceProxy();

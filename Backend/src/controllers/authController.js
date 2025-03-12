@@ -10,17 +10,17 @@ const login = async (req, res) => {
             return res.status(400).json({ message: 'Se requiere el CUI del paciente y al menos un medicamento' });
         }
 
-        const { success, message } = await authService.login({  username,  password, userType });
+        const resultado = await authService.login({  username,  password, userType });
 
-        if (!success) {
-            return res.status(400).json({ message });
+        if (!resultado.success) {
+            return res.status(400).json({ status: 'error' ,message });
         }
 
-        res.status(201).json({ success, message });
+        res.status(201).json(resultado);
 
     } catch (error) {
-        console.error('Error en generarReceta:', error);
-        res.status(500).json({ message: 'Error interno del servidor' });
+        console.error('Error :', error);
+        res.status(500).json({ message: 'Usuario no encontrado' });
     }
 };
 
