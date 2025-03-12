@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Navbar from "../components/Navbar.jsx";
+import Navbar from "./components/Navbar.jsx";
 import "./gerente_ventas.css";
 import { Bar, Line, Pie } from "recharts";
 

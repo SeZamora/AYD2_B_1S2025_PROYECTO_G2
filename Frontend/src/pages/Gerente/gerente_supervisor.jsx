@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./gerente_supervisor.css";
-import Navbar from "../components/Navbar";
-import AgregarSupervisorModal from "../components/agregarSupervisor";
+import Navbar from "./components/Navbar";
+import AgregarSupervisorModal from "./components/agregarSupervisor";
 
 const supervisors = Array(10).fill({
   name: "xxxxxxxxxxxxxx",

@@ -1,0 +1,7 @@
+# Usa la imagen oficial de MySQL como base
+FROM mysql:latest
+
+ENV MYSQL_ROOT_PASSWORD=root
+
+# Copia tu script SQL al contenedor
+COPY init.sql /docker-entrypoint-initdb.d/

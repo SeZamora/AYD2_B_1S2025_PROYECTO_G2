@@ -7,6 +7,10 @@ import GerenteSupervisor from "../pages/Gerente/gerente_supervisor";
 import GerenteFacturas from "../pages/Gerente/gerente_facturas";
 import GerenteGanancias from "../pages/Gerente/gerente_ganancias";
 import GerenteVentas from "../pages/Gerente/gerente_ventas";
+import SupervisorView from "../pages/Supervisor/SupervisorView";
+import EmpleadoView from "../pages/Empleado/EmpleadoView";
+import GerenteView from "../pages/Gerente/GerenteView";
+import UsuarioView from "../pages/Usuario/UsuarioView";
 const AppRouter = () => {
     //const { logout, role } = useAuth();
   
@@ -21,6 +25,13 @@ const AppRouter = () => {
           <Route path="/gerente_facturas" element={<GerenteFacturas />} />
           <Route path="/gerente_ganancias" element={<GerenteGanancias />} />
           <Route path="/gerente_ventas" element={<GerenteVentas />} />
+          <Route path="/" element={<Login />} />    
+          <Route path="/supervisor" element={<SupervisorView />} /> 
+          <Route path="/empleado" element={<EmpleadoView />} />          
+          <Route path="/gerente" element={<GerenteView />} />          
+          <Route path="/usuario" element={<UsuarioView />} />          
+
+
         </Routes>
       </Router>
     );
