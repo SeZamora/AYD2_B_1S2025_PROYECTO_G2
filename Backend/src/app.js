@@ -9,6 +9,7 @@ const PORT= process.env.PORT || 3000;
 const authRoutes = require('./routes/auth')
 const dbRoutes = require('./routes/db')
 const superVisorRoutes = require('./routes/supervisor')
+const employeeRoutes = require('./routes/employee')
 
 app.use(cors({
     origin: '*', // Permitir cualquier origen
@@ -23,6 +24,8 @@ app.use(bodyParser.json());
 app.use('/auth',authRoutes);
 app.use('/dbroute',dbRoutes);
 app.use('/supervisor',superVisorRoutes);
+app.use('/employee',employeeRoutes);
+
 
 app.use(bodyParser.json({limit: '15mb'}));
 
