@@ -1,0 +1,47 @@
+/* Navbar Styles */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem; /* Aumenté el padding horizontal para más espacio */
+  border-bottom: 2px solid #e2e8f0; /* Tailwind's border-b equivalent */
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave para dar profundidad */
+}
+
+nav .flex {
+  display: flex;
+  align-items: center; /* Asegura que los elementos estén alineados verticalmente */
+}
+
+nav .gap-4 {
+  gap: 1.5rem; /* Aumenté el espacio entre los enlaces */
+}
+
+nav a {
+  font-weight: bold;
+  font-size: 2.125rem; /* Tamaño de letra más grande (18px) */
+  color: #3b82f6; /* Tailwind's blue-500 equivalent */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #2563eb; /* Un tono más oscuro de azul al pasar el mouse */
+}
+
+nav button {
+  padding: 0.75rem 1.5rem; /* Aumenté el padding para un botón más grande */
+  border: 1px solid #c41313; /* Tailwind's border color */
+  border-radius: 0.5rem; /* Bordes más redondeados */
+  background-color: #a00202; /* Tailwind's gray-100 equivalent */
+  color: #ffffff; /* Texto blanco para mejor contraste */
+  font-size: 1rem; /* Tamaño de letra más grande */
+  cursor: pointer;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+nav button:hover {
+  background-color: #ff3300; /* Un tono más claro al pasar el mouse */
+  border-color: #9ca3af; /* Un borde más oscuro al pasar el mouse */
+}
