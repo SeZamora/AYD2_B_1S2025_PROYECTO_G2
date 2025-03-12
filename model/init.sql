@@ -32,7 +32,7 @@ CREATE TABLE producto (
     precio_compra DECIMAL(10,2) NOT NULL,
     precio_venta  DECIMAL(10,2) NOT NULL,
     cantidad      INT NOT NULL,
-    imagen        VARCHAR(255) NOT NULL,
+    imagen        MEDIUMBLOB NOT NULL,
     PRIMARY KEY (id_producto)
 );
 CREATE TABLE gerente (
