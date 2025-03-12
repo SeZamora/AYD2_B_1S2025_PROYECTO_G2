@@ -1,9 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import useAuth from "../../hook/useAuth";  // Asegúrate de no usar llaves {}
 
 const Navbar = () => {
-
-
+    const { logout ,role} = useAuth(); 
     const navigate = useNavigate();
     const navbarStyle = {
         background: 'linear-gradient(to right, #268b8f,rgb(106, 95, 145))',
@@ -13,7 +13,14 @@ const Navbar = () => {
         left: '0',
         width: '100%',
         zIndex: '1000',
+
+
     };
+
+    const handleLogout = () => {
+        logout();
+        navigate('/');
+    }
 
 
     return (
@@ -75,7 +82,7 @@ const Navbar = () => {
 
                     <ul className="navbar-nav ms-auto d-flex flex-row mt-3 mt-lg-0">
                         <li className="nav-item text-center mx-2 mx-lg-1">
-                            <button className="nav-link btn btn-link text-light" >
+                            <button className="nav-link btn btn-link text-light" onClick={handleLogout}>
                                 <div>
                                     <i className="fa fa-sign-out" aria-hidden="true"></i>
                                 </div>
