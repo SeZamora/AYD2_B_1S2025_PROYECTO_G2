@@ -10,7 +10,9 @@ const LoginPage = () => {
     
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [userType, setUserType] = useState('User');
+    const [userType, setUserType] = useState('');
+
+    const isFormValid = username.trim() !== '' && password.trim() !== '' && userType.trim() !== '';
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -23,43 +25,18 @@ const LoginPage = () => {
             });
             
             const data = await response.json();
-            
             console.log(data);
-
-            // if (response.ok) {
-            //     notifySuccess('Inicio de sesión exitoso');
-            //     login(userType);
-            // } else {
-            //     notifyError(data.message || 'Usuario o contraseña incorrectos');
-            // }
+            if (data.success) {
+                notifySuccess(data.message);
+                login(data);
+            } else {
+                notifyError(data.message);
+            }
         } catch (error) {
             notifyError('Error en la conexión con el servidor');
         }
 
-        try {
-            const response = await fetch('http://localhost:3000/dbroute/dbtest', {
-                method: 'GET',
-            });
-            
-            const data = await response.json();
-            
-            console.log(data);
-
-            // if (response.ok) {
-            //     notifySuccess('Inicio de sesión exitoso');
-            //     login(userType);
-            // } else {
-            //     notifyError(data.message || 'Usuario o contraseña incorrectos');
-            // }
-        } catch (error) {
-            notifyError('Error en la conexión con el servidor');
-        }
-
-
-      
     };
-
-    
 
     return (
         <div className="login-page">
@@ -73,7 +50,6 @@ const LoginPage = () => {
                             type="text"
                             name="username"
                             id="username"
-                            required
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
                         />
@@ -85,7 +61,6 @@ const LoginPage = () => {
                             type="password"
                             name="password"
                             id="password"
-                            required
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />
@@ -94,8 +69,8 @@ const LoginPage = () => {
                     <div className="input-group">
                         <label className="input-label">Tipo de Usuario</label>
                         <div className="radio-group">
-                            {[ 'Empleado', 'Supervisor', 'Usuario'].map((type) => (
-                                <label  key={type} style={{ marginRight: '10px' }}>
+                            {['cuenta', 'supervisores', 'empleados'].map((type) => (
+                                <label key={type} style={{ marginRight: '10px' }}>
                                     <input
                                         type="radio"
                                         name="userType"
@@ -109,7 +84,7 @@ const LoginPage = () => {
                         </div>
                     </div>
 
-                    <button type="submit" className="input-button">
+                    <button type="submit" className="input-button" disabled={!isFormValid}>
                         <b>Login</b>
                     </button>
                 </form>
@@ -125,6 +100,6 @@ const LoginPage = () => {
             </div>
         </div>
     );
-}
+};
 
 export default LoginPage;

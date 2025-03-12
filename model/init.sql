@@ -47,6 +47,7 @@ CREATE TABLE supervisores (
     gerente_id_gerente INT NOT NULL,
     nombre_completo    VARCHAR(255) NOT NULL,
     correo             VARCHAR(255) NOT NULL,
+    contrasenia VARCHAR(255) NOT NULL,
     telefono           VARCHAR(20) NOT NULL,
     fecha              DATE NOT NULL,
     verificado         INT NOT NULL,
@@ -61,6 +62,7 @@ CREATE TABLE empleados (
     cui                      BIGINT NOT NULL,
     telefono                 VARCHAR(20) NOT NULL,
     correo                   VARCHAR(255) NOT NULL,
+    contrasenia VARCHAR(255) NOT NULL,
     edad                     INT NOT NULL,
     genero                   VARCHAR(10) NOT NULL,
     fecha                    DATE NOT NULL,
@@ -128,27 +130,27 @@ CREATE TABLE resenias (
 -- Insertar datos en la tabla cuenta
 INSERT INTO cuenta (correo, contrasenia, nombre, edad, verificado) 
 VALUES 
-('usuario1@example.com', 'password123', 'Juan Perez', 30, 1),
-('usuario2@example.com', 'password456', 'María Gomez', 25, 0),
-('usuario3@example.com', 'password789', 'Carlos Lopez', 40, 1);
+('usuario1@example.com', 'd8542114d7d40f3c82fc0919efc644df30f4e827c2bd6b83b9dbec8358b2fbc4', 'Juan Perez', 30, 1),
+('usuario2@example.com', 'd8542114d7d40f3c82fc0919efc644df30f4e827c2bd6b83b9dbec8358b2fbc4', 'María Gomez', 25, 0),
+('usuario3@example.com', 'd8542114d7d40f3c82fc0919efc644df30f4e827c2bd6b83b9dbec8358b2fbc4', 'Carlos Lopez', 40, 1);
 
 -- Insertar datos en la tabla gerente
-INSERT INTO gerente (nombre, correo) 
+INSERT INTO gerente (nombre, correo) -- ??????? considerar password
 VALUES 
 ('Ana Rodriguez', 'ana.gerente@example.com'),
 ('Luis Fernandez', 'luis.gerente@example.com'),
 ('Marta Sanchez', 'marta.gerente@example.com');
 
 -- Insertar datos en la tabla supervisores
-INSERT INTO supervisores (gerente_id_gerente, nombre_completo, correo, telefono, fecha, verificado) 
+INSERT INTO supervisores (gerente_id_gerente, nombre_completo, correo, telefono, fecha, verificado, contrasenia) 
 VALUES 
-(1, 'Pedro Ramirez', 'pedro.supervisor@example.com', '555-1234', '2024-03-01', 1),
-(2, 'Sofia Herrera', 'sofia.supervisor@example.com', '555-5678', '2024-03-02', 0),
-(3, 'Andres Medina', 'andres.supervisor@example.com', '555-9101', '2024-03-03', 1);
+(1, 'Pedro Ramirez', 'pedro.supervisor@example.com', '555-1234', '2024-03-01', 1, 'b221d9dbb083a7f33428d7c2a3c3198ae925614d70210e28716ccaa7cd4ddb79'), -- password:hola
+(2, 'Sofia Herrera', 'sofia.supervisor@example.com', '555-5678', '2024-03-02', 0, 'b221d9dbb083a7f33428d7c2a3c3198ae925614d70210e28716ccaa7cd4ddb79'), -- password:hola
+(3, 'Andres Medina', 'andres.supervisor@example.com', '555-9101', '2024-03-03', 1, 'b221d9dbb083a7f33428d7c2a3c3198ae925614d70210e28716ccaa7cd4ddb79'); -- password:hola
 
 -- Insertar datos en la tabla empleados
-INSERT INTO empleados (nombre, apellido, cui, telefono, correo, edad, genero, fecha, fotografia, supervisores_id_supervisor, verificado) 
+INSERT INTO empleados (nombre, apellido, cui, telefono, correo, edad, genero, fecha, fotografia, supervisores_id_supervisor, verificado, contrasenia) 
 VALUES 
-('Ricardo', 'Garcoa', 1234567890123, '555-0001', 'ricardo.empleado@example.com', 28, 'Masculino', '2024-03-05', 'foto1.jpg', 1,1),
-('Fernanda', 'Lopez', 9876543210987, '555-0002', 'fernanda.empleado@example.com', 32, 'Femenino', '2024-03-06', 'foto2.jpg', 2, 0),
-('David', 'Martinez', 4567891230456, '555-0003', 'david.empleado@example.com', 26, 'Masculino', '2024-03-07', 'foto3.jpg', 3, 1);
+('Ricardo', 'Garcoa', 1234567890123, '555-0001', 'ricardo.empleado@example.com', 28, 'Masculino', '2024-03-05', 'foto1.jpg', 1,1, 'b221d9dbb083a7f33428d7c2a3c3198ae925614d70210e28716ccaa7cd4ddb79'), -- password:hola
+('Fernanda', 'Lopez', 9876543210987, '555-0002', 'fernanda.empleado@example.com', 32, 'Femenino', '2024-03-06', 'foto2.jpg', 2, 0, 'd8542114d7d40f3c82fc0919efc644df30f4e827c2bd6b83b9dbec8358b2fbc4'), -- password:adios
+('David', 'Martinez', 4567891230456, '555-0003', 'david.empleado@example.com', 26, 'Masculino', '2024-03-07', 'foto3.jpg', 3, 1, 'd8542114d7d40f3c82fc0919efc644df30f4e827c2bd6b83b9dbec8358b2fbc4'); -- password:adios
