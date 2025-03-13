@@ -20,7 +20,7 @@ class DBService {
                 this.pool = mysql.createPool({
                     host,
                     user: 'root',
-                    password: 'root',
+                    password: '123456789',
                     database: 'ayd2_proyecto',
                     waitForConnections: true,
                     connectionLimit: 10,

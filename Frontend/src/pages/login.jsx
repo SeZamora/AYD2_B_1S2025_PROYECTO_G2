@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import useAuth from '../hook/useAuth';
+import { useNavigate } from 'react-router-dom'; 
+
 import './login.css';
 
 const LoginPage = () => {
+    const navigate = useNavigate(); 
     const { login } = useAuth();
     const notifySuccess = (message) => toast.success(message);
     const notifyError = (message) => toast.error(message);
@@ -28,7 +31,12 @@ const LoginPage = () => {
             console.log(data);
             if (data.success) {
                 notifySuccess(data.message);
-                login(data);
+                login(data.userType);
+                if (data.userType === 'supervisores') {
+                    navigate('/SuperPrincipal'); 
+                }
+                
+
             } else {
                 notifyError(data.message);
             }

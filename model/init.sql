@@ -32,7 +32,7 @@ CREATE TABLE producto (
     precio_compra DECIMAL(10,2) NOT NULL,
     precio_venta  DECIMAL(10,2) NOT NULL,
     cantidad      INT NOT NULL,
-    imagen        VARCHAR(255) NOT NULL,
+    imagen        MEDIUMBLOB NOT NULL,
     PRIMARY KEY (id_producto)
 );
 CREATE TABLE gerente (
@@ -66,7 +66,7 @@ CREATE TABLE empleados (
     edad                     INT NOT NULL,
     genero                   VARCHAR(10) NOT NULL,
     fecha                    DATE NOT NULL,
-    fotografia               VARCHAR(255) NOT NULL,
+    fotografia               MEDIUMBLOB NOT NULL,
     supervisores_id_supervisor INT NOT NULL,
     verificado               INT NOT NULL,
     PRIMARY KEY (empleados_id),
