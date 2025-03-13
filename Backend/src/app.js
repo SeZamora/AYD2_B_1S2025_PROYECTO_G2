@@ -11,7 +11,7 @@ const dbRoutes = require('./routes/db')
 const superVisorRoutes = require('./routes/supervisor')
 const employeeRoutes = require('./routes/employee')
 const productRoutes = require('./routes/product')
-
+const bookRoutes = require('./routes/book')
 
 
 
@@ -30,6 +30,7 @@ app.use('/dbroute',dbRoutes);
 app.use('/supervisor',superVisorRoutes);
 app.use('/employee',employeeRoutes);
 app.use('/product',productRoutes);
+app.use('/book',bookRoutes);
 
 app.use(bodyParser.json({limit: '15mb'}));
 
