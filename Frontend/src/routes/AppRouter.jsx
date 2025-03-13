@@ -12,6 +12,7 @@ import SupervisorView from "../pages/Supervisor/SupervisorView";
 import EmpleadoView from "../pages/Empleado/EmpleadoView";
 import GerenteView from "../pages/Gerente/GerenteView";
 import UsuarioView from "../pages/Usuario/UsuarioView";
+import TestUpload from "../pages/TestUpload/TestUpload";
 
 const AppRouter = () => {
   const { role } = useAuth();
@@ -19,6 +20,8 @@ const AppRouter = () => {
   return (
     <Routes>
       <Route path="/" element={<Login />} />
+      <Route path="/testUpload" element={ <TestUpload />} />
+
       <Route path="/SuperPrincipal" element={role === "supervisores" ? <SuperPrincipal /> : <Navigate to="/" />} />
       <Route path="/Productos" element={role === "supervisores" ? <Productos /> : <Navigate to="/" />} />
       <Route path="/Libros" element={role === "supervisores" ? <Libros /> : <Navigate to="/" />} />
