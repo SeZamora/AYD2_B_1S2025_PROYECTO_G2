@@ -1,13 +1,30 @@
 const db = require('../services/DBService').default;
+const S3Service = require('../services/S3Service');
 
 const addProduct = async ({ nombre, descripcion, codigo, categoria, precio_compra, precio_venta, cantidad, imagen }) => {
     try {
+        let imageUrl = null;
+
+        // Verificar si recibimos el buffer de la imagen
+        if (imagen && Buffer.isBuffer(imagen)) {
+            const contentType = "image/png";  // O ajusta esto dinámicamente si puedes determinar el tipo de imagen
+
+            // Llamar al método para subir el buffer a S3
+            const [uploadedUrl, uploadError] = await S3Service.uploadBuffer(imagen, contentType, "productos");
+            if (uploadError) {
+                return { success: false, message: 'Error al subir la imagen.' };
+            }
+            imageUrl = uploadedUrl;
+        }
+
+        // Realizar la inserción del producto en la base de datos
         const result = await db.query(
             `INSERT INTO producto (nombre, descripcion, codigo, categoria, precio_compra, precio_venta, cantidad, imagen) 
              VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
-            [nombre, descripcion, codigo, categoria, precio_compra, precio_venta, cantidad, imagen]
+            [nombre, descripcion, codigo, categoria, precio_compra, precio_venta, cantidad, imageUrl]
         );
 
+        // Verificar si la inserción fue exitosa
         if (result.affectedRows > 0) {
             return { success: true, message: 'Producto agregado exitosamente.', id_producto: result.insertId };
         } else {
@@ -18,6 +35,7 @@ const addProduct = async ({ nombre, descripcion, codigo, categoria, precio_compr
         return { success: false, message: 'Error interno del servidor.' };
     }
 };
+
 
 
 const getAllProducts = async () => {
