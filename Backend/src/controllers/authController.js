@@ -37,7 +37,7 @@ const register = async (req, res) => {
        
         const resultado = await authService.register({ email, password, fullName, age });
 
-        const resultado_email = await emailService.sendVerificationEmail({ email });
+        const resultado_email = await emailService.sendVerificationEmail({ email, subject: 'Verificación de correo electrónico',  html: `<a href="http://localhost:3000/auth/verify/${email}/cuenta">VERIFICAR MI  CUENTA</a>` });
 
       
         if (!resultado.success || !resultado_email.success) {
@@ -55,9 +55,9 @@ const register = async (req, res) => {
 
 
 const verifyEmail = async (req, res) => {
-    const { email } = req.params;
+    const { email, usertype } = req.params;
     try {
-        const resultado = await authService.verifyEmail(email);
+        const resultado = await authService.verifyEmail(email, usertype);
         res.send(`<h1> ${resultado.message} </h1>`);
 
 

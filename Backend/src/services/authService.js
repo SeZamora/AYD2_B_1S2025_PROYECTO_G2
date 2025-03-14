@@ -57,10 +57,10 @@ const login = async ({ username, password, userType }) => {
 };
 
 
-const verifyEmail = async (email) => {
+const verifyEmail = async (email, usertype) => {
     try {
         const result = await db.query(
-            `UPDATE cuenta SET verificado = 1 WHERE correo = ?`,
+            `UPDATE ${usertype} SET verificado = 1 WHERE correo = ?`,
             [email]
         );
 
