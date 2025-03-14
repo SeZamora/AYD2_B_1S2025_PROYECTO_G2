@@ -32,7 +32,7 @@ CREATE TABLE producto (
     precio_compra DECIMAL(10,2) NOT NULL,
     precio_venta  DECIMAL(10,2) NOT NULL,
     cantidad      INT NOT NULL,
-    imagen        MEDIUMBLOB NOT NULL,
+    imagen        VARCHAR(100) NOT NULL,
     PRIMARY KEY (id_producto)
 );
 CREATE TABLE gerente (
@@ -66,7 +66,7 @@ CREATE TABLE empleados (
     edad                     INT NOT NULL,
     genero                   VARCHAR(10) NOT NULL,
     fecha                    DATE NOT NULL,
-    fotografia               MEDIUMBLOB NOT NULL,
+    fotografia               VARCHAR(100) NOT NULL,
     supervisores_id_supervisor INT NOT NULL,
     verificado               INT NOT NULL,
     PRIMARY KEY (empleados_id),
@@ -148,9 +148,37 @@ VALUES
 (2, 'Sofia Herrera', 'sofia.supervisor@example.com', '555-5678', '2024-03-02', 0, 'b221d9dbb083a7f33428d7c2a3c3198ae925614d70210e28716ccaa7cd4ddb79'), -- password:hola
 (3, 'Andres Medina', 'andres.supervisor@example.com', '555-9101', '2024-03-03', 1, 'b221d9dbb083a7f33428d7c2a3c3198ae925614d70210e28716ccaa7cd4ddb79'); -- password:hola
 
+
 -- Insertar datos en la tabla empleados
 INSERT INTO empleados (nombre, apellido, cui, telefono, correo, edad, genero, fecha, fotografia, supervisores_id_supervisor, verificado, contrasenia) 
 VALUES 
 ('Ricardo', 'Garcoa', 1234567890123, '555-0001', 'ricardo.empleado@example.com', 28, 'Masculino', '2024-03-05', 'foto1.jpg', 1,1, 'b221d9dbb083a7f33428d7c2a3c3198ae925614d70210e28716ccaa7cd4ddb79'), -- password:hola
 ('Fernanda', 'Lopez', 9876543210987, '555-0002', 'fernanda.empleado@example.com', 32, 'Femenino', '2024-03-06', 'foto2.jpg', 2, 0, 'd8542114d7d40f3c82fc0919efc644df30f4e827c2bd6b83b9dbec8358b2fbc4'), -- password:adios
 ('David', 'Martinez', 4567891230456, '555-0003', 'david.empleado@example.com', 26, 'Masculino', '2024-03-07', 'foto3.jpg', 3, 1, 'd8542114d7d40f3c82fc0919efc644df30f4e827c2bd6b83b9dbec8358b2fbc4'); -- password:adios
+
+-- INSERTAR PRODUCTOS
+INSERT INTO producto (nombre, descripcion, codigo, categoria, precio_compra, precio_venta, cantidad, imagen) 
+VALUES 
+('Laptop Lenovo', 'Laptop Lenovo IdeaPad 3, 8GB RAM, 512GB SSD', 'LEN123', 'Electrónica', 500.00, 700.00, 10, 'imagen1.jpg'),
+('Smartphone Samsung', 'Samsung Galaxy S23 Ultra, 12GB RAM, 256GB', 'SAM456', 'Celulares', 800.00, 1000.00, 15, 'imagen2.jpg'),
+('Mouse Logitech', 'Mouse inalámbrico Logitech M280', 'LOG789', 'Accesorios', 20.00, 35.00, 50, 'imagen3.jpg'),
+('Teclado Mecánico', 'Teclado mecánico RGB para gaming', 'TEC001', 'Periféricos', 45.00, 70.00, 25, 'imagen4.jpg'),
+('Monitor Dell', 'Monitor Dell 24 pulgadas Full HD', 'DEL002', 'Monitores', 150.00, 220.00, 8, 'imagen5.jpg');
+
+
+INSERT INTO facturas (nombre_vendedor, fecha_hora, total_venta, nombre_comprador, cuenta_id_cuenta, empleados_id) 
+VALUES 
+('Ricardo Garcoa', '2024-03-10 14:30:00', 1035.00, 'Juan Perez', 1, 1),
+('Fernanda Lopez', '2024-03-11 09:45:00', 750.00, 'María Gomez', 2, 2),
+('David Martinez', '2024-03-12 17:15:00', 70.00, 'Carlos Lopez', 3, 3);
+
+
+INSERT INTO detalle_factura (factura_id, unidades_compradas, precio_producto, producto_id, libro_id) 
+VALUES 
+(1, 1, 700.00, 1, NULL), -- Laptop Lenovo
+(1, 1, 1000.00, 2, NULL), -- Smartphone Samsung
+(2, 2, 35.00, 3, NULL), -- Mouse Logitech
+(3, 1, 70.00, 4, NULL); -- Teclado Mecánico
+
+
+
