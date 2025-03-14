@@ -1,5 +1,7 @@
 
 const db = require('../services/DBService').default;
+const encrypter = require('../services/encryptService');
+
 
 
 
@@ -36,10 +38,13 @@ const editInfo = async ({ old_email, new_email, phone_number }) => {
 
 const createSupervisor = async ({ gerente_id_gerente, nombre, email, contrasenia, telefono, fecha_ingreso, verificado }) => {
     try {
+        const hashedPassword = await encrypter.sha256(contrasenia);
+        
+
         const result = await db.query(
             `INSERT INTO supervisores (gerente_id_gerente, nombre_completo, correo, contrasenia, telefono, fecha, verificado) 
              VALUES (?, ?, ?, ?, ?, ?, ?)`,
-            [gerente_id_gerente, nombre, email, contrasenia, telefono, fecha_ingreso, verificado]
+            [gerente_id_gerente, nombre, email, hashedPassword, telefono, fecha_ingreso, verificado]
         );
 
         if (result.affectedRows > 0) {

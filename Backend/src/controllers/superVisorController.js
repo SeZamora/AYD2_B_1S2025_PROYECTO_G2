@@ -1,4 +1,7 @@
 const superVisorService = require('../services/superVisorService');
+const emailService = require('../services/emailService');
+
+
 
 
 
@@ -22,7 +25,29 @@ const createSupervisor = async (req, res) => {
             return res.status(400).json({ message: 'Todos los campos son obligatorios' });
         }
 
+        
+
         const result = await superVisorService.createSupervisor({ gerente_id_gerente, nombre, email, contrasenia, telefono, fecha_ingreso, verificado });
+        const resultado_email = await emailService.sendVerificationEmail({ 
+            email, 
+            subject: 'Verificación de correo electrónico supervisor', 
+            html: `
+                <p>Bienvenido ${nombre}!</p>
+                <p>Tus credenciales de inicio de sesión son:</p>
+                <p>Correo: ${email} <br> 
+                Password: ${contrasenia} </p>
+                <p>
+                    <a href="http://localhost:3000/auth/verify/${email}/supervisores">
+                        VERIFICA TU CUENTA DE SUPERVISOR
+                    </a>
+                </p>
+            ` 
+        });
+        
+        if (!result.success || !resultado_email.success) {
+            return res.status(400).json({ status: 'error', message: result.message || 'Error al registrar el supervisor.' });
+        }
+
         res.status(200).json(result);
     } catch (error) {
         console.error('Error:', error);

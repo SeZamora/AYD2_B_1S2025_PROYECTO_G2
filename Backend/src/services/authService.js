@@ -38,8 +38,6 @@ const register = async ({ email, password, fullName, age }) => {
 
 const login = async ({ username, password, userType }) => {
     try {
-        console.log(username, password, userType);
-        console.log('password encriptado', await encrypter.sha256(password));
 
         const users = await db.query(`SELECT * FROM ${userType} WHERE correo = ? AND contrasenia = ? AND verificado = 1`, [username, await encrypter.sha256(password)]);
 
@@ -59,6 +57,27 @@ const login = async ({ username, password, userType }) => {
 };
 
 
+const verifyEmail = async (email, usertype) => {
+    try {
+        const result = await db.query(
+            `UPDATE ${usertype} SET verificado = 1 WHERE correo = ?`,
+            [email]
+        );
+
+
+        if (result.affectedRows > 0) {
+            return { success: true, message: 'Correo verificado exitosamente.' };
+        } else {
+            return { success: false, message: 'No se encontró una cuenta con este correo.' };
+        }
+    } catch (error) {
+        
+        console.error('Error al verificar correo:', error);
+        return { success: false, message: 'Error interno del servidor.' };
+    }
+};
+
+
 
 
 
@@ -66,5 +85,6 @@ const login = async ({ username, password, userType }) => {
 module.exports = {
    
     login,
-    register
+    register,
+    verifyEmail
 };
