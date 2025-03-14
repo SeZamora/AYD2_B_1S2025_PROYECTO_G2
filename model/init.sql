@@ -182,3 +182,29 @@ VALUES
 
 
 
+-- Insertar datos en la tabla libros
+INSERT INTO libros (titulo, autor, fecha_lanzamiento, descripcion, genero, stock, precio) 
+VALUES 
+('Cien años de soledad', 'Gabriel García Márquez', '1967-06-05', 'Novela sobre la familia Buendía', 'Realismo mágico', 20, 15.99),
+('El principito', 'Antoine de Saint-Exupéry', '1943-04-06', 'Historia de un pequeño príncipe', 'Fábula', 30, 9.99),
+('1984', 'George Orwell', '1949-06-08', 'Distopía sobre un régimen totalitario', 'Ciencia ficción', 25, 12.50),
+('Los juegos del hambre', 'Suzanne Collins', '2008-09-14', 'Novela de ciencia ficción distópica', 'Juvenil', 40, 18.99),
+('Don Quijote de la Mancha', 'Miguel de Cervantes', '1605-01-16', 'Historia de un caballero loco', 'Clásico', 15, 22.00);
+
+-- Insertar datos en la tabla deseos
+INSERT INTO deseos (cuenta_id_cuenta, libro_id, producto_id) 
+VALUES 
+(1, 1, NULL), -- Usuario 1 desea "Cien años de soledad"
+(2, NULL, 3), -- Usuario 2 desea el Mouse Logitech
+(3, 3, NULL), -- Usuario 3 desea "1984"
+(1, NULL, 2), -- Usuario 1 desea el Smartphone Samsung
+(2, 5, NULL); -- Usuario 2 desea "Don Quijote"
+
+-- Insertar datos en la tabla resenias
+INSERT INTO resenias (calificacion, comentario, fecha, cuenta_id_cuenta, libros_id_libro) 
+VALUES 
+(5, 'Un clásico imprescindible.', '2024-03-10', 1, 1),
+(4, 'Muy interesante, pero complejo.', '2024-03-11', 2, 3),
+(3, 'Esperaba más del final.', '2024-03-12', 3, 4),
+(5, 'Una historia hermosa y conmovedora.', '2024-03-13', 2, 2),
+(4, 'Un libro que todos deberían leer.', '2024-03-14', 3, 5);
