@@ -72,8 +72,44 @@ const getProductById = async (id_producto) => {
     }
 };
 
+const editProduct = async ({ id_producto, nombre, descripcion, codigo, categoria, precio_compra, precio_venta, cantidad, imagen }) => {
+
+    try {
+        let imageUrl = null;
+
+        // Verificar si recibimos el buffer de la imagen
+        if (imagen && Buffer.isBuffer(imagen)) {
+            const contentType = "image/png";  // O ajusta esto dinámicamente si puedes determinar el tipo de imagen
+
+            // Llamar al método para subir el buffer a S3
+            const [uploadedUrl, uploadError] = await S3Service.uploadBuffer(imagen, contentType, "productos");
+            if (uploadError) {
+                return { success: false, message: 'Error al subir la imagen.' };
+            }
+            imageUrl = uploadedUrl;
+        }
+
+        // Realizar la actualización del producto en la base de datos
+        const result = await db.query(
+            `UPDATE producto SET nombre = ?, descripcion = ?, codigo = ?, categoria = ?, precio_compra = ?, precio_venta = ?, cantidad = ?, imagen = ? WHERE id_producto = ?`,
+            [nombre, descripcion, codigo, categoria, precio_compra, precio_venta, cantidad, imageUrl, id_producto]
+        );
+
+        // Verificar si la actualización fue exitosa
+        if (result.affectedRows > 0) {
+            return { success: true, message: 'Producto actualizado exitosamente.' };
+        } else {
+            return { success: false, message: 'No se pudo actualizar el producto.' };
+        }
+    } catch (error) {
+        console.error('Database Error:', error.sqlMessage || error);
+        return { success: false, message: 'Error interno del servidor.' };
+    }
+}
+
 module.exports = {
     addProduct,
     getAllProducts,
-    getProductById
+    getProductById,
+    editProduct
 };

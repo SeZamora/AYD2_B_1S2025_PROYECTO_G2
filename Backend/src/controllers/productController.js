@@ -65,9 +65,44 @@ const getProductById = async (req, res) => {
         res.status(500).json({ message: 'Error al obtener el producto' });
     }
 };
+
+
+const editProduct = async (req, res) => {
+    try {
+        const { id_producto, nombre, descripcion, codigo, categoria, precio_compra, precio_venta, cantidad } = req.body;
+        const imagen = req.file ? req.file.buffer : null;
+        if (!id_producto || !nombre || !codigo || !categoria || !precio_compra || !precio_venta || !cantidad) {
+
+            return res.status(400).json({ message: 'Todos los campos son obligatorios' });
+        }
+
+        const result = await productService.editProduct({
+            id_producto,
+            nombre,
+            descripcion,
+            codigo,
+            categoria,
+            precio_compra,
+            precio_venta,
+            cantidad,
+            imagen
+        });
+
+        res.status(200).json(result);
+
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ message: 'Error al editar el producto' });
+    }
+
+}
+
+
+
 module.exports = {
     addProduct,
     upload,
     getAllProducts,
-    getProductById
+    getProductById,
+    editProduct
 };
