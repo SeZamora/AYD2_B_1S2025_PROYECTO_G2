@@ -1,5 +1,5 @@
 const authService = require('../services/authService');
-
+const emailService = require('../services/emailService');
 
 
 const login = async (req, res) => {
@@ -13,7 +13,7 @@ const login = async (req, res) => {
         const resultado = await authService.login({  username,  password, userType });
 
         if (!resultado.success) {
-            return res.status(400).json({ status: 'error' , message });
+            return res.status(400).json({ status: 'error' , message: resultado.message  });
         }
 
         res.status(201).json(resultado);
@@ -37,8 +37,10 @@ const register = async (req, res) => {
        
         const resultado = await authService.register({ email, password, fullName, age });
 
+        const resultado_email = await emailService.sendVerificationEmail({ email });
+
       
-        if (!resultado.success) {
+        if (!resultado.success || !resultado_email.success) {
             return res.status(400).json({ status: 'error', message: resultado.message || 'Error al registrar el usuario.' });
         }
 
@@ -52,8 +54,25 @@ const register = async (req, res) => {
 };
 
 
+const verifyEmail = async (req, res) => {
+    const { email } = req.params;
+    try {
+        const resultado = await authService.verifyEmail(email);
+        res.send(`<h1> ${resultado.message} </h1>`);
+
+
+    } catch (error) {
+
+        res.send(`<h1> ERROR INTERNO EN SERVIDOR </h1>`);
+
+
+    }
+};
+
+
 module.exports = {
     
     login,
-    register
+    register,
+    verifyEmail
 };
