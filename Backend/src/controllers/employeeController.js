@@ -1,15 +1,20 @@
 const employeeService = require('../services/employeeService');
+const multer = require('multer');
 
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
 const addEmployee = async (req, res) => {
     try {
         const { nombre, apellido, cui, telefono, correo, contrasenia, edad, genero, fecha, supervisores_id_supervisor, verificado } = req.body;
-        const fotografia = req.file ? req.file.buffer : null; // Imagen en buffer
-
+        const imagen = req.file ? req.file.buffer : null; 
+        console.log('req.body:', req.body);  // Muestra los campos que vienen en el body
+        console.log('req.file:', req.file); 
         // Validar campos obligatorios
-        if (!nombre || !apellido || !cui || !telefono || !correo || !contrasenia || !edad || !genero || !fecha || !supervisores_id_supervisor || !verificado || !fotografia) {
+        if (!nombre || !apellido || !cui || !telefono || !correo || !contrasenia || !edad || !genero || !fecha || !supervisores_id_supervisor || !verificado || !imagen) {
             return res.status(400).json({ message: 'Todos los campos son obligatorios' });
         }
-
+        console.log("a")
+        console.log(imagen)
         // Llamar al servicio para agregar al empleado
         const result = await employeeService.addEmployee({
             nombre,
@@ -21,7 +26,7 @@ const addEmployee = async (req, res) => {
             edad,
             genero,
             fecha,
-            fotografia,
+            imagen,
             supervisores_id_supervisor,
             verificado
         });
@@ -87,6 +92,7 @@ module.exports = {
     editInfo,
     addEmployee,
     getAllEmployees,
-    getEmployeeById
+    getEmployeeById, 
+    upload
 };
 

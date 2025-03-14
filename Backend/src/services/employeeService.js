@@ -1,14 +1,29 @@
 
 const db = require('../services/DBService').default;
-
-const addEmployee = async ({ nombre, apellido, cui, telefono, correo, contrasenia, edad, genero, fecha, fotografia, supervisores_id_supervisor, verificado }) => {
+const S3Service = require('./S3Service');
+const addEmployee = async ({ nombre, apellido, cui, telefono, correo, contrasenia, edad, genero, fecha, imagen, supervisores_id_supervisor, verificado }) => {
     try {
+        let imagenUrl = null;
+        console.log("service")
+        console.log(imagen)
+        if (imagen && Buffer.isBuffer(imagen)) {
+            const contentType = "image/png";  
+
+            const [uploadedUrl, uploadError] = await S3Service.uploadBuffer(imagen, contentType, "empleados");
+            if (uploadError) {
+                return { success: false, message: 'Error al subir la fotografía.' };
+            }
+            imagenUrl = uploadedUrl;
+        }
+
+        
         const result = await db.query(
             `INSERT INTO empleados (nombre, apellido, cui, telefono, correo, contrasenia, edad, genero, fecha, fotografia, supervisores_id_supervisor, verificado) 
              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-            [nombre, apellido, cui, telefono, correo, contrasenia, edad, genero, fecha, fotografia, supervisores_id_supervisor, verificado]
+            [nombre, apellido, cui, telefono, correo, contrasenia, edad, genero, fecha, imagenUrl, supervisores_id_supervisor, verificado]
         );
 
+        
         if (result.affectedRows > 0) {
             return { success: true, message: 'Empleado agregado exitosamente.', id_empleado: result.insertId };
         } else {
@@ -19,6 +34,7 @@ const addEmployee = async ({ nombre, apellido, cui, telefono, correo, contraseni
         return { success: false, message: 'Error interno del servidor.' };
     }
 };
+
 
 const editInfo = async ({ old_email, new_email, phone_number }) => {
     try {
@@ -57,6 +73,11 @@ const getAllEmployees = async () => {
         const result = await db.query(`SELECT * FROM empleados`);
 
         if (result.length > 0) {
+            // Eliminar la propiedad "contrasenia" de cada empleado
+            result.forEach(employee => {
+                delete employee.contrasenia;
+            });
+
             return { success: true, employees: result };
         } else {
             return { success: false, message: 'No hay empleados disponibles' };
@@ -72,6 +93,9 @@ const getEmployeeById = async (empleados_id) => {
         const result = await db.query(`SELECT * FROM empleados WHERE empleados_id = ?`, [empleados_id]);
 
         if (result.length > 0) {
+            // Eliminar la propiedad "contrasenia" del empleado
+            delete result[0].contrasenia;
+
             return { success: true, employee: result[0] };
         } else {
             return { success: false, message: 'No se encontró un empleado con ese ID' };
@@ -81,6 +105,7 @@ const getEmployeeById = async (empleados_id) => {
         return { success: false, message: 'Error interno del servidor' };
     }
 };
+
 
 module.exports = {
    

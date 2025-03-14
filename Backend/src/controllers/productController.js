@@ -7,12 +7,13 @@ const upload = multer({ storage: storage });
 const addProduct = async (req, res) => {
     try {
         const { nombre, descripcion, codigo, categoria, precio_compra, precio_venta, cantidad } = req.body;
-        const imagen = req.file ? req.file.buffer : null; // Image buffer
+        const imagen = req.file ? req.file.buffer : null; 
 
         if (!nombre || !codigo || !categoria || !precio_compra || !precio_venta || !cantidad || !imagen) {
             return res.status(400).json({ message: 'Todos los campos son obligatorios' });
         }
 
+       
         const result = await productService.addProduct({
             nombre,
             descripcion,
@@ -24,18 +25,7 @@ const addProduct = async (req, res) => {
             imagen
         });
 
-        // const resultx = {
-        //     nombre,
-        //     descripcion,
-        //     codigo,
-        //     categoria,
-        //     precio_compra,
-        //     precio_venta,
-        //     cantidad,
-        //     imagen
-        // };
-        // console.log(resultx);
-
+    
         res.status(200).json(result);
 
     } catch (error) {
