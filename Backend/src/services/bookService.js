@@ -49,4 +49,32 @@ const getBookById = async (id_libro) => {
 };
 
 
-module.exports = { addBook, getAllBooks, getBookById };
+const updateBook = async ({ id_libro,
+    titulo,
+    autor,
+    fecha_lanzamiento,
+    descripcion,
+    genero,
+    stock,
+    precio }) => {
+    try {
+        const result = await db.query(
+            `UPDATE libros SET titulo = ?, autor = ?, fecha_lanzamiento = ?, descripcion = ?, genero = ?, stock = ?, precio = ? WHERE id_libro = ?`,
+            [titulo, autor, fecha_lanzamiento, descripcion, genero, stock, precio, id_libro]
+        );
+
+        if (result.affectedRows > 0) {
+            return { success: true, message: 'Libro actualizado exitosamente.' };
+        } else {
+            return { success: false, message: 'No se pudo actualizar el libro.' };
+        }
+
+    } catch (error) {
+        console.error('Error:', error);
+        return { success: false, message: 'Error al actualizar el libro' };
+    }
+
+}
+
+
+module.exports = { addBook, getAllBooks, getBookById, updateBook };
