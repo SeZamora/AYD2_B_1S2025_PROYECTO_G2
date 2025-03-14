@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+
 import '../../../styles/Employetable.css';
 import AddProdutoModal from './AddProdutoModal'; // Asegúrate de importar correctamente el archivo
 import DeleteLibroModal from './Eliminar';
@@ -11,17 +12,13 @@ const ProductTable = () => {
     const [estado, setEstado] = useState('');
 
 
-    const Produto = [
-        { codigo: "P001", nombre: "Producto 1", categoria: "Categoría A", precioCompra: 100, precioVenta: 150, cantidad: 50 },
-        { codigo: "P002", nombre: "Producto 2", categoria: "Categoría B", precioCompra: 200, precioVenta: 250, cantidad: 30 },
-        { codigo: "P003", nombre: "Producto 3", categoria: "Categoría A", precioCompra: 150, precioVenta: 200, cantidad: 20 },
-        { codigo: "P004", nombre: "Producto 4", categoria: "Categoría C", precioCompra: 300, precioVenta: 350, cantidad: 10 },
-    ];
+
 
     const toggleModal = () => {
         setShowModal(prev => {
             const newShowModal = !prev;
             if (newShowModal) {
+                
                 setRole('add');
             } else {
                 setRole('');
@@ -48,6 +45,27 @@ const ProductTable = () => {
     setEstado(elemento);  // Actualizar el estado con el valor correcto
 };
 
+const [productos, setProductos] = useState([]);
+
+const fetchProductos = async () => {
+    try {
+        const response = await fetch("http://localhost:3000/product/getAllProducts");
+        const data = await response.json();
+        if (data.success) {
+            console.log(data);
+            setProductos(data.data);
+        } else {
+            console.error("Error obteniendo productos:", data.message);
+        }
+    } catch (error) {
+        console.error("Fetch error:", error);
+    }
+};
+
+
+    useEffect(() => {
+        fetchProductos();
+    }, []);
 
 
     return (
@@ -88,14 +106,14 @@ const ProductTable = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {Produto.map((Produto) => (
-                                <tr key={Produto.codigo}>
-                                    <td style={{ textAlign: 'center' }}>{Produto.codigo}</td>
-                                    <td style={{ textAlign: 'center' }}>{Produto.nombre}</td>
-                                    <td style={{ textAlign: 'center' }}>{Produto.categoria}</td>
-                                    <td style={{ textAlign: 'center' }}>{Produto.precioCompra}</td>
-                                    <td style={{ textAlign: 'center' }}>{Produto.precioVenta}</td>
-                                    <td style={{ textAlign: 'center' }}>{Produto.cantidad}</td>
+                            {productos.map((productos) => (
+                                <tr key={productos.id_producto}>
+                                    <td style={{ textAlign: 'center' }}>{productos.codigo}</td>
+                                    <td style={{ textAlign: 'center' }}>{productos.nombre}</td>
+                                    <td style={{ textAlign: 'center' }}>{productos.categoria}</td>
+                                    <td style={{ textAlign: 'center' }}>{productos.precio_compra}</td>
+                                    <td style={{ textAlign: 'center' }}>{productos.precio_venta}</td>
+                                    <td style={{ textAlign: 'center' }}>{productos.cantidad}</td>
                                     <td style={{ textAlign: 'center' }}>
                                         <a onClick={toggleModalM} className="edit" data-toggle="modal">
                                             <i className="fa fa-pencil" aria-hidden="true"></i>
@@ -111,7 +129,7 @@ const ProductTable = () => {
                 </div>
             </div>
 
-            <AddProdutoModal showModal={showModal} toggleModal={toggleModal} role={role2}/>
+            <AddProdutoModal showModal={showModal} toggleModal={toggleModal} role={role2} />
             <DeleteLibroModal showDeleteModal={showDeleteModal} toggleDeleteModal={toggleDeleteModal} estado={estado} />
 
         </div>
@@ -120,3 +138,9 @@ const ProductTable = () => {
 };
 
 export default ProductTable;
+
+
+
+﻿
+
+
