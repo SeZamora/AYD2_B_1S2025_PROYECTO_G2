@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const AddProdutoModal = ({ showModal, toggleModal, role }) => {
     const [formData, setFormData] = useState({
-        Nombredelproducto : '',
-        Apellido: '',
-        Descripción: '',
-        Códigodelproducto : '',
-        Categoría: '',
-        Preciodecompra : '',
-        Preciodeventa : '',
-        Cantidadeninventario : '',
-        Fotografía: ''
+        nombre: '',
+        descripcion: '',
+        codigo: '',
+        categoria: '',
+        precio_compra: '',
+        precio_venta: '',
+        cantidad: '',
+        imagen: null
     });
 
     useEffect(() => {
@@ -18,6 +17,57 @@ const AddProdutoModal = ({ showModal, toggleModal, role }) => {
             console.log(role);
         }
     }, [showModal, role]);
+
+    // Manejar cambios en inputs de texto y números
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+    };
+
+    // Manejar selección de archivo
+    const handleFileChange = (e) => {
+        setFormData({ ...formData, imagen: e.target.files[0] });
+    };
+
+    // Enviar datos al backend
+    const handleSubmit = async (e) => {
+
+        e.preventDefault();
+        if(role=='add'){
+        const data = new FormData();
+
+        Object.keys(formData).forEach((key) => {
+            data.append(key, formData[key]);
+        });
+
+        try {
+            const response = await fetch("http://localhost:3000/product/addProduct", {
+                method: "POST",
+                body: data
+            });
+
+            if (response.ok) {
+                alert("Producto agregado con éxito");
+                setFormData({
+                    nombre: '',
+                    descripcion: '',
+                    codigo: '',
+                    categoria: '',
+                    precio_compra: '',
+                    precio_venta: '',
+                    cantidad: '',
+                    imagen: null
+                });
+                toggleModal(); 
+                window.location.reload();
+            } else {
+                alert("Error al agregar el producto");
+            }
+        } catch (error) {
+            console.error("Error al enviar la solicitud", error);
+        }
+    }
+    };
 
     return (
         <>
@@ -51,68 +101,60 @@ const AddProdutoModal = ({ showModal, toggleModal, role }) => {
                     left: '50%',
                     transform: 'translate(-50%, -50%)'
                 }}
-                aria-labelledby="addEmployeeModalLabel"
+                aria-labelledby="addProductModalLabel"
                 aria-hidden={!showModal}
             >
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h5 className="modal-title" id="addEmployeeModalLabel">
-                                {role === 'edit' ? 'Editar Empleado' : 'Agregar Nuevo Empleado'}
+                            <h5 className="modal-title" id="addProductModalLabel">
+                                {role === 'edit' ? 'Editar Producto' : 'Agregar Nuevo Producto'}
                             </h5>
                         </div>
                         <div className="modal-body">
-                            <form>
-                                {role === 'add' && (
-                                    <>
-                                        <div className="form-group">
-                                            <label htmlFor="employeeName">Nombre del producto</label>
-                                            <input type="text" className="form-control" id="employeeName"  />
-                                        </div>                            
-                                        <div className="form-group">
-                                            <label htmlFor="employeeCUI">Código del producto</label>
-                                            <input type="text" className="form-control" id="employeeCUI"  />
-                                        </div>
-                                        <div className="form-group">
-                                            <label htmlFor="employeeGender">Categoría</label>
-                                            <input type="text" className="form-control" id="employeeGender" />
-                                        </div>
-                                        <div className="form-group">
-                                            <label htmlFor="employeeHireDate">Precio de compra</label>
-                                            <input type="tex" className="form-control" id="employeeHireDate" />
-                                        </div>
-
-                                        <div className="form-group">
-                                            <label htmlFor="employeeHireDate">Imagen del producto </label>
-                                            <input type="file" className="form-control" id="employeeHireDate" />
-                                        </div>
-                                       
-                                    </>
-                                )}
-
-                              
+                            <form onSubmit={handleSubmit}>
                                 <div className="form-group">
-                                    <label htmlFor="employeePhone">Precio de venta</label>
-                                    <input type="text" className="form-control" id="employeePhone"  />
+                                    <label htmlFor="nombre">Nombre del producto</label>
+                                    <input type="text" className="form-control" id="nombre" name="nombre" value={formData.nombre} onChange={handleChange} required />
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="employeeEmail">Cantidad en inventarioo</label>
-                                    <input type="email" className="form-control" id="employeeEmail"/>
+                                    <label htmlFor="codigo">Código del producto</label>
+                                    <input type="text" className="form-control" id="codigo" name="codigo" value={formData.codigo} onChange={handleChange} required />
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="employeeAge">Descripción</label>
-                                    <input type="" className="form-control" id="employeeAge" />
+                                    <label htmlFor="categoria">Categoría</label>
+                                    <input type="text" className="form-control" id="categoria" name="categoria" value={formData.categoria} onChange={handleChange} required />
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="precio_compra">Precio de compra</label>
+                                    <input type="number" className="form-control" id="precio_compra" name="precio_compra" value={formData.precio_compra} onChange={handleChange} required />
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="precio_venta">Precio de venta</label>
+                                    <input type="number" className="form-control" id="precio_venta" name="precio_venta" value={formData.precio_venta} onChange={handleChange} required />
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="cantidad">Cantidad en inventario</label>
+                                    <input type="number" className="form-control" id="cantidad" name="cantidad" value={formData.cantidad} onChange={handleChange} required />
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="descripcion">Descripción</label>
+                                    <textarea className="form-control" id="descripcion" name="descripcion" value={formData.descripcion} onChange={handleChange}></textarea>
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="imagen">Imagen del producto</label>
+                                    <input type="file" className="form-control" id="imagen" name="imagen" accept="image/*" onChange={handleFileChange} required />
+                                </div>
+                                <div className="modal-footer">
+                                    <button type="button" className="btn btn-secondary" onClick={toggleModal}>
+                                        Cerrar
+                                    </button>
+                                    <button type="submit" className="btn btn-primary">
+                                        Guardar
+                                    </button>
                                 </div>
                             </form>
-                        </div>
-                        <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" onClick={toggleModal}>
-                                Cerrar
-                            </button>
-                            <button type="button" className="btn btn-primary">
-                                Guardar
-                            </button>
-                        </div>
+                        </div>                      
                     </div>
                 </div>
             </div>

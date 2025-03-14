@@ -1,7 +1,24 @@
 
 const db = require('../services/DBService').default;
 
+const addEmployee = async ({ nombre, apellido, cui, telefono, correo, contrasenia, edad, genero, fecha, fotografia, supervisores_id_supervisor, verificado }) => {
+    try {
+        const result = await db.query(
+            `INSERT INTO empleados (nombre, apellido, cui, telefono, correo, contrasenia, edad, genero, fecha, fotografia, supervisores_id_supervisor, verificado) 
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+            [nombre, apellido, cui, telefono, correo, contrasenia, edad, genero, fecha, fotografia, supervisores_id_supervisor, verificado]
+        );
 
+        if (result.affectedRows > 0) {
+            return { success: true, message: 'Empleado agregado exitosamente.', id_empleado: result.insertId };
+        } else {
+            return { success: false, message: 'No se pudo agregar el empleado.' };
+        }
+    } catch (error) {
+        console.error('Database Error:', error.sqlMessage || error);
+        return { success: false, message: 'Error interno del servidor.' };
+    }
+};
 
 const editInfo = async ({ old_email, new_email, phone_number }) => {
     try {
@@ -35,9 +52,40 @@ const editInfo = async ({ old_email, new_email, phone_number }) => {
 };
 
 
+const getAllEmployees = async () => {
+    try {
+        const result = await db.query(`SELECT * FROM empleados`);
 
+        if (result.length > 0) {
+            return { success: true, employees: result };
+        } else {
+            return { success: false, message: 'No hay empleados disponibles' };
+        }
+    } catch (error) {
+        console.error('Database Error:', error.sqlMessage || error);
+        return { success: false, message: 'Error interno del servidor' };
+    }
+};
+
+const getEmployeeById = async (empleados_id) => {
+    try {
+        const result = await db.query(`SELECT * FROM empleados WHERE empleados_id = ?`, [empleados_id]);
+
+        if (result.length > 0) {
+            return { success: true, employee: result[0] };
+        } else {
+            return { success: false, message: 'No se encontró un empleado con ese ID' };
+        }
+    } catch (error) {
+        console.error('Database Error:', error.sqlMessage || error);
+        return { success: false, message: 'Error interno del servidor' };
+    }
+};
 
 module.exports = {
    
-    editInfo
+    editInfo,
+    addEmployee,
+    getAllEmployees,
+    getEmployeeById
 };
