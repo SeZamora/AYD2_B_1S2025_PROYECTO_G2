@@ -76,5 +76,39 @@ const updateBook = async ({ id_libro,
 
 }
 
+const addResenia = async ({ calificacion, comentario, fecha, cuenta_id_cuenta, libros_id_libro }) => {
+    try {
+        const result = await db.query(
+            `INSERT INTO resenias (calificacion, comentario, fecha, cuenta_id_cuenta, libros_id_libro) 
+             VALUES (?, ?, ?, ?, ?)`,
+            [calificacion, comentario, fecha, cuenta_id_cuenta, libros_id_libro]
+        );
 
-module.exports = { addBook, getAllBooks, getBookById, updateBook };
+        return { success: true, message: 'Reseña agregada exitosamente.', id_resenia: result.insertId };
+    } catch (error) {
+        console.error('Database Error:', error.sqlMessage || error);
+        return { success: false, message: 'Error al agregar la reseña.' };
+    }
+};
+
+const getAllResenias = async () => {
+    try {
+        const reviews = await db.query(`
+            SELECT r.id_resenia, r.calificacion, r.comentario, r.fecha, 
+                   c.id_cuenta, c.nombre AS nombre_usuario, 
+                   l.id_libro, l.titulo AS titulo_libro
+            FROM resenias r
+            JOIN cuenta c ON r.cuenta_id_cuenta = c.id_cuenta
+            JOIN libros l ON r.libros_id_libro = l.id_libro
+            ORDER BY r.fecha DESC
+        `);
+
+        return { success: true, data: reviews };
+    } catch (error) {
+        console.error('Database Error:', error.sqlMessage || error);
+        return { success: false, message: 'Error al obtener las reseñas.' };
+    }
+};
+
+
+module.exports = { addBook, getAllBooks, getBookById, updateBook, addResenia, getAllResenias};

@@ -11,6 +11,7 @@ const addEmployee = async (req, res) => {
         const { nombre, apellido, cui, telefono, correo, contrasenia, edad, genero, fecha, supervisores_id_supervisor, verificado } = req.body;
         const imagen = req.file ? req.file.buffer : null; 
         // Validar campos obligatorios
+        
         if (!nombre || !apellido || !cui || !telefono || !correo || !contrasenia || !edad || !genero || !fecha || !supervisores_id_supervisor || !verificado || !imagen) {
             return res.status(400).json({ message: 'Todos los campos son obligatorios' });
         }
