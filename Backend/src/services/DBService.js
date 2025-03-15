@@ -1,4 +1,4 @@
-import mysql from 'mysql2/promise';
+const mysql = require('mysql2/promise');
 
 // Implementación de Singleton para la conexión con la base de datos
 class DBService {
@@ -26,6 +26,7 @@ class DBService {
                     connectionLimit: 10,
                     queueLimit: 0
                 });
+            
 
                 // Test the connection
                 await this.pool.getConnection().then(conn => conn.release());
@@ -71,4 +72,8 @@ class DBServiceProxy {
     }
 }
 
-export default new DBServiceProxy();
+module.exports = {
+
+    // Obtener la instancia del servicio de base de datos
+    db: new DBServiceProxy()
+}
