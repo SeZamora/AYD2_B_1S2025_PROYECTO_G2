@@ -37,9 +37,11 @@ const getAllProducts = async () => {
     }
 };
 
-const getProductById = async (id_producto) => {
+
+
+const getProductById = async (nombre_producto) => {
     try {
-        const rows = await db.query(`SELECT * FROM producto WHERE id_producto = ?`, [id_producto]);
+        const rows = await db.query(`SELECT * FROM producto WHERE nombre = ?`, [nombre_producto]);
 
         if (rows.length > 0) {
             const product = rows[0];
@@ -47,13 +49,14 @@ const getProductById = async (id_producto) => {
 
             return { success: true, product };
         } else {
-            return { success: false, message: 'No se encontró un producto con ese ID' };
+            return { success: false, message: 'No se encontró un producto con ese nombre' };
         }
     } catch (error) {
         console.error('Database Error:', error.sqlMessage || error);
         return { success: false, message: 'Error interno del servidor.' };
     }
 };
+
 
 const editProduct = async ({ id_producto, nombre, descripcion, codigo, categoria, precio_compra, precio_venta, cantidad, imagen }) => {
 
