@@ -47,13 +47,13 @@ const getAllProducts = async (req, res) => {
 };
 const getProductById = async (req, res) => {
     try {
-        const { id_producto } = req.body;
+        const { nombre_producto } = req.body;
 
-        if (!id_producto) {
-            return res.status(400).json({ message: 'El ID del producto es obligatorio' });
+        if (!nombre_producto) {
+            return res.status(400).json({ message: 'El nombre del producto es obligatorio' });
         }
 
-        const result = await productService.getProductById(id_producto);
+        const result = await productService.getProductById(nombre_producto);
 
         if (result.success) {
             res.status(200).json(result);
@@ -65,6 +65,8 @@ const getProductById = async (req, res) => {
         res.status(500).json({ message: 'Error al obtener el producto' });
     }
 };
+
+
 
 
 const editProduct = async (req, res) => {

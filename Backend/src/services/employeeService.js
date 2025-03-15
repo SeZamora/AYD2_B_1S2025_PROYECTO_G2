@@ -74,9 +74,9 @@ const getAllEmployees = async () => {
     }
 };
 
-const getEmployeeById = async (empleados_id) => {
+const getEmployeeById = async (nombre) => {
     try {
-        const result = await db.query(`SELECT * FROM empleados WHERE empleados_id = ?`, [empleados_id]);
+        const result = await db.query(`SELECT * FROM empleados WHERE nombre = ?`, [nombre]);
 
         if (result.length > 0) {
             // Eliminar la propiedad "contrasenia" del empleado
@@ -84,7 +84,7 @@ const getEmployeeById = async (empleados_id) => {
 
             return { success: true, employee: result[0] };
         } else {
-            return { success: false, message: 'No se encontró un empleado con ese ID' };
+            return { success: false, message: 'No se encontró un empleado con ese nombre' };
         }
     } catch (error) {
         console.error('Database Error:', error.sqlMessage || error);
