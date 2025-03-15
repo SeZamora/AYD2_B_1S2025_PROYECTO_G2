@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-
-=======
 const {db} = require('../services/DBService');
->>>>>>> develop
 const encrypter = require('../services/encryptService');
-const {db} = require('../services/DBService');
 
 
 

@@ -1,0 +1,104 @@
+/* Estilos generales para el modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+  backdrop-filter: blur(5px); /* Efecto de desenfoque moderno */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; /* Asegura que esté por encima de otros elementos */
+}
+
+.modal-content {
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  padding: 24px;
+  position: relative;
+}
+
+.modal-header {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #333333;
+}
+
+.modal-body {
+  margin-bottom: 24px;
+}
+
+.modal-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #555555;
+  margin-bottom: 8px;
+}
+
+.modal-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  color: #ffffff;
+  margin-bottom: 16px;
+  transition: border-color 0.3s ease;
+}
+
+.modal-input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.modal-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.modal-button.cancel {
+  background-color: #ca2020; /* Color base del botón "Cancelar" */
+  color: #ffffff;
+}
+
+.modal-button.cancel:hover {
+  background-color: #eb6d25; /* Color de hover coherente */
+}
+
+.modal-button.update {
+  background-color: #007bff;
+  color: #ffffff;
+}
+
+.modal-button.update:hover {
+  background-color: #0056b3;
+}
+
+.modal-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.error-message {
+  color: #dc3545;
+  font-size: 0.875rem;
+  margin-bottom: 16px;
+}
