@@ -90,13 +90,13 @@ const getAllEmployees = async (req, res) => {
 };
 const getEmployeeById = async (req, res) => {
     try {
-        const { empleados_id } = req.body; // Se obtiene el ID desde el cuerpo de la solicitud
+        const { empleado_nombre } = req.body; // Se obtiene el empleado_nombre desde el cuerpo de la solicitud
 
-        if (!empleados_id) {
-            return res.status(400).json({ message: 'El ID del empleado es obligatorio' });
+        if (!empleado_nombre) {
+            return res.status(400).json({ message: 'El empleado_nombre del empleado es obligatorio' });
         }
 
-        const result = await employeeService.getEmployeeById(empleados_id);
+        const result = await employeeService.getEmployeeById(empleado_nombre);
 
         if (result.success) {
             res.status(200).json(result);
