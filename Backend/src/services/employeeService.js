@@ -1,29 +1,15 @@
 
 const db = require('../services/DBService').default;
-const S3Service = require('./S3Service');
+
 const addEmployee = async ({ nombre, apellido, cui, telefono, correo, contrasenia, edad, genero, fecha, imagen, supervisores_id_supervisor, verificado }) => {
     try {
-        let imagenUrl = null;
-        console.log("service")
-        console.log(imagen)
-        if (imagen && Buffer.isBuffer(imagen)) {
-            const contentType = "image/png";  
-
-            const [uploadedUrl, uploadError] = await S3Service.uploadBuffer(imagen, contentType, "empleados");
-            if (uploadError) {
-                return { success: false, message: 'Error al subir la fotografía.' };
-            }
-            imagenUrl = uploadedUrl;
-        }
-
-        
+        //console.log(fotografia)
         const result = await db.query(
             `INSERT INTO empleados (nombre, apellido, cui, telefono, correo, contrasenia, edad, genero, fecha, fotografia, supervisores_id_supervisor, verificado) 
              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-            [nombre, apellido, cui, telefono, correo, contrasenia, edad, genero, fecha, imagenUrl, supervisores_id_supervisor, verificado]
+            [nombre, apellido, cui, telefono, correo, contrasenia, edad, genero, fecha, imagen, supervisores_id_supervisor, verificado]
         );
 
-        
         if (result.affectedRows > 0) {
             return { success: true, message: 'Empleado agregado exitosamente.', id_empleado: result.insertId };
         } else {

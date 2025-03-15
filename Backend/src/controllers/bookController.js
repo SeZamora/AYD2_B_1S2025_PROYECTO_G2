@@ -96,5 +96,49 @@ const updateBook = async (req, res) => {
         res.status(500).json({ message: 'Error al actualizar el libro' });
     }
 }
+const addResenia = async (req, res) => {
+    try {
+        const { calificacion, comentario, fecha, cuenta_id_cuenta, libros_id_libro } = req.body;
 
-module.exports = { addBook, getAllBooks, getBookById, updateBook };
+        if (!calificacion || !comentario || !fecha || !cuenta_id_cuenta || !libros_id_libro) {
+            return res.status(400).json({ message: 'Todos los campos son obligatorios' });
+        }
+
+        if (calificacion < 1 || calificacion > 5) {
+            return res.status(400).json({ message: 'La calificación debe estar entre 1 y 5' });
+        }
+
+        const resultado = await bookService.addResenia({
+            calificacion,
+            comentario,
+            fecha,
+            cuenta_id_cuenta,
+            libros_id_libro
+        });
+
+        if (!resultado.success) {
+            return res.status(400).json({ status: 'error', message: resultado.message });
+        }
+
+        res.status(201).json(resultado);
+    } catch (error) {
+        console.error('Error :', error);
+        res.status(500).json({ message: 'Error interno del servidor' });
+    }
+};
+
+const getAllResenias = async (req, res) => {
+    try {
+        const result = await bookService.getAllResenias();
+
+        if (!result.success) {
+            return res.status(400).json({ status: 'error', message: result.message });
+        }
+
+        res.status(200).json(result);
+    } catch (error) {
+        console.error('Error :', error);
+        res.status(500).json({ message: 'Error interno del servidor' });
+    }
+};
+module.exports = { addBook, getAllBooks, getBookById, updateBook, addResenia, getAllResenias };
