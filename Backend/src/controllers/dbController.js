@@ -1,4 +1,4 @@
-const db = require('../services/DBService').default;
+const {db} = require('../services/DBService');
 
 
 

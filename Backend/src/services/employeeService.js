@@ -1,5 +1,4 @@
-
-const db = require('../services/DBService').default;
+const {db} = require('../services/DBService');
 
 const addEmployee = async ({ nombre, apellido, cui, telefono, correo, contrasenia, edad, genero, fecha, imagen, supervisores_id_supervisor, verificado }) => {
     try {
