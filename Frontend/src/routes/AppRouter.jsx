@@ -9,10 +9,13 @@ import GerenteFacturas from "../pages/Gerente/gerente_facturas";
 import GerenteGanancias from "../pages/Gerente/gerente_ganancias";
 import GerenteVentas from "../pages/Gerente/gerente_ventas";
 import SupervisorView from "../pages/Supervisor/SupervisorView";
-import EmpleadoView from "../pages/Empleado/EmpleadoView";
+import EmpleadoHome from "../pages/Empleado/EmpleadoHome";
 import GerenteView from "../pages/Gerente/GerenteView";
 import UsuarioView from "../pages/Usuario/UsuarioView";
 import TestUpload from "../pages/TestUpload/TestUpload";
+import VerProducto from "../pages/Empleado/VerProducto";
+import VerFacturas from "../pages/Empleado/VerFacturas";
+import BuscarFactura from "../pages/Empleado/BuscarFactura";
 
 const AppRouter = () => {
   const { role } = useAuth();
@@ -34,6 +37,10 @@ const AppRouter = () => {
       <Route path="/empleado" element={<EmpleadoView /> } />
       <Route path="/gerente" element={<GerenteView /> } />
       <Route path="/usuario" element={ <UsuarioView />} />
+
+      <Route path="/producto/:id" element={<VerProducto />} />
+      <Route path="/facturas" element={<VerFacturas />} />
+      <Route path="/buscarFactura" element={<BuscarFactura />} />
     </Routes>
   );
 };
