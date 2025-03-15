@@ -26,6 +26,7 @@ class DBService {
                     connectionLimit: 10,
                     queueLimit: 0
                 });
+            
 
                 // Test the connection
                 await this.pool.getConnection().then(conn => conn.release());
