@@ -1,4 +1,4 @@
-const db = require('../services/DBService').default;
+const {db} = require('../services/DBService');
 //const S3Service = require('../services/S3Service');
 
 const addProduct = async ({ nombre, descripcion, codigo, categoria, precio_compra, precio_venta, cantidad, imagen }) => {

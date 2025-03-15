@@ -1,4 +1,4 @@
-const db = require('../services/DBService').default;
+const {db} = require('../services/DBService');
 const addBook = async ({ titulo, autor, fecha_lanzamiento, descripcion, genero, stock, precio }) => {
     try {
         const result = await db.query(
