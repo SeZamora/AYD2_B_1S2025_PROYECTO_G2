@@ -32,7 +32,7 @@ CREATE TABLE producto (
     precio_compra DECIMAL(10,2) NOT NULL,
     precio_venta  DECIMAL(10,2) NOT NULL,
     cantidad      INT NOT NULL,
-    imagen        VARCHAR(100) NOT NULL,
+    imagen        MEDIUMBLOB NOT NULL,
     PRIMARY KEY (id_producto)
 );
 CREATE TABLE gerente (
@@ -66,7 +66,7 @@ CREATE TABLE empleados (
     edad                     INT NOT NULL,
     genero                   VARCHAR(10) NOT NULL,
     fecha                    DATE NOT NULL,
-    fotografia               VARCHAR(100) NOT NULL,
+    fotografia               MEDIUMBLOB NOT NULL,
     supervisores_id_supervisor INT NOT NULL,
     verificado               INT NOT NULL,
     PRIMARY KEY (empleados_id),
@@ -118,7 +118,7 @@ CREATE TABLE resenias (
     id_resenia        INT NOT NULL AUTO_INCREMENT,
     calificacion     INT NOT NULL CHECK (calificacion BETWEEN 1 AND 5),
     comentario       TEXT NOT NULL,
-    fecha            DATE NOT NULL,
+    fecha            DATE NOT NULL,     
     cuenta_id_cuenta INT NOT NULL,
     libros_id_libro  INT NOT NULL,
     PRIMARY KEY (id_resenia),

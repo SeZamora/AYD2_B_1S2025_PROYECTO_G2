@@ -1,4 +1,4 @@
-const db = require('../services/DBService').default;
+const {db} = require('../services/DBService');
 const addBill = async ({ nombre_vendedor, fecha_hora, total_venta, nombre_comprador, cuenta_id_cuenta, empleados_id, detalles }) => {
     try {
         // Insertar factura
