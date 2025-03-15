@@ -38,6 +38,23 @@ const getAllProducts = async () => {
 };
 
 
+const getProduct = async (id_producto) => {
+    try {
+        const rows = await db.query(`SELECT * FROM producto WHERE id_producto = ?`, [id_producto]);
+
+        if (rows.length > 0) {
+            const product = rows[0];
+            product.imagen = product.imagen ? product.imagen.toString('base64') : null;
+
+            return { success: true, product };
+        } else {
+            return { success: false, message: 'No se encontró un producto con ese ID' };
+        }
+    } catch (error) {
+        console.error('Database Error:', error.sqlMessage || error);
+        return { success: false, message: 'Error interno del servidor.' };
+    }
+};
 
 const getProductById = async (nombre_producto) => {
     try {
@@ -87,5 +104,6 @@ module.exports = {
     addProduct,
     getAllProducts,
     getProductById,
-    editProduct
+    editProduct,
+    getProduct
 };
