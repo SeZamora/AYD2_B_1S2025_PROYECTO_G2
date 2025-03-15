@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./gerente_supervisor.css";
+import "./styles/gerente_supervisor.css";
 import Navbar from "./components/Navbar";
 import AgregarSupervisorModal from "./components/agregarSupervisor";
 

@@ -1,0 +1,43 @@
+/* Estilos para el Navbar */
+.navbar {
+  background: linear-gradient(to right, #268b8f, rgb(106, 95, 145));
+  position: fixed;
+  height: 70px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para los enlaces */
+.navbar-link {
+  color: #ffffff;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 10px;
+}
+
+/* Estilos para el botón de cerrar sesión */
+.navbar-button {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Estilos para el logo o nombre de la aplicación */
+.navbar-logo {
+  color: #e59a34;
+  font-size: 1.5rem;
+  font-weight: bold;
+}

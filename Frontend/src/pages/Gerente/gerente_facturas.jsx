@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Navbar from "./components/Navbar";
-import "./gerente_supervisor.css";
+import "./styles/gerente_supervisor.css";
 
 const Facturas = Array(10).fill({
   employee: "xxxxxxxx",

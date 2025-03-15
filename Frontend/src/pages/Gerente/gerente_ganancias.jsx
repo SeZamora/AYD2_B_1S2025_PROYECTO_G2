@@ -2,7 +2,7 @@ import { useState } from "react";
 import Navbar from "./components/Navbar";
 import { Bar, Line } from 'react-chartjs-2';
 import "chart.js/auto";
-import "./gerente_supervisor.css";
+import "./styles/gerente_supervisor.css";
 
 const Facturas = Array(10).fill({
   employee: "xxxxxxxx",
