@@ -1,40 +1,22 @@
 import { CardEmpleado } from '../../ui/CardEmpleado';
 import Navbar from '../../ui/componets/NavEmpleado';
-import React from 'react';
+import React, { useEffect } from 'react';
 import './empleado.css'
-
-const facturas = [
-    {
-        id: 1,
-        nombre_vendedor: "Vendedor 1",
-        fecha_hora: "2021-10-01 10:00:00",
-        total_venta: 1000,
-        nombre_comprador: "Comprador 1",
-        cuenta_id_cuenta: 1,
-        empleados_id: 1
-    },
-    {
-        id: 2,
-        nombre_vendedor: "Vendedor 2",
-        fecha_hora: "2021-10-02 10:00:00",
-        total_venta: 2000,
-        nombre_comprador: "Comprador 2",
-        cuenta_id_cuenta: 2,
-        empleados_id: 2
-    },
-    {
-        id: 3,
-        nombre_vendedor: "Vendedor 3",
-        fecha_hora: "2021-10-03 10:00:00",
-        total_venta: 3000,
-        nombre_comprador: "Comprador 3",
-        cuenta_id_cuenta: 3,
-        empleados_id: 3
-    }
-];
 
 
 export const VerFacturas = () => {
+    const [facturas, setFacturas] = React.useState([]);
+    useEffect(() => {
+        fetch(`http://localhost:3000/bill/bills`)
+          .then((response) => response.json())
+          .then((data) => {
+            setFacturas(data.data);
+          })
+          .catch((error) => {
+            console.error('Error al obtener los datos:', error);
+          });
+    }, []);
+
     return(
         <>  
             <div className="bg-primary-100 h-16">
@@ -42,11 +24,11 @@ export const VerFacturas = () => {
             </div>
             <div className="mt-20 grid grid-cols-3 p-4 gap-4">
                 {facturas.map((factura) => (
-                    <CardEmpleado key={factura.id}>
+                    <CardEmpleado key={factura.id_facturas}>
                         <div className="flex ">
-                            <label className="text-xl font-bold mr-2">ID:</label>
+                            <label className="text-xl font-bold mr-2">ID Factura:</label>
                             <h1 className="text-xl">
-                                {factura.id}
+                                {factura.id_facturas}
                             </h1>
                         </div>
                         <div className="flex ">
@@ -70,7 +52,7 @@ export const VerFacturas = () => {
                         <div className="flex ">
                             <label className="text-xl font-bold mr-2">Fecha:</label>
                             <h1 className="text-xl">
-                                {factura.fecha_hora}
+                                {new Date(factura.fecha_hora).toLocaleString()}
                             </h1>
                         </div>
                         <div className="flex items-center justify-center">                           

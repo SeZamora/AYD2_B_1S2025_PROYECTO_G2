@@ -34,13 +34,13 @@ const AppRouter = () => {
       <Route path="/gerente_ganancias" element={ <GerenteGanancias />} />
       <Route path="/gerente_ventas" element={<GerenteVentas /> } />
 
-      <Route path="/empleado" element={<EmpleadoView /> } />
+      <Route path="/empleado" element={role == "empleados" ? <EmpleadoHome /> : <Navigate to="/"/>} />
       <Route path="/gerente" element={<GerenteView /> } />
       <Route path="/usuario" element={ <UsuarioView />} />
 
-      <Route path="/producto/:id" element={<VerProducto />} />
-      <Route path="/facturas" element={<VerFacturas />} />
-      <Route path="/buscarFactura" element={<BuscarFactura />} />
+      <Route path="/producto/:id" element={role == "empleados" ? <VerProducto /> : <Navigate to="/"/>} />
+      <Route path="/facturas" element={role == "empleados" ? <VerFacturas /> : <Navigate to="/"/>} />
+      <Route path="/buscarFactura" element={role == "empleados" ? <BuscarFactura /> : <Navigate to="/"/>} />
     </Routes>
   );
 };
