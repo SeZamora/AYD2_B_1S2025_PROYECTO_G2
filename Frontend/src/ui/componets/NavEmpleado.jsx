@@ -14,7 +14,7 @@ const Navbar = () => {
                 </button>
 
                 <ul className="hidden lg:flex space-x-6 text-white text-lg">
-                    <li className="flex flex-col items-center cursor-pointer hover:text-orange-300" onClick={() => navigate('/')}>
+                    <li className="flex flex-col items-center cursor-pointer hover:text-orange-300" onClick={() => navigate('/empleado')}>
                         <i className="fa fa-users text-1xl"></i>
                         <span>Home</span>
                     </li>
