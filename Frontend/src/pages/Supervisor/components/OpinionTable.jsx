@@ -14,7 +14,7 @@ const OponionTable = () => {
     ];
 
    
-    const [Opiniones, setOpiniones] = useState([]); // Inicializamos el estado 'productos'
+    const [opiniones, setOpiniones] = useState([]); // Inicializamos el estado 'productos'
 
         const fetchOpiniones = async () => {
             try {
@@ -60,23 +60,24 @@ const OponionTable = () => {
                     <table className="table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th>Nombre</th>
-                                <th>Apellido</th>
-                                <th>CUI</th>
-                                <th>Teléfono</th>
-                                <th>Fecha de contratación</th>
-                                <th>Acciones</th>
+                            <th>ID Libro</th>
+                            <th>Nombre de Usuario</th>
+                                <th>Calificacion</th>
+                                <th>Fecha de la calificacion</th>
+                                
+                                <th>Comentario</th>
+                               
                             </tr>
                         </thead>
                         <tbody>
-                            {employees.map((employee) => (
-                                <tr key={employee.id}>
-                                    <td>{employee.nombre}</td>
-                                    <td>{employee.apellido}</td>
-                                    <td>{employee.cui}</td>
-                                    <td>{employee.telefono}</td>
-                                    <td>{employee.fecha}</td>
-                                   
+                            {opiniones.map((opiniones) => (
+                                <tr key={opiniones.id_resenia}>
+                                    <td>{opiniones.id_libro}</td>
+                                    <td>{opiniones.nombre_usuario}</td>
+                                    <td>{opiniones.calificacion}</td>
+                                    <td>{opiniones.fecha}</td>
+                                    
+                                    <td>{opiniones.comentario}</td>
                                 </tr>
                             ))}
                         </tbody>
