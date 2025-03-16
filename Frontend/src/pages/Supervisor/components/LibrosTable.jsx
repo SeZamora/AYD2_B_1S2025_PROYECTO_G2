@@ -8,6 +8,7 @@ const LibrosTable = () => {
     const [role2, setRole] = useState('');
     const [showDeleteModal, setShowDeleteModal] = useState(false); // Estado para el modal de eliminación
     const [estado, setEstado] = useState('');
+    const [selectedProductId, setSelectedProductId] = useState(null);
 
 
 
@@ -48,13 +49,15 @@ const LibrosTable = () => {
         });
     };
 
-    const toggleModalM = () => {
+    const toggleModalM = (id) => {
+        setSelectedProductId(id);  
         setShowModal(prev => {
             const newShowModal = !prev;
             if (newShowModal) {
                 setRole('edit');
             } else {
                 setRole('');
+                setSelectedProductId(null); 
             }
             return newShowModal;
         });
@@ -115,8 +118,8 @@ const LibrosTable = () => {
                                         <td style={{ textAlign: 'center' }}>{libro.stock}</td>
                                         <td style={{ textAlign: 'center' }}>{libro.precio}</td>
                                         <td style={{ textAlign: 'center' }}>
-                                            <a onClick={toggleModalM} className="edit" data-toggle="modal">
-                                                <i className="fa fa-pencil" aria-hidden="true"></i>
+                                        <a onClick={() => toggleModalM(libro.id_libro)} className="edit" data-toggle="modal">
+                                        <i className="fa fa-pencil" aria-hidden="true"></i>
                                             </a>
                                             <a onClick={() => toggleDeleteModal('Libro')} className="delete" data-toggle="modal">
                                                 <i className="fa fa-trash" aria-hidden="true"></i>
@@ -130,7 +133,7 @@ const LibrosTable = () => {
                     </div>
                 </div>
 
-                <AddLibrosModal showModal={showModal} toggleModal={toggleModal} role={role2} />
+                <AddLibrosModal showModal={showModal} toggleModal={toggleModal} role={role2} id_libro={selectedProductId}/>
                 <DeleteLibroModal showDeleteModal={showDeleteModal} toggleDeleteModal={toggleDeleteModal} estado={estado} />
             </div>
         </>

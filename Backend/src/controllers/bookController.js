@@ -68,7 +68,7 @@ const getBookById = async (req, res) => {
 
 const updateBook = async (req, res) => {
     try {
-        const { id_libro, titulo, autor, fecha_lanzamiento, descripcion, genero, stock, precio } = req.body;
+        const { id_libro, descripcion,  stock, precio } = req.body;
 
         if (!id_libro) {
             return res.status(400).json({ message: 'El ID del libro es obligatorio' });
@@ -76,11 +76,9 @@ const updateBook = async (req, res) => {
 
         const result = await bookService.updateBook({
             id_libro,
-            titulo,
-            autor,
-            fecha_lanzamiento,
+           
             descripcion,
-            genero,
+            
             stock,
             precio
         });
