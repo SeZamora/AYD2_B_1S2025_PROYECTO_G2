@@ -66,6 +66,26 @@ const getProductById = async (req, res) => {
     }
 };
 
+const getProduct = async (req, res) => {
+    try {
+        const { id_producto } = req.body;
+
+        if (!id_producto) {
+            return res.status(400).json({ message: 'El ID del producto es obligatorio' });
+        }
+
+        const result = await productService.getProduct(id_producto);
+
+        if (result.success) {
+            res.status(200).json(result);
+        } else {
+            res.status(404).json(result);
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ message: 'Error al obtener el producto' });
+    }
+};
 
 
 
@@ -106,5 +126,6 @@ module.exports = {
     upload,
     getAllProducts,
     getProductById,
-    editProduct
+    editProduct,
+    getProduct
 };
