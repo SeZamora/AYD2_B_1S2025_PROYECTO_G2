@@ -73,7 +73,25 @@ const getAllEmployees = async () => {
     }
 };
 
-const getEmployeeById = async (empleados_id) => {
+const getEmployeeById = async (nombre) => {
+    try {
+        const result = await db.query(`SELECT * FROM empleados WHERE nombre = ?`, [nombre]);
+
+        if (result.length > 0) {
+            // Eliminar la propiedad "contrasenia" del empleado
+            delete result[0].contrasenia;
+
+            return { success: true, employee: result[0] };
+        } else {
+            return { success: false, message: 'No se encontró un empleado con ese nombre' };
+        }
+    } catch (error) {
+        console.error('Database Error:', error.sqlMessage || error);
+        return { success: false, message: 'Error interno del servidor' };
+    }
+};
+
+const getEmployee = async (empleados_id) => {
     try {
         const result = await db.query(`SELECT * FROM empleados WHERE empleados_id = ?`, [empleados_id]);
 
@@ -90,12 +108,11 @@ const getEmployeeById = async (empleados_id) => {
         return { success: false, message: 'Error interno del servidor' };
     }
 };
-
-
 module.exports = {
    
     editInfo,
     addEmployee,
     getAllEmployees,
-    getEmployeeById
+    getEmployeeById,
+    getEmployee
 };
