@@ -5,6 +5,6 @@ const productController = require('../controllers/productController');
 router.post('/addProduct', productController.upload.single('imagen'), productController.addProduct);
 router.get('/getAllProducts', productController.getAllProducts);
 router.post('/getProductByName', productController.getProductById);
-router.post('/editProduct', productController.upload.single('imagen'), productController.editProduct);
+router.post('/editProduct',  productController.editProduct);
 router.post('/getProductById', productController.getProduct);
 module.exports = router;

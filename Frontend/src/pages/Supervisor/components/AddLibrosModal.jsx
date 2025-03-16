@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 
 const AddLibrosModal = ({ showModal, toggleModal, role }) => {
     const [formData, setFormData] = useState({
-        titulo: '',
-        autor: '',
-        fecha_lanzamiento: '',
-        descripcion: '',
-        genero: '',
+        Títulodellibro  : '',
+        Autor: '',
+        Fechadelanzamiento: '',
+        Descripción : '',
+        género: '',
         stock: '',
-        precio: ''
+        Precio: ''
     });
 
     useEffect(() => {
@@ -17,60 +17,9 @@ const AddLibrosModal = ({ showModal, toggleModal, role }) => {
         }
     }, [showModal, role]);
 
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-    };
-
-
-
-
-    const handleSubmit = async (e) => {
-
-        e.preventDefault();
-        if (role == 'add') {
-            const data = new FormData();
-
-            Object.keys(formData).forEach((key) => {
-                data.append(key, formData[key]);
-            });
-            console.log(data);
-
-            try {
-                const response = await fetch("http://localhost:3000/book/createbook", {
-                    method: "POST",
-                    body: data
-                });
-
-                if (response.ok) {
-                    alert("Libro agregado con éxito");
-                    setFormData({
-                        titulo: '',
-                        autor: '',
-                        fecha_lanzamiento: '',
-                        descripcion: '',
-                        genero: '',
-                        stock: '',
-                        precio: ''
-                    });
-                    toggleModal();
-                    window.location.reload();
-                } else {
-                    alert("Error al agregar el producto");
-                }
-            } catch (error) {
-                console.error("Error al enviar la solicitud", error);
-            }
-        }
-
-    };
-
-
-
     return (
         <>
-
+            {/* Fondo gris semi-transparente */}
             {showModal && (
                 <div
                     className="modal-backdrop fade show"
@@ -107,61 +56,61 @@ const AddLibrosModal = ({ showModal, toggleModal, role }) => {
                     <div className="modal-content">
                         <div className="modal-header">
                             <h5 className="modal-title" id="addEmployeeModalLabel">
-                                {role === 'edit' ? 'Editar Libro' : 'Agregar Nuevo Libro'}
+                                {role === 'edit' ? 'Editar Empleado' : 'Agregar Nuevo Empleado'}
                             </h5>
                         </div>
                         <div className="modal-body">
-                            <form onSubmit={handleSubmit}>
+                            <form>
                                 {role === 'add' && (
                                     <>
                                         <div className="form-group">
-                                            <label htmlFor="Título">Título del libro</label>
-                                            <input type="text" className="form-control" id="Título" name="titulo" value={formData.titulo} onChange={handleChange} />
+                                            <label htmlFor="employeeName">Título del libro</label>
+                                            <input type="text" className="form-control" id="employeeName"  />
+                                        </div>                            
+                                        <div className="form-group">
+                                            <label htmlFor="employeeCUI">Autor</label>
+                                            <input type="text" className="form-control" id="employeeCUI"  />
                                         </div>
                                         <div className="form-group">
-                                            <label htmlFor="Autor">Autor</label>
-                                            <input type="text" className="form-control" id="Autor" name="autor" value={formData.autor} onChange={handleChange} />
+                                            <label htmlFor="employeeGender">Fecha de lanzamiento</label>
+                                            <input type="date" className="form-control" id="employeeGender" />
                                         </div>
                                         <div className="form-group">
-                                            <label htmlFor="Fecha">Fecha de lanzamiento</label>
-                                            <input type="date" className="form-control" id="Fecha" name="fecha_lanzamiento" value={formData.fecha_lanzamiento} onChange={handleChange} />
+                                            <label htmlFor="employeeHireDate">género</label>
+                                            <input type="text" className="form-control" id="employeeHireDate" />
                                         </div>
-                                        <div className="form-group">
-                                            <label htmlFor="género">género</label>
-                                            <input type="text" className="form-control" id="género" name="genero" value={formData.genero} onChange={handleChange} />
-                                        </div>
+                                       
                                     </>
                                 )}
+
+                              
                                 <div className="form-group">
-                                    <label htmlFor="stock">stock</label>
-                                    <input type="number" className="form-control" id="stock" name="stock" value={formData.stock} onChange={handleChange} />
+                                    <label htmlFor="employeePhone">stock</label>
+                                    <input type="text" className="form-control" id="employeePhone"  />
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="Precio">Precio</label>
-                                    <input type="number" className="form-control" id="Precio" name="precio" value={formData.precio} onChange={handleChange} />
+                                    <label htmlFor="employeeEmail">Precio</label>
+                                    <input type="text" className="form-control" id="employeeEmail"/>
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="Descripción">Descripción</label>
-                                    <textarea className="form-control" id="Descripción" name="descripcion" value={formData.descripcion} onChange={handleChange}></textarea>
-                               
-                                </div>
-                                <div className="modal-footer">
-                                    <button type="button" className="btn btn-secondary" onClick={toggleModal}>
-                                        Cerrar
-                                    </button>
-                                    <button type="submit" className="btn btn-primary">
-                                        Guardar
-                                    </button>
+                                    <label htmlFor="employeeAge">Descripción</label>
+                                    <input type="" className="form-control" id="employeeAge" />
                                 </div>
                             </form>
-
+                        </div>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" onClick={toggleModal}>
+                                Cerrar
+                            </button>
+                            <button type="button" className="btn btn-primary">
+                                Guardar
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </>
     );
-
 };
 
 export default AddLibrosModal;

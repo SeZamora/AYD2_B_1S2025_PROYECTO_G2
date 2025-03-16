@@ -68,19 +68,23 @@ const AddProdutoModal = ({ showModal, toggleModal, role, productId }) => {
             }
         } else if (role === 'edit') {
             const data = {
+                id_producto: productId,
                 descripcion: formData.descripcion,
-                precio_venta: formData.precio_venta,
-                cantidad: formData.cantidad
+                precio_venta: Number(formData.precio_venta),
+                cantidad: Number(formData.cantidad)
             };
+            
             console.log(data);
-        
+            
             try {
-                const response = await fetch(`http://localhost:3000/product/editProduct/${productId}`, {
-                    method: "PUT",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(data)
+                const response = await fetch("http://localhost:3000/product/editProduct", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json" // 📌 Indica que el contenido es JSON
+                    },
+                    body: JSON.stringify(data) // 📌 Convierte el objeto en una cadena JSON
                 });
-        
+            
                 if (response.ok) {
                     alert("Producto editado con éxito");
                     setFormData({
@@ -101,7 +105,7 @@ const AddProdutoModal = ({ showModal, toggleModal, role, productId }) => {
             } catch (error) {
                 console.error("Error al enviar la solicitud", error);
             }
-        }
+        }            
     };        
 
     return (

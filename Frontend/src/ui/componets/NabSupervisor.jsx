@@ -62,7 +62,7 @@ const Navbar = () => {
                         <li className="nav-item text-center mx-2 mx-lg-2 ">
                             <a className="nav-link">
                                 <div>
-                                <i class="fa fa-star fa-2x" aria-hidden="true"></i>
+                                <i class="fa fa-star fa-2x" aria-hidden="true" onClick={() => navigate('/Opinion')} ></i>
                                 </div>
                                 Opiniones
                             </a>
