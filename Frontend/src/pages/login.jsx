@@ -35,6 +35,9 @@ const LoginPage = () => {
                 if (data.userType === 'supervisores') {
                     navigate('/SuperPrincipal'); 
                 }
+                if (data.userType === 'empleados') {
+                    navigate('/empleado'); 
+                }
                 
 
             } else {

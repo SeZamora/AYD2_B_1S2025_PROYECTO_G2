@@ -1,5 +1,5 @@
 
-const db = require('../services/DBService').default;
+const {db} = require('../services/DBService');
 const encrypter = require('../services/encryptService');
 
 
