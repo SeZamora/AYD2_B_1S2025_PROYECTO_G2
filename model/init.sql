@@ -55,6 +55,7 @@ CREATE TABLE libros (
     genero           VARCHAR(100) NOT NULL,
     stock             INT NOT NULL,
     precio           DECIMAL(10,2) NOT NULL,
+    disponible       INT NOT NULL DEFAULT 1,
     PRIMARY KEY (id_libro)
 );
 
@@ -68,6 +69,7 @@ CREATE TABLE producto (
     precio_venta  DECIMAL(10,2) NOT NULL,
     cantidad      INT NOT NULL,
     imagen        MEDIUMBLOB NOT NULL,
+    disponible       INT NOT NULL DEFAULT 1,
     PRIMARY KEY (id_producto)
 );
 CREATE TABLE gerente (
