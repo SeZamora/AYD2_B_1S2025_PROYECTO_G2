@@ -110,6 +110,6 @@ export default function GerenteGanancias() {
           />
         </div>
       </div>
-    </div>
+    </div> 
   );
 }
