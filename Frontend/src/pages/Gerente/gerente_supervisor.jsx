@@ -3,13 +3,14 @@ import "./styles/gerente_supervisor.css";
 import Navbar from "./components/Navbar";
 import AgregarSupervisorModal from "./components/agregarSupervisor";
 import EditSupervisorModal from "./components/editSupervisor";
+import SupervisorModal from "./components/verSupervisorModal";
 
 const GerenteSupervisor = () => {
   const [supervisors, setSupervisors] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false);
+  const [viewModalOpen, setViewModalOpen] = useState(false);
   const [selectedSupervisor, setSelectedSupervisor] = useState(null);
-  const [search, setSearch] = useState("");
 
   const getAllSupervisors = async () => {
     try {
@@ -46,27 +47,36 @@ const GerenteSupervisor = () => {
             ➕ Agregar supervisor
           </button>
         </div>
-        <SupervisorTable 
-          supervisors={supervisors} 
+        <SupervisorTable
+          supervisors={supervisors}
           onEdit={(sup) => {
             setSelectedSupervisor(sup);
             setEditModalOpen(true);
-          }} 
+          }}
+          onView={(sup) => {
+            setSelectedSupervisor(sup);
+            setViewModalOpen(true);
+          }}
         />
       </div>
 
       <AgregarSupervisorModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
-      <EditSupervisorModal 
-        isOpen={editModalOpen} 
-        onClose={() => setEditModalOpen(false)} 
-        supervisor={selectedSupervisor} 
-        onUpdate={getAllSupervisors} 
+      <EditSupervisorModal
+        isOpen={editModalOpen}
+        onClose={() => setEditModalOpen(false)}
+        supervisor={selectedSupervisor}
+        onUpdate={getAllSupervisors}
+      />
+      <SupervisorModal
+        isOpen={viewModalOpen}
+        supervisor={selectedSupervisor}
+        onClose={() => setViewModalOpen(false)}
       />
     </div>
   );
 };
 
-function SupervisorTable({ supervisors, onEdit }) {
+function SupervisorTable({ supervisors, onEdit, onView }) {
   return (
     <table className="w-full border-collapse border">
       <thead>
@@ -86,9 +96,14 @@ function SupervisorTable({ supervisors, onEdit }) {
             <td className="border p-2">{data.telefono}</td>
             <td className="border p-2">{data.email}</td>
             <td className="border p-2">{data.fecha_ingreso.split("T")[0]}</td>
-            <td className="border p-2 text-blue-500 cursor-pointer">ver supervisor</td>
+            <td
+              className="border p-2 text-blue-500 cursor-pointer"
+              onClick={() => onView(data)}
+            >
+              Ver supervisor
+            </td>
             <td className="border p-2">
-              <button 
+              <button
                 className="text-blue-500 mx-2"
                 onClick={() => onEdit(data)}
               >
