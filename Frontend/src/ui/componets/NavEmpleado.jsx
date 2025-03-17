@@ -15,12 +15,8 @@ const Navbar = () => {
 
                 <ul className="hidden lg:flex space-x-6 text-white text-lg">
                     <li className="flex flex-col items-center cursor-pointer hover:text-orange-300" onClick={() => navigate('/empleado')}>
-                        <i className="fa fa-users text-1xl"></i>
-                        <span>Home</span>
-                    </li>
-                    <li className="flex flex-col items-center cursor-pointer hover:text-orange-300" onClick={() => navigate('/')}>
                         <i className="fa fa-shopping-cart text-1xl"></i>
-                        <span>Empleado</span>
+                        <span>Home</span>
                     </li>
                     <li className="flex flex-col items-center cursor-pointer hover:text-orange-300" onClick={() => navigate('/facturas')}>
                         <i className="fa fa-star text-1xl"></i>
@@ -32,7 +28,7 @@ const Navbar = () => {
                     </li>
                 </ul>
                 
-                <button className="text-white flex flex-col items-center hover:text-red-400" onClick={() => alert('Cerrar sesión')}> 
+                <button className="text-white flex flex-col items-center hover:text-red-400" onClick={() => navigate('/')}> 
                     <i className="fa fa-sign-out text-1xl"></i>
                     <span>Cerrar sesión</span>
                 </button>

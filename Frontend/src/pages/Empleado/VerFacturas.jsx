@@ -1,7 +1,8 @@
 import { CardEmpleado } from '../../ui/CardEmpleado';
 import Navbar from '../../ui/componets/NavEmpleado';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './empleado.css'
+import ModalFactura from './components/ModalFactura';
 
 
 export const VerFacturas = () => {
@@ -17,7 +18,22 @@ export const VerFacturas = () => {
           });
     }, []);
 
+    const [isModalOpenPdf, setIsModalOpenPdf] = useState(false);
+    const [factura, setFactura] = useState(null);
+    const [idFactura, setIdFactura] = useState(null);
+
+    const handleCloseModalPdf = () => {
+        setIsModalOpenPdf(false);
+    };
+
+    const handleOpenModalPdf = (factura, id_factura) => {
+        setFactura(factura);
+        setIdFactura(id_factura);
+        setIsModalOpenPdf(true);
+    };
+
     return(
+
         <>  
             <div className="bg-primary-100 h-16">
                 <Navbar />
@@ -58,12 +74,22 @@ export const VerFacturas = () => {
                         <div className="flex items-center justify-center">                           
                             <button
                                 className="bg-green-400 px-4 py-1 rounded-md my-2 disabled:bg-primary-300 w-full text-text-100 font-bold"
+                                onClick={() => handleOpenModalPdf(factura, factura.id_facturas)}
                             >
-                                Descargar
+                                Ver PDF
                             </button>
                         </div>
                     </CardEmpleado>
                 ))}
+
+                {isModalOpenPdf && (
+                                <ModalFactura
+                                    isOpen={isModalOpenPdf}
+                                    onClose={handleCloseModalPdf} 
+                                    factura={factura}
+                                    id_factura={idFactura}
+                                />
+                )}
             </div>
         </>
     );

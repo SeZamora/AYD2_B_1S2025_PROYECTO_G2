@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Navbar from '../../ui/componets/NavEmpleado';
+import ModalFactura from './components/ModalFactura';
 
 
 
@@ -21,6 +22,17 @@ export const BuscarFactura = () => {
             console.error('Error al obtener los datos:', error);
         });
     };
+
+    const [isModalOpenPdf, setIsModalOpenPdf] = useState(false);
+    
+    const handleCloseModalPdf = () => {
+        setIsModalOpenPdf(false);
+    };
+
+    const handleOpenModalPdf = () => {
+        setIsModalOpenPdf(true);
+    };
+
 
     return (
         <>
@@ -91,7 +103,24 @@ export const BuscarFactura = () => {
                             <p className="text-lg font-semibold text-gray-800">
                                 <strong>Total de la Venta:</strong> Q {facturaEncontrada.total_venta}
                             </p>
+
+                            <button
+                                className="bg-green-400 px-4 py-1 rounded-md my-2 disabled:bg-primary-300 w-full text-text-100 font-bold"
+                                onClick={() => handleOpenModalPdf(facturaEncontrada, idFactura)}
+                            >
+                                Ver PDF
+                            </button>
                         </div>
+
+                        
+                        {isModalOpenPdf && (
+                                        <ModalFactura
+                                            isOpen={isModalOpenPdf}
+                                            onClose={handleCloseModalPdf} 
+                                            factura={facturaEncontrada}
+                                            id_factura={idFactura}
+                                        />
+                        )}
                     </div>
                 ) : idFactura && (
                     <p className="text-center text-red-500 font-semibold">Factura no encontrada</p>

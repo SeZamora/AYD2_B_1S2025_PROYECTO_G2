@@ -1,5 +1,7 @@
 import { CardEmpleado } from '../../ui/CardEmpleado';
 import Navbar from '../../ui/componets/NavEmpleado';
+import { CrearFactura} from './components/CrearFactura'
+import ModalFactura from './components/ModalFactura';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import './empleado.css'
@@ -10,6 +12,17 @@ export const EmpleadoHome = () => {
     const [productos, setProductos] = useState([]);
     const [carrito, setCarrito] = useState([]); 
     const [total, setTotal] = useState(0); 
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isModalOpenPdf, setIsModalOpenPdf] = useState(false);
+    const [factura, setFactura] = useState(null)
+
+    const [idFactura, setIdFactura] = useState(null);
+
+    
+    
+    
+    
 
     const handleVerProducto = (id) => {
         navigate(`/producto/${id}`);
@@ -41,9 +54,66 @@ export const EmpleadoHome = () => {
     };
 
     const handlePagar = () => {
-        console.log('Pagar');
-        console.log(carrito);
+        setIsModalOpen(true);
     }
+
+    const handleConfirmarPedido = async (datos) => {
+        setIsModalOpenPdf(false); 
+        setIsModalOpen(false);
+        const pdffactura = {
+            nombre_vendedor: datos.nombreVendedor,
+            fecha_hora: new Date().toISOString().slice(0, 19).replace('T', ' '),
+            total_venta: total.toFixed(2),
+            nombre_comprador: datos.nombreComprador,
+            cuenta_id_cuenta: datos.idComprador,
+            empleados_id: datos.idVendedor,
+            detalles: carrito.map((item) => ({
+                unidades_compradas: item.cantidad,
+                precio_producto: item.precio_venta,
+                producto_id: item.id_producto,
+                libro_id: null
+            }))
+        };
+    
+        try {
+            const response = await fetch('http://localhost:3000/bill/addbill', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(pdffactura)
+            });
+    
+            const data = await response.json();
+            console.log('Factura creada:', data);
+    
+            setCarrito([]);
+            setTotal(0);
+            
+            setIdFactura(data.id_factura);
+            setFactura(pdffactura);
+    
+        } catch (error) {
+            console.error('Error al crear la factura:', error);
+        }finally{
+
+            setTimeout(() => setIsModalOpenPdf(true), 100); 
+            setIsModalOpen(false);
+            
+        }
+    
+        
+    };
+    
+
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+    };
+
+    const handleCloseModalPdf = () => {
+        setIsModalOpenPdf(false);
+        setFactura(null);
+        setIdFactura(null);
+        console.log( factura)
+    };
 
     useEffect(() => {
         fetch(`http://localhost:3000/product/getAllProducts`)
@@ -141,7 +211,21 @@ export const EmpleadoHome = () => {
                             onClick={() => handlePagar()}>
                                 Pagar
                             </button>
+
+                            {isModalOpen && (
+                                <CrearFactura onClose={handleCloseModal} onConfirm={handleConfirmarPedido} />
+                            )}
+
                         </div>
+
+                        {isModalOpenPdf && (
+                                <ModalFactura
+                                    isOpen={isModalOpenPdf}
+                                    onClose={handleCloseModalPdf} 
+                                    factura={factura}
+                                    id_factura={idFactura}
+                                />
+                        )}
                     </>
                 )}
             </div>
