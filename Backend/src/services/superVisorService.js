@@ -3,7 +3,6 @@ const encrypter = require('../services/encryptService');
 
 
 
-
 const editInfo = async ({ old_email, new_email, phone_number }) => {
     try {
 
@@ -147,3 +146,4 @@ module.exports = {
     getSupervisorById,
     deleteSupervisor
 };
+

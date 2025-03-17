@@ -1,5 +1,5 @@
-const superVisorService = require('../services/superVisorService');
-const emailService = require('../services/emailService');
+const superVisorService = require('../services/superVisorService.js');
+const emailService = require('../services/emailService.js');
 
 
 
@@ -104,4 +104,3 @@ module.exports = {
     getSupervisorById,
     deleteSupervisor
 };
-
