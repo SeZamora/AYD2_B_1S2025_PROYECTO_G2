@@ -8,4 +8,5 @@ router.post('/addEmployee', employeeController.upload.single('imagen'), employee
 router.post('/getEmployeeByName', employeeController.getEmployeeById);
 router.post('/getEmployeeById', employeeController.getEmployee);
 router.get('/getAllEmployee', employeeController.getAllEmployees);
+router.post('/deleteEmployee', employeeController.deleteEmployee);
 module.exports = router;

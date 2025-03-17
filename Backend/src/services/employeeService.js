@@ -108,11 +108,70 @@ const getEmployee = async (empleados_id) => {
         return { success: false, message: 'Error interno del servidor' };
     }
 };
+
+
+const deleteEmployee = async ({ empleados_id, reason_fired }) => {
+    try {
+
+        const rows = await db.query(
+            `SELECT * FROM empleados WHERE empleados_id = ?`,
+            [empleados_id]
+        );
+
+        if (!rows) {
+            return { success: false, message: 'Empleado no encontrado.' };
+        }
+
+
+        const empleado = rows[0];
+
+        const fechaBaja = new Date().toLocaleString('es-ES', { 
+            timeZone: 'America/Mexico_City', 
+            year: 'numeric', month: '2-digit', day: '2-digit' 
+        }).split('/').reverse().join('-');
+
+        await db.query(
+            `INSERT INTO auditoria_empleados 
+            (empleados_id, nombre, apellido, cui, telefono, correo, edad, genero, fecha_alta, fecha_baja, fotografia, razon_desvinculacion) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+            [
+                empleado.empleados_id,
+                empleado.nombre,
+                empleado.apellido,
+                empleado.cui,
+                empleado.telefono,
+                empleado.correo,
+                empleado.edad,
+                empleado.genero,
+                empleado.fecha, // Fecha de alta original
+                fechaBaja, // Fecha de baja actual
+                empleado.fotografia,
+                reason_fired || 'Razón no especificada',
+            ]
+        );
+
+        const result = await db.query(
+            `DELETE FROM empleados WHERE empleados_id = ?`,
+            [empleados_id]
+        );
+
+        return result.affectedRows > 0 
+            ? { success: true, message: 'Empleado eliminado exitosamente y registrado en auditoría.' } 
+            : { success: false, message: 'No se pudo eliminar el empleado.' };
+    } catch (error) {
+        console.error('Database Error:', error.sqlMessage || error);
+        return { success: false, message: 'Error interno del servidor.' };
+    }
+};
+
+
+
 module.exports = {
    
     editInfo,
     addEmployee,
     getAllEmployees,
     getEmployeeById,
-    getEmployee
+    getEmployee,
+    deleteEmployee
 };
