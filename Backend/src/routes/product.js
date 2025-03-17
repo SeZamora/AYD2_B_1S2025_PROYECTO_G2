@@ -7,4 +7,5 @@ router.get('/getAllProducts', productController.getAllProducts);
 router.post('/getProductByName', productController.getProductById);
 router.post('/editProduct', productController.upload.single('imagen'), productController.editProduct);
 router.post('/getProductById', productController.getProduct);
+router.post('/deleteProduct', productController.deleteProduct);
 module.exports = router;

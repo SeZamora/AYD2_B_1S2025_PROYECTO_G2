@@ -130,6 +130,23 @@ const getEmployee = async (req, res) => {
         res.status(500).json({ message: 'Error al obtener el empleado' });
     }
 };
+
+const deleteEmployee = async(req, res) => {
+    try {
+        const { empleados_id, reason_fired } = req.body;
+        if (!empleados_id || !reason_fired) {
+            return res.status(400).json({ message: 'El ID del empleado y la razón del despido son obligatorios' });
+        }
+        const result = await employeeService.deleteEmployee({ empleados_id, reason_fired });
+        res.status(200).json(result);
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ message: 'Error al eliminar el empleado' });
+    }
+
+}
+
+
 module.exports = {
     
     editInfo,
@@ -137,6 +154,7 @@ module.exports = {
     getAllEmployees,
     getEmployeeById, 
     upload,
-    getEmployee
+    getEmployee,
+    deleteEmployee
 };
 

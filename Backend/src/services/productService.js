@@ -23,7 +23,7 @@ const addProduct = async ({ nombre, descripcion, codigo, categoria, precio_compr
 
 const getAllProducts = async () => {
     try {
-        const rows = await db.query(`SELECT id_producto, nombre, descripcion, codigo, categoria, precio_compra, precio_venta, cantidad, imagen FROM producto`);
+        const rows = await db.query(`SELECT id_producto, nombre, descripcion, codigo, categoria, precio_compra, precio_venta, cantidad, imagen FROM producto WHERE disponible = 1`);
         
         const products = rows.map(product => ({
             ...product,
@@ -78,21 +78,34 @@ const getProductById = async (nombre_producto) => {
 const editProduct = async ({ id_producto, nombre, descripcion, codigo, categoria, precio_compra, precio_venta, cantidad, imagen }) => {
 
     try {
-        //let imageUrl = null;
-
         
-
-        // Realizar la actualización del producto en la base de datos
         const result = await db.query(
             `UPDATE producto SET nombre = ?, descripcion = ?, codigo = ?, categoria = ?, precio_compra = ?, precio_venta = ?, cantidad = ?, imagen = ? WHERE id_producto = ?`,
             [nombre, descripcion, codigo, categoria, precio_compra, precio_venta, cantidad,  id_producto]
         );
 
-        // Verificar si la actualización fue exitosa
         if (result.affectedRows > 0) {
             return { success: true, message: 'Producto actualizado exitosamente.' };
         } else {
             return { success: false, message: 'No se pudo actualizar el producto.' };
+        }
+    } catch (error) {
+        console.error('Database Error:', error.sqlMessage || error);
+        return { success: false, message: 'Error interno del servidor.' };
+    }
+}
+
+const deleteProduct = async (id_producto) => {
+    try {
+        const result = await db.query(
+            `UPDATE producto SET disponible = 0 WHERE id_producto = ?`, 
+            [id_producto]
+        );
+
+        if (result.affectedRows > 0) {
+            return { success: true, message: 'Producto marcado como no disponible.' };
+        } else {
+            return { success: false, message: 'No se pudo actualizar el estado del producto.' };
         }
     } catch (error) {
         console.error('Database Error:', error.sqlMessage || error);
@@ -105,5 +118,6 @@ module.exports = {
     getAllProducts,
     getProductById,
     editProduct,
-    getProduct
+    getProduct,
+    deleteProduct
 };
