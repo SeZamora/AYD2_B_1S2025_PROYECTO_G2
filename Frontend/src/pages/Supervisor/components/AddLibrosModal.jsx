@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 
-const AddLibrosModal = ({ showModal, toggleModal, role }) => {
+const AddLibrosModal = ({ showModal, toggleModal, role ,id_libro}) => {
     const [formData, setFormData] = useState({
-        Títulodellibro  : '',
-        Autor: '',
-        Fechadelanzamiento: '',
-        Descripción : '',
-        género: '',
-        stock: '',
-        Precio: ''
+        titulo: '',
+                        autor: '',
+                        fecha_lanzamiento: '',
+                        descripcion: '',
+                        genero: '',
+                        stock: '',
+                        precio: ''
     });
 
     useEffect(() => {
@@ -17,9 +17,109 @@ const AddLibrosModal = ({ showModal, toggleModal, role }) => {
         }
     }, [showModal, role]);
 
+
+    // Manejar cambios en inputs de texto y números
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+    };
+
+    // Enviar datos al backend
+    const handleSubmit = async (e) => {
+
+        e.preventDefault();
+        if (role == 'add') {
+            const data = new FormData();
+
+            Object.keys(formData).forEach((key) => {
+                data.append(key, formData[key]);
+            });
+
+            try {
+                const response = await fetch("http://localhost:3000/book/createbook", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json", // Asegúrate de indicar que los datos son JSON
+                    },
+                    body: JSON.stringify(formData), // Convierte el objeto formData a JSON
+                });
+                
+
+                if (response.ok) {
+                    alert("Libro agregado con éxito");
+                    setFormData({
+                        titulo: '',
+                        autor: '',
+                        fecha_lanzamiento: '',
+                        descripcion: '',
+                        genero: '',
+                        stock: '',
+                        precio: ''
+                    });
+                    toggleModal();
+                    window.location.reload();
+                } else {
+                    alert("Error al agregar el producto");
+                }
+            } catch (error) {
+                console.error("Error al enviar la solicitud", error);
+            }
+        } else if (role === 'edit') {
+            const data = {
+                id_libro: id_libro,
+                descripcion: formData.descripcion,
+                precio: Number(formData.precio),
+                stock: Number(formData.stock)
+            };
+
+            console.log(data);
+
+            try {
+                const response = await fetch("http://localhost:3000/book/updatebook", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json" 
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    alert("Libro editado con éxito");
+                    setFormData({
+                        titulo: '',
+                        autor: '',
+                        fecha_lanzamiento: '',
+                        descripcion: '',
+                        genero: '',
+                        stock: '',
+                        precio: ''
+                    });
+                    toggleModal();
+                    window.location.reload();
+                } else {
+                    alert("Error al editar el producto");
+                }
+            } catch (error) {
+                console.error("Error al enviar la solicitud", error);
+            }
+        }
+    };
+
+
+
+
+
+
+
+
+
+
+
+
+
     return (
         <>
-            {/* Fondo gris semi-transparente */}
+
             {showModal && (
                 <div
                     className="modal-backdrop fade show"
@@ -60,52 +160,53 @@ const AddLibrosModal = ({ showModal, toggleModal, role }) => {
                             </h5>
                         </div>
                         <div className="modal-body">
-                            <form>
+                            <form onSubmit={handleSubmit}>
                                 {role === 'add' && (
                                     <>
                                         <div className="form-group">
                                             <label htmlFor="employeeName">Título del libro</label>
-                                            <input type="text" className="form-control" id="employeeName"  />
-                                        </div>                            
-                                        <div className="form-group">
-                                            <label htmlFor="employeeCUI">Autor</label>
-                                            <input type="text" className="form-control" id="employeeCUI"  />
+                                            <input type="text" className="form-control" id="employeeName" name ='titulo' value={formData.titulo} onChange={handleChange} />
                                         </div>
                                         <div className="form-group">
-                                            <label htmlFor="employeeGender">Fecha de lanzamiento</label>
-                                            <input type="date" className="form-control" id="employeeGender" />
+                                            <label htmlFor="Autor">Autor</label>
+                                            <input type="text" className="form-control" id="Autor" name ='autor' value={formData.autor} onChange={handleChange} />
                                         </div>
                                         <div className="form-group">
-                                            <label htmlFor="employeeHireDate">género</label>
-                                            <input type="text" className="form-control" id="employeeHireDate" />
+                                            <label htmlFor="Fecha">Fecha de lanzamiento</label>
+                                            <input type="date" className="form-control" id="Fecha" name ='fecha_lanzamiento' value={formData.fecha_lanzamiento} onChange={handleChange} />
                                         </div>
-                                       
+                                        <div className="form-group">
+                                            <label htmlFor="género">género</label>
+                                            <input type="text" className="form-control" id="género" name ='genero' value={formData.genero} onChange={handleChange} />
+                                        </div>
+
                                     </>
                                 )}
 
-                              
+
                                 <div className="form-group">
-                                    <label htmlFor="employeePhone">stock</label>
-                                    <input type="text" className="form-control" id="employeePhone"  />
+                                    <label htmlFor="stock">stock</label>
+                                    <input type="number" className="form-control" id="stock" name ='stock'value={formData.stock} onChange={handleChange}/>
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="employeeEmail">Precio</label>
-                                    <input type="text" className="form-control" id="employeeEmail"/>
+                                    <label htmlFor="Precio">Precio</label>
+                                    <input type="number" className="form-control" id="Precio" name ='precio' value={formData.precio} onChange={handleChange}/>
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="employeeAge">Descripción</label>
-                                    <input type="" className="form-control" id="employeeAge" />
+                                    <label htmlFor="Descripción">Descripción</label>
+                                    <input type="" className="form-control" id="Descripción" name ='descripcion'value={formData.descripcion} onChange={handleChange} />
+                                </div>
+                                <div className="modal-footer">
+                                    <button type="button" className="btn btn-secondary" onClick={toggleModal}>
+                                        Cerrar
+                                    </button>
+                                    <button type="submit" className="btn btn-primary">
+                                        Guardar
+                                    </button>
                                 </div>
                             </form>
                         </div>
-                        <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" onClick={toggleModal}>
-                                Cerrar
-                            </button>
-                            <button type="button" className="btn btn-primary">
-                                Guardar
-                            </button>
-                        </div>
+
                     </div>
                 </div>
             </div>
