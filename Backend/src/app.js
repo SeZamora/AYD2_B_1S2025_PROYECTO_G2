@@ -13,6 +13,7 @@ const employeeRoutes = require('./routes/employee')
 const productRoutes = require('./routes/product')
 const billRoutes = require('./routes/bill')
 const bookRoutes = require('./routes/book')
+const logsRoutes = require('./routes/logs')
 
 
 
@@ -33,6 +34,7 @@ app.use('/employee',employeeRoutes);
 app.use('/product',productRoutes);
 app.use('/bill',billRoutes);
 app.use('/book',bookRoutes);
+app.use('/logs',logsRoutes);
 
 app.use(bodyParser.json({limit: '15mb'}));
 
