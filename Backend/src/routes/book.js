@@ -9,4 +9,5 @@ router.post('/getById', bookController.getBookById);
 router.post('/updatebook', bookController.updateBook);
 router.post('/addResenia', bookController.addResenia);
 router.get('/resenias', bookController.getAllResenias);
+router.post('/deletebook', bookController.deleteBook);
 module.exports = router;

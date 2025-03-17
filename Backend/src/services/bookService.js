@@ -1,4 +1,4 @@
-const {db} = require('../services/DBService');
+const { db } = require('../services/DBService');
 const addBook = async ({ titulo, autor, fecha_lanzamiento, descripcion, genero, stock, precio }) => {
     try {
         const result = await db.query(
@@ -20,7 +20,7 @@ const addBook = async ({ titulo, autor, fecha_lanzamiento, descripcion, genero, 
 
 const getAllBooks = async () => {
     try {
-        const result = await db.query(`SELECT * FROM libros`);
+        const result = await db.query(`SELECT * FROM libros WHERE disponible = 1`);
 
         if (result.length > 0) {
             return { success: true, books: result };
@@ -110,5 +110,32 @@ const getAllResenias = async () => {
     }
 };
 
+const deleteBook = async (id_libro) => {
+    try {
+        const result = await db.query(
+            `UPDATE libros SET disponible = 0 WHERE id_libro = ?`, 
+            [id_libro]
+        );
 
-module.exports = { addBook, getAllBooks, getBookById, updateBook, addResenia, getAllResenias};
+        if (result.affectedRows > 0) {
+            return { success: true, message: 'Libro marcado como no disponible.' };
+        } else {
+            return { success: false, message: 'No se pudo actualizar el estado del libro.' };
+        }
+    } catch (error) {
+        console.error('Database Error:', error.sqlMessage || error);
+        return { success: false, message: 'Error al actualizar el libro.' };
+    }
+}
+
+
+module.exports = { 
+    addBook,
+    getAllBooks,
+    getBookById,
+    updateBook,
+    addResenia,
+    getAllResenias,
+    deleteBook
+
+};
