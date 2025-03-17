@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Navbar from "./components/Navbar.jsx";
-import "./gerente_ventas.css";
+import "./styles/gerente_ventas.css";
 import { Bar, Line, Pie } from "recharts";
 
 const SalesData = Array(10).fill({
