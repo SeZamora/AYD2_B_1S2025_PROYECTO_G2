@@ -25,22 +25,21 @@ CREATE TABLE auditoria_supervisores (
     PRIMARY KEY (id_auditoria)
 );
 
-CREATE TABLE logs_empleados (
-    id_log               INT NOT NULL AUTO_INCREMENT,
-    empleados_id         INT NOT NULL,
-    nombre               VARCHAR(100) NOT NULL,
-    apellido             VARCHAR(100) NOT NULL,
-    cui                  BIGINT NOT NULL,
-    telefono             VARCHAR(20) NOT NULL,
-    correo               VARCHAR(255) NOT NULL,
-    edad                 INT NOT NULL,
-    genero               VARCHAR(10) NOT NULL,
-    fecha_alta           DATE NOT NULL,
-    fecha_baja           DATE NOT NULL,
-    fotografia           MEDIUMBLOB NOT NULL,
-    supervisores_id_supervisor INT NOT NULL,
-    razon_baja           TEXT NOT NULL,
-    PRIMARY KEY (id_log)
+CREATE TABLE auditoria_empleados (
+    id_auditoria     INT NOT NULL AUTO_INCREMENT,
+    empleados_id     INT NOT NULL,
+    nombre           VARCHAR(100) NOT NULL,
+    apellido         VARCHAR(100) NOT NULL,
+    cui              BIGINT NOT NULL,
+    telefono         VARCHAR(20) NOT NULL,
+    correo           VARCHAR(255) NOT NULL,
+    edad            INT NOT NULL,
+    genero          VARCHAR(10) NOT NULL,
+    fecha_alta       DATE NOT NULL,
+    fecha_baja       DATE NOT NULL,
+    fotografia       MEDIUMBLOB NOT NULL,
+    razon_desvinculacion TEXT NOT NULL,
+    PRIMARY KEY (id_auditoria)
 );
 
 
@@ -131,8 +130,7 @@ CREATE TABLE facturas (
     cuenta_id_cuenta   INT NOT NULL,
     empleados_id       INT NOT NULL,
     PRIMARY KEY (id_facturas),
-    FOREIGN KEY (cuenta_id_cuenta) REFERENCES cuenta (id_cuenta),
-    FOREIGN KEY (empleados_id) REFERENCES empleados (empleados_id)
+    FOREIGN KEY (cuenta_id_cuenta) REFERENCES cuenta (id_cuenta)
 );
 
 CREATE TABLE detalle_factura (
