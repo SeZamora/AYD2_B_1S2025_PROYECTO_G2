@@ -1,3 +1,5 @@
+const crypto = require('crypto');
+
 async function sha256(text) {
     const encoder = new TextEncoder();
     const data = encoder.encode(text);

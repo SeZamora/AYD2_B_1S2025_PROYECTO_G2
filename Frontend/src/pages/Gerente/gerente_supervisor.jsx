@@ -1,16 +1,82 @@
-import { useState } from "react";
-import "./gerente_supervisor.css";
+import { useState, useEffect } from "react";
+import "./styles/gerente_supervisor.css";
 import Navbar from "./components/Navbar";
 import AgregarSupervisorModal from "./components/agregarSupervisor";
+import EditSupervisorModal from "./components/editSupervisor";
+import SupervisorModal from "./components/verSupervisorModal";
 
-const supervisors = Array(10).fill({
-  name: "xxxxxxxxxxxxxx",
-  phone: "xxxxxxxx",
-  email: "xxxxxxxxxx",
-  date: "2024-03-01",
-});
+const GerenteSupervisor = () => {
+  const [supervisors, setSupervisors] = useState([]);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [editModalOpen, setEditModalOpen] = useState(false);
+  const [viewModalOpen, setViewModalOpen] = useState(false);
+  const [selectedSupervisor, setSelectedSupervisor] = useState(null);
 
-function SupervisorTable({ supervisors }) {
+  const getAllSupervisors = async () => {
+    try {
+      const response = await fetch("http://localhost:3000/supervisor/getAllSupervisor", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Supervisores recibidos:", data);
+        setSupervisors(Array.isArray(data.data) ? data.data : []);
+      } else {
+        setSupervisors([]);
+      }
+    } catch (error) {
+      console.error("Error al obtener supervisores:", error);
+      setSupervisors([]);
+    }
+  };
+
+  useEffect(() => {
+    getAllSupervisors();
+  }, []);
+
+  return (
+    <div>
+      <div className="p-6">
+        <Navbar />
+        <div className="flex justify-between items-center my-4">
+          <button onClick={() => setModalOpen(true)} className="flex items-center gap-2 p-2 border rounded">
+            ➕ Agregar supervisor
+          </button>
+        </div>
+        <SupervisorTable
+          supervisors={supervisors}
+          onEdit={(sup) => {
+            setSelectedSupervisor(sup);
+            setEditModalOpen(true);
+          }}
+          onView={(sup) => {
+            setSelectedSupervisor(sup);
+            setViewModalOpen(true);
+          }}
+        />
+      </div>
+
+      <AgregarSupervisorModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
+      <EditSupervisorModal
+        isOpen={editModalOpen}
+        onClose={() => setEditModalOpen(false)}
+        supervisor={selectedSupervisor}
+        onUpdate={getAllSupervisors}
+      />
+      <SupervisorModal
+        isOpen={viewModalOpen}
+        supervisor={selectedSupervisor}
+        onClose={() => setViewModalOpen(false)}
+      />
+    </div>
+  );
+};
+
+function SupervisorTable({ supervisors, onEdit, onView }) {
   return (
     <table className="w-full border-collapse border">
       <thead>
@@ -24,15 +90,25 @@ function SupervisorTable({ supervisors }) {
         </tr>
       </thead>
       <tbody>
-        {supervisors.map((sup, index) => (
+        {supervisors.map((data, index) => (
           <tr key={index} className="text-center">
-            <td className="border p-2">{sup.name}</td>
-            <td className="border p-2">{sup.phone}</td>
-            <td className="border p-2">{sup.email}</td>
-            <td className="border p-2">{sup.date}</td>
-            <td className="border p-2 text-blue-500 cursor-pointer">ver supervisor</td>
+            <td className="border p-2">{data.nombre}</td>
+            <td className="border p-2">{data.telefono}</td>
+            <td className="border p-2">{data.email}</td>
+            <td className="border p-2">{data.fecha_ingreso.split("T")[0]}</td>
+            <td
+              className="border p-2 text-blue-500 cursor-pointer"
+              onClick={() => onView(data)}
+            >
+              Ver supervisor
+            </td>
             <td className="border p-2">
-              <button className="text-blue-500 mx-2">Modificar</button>
+              <button
+                className="text-blue-500 mx-2"
+                onClick={() => onEdit(data)}
+              >
+                Modificar
+              </button>
               <button className="text-red-500">Eliminar</button>
             </td>
           </tr>
@@ -42,39 +118,4 @@ function SupervisorTable({ supervisors }) {
   );
 }
 
-function SearchBar({ search, setSearch }) {
-  return (
-    <div className="flex items-center border p-2 rounded w-1/3">
-      <input
-        type="text"
-        placeholder="Buscar supervisores"
-        className="w-full focus:outline-none"
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
-      <button className="ml-2 px-4 py-1 border rounded">Buscar</button>
-    </div>
-  );
-}
-
-export default function GerenteSupervisor() {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [search, setSearch] = useState("");
-
-  return (
-    <div>
-      <div className="p-6">
-        <Navbar />
-        <div className="flex justify-between items-center my-4">
-          <SearchBar search={search} setSearch={setSearch} />
-          <button onClick={() => setModalOpen(true)} className="flex items-center gap-2 p-2 border rounded">
-            ➕ Agregar supervisor
-          </button>
-        </div>
-        <SupervisorTable supervisors={supervisors} />
-      </div>
-      <AgregarSupervisorModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
-    </div>
-
-  );
-}
+export default GerenteSupervisor;
