@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import Navbar from '../../ui/componets/NavEmpleado';
+import Navbar from '../../../ui/componets/NavEmpleado';
 import { useEffect, useState } from "react";
 
 export const ProductoDetalle = () => {
