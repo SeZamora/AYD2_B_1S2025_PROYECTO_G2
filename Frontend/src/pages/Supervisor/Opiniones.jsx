@@ -1,10 +1,9 @@
 import React from "react";
-
 import Navbar from "../../ui/componets/NabSupervisor";
 import "./../../styles/SPrincipal.css";
-import EmployeeTable from './components/EmployeeTable'; // Importamos el nuevo componente
+import OponionTable from "./components/OpinionTable";
 
-const SuperPrincipal = () => {
+const Opinion = () => {
   return (
     <div>
       <Navbar />
@@ -15,15 +14,14 @@ const SuperPrincipal = () => {
           top: '0%',
           height: '90%'
         }}>
-
+            <OponionTable />
+       
         
-        <EmployeeTable />
       </div>
-      
-
+     
     </div>
   );
 };
 
 
-export default SuperPrincipal;
+export default Opinion;

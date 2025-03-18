@@ -27,47 +27,26 @@ const Navbar = () => {
         <nav className="navbar navbar-expand-lg navbar-dark" style={navbarStyle}>
             <div className="container-fluid">
                 <a className="navbar-brand" style={{ color: "#e59a34" }}>NebookVault</a>
-
-                <button
-                    className="navbar-toggler"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation"
-                >
-                    <i className="fas fa-bars text-light"></i>
-                </button>
-
-                <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul className="navbar-nav me-auto d-flex flex-column flex-lg-row mt-3 mt-lg-0">
-                        <li className="nav-item text-center mx-2 mx-lg-2">
-                            <a className="nav-link">
+                <a className="nav-link" >
                                 <div>
                                     <i class="fa fa-users fa-2x" aria-hidden="true" onClick={() => navigate('/SuperPrincipal')}></i>
                                 </div>
                                 Empleados
                             </a>
-                        </li>
-                        <li className="nav-item text-center mx-2 mx-lg-2 ">
                             <a className="nav-link">
                                 <div>
                                 <i class="fa fa-shopping-cart fa-2x" aria-hidden="true" onClick={() => navigate('/Productos')}></i>
                                 </div>
                                 Productos
                             </a>
-                        </li>
-
-                        <li className="nav-item text-center mx-2 mx-lg-2 ">
                             <a className="nav-link">
                                 <div>
-                                <i class="fa fa-star fa-2x" aria-hidden="true"></i>
+                                <i class="fa fa-star fa-2x" aria-hidden="true" onClick={() => navigate('/Opinion')} ></i>
                                 </div>
                                 Opiniones
                             </a>
-                        </li>
-                        <li className="nav-item text-center mx-2 mx-lg-2">
+
+
                             <a className="nav-link">
                                 <div>
                                 <i className="fa fa-book fa-2x" aria-hidden="true"onClick={() => navigate('/Libros')} ></i>
@@ -75,9 +54,14 @@ const Navbar = () => {
                                 </div>
                                 libros
                             </a>
-                        </li>
-                    </ul>
+                            <a className="nav-link">
+                                <div>
+                                <i className="fa fa-list-alt fa-2x" aria-hidden="true"onClick={() => navigate('/fact')} ></i>
 
+                                </div>
+                                Facturas
+                            </a>
+               
 
 
                     <ul className="navbar-nav ms-auto d-flex flex-row mt-3 mt-lg-0">
@@ -91,7 +75,7 @@ const Navbar = () => {
                         </li>
                     </ul>
                 </div>
-            </div>
+            
         </nav>
     );
 };

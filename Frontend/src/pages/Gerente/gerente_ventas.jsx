@@ -1,55 +1,127 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "./components/Navbar.jsx";
 import "./styles/gerente_ventas.css";
-import { BarChart, Bar, LineChart, Line, PieChart, Pie, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
-
-// Datos de ejemplo para los gráficos
-const SalesData = [
-  { product: "Producto A", category: "Categoría 1", quantity: 150, revenue: 5000 },
-  { product: "Producto B", category: "Categoría 2", quantity: 200, revenue: 7000 },
-  { product: "Producto C", category: "Categoría 1", quantity: 100, revenue: 3000 },
-  { product: "Producto D", category: "Categoría 3", quantity: 250, revenue: 8000 },
-  { product: "Producto E", category: "Categoría 2", quantity: 180, revenue: 6000 },
-];
-
-// Datos para el gráfico de productos más vendidos
-const topProductsData = SalesData.sort((a, b) => b.quantity - a.quantity).slice(0, 5);
-
-// Datos para el gráfico de comparación de ventas por período
-const salesComparisonData = [
-  { period: "Enero", ventas: 12000 },
-  { period: "Febrero", ventas: 15000 },
-  { period: "Marzo", ventas: 18000 },
-  { period: "Abril", ventas: 14000 },
-  { period: "Mayo", ventas: 16000 },
-];
-
-// Datos para el gráfico de volumen de ventas por categoría
-const salesByCategoryData = [
-  { name: "Categoría 1", value: 8000 },
-  { name: "Categoría 2", value: 13000 },
-  { name: "Categoría 3", value: 8000 },
-];
+import { BarChart, Bar, LineChart, Line, PieChart, Pie, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Cell } from "recharts";
 
 export default function GerenteVentas() {
-  const [sales, setSales] = useState(SalesData);
+  const [topProductsData, setTopProductsData] = useState([]);
+  const [salesByCategoryData, setSalesByCategoryData] = useState([]);
+  const [salesComparisonData, setSalesComparisonData] = useState([]);
+
+  // Colores para las gráficas
+  const barColors = ["#8884d8", "#82ca9d", "#ffc658", "#ff8042", "#00C49F"];
+  const pieColors = ["#8884d8", "#82ca9d", "#ffc658", "#ff8042", "#00C49F"];
+
+  // Función para obtener los datos de los productos más vendidos
+  const masVendidos = async () => {
+    try {
+      const res = await fetch("http://localhost:3000/reports/masVendidos", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await res.json();
+
+      // Agrupar los datos por tipo y sumar las cantidades vendidas
+      const groupedData = data.reduce((acc, item) => {
+        const tipo = item.tipo;
+        const cantidad = parseInt(item.total_vendido); // Convertir a número
+        if (!acc[tipo]) {
+          acc[tipo] = 0; // Inicializar el acumulador para el tipo
+        }
+        acc[tipo] += cantidad; // Sumar la cantidad vendida
+        return acc;
+      }, {});
+
+      // Transformar los datos agrupados en un formato compatible con el gráfico
+      const transformedData = Object.keys(groupedData).map((tipo) => ({
+        type: tipo,
+        quantity: groupedData[tipo],
+      }));
+
+      setTopProductsData(transformedData);
+    } catch (error) {
+      console.error("Error al obtener los datos:", error);
+    }
+  };
+
+  // Función para obtener los datos de ventas por categoría
+  const ventasPorCategoria = async () => {
+    try {
+      const res = await fetch("http://localhost:3000/reports/ventasPorCategoria", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await res.json();
+
+      // Transformar los datos para el gráfico de pastel
+      const transformedData = data.map((item) => ({
+        name: item.categoria,
+        value: parseFloat(item.total_ingresos), // Convertir a número
+      }));
+
+      setSalesByCategoryData(transformedData);
+    } catch (error) {
+      console.error("Error al obtener los datos de ventas por categoría:", error);
+    }
+  };
+
+  // Función para obtener los datos de ventas mensuales
+  const ventasMensuales = async () => {
+    try {
+      const res = await fetch("http://localhost:3000/reports/ventasMensuales", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await res.json();
+
+      // Transformar los datos para el gráfico de líneas
+      const transformedData = data.map((item) => ({
+        period: item.mes, // Usar el mes como período
+        ventas: parseFloat(item.total_ventas), // Convertir a número
+      }));
+
+      setSalesComparisonData(transformedData);
+    } catch (error) {
+      console.error("Error al obtener los datos de ventas mensuales:", error);
+    }
+  };
+
+  // Llamar a las funciones al cargar el componente
+  useEffect(() => {
+    masVendidos();
+    ventasPorCategoria();
+    ventasMensuales();
+  }, []);
 
   return (
     <div className="p-6">
       <Navbar />
       <h2 className="text-xl font-bold my-4">Reporte de Ventas</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {/* Gráfico de productos más vendidos */}
+        {/* Gráfico de productos más vendidos por tipo */}
         <div className="border p-4 rounded-lg shadow-md">
-          <h3 className="text-center font-semibold mb-4">Productos más vendidos</h3>
+          <h3 className="text-center font-semibold mb-4">Productos más vendidos por tipo</h3>
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={topProductsData}>
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="product" />
+              <XAxis dataKey="type" />
               <YAxis />
               <Tooltip />
               <Legend />
-              <Bar dataKey="quantity" fill="#8884d8" name="Cantidad Vendida" />
+              {topProductsData.map((entry, index) => (
+                <Bar
+                  key={`bar-${index}`}
+                  dataKey="quantity"
+                  fill={barColors[index % barColors.length]} // Asignar colores cíclicamente
+                  name="Cantidad Vendida"
+                />
+              ))}
             </BarChart>
           </ResponsiveContainer>
         </div>
@@ -64,7 +136,12 @@ export default function GerenteVentas() {
               <YAxis />
               <Tooltip />
               <Legend />
-              <Line type="monotone" dataKey="ventas" stroke="#82ca9d" name="Ventas" />
+              <Line
+                type="monotone"
+                dataKey="ventas"
+                stroke="#82ca9d" // Color de la línea
+                name="Ventas"
+              />
             </LineChart>
           </ResponsiveContainer>
         </div>
@@ -81,9 +158,16 @@ export default function GerenteVentas() {
                 cx="50%"
                 cy="50%"
                 outerRadius={100}
-                fill="#8884d8"
+                fill="#8884d8" // Color por defecto
                 label
-              />
+              >
+                {salesByCategoryData.map((entry, index) => (
+                  <Cell
+                    key={`cell-${index}`}
+                    fill={pieColors[index % pieColors.length]} // Asignar colores cíclicamente
+                  />
+                ))}
+              </Pie>
               <Tooltip />
               <Legend />
             </PieChart>
