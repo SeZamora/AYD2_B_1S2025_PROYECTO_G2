@@ -91,23 +91,20 @@ const getProduct = async (req, res) => {
 
 const editProduct = async (req, res) => {
     try {
-        const { id_producto, nombre, descripcion, codigo, categoria, precio_compra, precio_venta, cantidad } = req.body;
-        const imagen = req.file ? req.file.buffer : null;
-        if (!id_producto || !nombre || !codigo || !categoria || !precio_compra || !precio_venta || !cantidad) {
+        const { id_producto,descripcion, precio_venta, cantidad } = req.body;
+        
+        if (!id_producto || !precio_venta || !cantidad) {
 
             return res.status(400).json({ message: 'Todos los campos son obligatorios' });
         }
 
         const result = await productService.editProduct({
             id_producto,
-            nombre,
+            
             descripcion,
-            codigo,
-            categoria,
-            precio_compra,
+            
             precio_venta,
-            cantidad,
-            imagen
+            cantidad
         });
 
         res.status(200).json(result);
@@ -119,6 +116,24 @@ const editProduct = async (req, res) => {
 
 }
 
+const deleteProduct = async (req, res) => {
+    try {
+        const { id_producto } = req.body;
+
+        if (!id_producto) {
+            return res.status(400).json({ message: 'El ID del producto es obligatorio' });
+        }
+
+        const result = await productService.deleteProduct(id_producto);
+
+        res.status(200).json(result);
+
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ message: 'Error al eliminar el producto' });
+    }
+}
+
 
 
 module.exports = {
@@ -127,5 +142,6 @@ module.exports = {
     getAllProducts,
     getProductById,
     editProduct,
-    getProduct
+    getProduct,
+    deleteProduct
 };

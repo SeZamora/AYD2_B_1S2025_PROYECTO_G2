@@ -23,7 +23,7 @@ const addProduct = async ({ nombre, descripcion, codigo, categoria, precio_compr
 
 const getAllProducts = async () => {
     try {
-        const rows = await db.query(`SELECT id_producto, nombre, descripcion, codigo, categoria, precio_compra, precio_venta, cantidad, imagen FROM producto`);
+        const rows = await db.query(`SELECT id_producto, nombre, descripcion, codigo, categoria, precio_compra, precio_venta, cantidad, imagen FROM producto WHERE disponible = 1`);
         
         const products = rows.map(product => ({
             ...product,
@@ -40,7 +40,7 @@ const getAllProducts = async () => {
 
 const getProduct = async (id_producto) => {
     try {
-        const rows = await db.query(`SELECT * FROM producto WHERE id_producto = ?`, [id_producto]);
+        const rows = await db.query(`SELECT * FROM producto WHERE id_producto = ? AND WHERE disponible = 1`, [id_producto]);
 
         if (rows.length > 0) {
             const product = rows[0];
@@ -58,7 +58,7 @@ const getProduct = async (id_producto) => {
 
 const getProductById = async (nombre_producto) => {
     try {
-        const rows = await db.query(`SELECT * FROM producto WHERE nombre = ?`, [nombre_producto]);
+        const rows = await db.query(`SELECT * FROM producto WHERE nombre = ? AND WHERE disponible = 1`, [nombre_producto]);
 
         if (rows.length > 0) {
             const product = rows[0];
@@ -74,25 +74,38 @@ const getProductById = async (nombre_producto) => {
     }
 };
 
-
-const editProduct = async ({ id_producto, nombre, descripcion, codigo, categoria, precio_compra, precio_venta, cantidad, imagen }) => {
+const editProduct = async ({ id_producto, descripcion, precio_venta, cantidad }) => {
+    if (!id_producto) {
+        return { success: false, message: 'El ID del producto es obligatorio.' };
+    }
 
     try {
-        //let imageUrl = null;
-
-        
-
-        // Realizar la actualización del producto en la base de datos
         const result = await db.query(
-            `UPDATE producto SET nombre = ?, descripcion = ?, codigo = ?, categoria = ?, precio_compra = ?, precio_venta = ?, cantidad = ?, imagen = ? WHERE id_producto = ?`,
-            [nombre, descripcion, codigo, categoria, precio_compra, precio_venta, cantidad,  id_producto]
+            `UPDATE producto 
+             SET descripcion = ?, precio_venta = ?, cantidad = ? 
+             WHERE id_producto = ?`,
+            [descripcion, precio_venta, cantidad, id_producto]
         );
 
-        // Verificar si la actualización fue exitosa
+        return result.affectedRows > 0
+            ? { success: true, message: 'Producto actualizado exitosamente.' }
+            : { success: false, message: 'No se pudo actualizar el producto o no hubo cambios.' };
+    } catch (error) {
+        console.error('Database Error:', error.sqlMessage || error);
+        return { success: false, message: 'Error interno del servidor.' };
+    }
+};
+const deleteProduct = async (id_producto) => {
+    try {
+        const result = await db.query(
+            `UPDATE producto SET disponible = 0 WHERE id_producto = ?`, 
+            [id_producto]
+        );
+
         if (result.affectedRows > 0) {
-            return { success: true, message: 'Producto actualizado exitosamente.' };
+            return { success: true, message: 'Producto marcado como no disponible.' };
         } else {
-            return { success: false, message: 'No se pudo actualizar el producto.' };
+            return { success: false, message: 'No se pudo actualizar el estado del producto.' };
         }
     } catch (error) {
         console.error('Database Error:', error.sqlMessage || error);
@@ -100,10 +113,12 @@ const editProduct = async ({ id_producto, nombre, descripcion, codigo, categoria
     }
 }
 
+
 module.exports = {
     addProduct,
     getAllProducts,
     getProductById,
     editProduct,
-    getProduct
+    getProduct,
+    deleteProduct
 };
