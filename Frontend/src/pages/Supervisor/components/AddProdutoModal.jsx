@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const AddProdutoModal = ({ showModal, toggleModal, role }) => {
+const AddProdutoModal = ({ showModal, toggleModal, role, productId }) => {
     const [formData, setFormData] = useState({
         nombre: '',
         descripcion: '',
@@ -33,41 +33,80 @@ const AddProdutoModal = ({ showModal, toggleModal, role }) => {
     const handleSubmit = async (e) => {
 
         e.preventDefault();
-        if(role=='add'){
-        const data = new FormData();
+        if (role == 'add') {
+            const data = new FormData();
 
-        Object.keys(formData).forEach((key) => {
-            data.append(key, formData[key]);
-        });
-
-        try {
-            const response = await fetch("http://localhost:3000/product/addProduct", {
-                method: "POST",
-                body: data
+            Object.keys(formData).forEach((key) => {
+                data.append(key, formData[key]);
             });
 
-            if (response.ok) {
-                alert("Producto agregado con éxito");
-                setFormData({
-                    nombre: '',
-                    descripcion: '',
-                    codigo: '',
-                    categoria: '',
-                    precio_compra: '',
-                    precio_venta: '',
-                    cantidad: '',
-                    imagen: null
+            try {
+                const response = await fetch("http://localhost:3000/product/addProduct", {
+                    method: "POST",
+                    body: data
                 });
-                toggleModal(); 
-                window.location.reload();
-            } else {
-                alert("Error al agregar el producto");
+
+                if (response.ok) {
+                    alert("Producto agregado con éxito");
+                    setFormData({
+                        nombre: '',
+                        descripcion: '',
+                        codigo: '',
+                        categoria: '',
+                        precio_compra: '',
+                        precio_venta: '',
+                        cantidad: '',
+                        imagen: null
+                    });
+                    toggleModal();
+                    window.location.reload();
+                } else {
+                    alert("Error al agregar el producto");
+                }
+            } catch (error) {
+                console.error("Error al enviar la solicitud", error);
             }
-        } catch (error) {
-            console.error("Error al enviar la solicitud", error);
-        }
-    }
-    };
+        } else if (role === 'edit') {
+            const data = {
+                id_producto: productId,
+                descripcion: formData.descripcion,
+                precio_venta: Number(formData.precio_venta),
+                cantidad: Number(formData.cantidad)
+            };
+            
+            console.log(data);
+            
+            try {
+                const response = await fetch("http://localhost:3000/product/editProduct", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json" // 📌 Indica que el contenido es JSON
+                    },
+                    body: JSON.stringify(data) // 📌 Convierte el objeto en una cadena JSON
+                });
+            
+                if (response.ok) {
+                    alert("Producto editado con éxito");
+                    setFormData({
+                        nombre: '',
+                        descripcion: '',
+                        codigo: '',
+                        categoria: '',
+                        precio_compra: '',
+                        precio_venta: '',
+                        cantidad: '',
+                        imagen: null
+                    });
+                    toggleModal();
+                    window.location.reload();
+                } else {
+                    alert("Error al editar el producto");
+                }
+            } catch (error) {
+                console.error("Error al enviar la solicitud", error);
+            }
+        }            
+    };        
 
     return (
         <>
@@ -113,22 +152,27 @@ const AddProdutoModal = ({ showModal, toggleModal, role }) => {
                         </div>
                         <div className="modal-body">
                             <form onSubmit={handleSubmit}>
-                                <div className="form-group">
-                                    <label htmlFor="nombre">Nombre del producto</label>
-                                    <input type="text" className="form-control" id="nombre" name="nombre" value={formData.nombre} onChange={handleChange} required />
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="codigo">Código del producto</label>
-                                    <input type="text" className="form-control" id="codigo" name="codigo" value={formData.codigo} onChange={handleChange} required />
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="categoria">Categoría</label>
-                                    <input type="text" className="form-control" id="categoria" name="categoria" value={formData.categoria} onChange={handleChange} required />
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="precio_compra">Precio de compra</label>
-                                    <input type="number" className="form-control" id="precio_compra" name="precio_compra" value={formData.precio_compra} onChange={handleChange} required />
-                                </div>
+                                {role === "add" && (
+                                    <>
+                                        <div className="form-group">
+                                            <label htmlFor="nombre">Nombre del producto</label>
+                                            <input type="text" className="form-control" id="nombre" name="nombre" value={formData.nombre} onChange={handleChange} required />
+                                        </div>
+                                        <div className="form-group">
+                                            <label htmlFor="codigo">Código del producto</label>
+                                            <input type="text" className="form-control" id="codigo" name="codigo" value={formData.codigo} onChange={handleChange} required />
+                                        </div>
+                                        <div className="form-group">
+                                            <label htmlFor="categoria">Categoría</label>
+                                            <input type="text" className="form-control" id="categoria" name="categoria" value={formData.categoria} onChange={handleChange} required />
+                                        </div>
+                                        <div className="form-group">
+                                            <label htmlFor="precio_compra">Precio de compra</label>
+                                            <input type="number" className="form-control" id="precio_compra" name="precio_compra" value={formData.precio_compra} onChange={handleChange} required />
+                                        </div>
+                                    </>
+                                )}
+
                                 <div className="form-group">
                                     <label htmlFor="precio_venta">Precio de venta</label>
                                     <input type="number" className="form-control" id="precio_venta" name="precio_venta" value={formData.precio_venta} onChange={handleChange} required />
@@ -141,10 +185,14 @@ const AddProdutoModal = ({ showModal, toggleModal, role }) => {
                                     <label htmlFor="descripcion">Descripción</label>
                                     <textarea className="form-control" id="descripcion" name="descripcion" value={formData.descripcion} onChange={handleChange}></textarea>
                                 </div>
-                                <div className="form-group">
-                                    <label htmlFor="imagen">Imagen del producto</label>
-                                    <input type="file" className="form-control" id="imagen" name="imagen" accept="image/*" onChange={handleFileChange} required />
-                                </div>
+
+                                {role === "add" && (
+                                    <div className="form-group">
+                                        <label htmlFor="imagen">Imagen del producto</label>
+                                        <input type="file" className="form-control" id="imagen" name="imagen" accept="image/*" onChange={handleFileChange} required />
+                                    </div>
+                                )}
+
                                 <div className="modal-footer">
                                     <button type="button" className="btn btn-secondary" onClick={toggleModal}>
                                         Cerrar
@@ -154,7 +202,8 @@ const AddProdutoModal = ({ showModal, toggleModal, role }) => {
                                     </button>
                                 </div>
                             </form>
-                        </div>                      
+
+                        </div>
                     </div>
                 </div>
             </div>

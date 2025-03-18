@@ -74,44 +74,28 @@ const getProductById = async (nombre_producto) => {
     }
 };
 
-
-const editProduct = async ({ id_producto, nombre, descripcion, codigo, categoria, precio_compra, precio_venta, cantidad, imagen }) => {
+const editProduct = async ({ id_producto, descripcion, precio_venta, cantidad }) => {
+    if (!id_producto) {
+        return { success: false, message: 'El ID del producto es obligatorio.' };
+    }
 
     try {
-        
         const result = await db.query(
-            `UPDATE producto SET nombre = ?, descripcion = ?, codigo = ?, categoria = ?, precio_compra = ?, precio_venta = ?, cantidad = ?, imagen = ? WHERE id_producto = ?`,
-            [nombre, descripcion, codigo, categoria, precio_compra, precio_venta, cantidad,  id_producto]
+            `UPDATE producto 
+             SET descripcion = ?, precio_venta = ?, cantidad = ? 
+             WHERE id_producto = ?`,
+            [descripcion, precio_venta, cantidad, id_producto]
         );
 
-        if (result.affectedRows > 0) {
-            return { success: true, message: 'Producto actualizado exitosamente.' };
-        } else {
-            return { success: false, message: 'No se pudo actualizar el producto.' };
-        }
+        return result.affectedRows > 0
+            ? { success: true, message: 'Producto actualizado exitosamente.' }
+            : { success: false, message: 'No se pudo actualizar el producto o no hubo cambios.' };
     } catch (error) {
         console.error('Database Error:', error.sqlMessage || error);
         return { success: false, message: 'Error interno del servidor.' };
     }
-}
+};
 
-const deleteProduct = async (id_producto) => {
-    try {
-        const result = await db.query(
-            `UPDATE producto SET disponible = 0 WHERE id_producto = ?`, 
-            [id_producto]
-        );
-
-        if (result.affectedRows > 0) {
-            return { success: true, message: 'Producto marcado como no disponible.' };
-        } else {
-            return { success: false, message: 'No se pudo actualizar el estado del producto.' };
-        }
-    } catch (error) {
-        console.error('Database Error:', error.sqlMessage || error);
-        return { success: false, message: 'Error interno del servidor.' };
-    }
-}
 
 module.exports = {
     addProduct,

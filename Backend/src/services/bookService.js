@@ -49,18 +49,11 @@ const getBookById = async (id_libro) => {
 };
 
 
-const updateBook = async ({ id_libro,
-    titulo,
-    autor,
-    fecha_lanzamiento,
-    descripcion,
-    genero,
-    stock,
-    precio }) => {
+const updateBook = async ({ id_libro, descripcion, stock, precio }) => {
     try {
         const result = await db.query(
-            `UPDATE libros SET titulo = ?, autor = ?, fecha_lanzamiento = ?, descripcion = ?, genero = ?, stock = ?, precio = ? WHERE id_libro = ?`,
-            [titulo, autor, fecha_lanzamiento, descripcion, genero, stock, precio, id_libro]
+            `UPDATE libros SET descripcion = ?, stock = ?, precio = ? WHERE id_libro = ?`,
+            [descripcion, stock, precio, id_libro]
         );
 
         if (result.affectedRows > 0) {
@@ -73,8 +66,7 @@ const updateBook = async ({ id_libro,
         console.error('Error:', error);
         return { success: false, message: 'Error al actualizar el libro' };
     }
-
-}
+};
 
 const addResenia = async ({ calificacion, comentario, fecha, cuenta_id_cuenta, libros_id_libro }) => {
     try {
