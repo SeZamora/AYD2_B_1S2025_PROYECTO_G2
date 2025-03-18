@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 import "../styles/Navbar.css";
 
 export default function Navbar() {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     // localStorage.removeItem("user");
-    navigate("/"); // pagina de inicio
+    navigate("/"); // página de inicio
   };
 
   const navbarStyle = {
@@ -68,6 +68,11 @@ export default function Navbar() {
         <Link to="/gerente_ganancias" style={linkStyle}>
           <i className="fa fa-line-chart fa-2x" aria-hidden="true"></i>
           <span>Ganancias</span>
+        </Link>
+        {/* Botón de Alertas de Stock */}
+        <Link to="/alertas_stock" style={linkStyle}>
+          <i className="fa fa-exclamation-triangle fa-2x" aria-hidden="true"></i>
+          <span>Alertas de Stock</span>
         </Link>
       </div>
 

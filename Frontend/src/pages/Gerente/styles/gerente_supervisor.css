@@ -160,3 +160,26 @@ body {
 .supervisors-table tbody tr:hover {
   background-color: #f9fafb; /* Fondo más claro al pasar el mouse */
 }
+
+/* Estilos personalizados para la tabla */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0; /* Color gris claro */
+}
+
+th {
+  background-color: #f7fafc; /* Color de fondo para el encabezado */
+  font-weight: 600; /* Texto en negrita */
+}
+
+tr:hover {
+  background-color: #f0f4f8; /* Color de fondo al pasar el mouse */
+}
+
+
