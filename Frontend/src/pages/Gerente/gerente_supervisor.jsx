@@ -4,12 +4,14 @@ import Navbar from "./components/Navbar";
 import AgregarSupervisorModal from "./components/agregarSupervisor";
 import EditSupervisorModal from "./components/editSupervisor";
 import SupervisorModal from "./components/verSupervisorModal";
+import EliminarSupervisorModal from "./components/deleteSupervisor";
 
 const GerenteSupervisor = () => {
   const [supervisors, setSupervisors] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [viewModalOpen, setViewModalOpen] = useState(false);
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false); // Estado para el modal de eliminación
   const [selectedSupervisor, setSelectedSupervisor] = useState(null);
 
   const getAllSupervisors = async () => {
@@ -57,6 +59,10 @@ const GerenteSupervisor = () => {
             setSelectedSupervisor(sup);
             setViewModalOpen(true);
           }}
+          onDelete={(sup) => {
+            setSelectedSupervisor(sup);
+            setDeleteModalOpen(true);
+          }}
         />
       </div>
 
@@ -72,11 +78,17 @@ const GerenteSupervisor = () => {
         supervisor={selectedSupervisor}
         onClose={() => setViewModalOpen(false)}
       />
+      <EliminarSupervisorModal
+        isOpen={deleteModalOpen}
+        onClose={() => setDeleteModalOpen(false)}
+        supervisor={selectedSupervisor}
+        onDelete={getAllSupervisors} // Actualizar la lista después de eliminar
+      />
     </div>
   );
 };
 
-function SupervisorTable({ supervisors, onEdit, onView }) {
+function SupervisorTable({ supervisors, onEdit, onView, onDelete }) {
   return (
     <table className="w-full border-collapse border">
       <thead>
@@ -109,7 +121,12 @@ function SupervisorTable({ supervisors, onEdit, onView }) {
               >
                 Modificar
               </button>
-              <button className="text-red-500">Eliminar</button>
+              <button
+                className="text-red-500"
+                onClick={() => onDelete(data)}
+              >
+                Eliminar
+              </button>
             </td>
           </tr>
         ))}
