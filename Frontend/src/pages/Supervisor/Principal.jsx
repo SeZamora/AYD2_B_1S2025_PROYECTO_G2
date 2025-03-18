@@ -19,12 +19,7 @@ const SuperPrincipal = () => {
         
         <EmployeeTable />
       </div>
-      {/* 
-        
-
-       
-      */}
-
+      
 
     </div>
   );

@@ -80,9 +80,9 @@ const AddProdutoModal = ({ showModal, toggleModal, role, productId }) => {
                 const response = await fetch("http://localhost:3000/product/editProduct", {
                     method: "POST",
                     headers: {
-                        "Content-Type": "application/json" // 📌 Indica que el contenido es JSON
+                        "Content-Type": "application/json" 
                     },
-                    body: JSON.stringify(data) // 📌 Convierte el objeto en una cadena JSON
+                    body: JSON.stringify(data) 
                 });
             
                 if (response.ok) {
