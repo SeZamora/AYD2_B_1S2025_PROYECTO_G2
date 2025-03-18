@@ -88,6 +88,23 @@ const getAllEmployees = async (req, res) => {
         res.status(500).json({ message: 'Error al obtener los empleados' });
     }
 };
+const getAllEmployeeData = async (req, res) => {
+    try {
+        const result = await employeeService.getAllEmployeeData();
+        
+        if (result.success) {
+            res.status(200).json(result);
+        } else {
+            res.status(404).json({ message: 'No hay empleados disponibles' });
+        }
+
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ message: 'Error al obtener los empleados' });
+    }
+};
+
+
 const getEmployeeById = async (req, res) => {
     try {
         const { empleado_nombre } = req.body; // Se obtiene el empleado_nombre desde el cuerpo de la solicitud
@@ -155,6 +172,7 @@ module.exports = {
     getEmployeeById, 
     upload,
     getEmployee,
-    deleteEmployee
+    deleteEmployee,
+    getAllEmployeeData
 };
 

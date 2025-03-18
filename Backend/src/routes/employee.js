@@ -9,4 +9,5 @@ router.post('/getEmployeeByName', employeeController.getEmployeeById);
 router.post('/getEmployeeById', employeeController.getEmployee);
 router.get('/getAllEmployee', employeeController.getAllEmployees);
 router.post('/deleteEmployee', employeeController.deleteEmployee);
+router.get('/getAllEmployeeData', employeeController.getAllEmployeeData);
 module.exports = router;
