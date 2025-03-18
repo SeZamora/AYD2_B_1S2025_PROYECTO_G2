@@ -35,7 +35,7 @@ const getAllBooks = async () => {
 
 const getBookById = async (id_libro) => {
     try {
-        const result = await db.query(`SELECT * FROM libros WHERE id_libro = ?`, [id_libro]);
+        const result = await db.query(`SELECT * FROM libros WHERE id_libro = ? AND WHERE disponible = 1`, [id_libro]);
 
         if (result.length > 0) {
             return { success: true, book: result[0] }; // Retorna el libro encontrado

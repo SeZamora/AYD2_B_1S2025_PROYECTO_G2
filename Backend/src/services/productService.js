@@ -40,7 +40,7 @@ const getAllProducts = async () => {
 
 const getProduct = async (id_producto) => {
     try {
-        const rows = await db.query(`SELECT * FROM producto WHERE id_producto = ?`, [id_producto]);
+        const rows = await db.query(`SELECT * FROM producto WHERE id_producto = ? AND WHERE disponible = 1`, [id_producto]);
 
         if (rows.length > 0) {
             const product = rows[0];
@@ -58,7 +58,7 @@ const getProduct = async (id_producto) => {
 
 const getProductById = async (nombre_producto) => {
     try {
-        const rows = await db.query(`SELECT * FROM producto WHERE nombre = ?`, [nombre_producto]);
+        const rows = await db.query(`SELECT * FROM producto WHERE nombre = ? AND WHERE disponible = 1`, [nombre_producto]);
 
         if (rows.length > 0) {
             const product = rows[0];
