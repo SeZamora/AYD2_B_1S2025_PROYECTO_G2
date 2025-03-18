@@ -1,15 +1,17 @@
 import { CardEmpleado } from '../../ui/CardEmpleado';
+import Productos from './components/Productos';
 import Navbar from '../../ui/componets/NavEmpleado';
 import { CrearFactura} from './components/CrearFactura'
 import ModalFactura from './components/ModalFactura';
-import React, { useEffect, useState } from 'react';
+import React, {useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import './empleado.css'
+import Libros from './components/Libros';
 
 
 export const EmpleadoHome = () => {
     const navigate = useNavigate();
-    const [productos, setProductos] = useState([]);
+
     const [carrito, setCarrito] = useState([]); 
     const [total, setTotal] = useState(0); 
 
@@ -19,39 +21,58 @@ export const EmpleadoHome = () => {
 
     const [idFactura, setIdFactura] = useState(null);
 
-    
-    
-    
-    
-
     const handleVerProducto = (id) => {
         navigate(`/producto/${id}`);
     };
 
-    const handleAgregarCarrito = (producto) => {
-        const productoExistente = carrito.find((item) => item.id_producto === producto.id_producto);
+    const handleVerLibro = (id) => {
+        navigate(`/libro/${id}`);
+    };
 
+    const handleAgregarCarrito = (producto) => {
+        const esProducto = producto.id_producto !== undefined;
+        const esLibro = producto.id_libro !== undefined;
+    
+        const idKey = esProducto ? "id_producto" : "id_libro";
+        const precioKey = esProducto ? producto.precio_venta : producto.precio;
+    
+        const productoExistente = carrito.find(
+            (item) => item[idKey] === producto[idKey] && (esProducto ? item.id_producto : item.id_libro)
+        );
+    
         if (productoExistente) {
+            // Si el producto/libro ya está en el carrito, aumentamos la cantidad
             const nuevoCarrito = carrito.map((item) =>
-                item.id_producto === producto.id_producto
+                item[idKey] === producto[idKey] && (esProducto ? item.id_producto : item.id_libro)
                     ? { ...item, cantidad: item.cantidad + 1 }
                     : item
             );
             setCarrito(nuevoCarrito);
         } else {
+            // Si no está en el carrito, lo agregamos con cantidad 1
             setCarrito([...carrito, { ...producto, cantidad: 1 }]);
         }
-
-        setTotal(total + parseFloat(producto.precio_venta));
+    
+        // Actualizar el total
+        setTotal(total + parseFloat(precioKey));
     };
+    
 
-    const handleEliminarDelCarrito = (id) => {
-        const productoEliminado = carrito.find((item) => item.id_producto === id);
-        const nuevoCarrito = carrito.filter((item) => item.id_producto !== id);
+    const handleEliminarDelCarrito = (producto) => {
+        const esProducto = producto.id_producto !== undefined;
+        const id = esProducto ? producto.id_producto : producto.id_libro;
+    
+   
+        const nuevoCarrito = carrito.filter(
+            (item) => (esProducto ? item.id_producto !== id : item.id_libro !== id)
+        );
+    
 
+        const precio = esProducto ? parseFloat(producto.precio_venta) : parseFloat(producto.precio);
         setCarrito(nuevoCarrito);
-        setTotal(total - parseFloat(productoEliminado.precio_venta) * productoEliminado.cantidad);
+        setTotal(total - precio * producto.cantidad);
     };
+    
 
     const handlePagar = () => {
         setIsModalOpen(true);
@@ -69,9 +90,9 @@ export const EmpleadoHome = () => {
             empleados_id: datos.idVendedor,
             detalles: carrito.map((item) => ({
                 unidades_compradas: item.cantidad,
-                precio_producto: item.precio_venta,
-                producto_id: item.id_producto,
-                libro_id: null
+                precio_producto: item.precio_venta || item.precio,
+                producto_id: item.id_producto || null,
+                libro_id: item.id_libro || null
             }))
         };
     
@@ -94,16 +115,14 @@ export const EmpleadoHome = () => {
         } catch (error) {
             console.error('Error al crear la factura:', error);
         }finally{
-
-            setTimeout(() => setIsModalOpenPdf(true), 100); 
             setIsModalOpen(false);
+            setIsModalOpenPdf(true); 
             
         }
     
         
     };
     
-
     const handleCloseModal = () => {
         setIsModalOpen(false);
     };
@@ -115,16 +134,6 @@ export const EmpleadoHome = () => {
         console.log( factura)
     };
 
-    useEffect(() => {
-        fetch(`http://localhost:3000/product/getAllProducts`)
-            .then((response) => response.json())
-            .then((data) => {
-                setProductos(data.data);
-            })
-            .catch((error) => {
-                console.error('Error al obtener los datos:', error);
-            });
-    }, []);
 
     return (
         <>
@@ -132,50 +141,20 @@ export const EmpleadoHome = () => {
                 <Navbar />
             </div>
 
+            <h1 className="md:text-6xl font-extrabold text-center bg-gradient-to-r 
+                from-indigo-500 to-teal-400 bg-clip-text text-transparent tracking-wide py-4 mt-16">
+                    Productos
+                </h1>
             {/* Sección de productos */}
-            <div className="mt-20 grid grid-cols-3 p-4 gap-4">
-                {productos.map((producto) => (
-                    <CardEmpleado key={producto.id_producto}>
-                        <h1 className="text-3xl font-bold text-center">
-                            {producto.nombre}
-                        </h1>
-                        <img src={producto.imagen} alt={producto.nombre} className="w-full h-85 object-cover rounded-lg mt-4 mb-4" />
-                        <br />
-                        <div className="flex ">
-                            <label className="text-xl font-bold mr-2">Codigo:</label>
-                            <h1 className="text-xl">
-                                {producto.codigo}
-                            </h1>
-                        </div>
-                        <div className="flex ">
-                            <label className="text-xl font-bold mr-2">Precio:</label>
-                            <h1 className="text-xl">
-                                Q {producto.precio_venta}
-                            </h1>
-                        </div>
-                        <div className="flex ">
-                            <label className="text-xl font-bold mr-2">Cantidad Disponible:</label>
-                            <h1 className="text-xl">
-                                {producto.cantidad}
-                            </h1>
-                        </div>
-                        <div className="flex items-center justify-center mt-4">
-                            <button
-                                className="bg-green-400 px-4 py-1 rounded-md my-2 disabled:bg-primary-300 w-full text-text-100 font-bold mr-2"
-                                onClick={() => handleAgregarCarrito(producto)}
-                            >
-                                Agregar Carrito
-                            </button>
-                            <button
-                                className="bg-blue-400 px-4 py-1 rounded-md my-2 disabled:bg-primary-300 w-full text-text-100 font-bold"
-                                onClick={() => handleVerProducto(producto.id_producto)}
-                            >
-                                Ver Producto
-                            </button>
-                        </div>
-                    </CardEmpleado>
-                ))}
-            </div>
+            <Productos handleAgregarCarrito={handleAgregarCarrito} handleVerProducto={handleVerProducto}/>
+
+            {/* Seccion de Libros*/}
+            <h1 className="md:text-6xl font-extrabold text-center bg-gradient-to-r 
+                from-indigo-500 to-teal-400 bg-clip-text text-transparent tracking-wide py-4 mt-4">
+                    Libros
+                </h1>
+
+            <Libros handleAgregarCarrito={handleAgregarCarrito} handleVerLibro={handleVerLibro}/>
 
             {/* Sección del carrito */}
             <div className="fixed bottom-0 right-0 bg-white shadow-lg w-96 p-4 border border-gray-200">
@@ -186,20 +165,26 @@ export const EmpleadoHome = () => {
                     <>
                         <ul className="space-y-2">
                             {carrito.map((item) => (
-                                <li key={item.id_producto} className="flex justify-between items-center">
+                                <li 
+                                    key={`${item.id_producto ? `producto-${item.id_producto}` : `libro-${item.id_libro}`}`}
+                                    className="flex justify-between items-center"
+                                >
                                     <span>
-                                        {item.nombre} (x{item.cantidad})
+                                        {item.nombre || item.titulo} (x{item.cantidad})
                                     </span>
-                                    <span className="font-semibold">Q {(item.precio_venta * item.cantidad).toFixed(2)}</span>
+                                    <span className="font-semibold">
+                                        Q {((item.precio_venta || item.precio) * item.cantidad).toFixed(2)}
+                                    </span>
                                     <button
                                         className="text-red-500 hover:text-red-700"
-                                        onClick={() => handleEliminarDelCarrito(item.id_producto)}
+                                        onClick={() => handleEliminarDelCarrito(item)}
                                     >
                                         Eliminar
                                     </button>
                                 </li>
                             ))}
                         </ul>
+
                         <div className="mt-4 pt-4 border-t border-gray-200">
                             <p className="text-xl font-bold">
                                 Total: <span className="text-green-600">Q {total.toFixed(2)}</span>
@@ -218,17 +203,19 @@ export const EmpleadoHome = () => {
 
                         </div>
 
-                        {isModalOpenPdf && (
+                        
+                    </>
+                )}
+            </div>
+
+            {isModalOpenPdf && (
                                 <ModalFactura
                                     isOpen={isModalOpenPdf}
                                     onClose={handleCloseModalPdf} 
                                     factura={factura}
                                     id_factura={idFactura}
                                 />
-                        )}
-                    </>
-                )}
-            </div>
+            )}
         </>
     );
 };

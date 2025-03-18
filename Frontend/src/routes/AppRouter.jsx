@@ -14,10 +14,11 @@ import GerenteView from "../pages/Gerente/GerenteView";
 import UsuarioView from "../pages/Usuario/UsuarioView";
 import TestUpload from "../pages/TestUpload/TestUpload";
 import Opinion from "../pages/Supervisor/Opiniones";
-import VerProducto from "../pages/Empleado/VerProducto";
+import VerProducto from "../pages/Empleado/components/VerProducto";
 import VerFacturas from "../pages/Empleado/VerFacturas";
 import BuscarFactura from "../pages/Empleado/BuscarFactura";
 import VerFacturasSupervisor  from "../pages/Supervisor/Facturas";
+import LibroDetalle from "../pages/Empleado/components/VerLibros";
 
 
 const AppRouter = () => {
@@ -46,6 +47,7 @@ const AppRouter = () => {
       <Route path="/producto/:id" element={role == "empleados" ? <VerProducto /> : <Navigate to="/"/>} />
       <Route path="/facturas" element={role == "empleados" ? <VerFacturas /> : <Navigate to="/"/>} />
       <Route path="/buscarFactura" element={role == "empleados" ? <BuscarFactura /> : <Navigate to="/"/>} />
+      <Route path="/libro/:id" element={role == "empleados" ? <LibroDetalle /> : <Navigate to="/"/>} />
     </Routes>
   );
 };
