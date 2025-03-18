@@ -1,0 +1,166 @@
+/* Estilos generales */
+.alertas-stock-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Estilos para la sección de Configuración General */
+.configuracion-general {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.configuracion-general h2 {
+    color: #2d3748;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.configuracion-general label {
+    color: #4a5568;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.configuracion-general input {
+    color: white; /* Color de texto blanco */
+    background-color: #4a5568; /* Fondo oscuro */
+    border: 1px solid #cbd5e0;
+    border-radius: 4px;
+    padding: 8px;
+    width: 80px;
+    font-size: 0.875rem;
+}
+
+.configuracion-general input::placeholder {
+    color: #a0aec0; /* Color del placeholder */
+}
+
+.configuracion-general button {
+    background-color: #4299e1;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.configuracion-general button:hover {
+    background-color: #3182ce;
+}
+
+/* Estilos para la sección de Configuración por Producto */
+.configuracion-producto {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.configuracion-producto h2 {
+    color: #2d3748;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.configuracion-producto table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.configuracion-producto th,
+.configuracion-producto td {
+    border: 1px solid #e2e8f0;
+    padding: 12px;
+    text-align: center;
+}
+
+.configuracion-producto th {
+    background-color: #f7fafc;
+    color: #4a5568;
+    font-weight: 600;
+}
+
+.configuracion-producto input {
+    color: white; /* Color de texto blanco */
+    background-color: #4a5568; /* Fondo oscuro */
+    border: 1px solid #cbd5e0;
+    border-radius: 4px;
+    padding: 8px;
+    width: 80px;
+    font-size: 0.875rem;
+}
+
+.configuracion-producto input::placeholder {
+    color: #a0aec0; /* Color del placeholder */
+}
+
+.configuracion-producto button {
+    color: #e53e3e;
+    background: none;
+    border: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.configuracion-producto button:hover {
+    color: #c53030;
+}
+
+/* Estilos para la sección de Alertas Activas */
+.alertas-activas {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.alertas-activas h2 {
+    color: #2d3748;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.alertas-activas table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.alertas-activas th,
+.alertas-activas td {
+    border: 1px solid #e2e8f0;
+    padding: 12px;
+    text-align: center;
+}
+
+.alertas-activas th {
+    background-color: #f7fafc;
+    color: #4a5568;
+    font-weight: 600;
+}
+
+.alertas-activas .text-red-500 {
+    color: #e53e3e;
+}
+
+.alertas-activas p {
+    color: #718096;
+    font-size: 0.875rem;
+    text-align: center;
+}

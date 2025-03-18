@@ -1,0 +1,25 @@
+/* styles/gerente_supervisor.css */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .chart-container {
+    flex: 1 1 400px; /* Hace que los gráficos se ajusten responsivamente */
+    max-width: 600px; /* Limita el tamaño máximo */
+    min-width: 300px; /* Asegura que no sean demasiado pequeños */
+  }
+  
+  .table-container {
+    flex: 1 1 100%; /* Ocupa todo el ancho en pantallas pequeñas */
+    max-width: 1000px; /* Limita el tamaño en pantallas grandes */
+  }
+  
+  @media (min-width: 768px) {
+    .table-container {
+      flex: 1 1 50%; /* Ocupa la mitad del ancho en pantallas medianas y grandes */
+    }
+  }
+  

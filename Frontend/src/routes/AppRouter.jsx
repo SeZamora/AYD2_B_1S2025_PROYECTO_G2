@@ -9,6 +9,8 @@ import GerenteFacturas from "../pages/Gerente/gerente_facturas";
 import GerenteGanancias from "../pages/Gerente/gerente_ganancias";
 import GerenteVentas from "../pages/Gerente/gerente_ventas";
 
+import AlertasStock from "../pages/Gerente/alertaStock";
+import SupervisorView from "../pages/Supervisor/SupervisorView";
 import EmpleadoHome from "../pages/Empleado/EmpleadoHome";
 import GerenteView from "../pages/Gerente/GerenteView";
 import UsuarioView from "../pages/Usuario/UsuarioView";
@@ -39,6 +41,7 @@ const AppRouter = () => {
       <Route path="/gerente_facturas" element={<GerenteFacturas /> } />
       <Route path="/gerente_ganancias" element={ <GerenteGanancias />} />
       <Route path="/gerente_ventas" element={<GerenteVentas /> } />
+      <Route path="/alertas_stock" element={ <AlertasStock />} />
 
       <Route path="/empleado" element={role == "empleados" ? <EmpleadoHome /> : <Navigate to="/"/>} />
       <Route path="/gerente" element={<GerenteView /> } />
