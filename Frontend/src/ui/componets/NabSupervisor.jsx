@@ -54,6 +54,13 @@ const Navbar = () => {
                                 </div>
                                 libros
                             </a>
+                            <a className="nav-link">
+                                <div>
+                                <i className="fa fa-list-alt fa-2x" aria-hidden="true"onClick={() => navigate('/fact')} ></i>
+
+                                </div>
+                                Facturas
+                            </a>
                
 
 
