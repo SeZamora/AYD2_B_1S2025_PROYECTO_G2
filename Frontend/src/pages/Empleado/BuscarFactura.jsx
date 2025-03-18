@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Navbar from '../../ui/componets/NavEmpleado';
+import ModalFactura from './components/ModalFactura';
 
 
 
@@ -21,6 +22,17 @@ export const BuscarFactura = () => {
             console.error('Error al obtener los datos:', error);
         });
     };
+
+    const [isModalOpenPdf, setIsModalOpenPdf] = useState(false);
+    
+    const handleCloseModalPdf = () => {
+        setIsModalOpenPdf(false);
+    };
+
+    const handleOpenModalPdf = () => {
+        setIsModalOpenPdf(true);
+    };
+
 
     return (
         <>
@@ -67,7 +79,7 @@ export const BuscarFactura = () => {
                             <table className="min-w-full bg-white border border-gray-200">
                                 <thead className="bg-gray-50">
                                     <tr>
-                                        <th className="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">Producto ID</th>
+                                        <th className="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">Producto o Libro ID</th>
                                         <th className="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">Unidades Compradas</th>
                                         <th className="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">Precio Unitario</th>
                                         <th className="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">Subtotal</th>
@@ -76,7 +88,7 @@ export const BuscarFactura = () => {
                                 <tbody>
                                     {facturaEncontrada.detalles.map((detalle, index) => (
                                         <tr key={index} className="hover:bg-gray-50 transition-colors">
-                                            <td className="py-3 px-4 border-b text-sm text-gray-700">{detalle.producto_id}</td>
+                                            <td className="py-3 px-4 border-b text-sm text-gray-700">{detalle.producto_id || detalle.libro_id}</td>
                                             <td className="py-3 px-4 border-b text-sm text-gray-700">{detalle.unidades_compradas}</td>
                                             <td className="py-3 px-4 border-b text-sm text-gray-700">Q {detalle.precio_producto}</td>
                                             <td className="py-3 px-4 border-b text-sm text-gray-700">Q {(detalle.unidades_compradas * parseFloat(detalle.precio_producto)).toFixed(2)}</td>
@@ -91,7 +103,24 @@ export const BuscarFactura = () => {
                             <p className="text-lg font-semibold text-gray-800">
                                 <strong>Total de la Venta:</strong> Q {facturaEncontrada.total_venta}
                             </p>
+
+                            <button
+                                className="bg-green-400 px-4 py-1 rounded-md my-2 disabled:bg-primary-300 w-full text-text-100 font-bold"
+                                onClick={() => handleOpenModalPdf(facturaEncontrada, idFactura)}
+                            >
+                                Ver PDF
+                            </button>
                         </div>
+
+                        
+                        {isModalOpenPdf && (
+                                        <ModalFactura
+                                            isOpen={isModalOpenPdf}
+                                            onClose={handleCloseModalPdf} 
+                                            factura={facturaEncontrada}
+                                            id_factura={idFactura}
+                                        />
+                        )}
                     </div>
                 ) : idFactura && (
                     <p className="text-center text-red-500 font-semibold">Factura no encontrada</p>

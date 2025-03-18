@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../../../styles/Employetable.css';
-import AddLibrosModal from './AddLibrosModal'; 
+import AddLibrosModal from './AddLibrosModal';
 import DeleteLibroModal from './Eliminar';
 
 const LibrosTable = () => {
@@ -8,50 +8,34 @@ const LibrosTable = () => {
     const [role2, setRole] = useState('');
     const [showDeleteModal, setShowDeleteModal] = useState(false); // Estado para el modal de eliminación
     const [estado, setEstado] = useState('');
+    const [selectedProductId, setSelectedProductId] = useState(null);
 
 
-    const libros = [
-        { 
-            codigo: "B001", 
-            titulo: "El Gran Libro", 
-            autor: "Autor A", 
-            fechaLanzamiento: "2025-01-01", 
-            descripcion: "Una novela épica de aventuras y fantasía", 
-            genero: "Fantasía", 
-            stock: 50, 
-            precio: 20.00 
-        },
-        { 
-            codigo: "B002", 
-            titulo: "La Aventura Secreta", 
-            autor: "Autor B", 
-            fechaLanzamiento: "2024-11-15", 
-            descripcion: "Un thriller emocionante que te mantendrá al borde de tu asiento", 
-            genero: "Thriller", 
-            stock: 30, 
-            precio: 15.00 
-        },
-        { 
-            codigo: "B003", 
-            titulo: "Recetas Mágicas", 
-            autor: "Autor C", 
-            fechaLanzamiento: "2023-07-30", 
-            descripcion: "Recetas deliciosas para chefs novatos y expertos", 
-            genero: "Cocina", 
-            stock: 100, 
-            precio: 10.00 
-        },
-        { 
-            codigo: "B004", 
-            titulo: "El Último Secreto", 
-            autor: "Autor D", 
-            fechaLanzamiento: "2022-09-12", 
-            descripcion: "Un misterio sin resolver, hasta ahora", 
-            genero: "Misterio", 
-            stock: 15, 
-            precio: 25.00 
+
+    const [libros, setlibros] = useState([]);
+
+    const fetchLibros = async () => {
+        try {
+            const response = await fetch("http://localhost:3000/book/getallbooks");
+            const data = await response.json();
+            console.log(data);  // Verifica el contenido de data
+            if (data.success && Array.isArray(data.books)) {
+                setlibros(data.books);
+            } else {
+                console.error("Error obteniendo libros:", data.message);
+            }
+        } catch (error) {
+            console.error("Fetch error:", error);
         }
-    ];
+    };
+
+
+
+    useEffect(() => {
+        fetchLibros();
+    }, []);
+
+
 
     const toggleModal = () => {
         setShowModal(prev => {
@@ -65,23 +49,30 @@ const LibrosTable = () => {
         });
     };
 
-    const toggleModalM = () => {
+    const toggleModalM = (id) => {
+        setSelectedProductId(id);  
         setShowModal(prev => {
             const newShowModal = !prev;
             if (newShowModal) {
-                setRole('Produto');
+                setRole('edit');
             } else {
                 setRole('');
+                setSelectedProductId(null); 
             }
             return newShowModal;
         });
     };
 
-    // Cambié esta parte para actualizar el estado antes de pasar la prop
-    const toggleDeleteModal = (elemento) => {
+    const toggleDeleteModal = (elemento, id) => {
+        setSelectedProductId(id);
+        setEstado(elemento);
         setShowDeleteModal(prev => !prev);
-        setEstado(elemento);  // Actualizar el estado con el valor correcto
     };
+    
+
+
+
+    
 
     return (
         <>
@@ -127,27 +118,28 @@ const LibrosTable = () => {
                                     <tr key={libro.codigo}>
                                         <td style={{ textAlign: 'center' }}>{libro.titulo}</td>
                                         <td style={{ textAlign: 'center' }}>{libro.autor}</td>
-                                        <td style={{ textAlign: 'center' }}>{libro.fechaLanzamiento}</td>
+                                        <td style={{ textAlign: 'center' }}>{libro.fecha_lanzamiento}</td>
                                         <td style={{ textAlign: 'center' }}>{libro.genero}</td>
                                         <td style={{ textAlign: 'center' }}>{libro.stock}</td>
                                         <td style={{ textAlign: 'center' }}>{libro.precio}</td>
                                         <td style={{ textAlign: 'center' }}>
-                                            <a onClick={toggleModalM} className="edit" data-toggle="modal">
-                                                <i className="fa fa-pencil" aria-hidden="true"></i>
+                                        <a onClick={() => toggleModalM(libro.id_libro)} className="edit" data-toggle="modal">
+                                        <i className="fa fa-pencil" aria-hidden="true"></i>
                                             </a>
-                                            <a onClick={() => toggleDeleteModal('Libro')} className="delete" data-toggle="modal">
+                                            <a onClick={() => toggleDeleteModal('Libro',libro.id_libro)} className="delete" data-toggle="modal">
                                                 <i className="fa fa-trash" aria-hidden="true"></i>
                                             </a>
                                         </td>
                                     </tr>
                                 ))}
                             </tbody>
+
                         </table>
                     </div>
                 </div>
 
-                <AddLibrosModal showModal={showModal} toggleModal={toggleModal} role={role2} />
-                <DeleteLibroModal showDeleteModal={showDeleteModal} toggleDeleteModal={toggleDeleteModal} estado={estado} />
+                <AddLibrosModal showModal={showModal} toggleModal={toggleModal} role={role2} id_libro={selectedProductId}/>
+                <DeleteLibroModal showDeleteModal={showDeleteModal} toggleDeleteModal={toggleDeleteModal} estado={estado} Idato={selectedProductId} />
             </div>
         </>
     );

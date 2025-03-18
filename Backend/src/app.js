@@ -15,6 +15,7 @@ const billRoutes = require('./routes/bill')
 const bookRoutes = require('./routes/book')
 const logsRoutes = require('./routes/logs')
 
+const reportsRoutes = require('./routes/reports')
 
 
 app.use(cors({
@@ -36,6 +37,7 @@ app.use('/bill',billRoutes);
 app.use('/book',bookRoutes);
 app.use('/logs',logsRoutes);
 
+app.use('/reports',reportsRoutes);
 app.use(bodyParser.json({limit: '15mb'}));
 
 //app.use(cors());
