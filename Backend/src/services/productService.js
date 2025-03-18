@@ -113,23 +113,6 @@ const deleteProduct = async (id_producto) => {
     }
 }
 
-const deleteProduct = async (id_producto) => {
-    try {
-        const result = await db.query(
-            `UPDATE producto SET disponible = 0 WHERE id_producto = ?`, 
-            [id_producto]
-        );
-
-        if (result.affectedRows > 0) {
-            return { success: true, message: 'Producto marcado como no disponible.' };
-        } else {
-            return { success: false, message: 'No se pudo actualizar el estado del producto.' };
-        }
-    } catch (error) {
-        console.error('Database Error:', error.sqlMessage || error);
-        return { success: false, message: 'Error interno del servidor.' };
-    }
-}
 
 module.exports = {
     addProduct,
