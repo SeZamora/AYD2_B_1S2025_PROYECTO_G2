@@ -1,9 +1,9 @@
 import React from 'react';
 
-const DeleteLibroModal = ({ showDeleteModal, toggleDeleteModal, estado }) => {
+const DeleteLibroModal = ({ showDeleteModal, toggleDeleteModal, estado ,Idato}) => {
     if (!showDeleteModal) return null; // Evita renderizar el modal si no está activo
 
-    
+
     console.log(estado);
     const mensajes = {
         libro: '¿Estás seguro de que deseas eliminar este libro?',
@@ -11,7 +11,54 @@ const DeleteLibroModal = ({ showDeleteModal, toggleDeleteModal, estado }) => {
         default: '¿Estás seguro de que deseas eliminar este elemento?' // Mensaje por defecto
     };
 
-    // Obtener el mensaje según el estado (en minúsculas para evitar problemas con mayúsculas)
+    
+    const Eliminar = async () => {
+        if (estado === 'libro') {
+        console.log(Idato);
+        try {
+            const response = await fetch("http://localhost:3000/book/deletebook", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ id_libro: Idato })
+            });
+            if (response.ok) {
+                alert("Libro eliminado con éxito");
+                window.location.reload();
+            } else {
+                alert("Error al editar el producto");
+            }
+        } catch (error) {
+            console.error("Error al enviar la solicitud", error);
+        }
+    }else if (estado === 'Producto') {
+        console.log(Idato);
+        
+        try {
+            const response = await fetch("http://localhost:3000/product/deleteProduct", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ id_producto: Idato })
+            });
+            if (response.ok) {
+                alert("Producto eliminado  con éxito");
+                window.location.reload();
+            } else {
+                alert("Error al editar el producto");
+            }
+        } catch (error) {
+            console.error("Error al enviar la solicitud", error);
+        }
+    }
+    };
+            
+   
+
+
+
     const mensaje = mensajes[estado?.toLowerCase()] || mensajes.default;
 
     return (
@@ -100,6 +147,7 @@ const DeleteLibroModal = ({ showDeleteModal, toggleDeleteModal, estado }) => {
                                 borderRadius: "5px",
                                 cursor: "pointer"
                             }}
+                            onClick={Eliminar}
                         >
                             Eliminar
                         </button>

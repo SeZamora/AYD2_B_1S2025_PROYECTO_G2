@@ -1,22 +1,41 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../../../styles/Employetable.css';
 import AddEmployeeModal from './AddEmployeeModal'; // Asegúrate de importar correctamente el archivo
 
 import DeleteLibroModal from './EliminarEm';
 
 const EmployeeTable = () => {
-    const [showModal, setShowModal] = useState(false);
+ const [showModal, setShowModal] = useState(false);
     const [role2, setRole] = useState('');
     const [showDeleteModal, setShowDeleteModal] = useState(false); // Estado para el modal de eliminación
-    
+    const [estado, setEstado] = useState('');
+    const [selectedProductId, setSelectedProductId] = useState(null);
 
-    const employees = [
-        { id: 1, nombre: "Thomas", apellido: "Hardy", cui: "123456789", telefono: "(171) 555-2222", fecha: "2023-05-14" },
-        { id: 2, nombre: "Maria", apellido: "Gonzalez", cui: "987654321", telefono: "(171) 555-3333", fecha: "2022-08-20" },
-        { id: 3, nombre: "Carlos", apellido: "Ramirez", cui: "456123789", telefono: "(171) 555-4444", fecha: "2021-10-30" },
-        { id: 4, nombre: "Sofia", apellido: "López", cui: "321654987", telefono: "(171) 555-5555", fecha: "2020-12-15" },
-        // Más empleados aquí...
-    ];
+ const [employee, setProductos] = useState([]); // Inicializamos el estado 'productos'
+
+
+    const fetchProductos = async () => {
+        try {
+            const response = await fetch("http://localhost:3000/employee/getAllEmployee");
+            const data = await response.json();
+            if (data.success) {
+                console.log(data);
+                setProductos(data.employees);
+
+            } else {
+                console.error("Error obteniendo productos:", data.message);
+            }
+        } catch (error) {
+            console.error("Fetch error:", error);
+        }
+    };
+    
+    
+    useEffect(() => {
+        fetchProductos();
+    }, []);
+
+
 
     const toggleModal = () => {
         setShowModal(prev => {
@@ -31,23 +50,28 @@ const EmployeeTable = () => {
     };
 
 
-    const toggleModalM = () => {
+    const toggleModalM = (id) => {
+        setSelectedProductId(id);
         setShowModal(prev => {
             const newShowModal = !prev;
             if (newShowModal) {
-                setRole('modify'); // Solo asigna 'admin' cuando el modal se abre
+                setRole('modify'); 
             } else {
-                setRole(''); // Puedes limpiar el estado cuando se cierra si lo deseas
+                setRole(''); 
+                setSelectedProductId(null);
             }
             return newShowModal;
         });
     };
     
     
-    const toggleDeleteModal = () => {
+    const toggleDeleteModal = ( id) => {
+        setSelectedProductId(id);
         setShowDeleteModal(prev => !prev);
     };
     
+
+
 
     return (
         <>
@@ -86,18 +110,18 @@ const EmployeeTable = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {employees.map((employee) => (
-                                <tr key={employee.id}>
+                            {employee.map((employee) => (
+                                <tr key={employee.empleados_id}>
                                     <td>{employee.nombre}</td>
                                     <td>{employee.apellido}</td>
                                     <td>{employee.cui}</td>
                                     <td>{employee.telefono}</td>
                                     <td>{employee.fecha}</td>
                                     <td>
-                                        <a onClick={toggleModalM} className="edit" data-toggle="modal">
-                                            <i className="fa fa-pencil" aria-hidden="true"></i>
+                                    <a onClick={() => toggleModalM(employee.empleados_id)} className="edit" data-toggle="modal">
+                                    <i className="fa fa-pencil" aria-hidden="true"></i>
                                         </a>
-                                        <a onClick={toggleDeleteModal} className="delete" data-toggle="modal">
+                                        <a onClick={() => toggleDeleteModal(employee.empleados_id)}className="delete" data-toggle="modal">
                                             <i className="fa fa-trash" aria-hidden="true"></i>
                                         </a>
                                     </td>
@@ -108,8 +132,8 @@ const EmployeeTable = () => {
                 </div>
             </div>
 
-            <AddEmployeeModal showModal={showModal} toggleModal={toggleModal} role={role2}/>
-            <DeleteLibroModal showDeleteModal={showDeleteModal} toggleDeleteModal={toggleDeleteModal}  />
+            <AddEmployeeModal showModal={showModal} toggleModal={toggleModal} role={role2} productId={selectedProductId} />
+            <DeleteLibroModal showDeleteModal={showDeleteModal} toggleDeleteModal={toggleDeleteModal} Idato={selectedProductId}   />
 
         </div>
         </>

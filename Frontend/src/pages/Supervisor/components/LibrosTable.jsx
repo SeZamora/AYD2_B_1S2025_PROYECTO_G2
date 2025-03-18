@@ -63,11 +63,16 @@ const LibrosTable = () => {
         });
     };
 
-    // Cambié esta parte para actualizar el estado antes de pasar la prop
-    const toggleDeleteModal = (elemento) => {
+    const toggleDeleteModal = (elemento, id) => {
+        setSelectedProductId(id);
+        setEstado(elemento);
         setShowDeleteModal(prev => !prev);
-        setEstado(elemento);  // Actualizar el estado con el valor correcto
     };
+    
+
+
+
+    
 
     return (
         <>
@@ -121,7 +126,7 @@ const LibrosTable = () => {
                                         <a onClick={() => toggleModalM(libro.id_libro)} className="edit" data-toggle="modal">
                                         <i className="fa fa-pencil" aria-hidden="true"></i>
                                             </a>
-                                            <a onClick={() => toggleDeleteModal('Libro')} className="delete" data-toggle="modal">
+                                            <a onClick={() => toggleDeleteModal('Libro',libro.id_libro)} className="delete" data-toggle="modal">
                                                 <i className="fa fa-trash" aria-hidden="true"></i>
                                             </a>
                                         </td>
@@ -134,7 +139,7 @@ const LibrosTable = () => {
                 </div>
 
                 <AddLibrosModal showModal={showModal} toggleModal={toggleModal} role={role2} id_libro={selectedProductId}/>
-                <DeleteLibroModal showDeleteModal={showDeleteModal} toggleDeleteModal={toggleDeleteModal} estado={estado} />
+                <DeleteLibroModal showDeleteModal={showDeleteModal} toggleDeleteModal={toggleDeleteModal} estado={estado} Idato={selectedProductId} />
             </div>
         </>
     );

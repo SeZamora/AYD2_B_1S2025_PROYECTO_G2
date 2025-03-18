@@ -43,10 +43,12 @@ const ProductTable = () => {
 
 
 
-    const toggleDeleteModal = (elemento) => {
+    const toggleDeleteModal = (elemento, id) => {
+        setSelectedProductId(id);
+        setEstado(elemento);
         setShowDeleteModal(prev => !prev);
-        setEstado(elemento);  // Actualizar el estado con el valor correcto
     };
+    
 
 
     const fetchProductos = async () => {
@@ -155,8 +157,8 @@ const ProductTable = () => {
                                                 <i className="fa fa-pencil" aria-hidden="true"></i>
                                             </a>
 
-                                            <a onClick={() => toggleDeleteModal('Producto')} className="delete" data-toggle="modal">
-                                                <i className="fa fa-trash" aria-hidden="true"></i>
+                                            <a onClick={() => toggleDeleteModal('Producto', producto.id_producto)} className="delete" data-toggle="modal">
+                                            <i className="fa fa-trash" aria-hidden="true"></i>
                                             </a>
                                         </td>
                                     </tr>
@@ -167,8 +169,8 @@ const ProductTable = () => {
                 </div>
 
                 <AddProdutoModal showModal={showModal} toggleModal={toggleModal} role={role2} productId={selectedProductId} />
-                <DeleteLibroModal showDeleteModal={showDeleteModal} toggleDeleteModal={toggleDeleteModal} estado={estado} />
-            </div>
+                <DeleteLibroModal showDeleteModal={showDeleteModal} toggleDeleteModal={toggleDeleteModal} estado={estado} Idato={selectedProductId}/>
+                </div>
         </>
     );
 };
