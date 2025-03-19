@@ -1,11 +1,13 @@
 const { db } = require('../services/DBService');
-
+const encrypter = require('../services/encryptService');
 const addEmployee = async ({ nombre, apellido, cui, telefono, correo, contrasenia, edad, genero, fecha, imagen, supervisores_id_supervisor, verificado }) => {
     try {
+        const hashedPassword = encrypter.encrypt(contrasenia);
+
         const result = await db.query(
             `INSERT INTO empleados (nombre, apellido, cui, telefono, correo, contrasenia, edad, genero, fecha, fotografia, supervisores_id_supervisor, verificado, eliminado) 
              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0)`,
-            [nombre, apellido, cui, telefono, correo, contrasenia, edad, genero, fecha, imagen, supervisores_id_supervisor, verificado]
+            [nombre, apellido, cui, telefono, correo, hashedPassword, edad, genero, fecha, imagen, supervisores_id_supervisor, verificado]
         );
 
         return result.affectedRows > 0
