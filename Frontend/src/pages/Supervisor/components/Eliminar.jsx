@@ -1,19 +1,19 @@
 import React from 'react';
 
 const DeleteLibroModal = ({ showDeleteModal, toggleDeleteModal, estado ,Idato}) => {
-    if (!showDeleteModal) return null; // Evita renderizar el modal si no está activo
+    if (!showDeleteModal) return null; 
 
 
     console.log(estado);
     const mensajes = {
         libro: '¿Estás seguro de que deseas eliminar este libro?',
          producto: '¿Estás seguro de que deseas eliminar este producto?',
-        default: '¿Estás seguro de que deseas eliminar este elemento?' // Mensaje por defecto
+        default: '¿Estás seguro de que deseas eliminar este elemento?' 
     };
 
     
     const Eliminar = async () => {
-        if (estado === 'libro') {
+        if (estado === 'Libro') {
         console.log(Idato);
         try {
             const response = await fetch("http://localhost:3000/book/deletebook", {
@@ -63,7 +63,7 @@ const DeleteLibroModal = ({ showDeleteModal, toggleDeleteModal, estado ,Idato}) 
 
     return (
         <>
-            {/* Fondo gris semi-transparente */}
+       
             <div
                 className="modal-backdrop show"
                 style={{
@@ -75,10 +75,10 @@ const DeleteLibroModal = ({ showDeleteModal, toggleDeleteModal, estado ,Idato}) 
                     backgroundColor: 'rgba(0, 0, 0, 0.5)',
                     zIndex: 1040
                 }}
-                onClick={toggleDeleteModal} // Cierra el modal si se hace clic fuera de él
+                onClick={toggleDeleteModal} 
             />
 
-            {/* Modal */}
+   
             <div
                 className="modal show"
                 tabIndex="-1"

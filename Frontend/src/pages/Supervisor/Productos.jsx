@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "../../ui/componets/NabSupervisor";
 import "./../../styles/SPrincipal.css";
-import ProductTable from './components/ProductosTable'; // Importamos el nuevo componente
+import ProductTable from './components/ProductosTable'; 
 
 const Productos = () => {
   return (
@@ -18,13 +18,7 @@ const Productos = () => {
        
         <ProductTable />
       </div>
-      {/* 
-        
-
-       
-      */}
-
-
+    
     </div>
   );
 };

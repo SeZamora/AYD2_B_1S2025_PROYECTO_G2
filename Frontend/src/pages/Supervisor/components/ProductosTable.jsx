@@ -7,12 +7,13 @@ import DeleteLibroModal from './Eliminar';
 const ProductTable = () => {
     const [showModal, setShowModal] = useState(false);
     const [role2, setRole] = useState('');
-    const [showDeleteModal, setShowDeleteModal] = useState(false); // Estado para el modal de eliminación
+    const [showDeleteModal, setShowDeleteModal] = useState(false); 
     const [estado, setEstado] = useState('');
     const [selectedProductId, setSelectedProductId] = useState(null);
+    const [searchTerm, setSearchTerm] = useState(""); 
 
-    // Añadimos el estado para productos
-    const [productos, setProductos] = useState([]); // Inicializamos el estado 'productos'
+
+    const [productos, setProductos] = useState([]);
 
     const toggleModal = () => {
         setShowModal(prev => {
@@ -27,14 +28,14 @@ const ProductTable = () => {
     };
 
     const toggleModalM = (id) => {
-        setSelectedProductId(id);  // Guardar el ID del producto
+        setSelectedProductId(id);  
         setShowModal(prev => {
             const newShowModal = !prev;
             if (newShowModal) {
                 setRole('edit');
             } else {
                 setRole('');
-                setSelectedProductId(null); // Limpiar el estado al cerrar el modal
+                setSelectedProductId(null); 
             }
             return newShowModal;
         });
@@ -72,33 +73,9 @@ const ProductTable = () => {
     }, []);
 
 
-
-
-
-    const [searchQuery, setSearchQuery] = useState('');
-
-    const handleSearch = async () => {
-        try {
-            const response = await fetch("http://localhost:3000/product/getProductByName", {
-                method: "POST", // Usamos POST porque es lo que mencionaste
-                headers: {
-                    "Content-Type": "application/json", // Asegúrate de que el servidor sepa que estamos enviando JSON
-                },
-                body: JSON.stringify({ nombre_producto: searchQuery }) // Enviamos el nombre del producto como JSON
-            });
-
-            const data = await response.json();
-
-            if (data.success) {
-                setProductos([data.product]); // Solo mostramos el producto encontrado
-            } else {
-                console.error(data.message);
-                setProductos([]); // Limpiamos la tabla si no se encuentra el producto
-            }
-        } catch (error) {
-            console.error("Error al buscar producto:", error);
-        }
-    };
+    const filteredLibros = productos.filter(producto =>
+        producto.nombre.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
     return (
         <>
@@ -107,10 +84,10 @@ const ProductTable = () => {
                     <input 
                         type="text" 
                         className="search-input" 
-                        value={searchQuery} 
-                        onChange={(e) => setSearchQuery(e.target.value)} // Captura el valor del input
+                        value={searchTerm} 
+                        onChange={(e) => setSearchTerm(e.target.value)} 
                     />
-                    <a href="#" className="search-icon" onClick={handleSearch}>
+                    <a href="#" className="search-icon" >
                         <i className="fa fa-search"></i>
                     </a>
                 </div>
@@ -136,7 +113,7 @@ const ProductTable = () => {
                                 <tr>
                                     <th style={{ textAlign: 'center' }}>Código del producto </th>
                                     <th style={{ textAlign: 'center' }}>Nombre del producto </th>
-                                    <th style={{ textAlign: 'center', width: '20%' }}>Categoría </th> {/* Ancho ajustado */}
+                                    <th style={{ textAlign: 'center', width: '20%' }}>Categoría </th>
                                     <th style={{ textAlign: 'center' }}>Precio de compra</th>
                                     <th style={{ textAlign: 'center' }}>Precio de venta </th>
                                     <th style={{ textAlign: 'center' }}>Cantidad en inventario</th>
@@ -144,7 +121,7 @@ const ProductTable = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {productos.map((producto) => (
+                            {filteredLibros.map((producto) => (
                                     <tr key={producto.id_producto}>
                                         <td style={{ textAlign: 'center' }}>{producto.codigo}</td>
                                         <td style={{ textAlign: 'center' }}>{producto.nombre}</td>

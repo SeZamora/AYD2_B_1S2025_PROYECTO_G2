@@ -134,7 +134,48 @@ const deleteProduct = async (req, res) => {
     }
 }
 
+const StockGeneral = async (req, res) => {
+    try {
+        const { stockGeneral } = req.body;
 
+        if (stockGeneral === undefined) {
+            return res.status(400).json({ message: 'Se requiere un valor para stockGeneral' });
+        }
+
+        const result = await productService.StockGeneral(stockGeneral);
+        res.status(200).json(result);
+
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ message: 'Error al configurar stock general' });
+    }
+};
+
+const StockPorProducto = async (req, res) => {
+    try {
+        const { id_producto, stock_minimo } = req.body;
+
+        if (!id_producto || stock_minimo === undefined) {
+            return res.status(400).json({ message: 'Se requieren id_producto y stock_minimo' });
+        }
+
+        const result = await productService.StockPorProducto(id_producto, stock_minimo);
+        res.status(200).json(result);
+
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ message: 'Error al configurar stock por producto' });
+    }
+};
+const AlertaStock = async (req, res) => {
+    try {
+        const alertas = await productService.alertasStock();
+        res.status(200).json(alertas);
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ message: 'Error al obtener alertas de stock' });
+    }
+};
 
 module.exports = {
     addProduct,
@@ -143,5 +184,8 @@ module.exports = {
     getProductById,
     editProduct,
     getProduct,
-    deleteProduct
+    deleteProduct,
+    StockGeneral,
+    StockPorProducto,
+    AlertaStock
 };
