@@ -68,6 +68,7 @@ CREATE TABLE producto (
     precio_compra DECIMAL(10,2) NOT NULL,
     precio_venta  DECIMAL(10,2) NOT NULL,
     cantidad      INT NOT NULL,
+    stock_minimo  INT,
     imagen        MEDIUMBLOB NOT NULL,
     disponible       INT NOT NULL DEFAULT 1,
     PRIMARY KEY (id_producto)
