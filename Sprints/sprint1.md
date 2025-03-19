@@ -43,7 +43,7 @@
 ### Día 4 (Sabado)
 | Integrante  | ¿Qué se hizo ayer? | ¿Qué se hará hoy? | Impedimentos |
 |-------------|------------------|------------------|-------------|
-| Diego Huite |          -       | Se creo un login muy básico                 |        -     |
+| Diego Huite |          -       | Se creo un endpoint para el login muy básico, así como también un endpoint para registrarse.                 |        -     |
 | Nombre 2    |                  |                  |             |
 | Nombre 3    |                  |                  |             |
 | Nombre 4    |                  |                  |             |
