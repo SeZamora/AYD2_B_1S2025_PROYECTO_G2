@@ -1,12 +1,12 @@
 # Documentación Sprint
 
-# Semana del 9 al 15 de febrero 
+# Semana del 2  al 8 marzo
 
 ## Integrantes
 1. **Diego Andres Huite Alvarez** - Carnet: 202003585
 2. **Nombre 2** - Carnet: XXXXXXX
 3. **Nombre 3** - Carnet: XXXXXXX
-4. **Nombre 4** - Carnet: XXXXXXX
+4. **Genesis Nahomi Aparicio Acan** - Carnet: 202113293
 5. **Nombre 5** - Carnet: XXXXXXX
 
 ## Daily Standup
@@ -17,7 +17,7 @@
 | Diego Huite |   Revisión del modelo de la base de datos y comenzar con las funcionalidades del backend (principalmente la parde de edición de cada una de las entidades como libros, usuarios, adminstradores, supervisores, etc.)             |         Tratar de establecer las conexiones en los tres contenedores        |         -   |
 | Nombre 2    |                  |                  |             |
 | Nombre 3    |                  |                  |             |
-| Nombre 4    |                  |                  |             |
+| Nahomi Aparicio|                  |                  |             |
 | Nombre 5    |                  |                  |             |
 
 
@@ -27,7 +27,7 @@
 | Diego Huite | Se terminó la parte de editar supervisor y empleado, así como también el uso de blobs en atributos de la db mysql para almacenar fotos   | Averiguar como gestionar el envío de correos cuando los usuarios se registren.       |    -         |
 | Nombre 2    |                  |                  |             |
 | Nombre 3    |                  |                  |             |
-| Nombre 4    |                  |                  |             |
+| Nahomi Aparicio|                  |                  |             |
 | Nombre 5    |                  |                  |             |
 
 ### Día 3 (Viernes)
@@ -36,7 +36,7 @@
 | Diego Huite | Se logró enviar correos y agregar la verificación a través de un correo a los usuarios que se registren        | Edición de libros y productos en el backend                       |   - |
 | Nombre 2    |                  |                  |             |
 | Nombre 3    |                  |                  |             |
-| Nombre 4    |                  |                  |             |
+| Nahomi Aparicio|                  |                  |             |
 | Nombre 5    |                  |                  |             |
 
 
@@ -46,7 +46,7 @@
 | Diego Huite | Se finalizó las ediciones de cada una de las entidades y se hicieron algunas modificaciones a la base de datos.         |        Tratar de gestionar las diferencias entre productos y libros en la base de datos, ya que algunas relaciones están causando conflictos cuando se trata de hacer un delete por las llaves foráneas.       |        Relaciones causan problemas al tratar de eliminar registros de una tabla.     |
 | Nombre 2    |                  |                  |             |
 | Nombre 3    |                  |                  |             |
-| Nombre 4    |                  |                  |             |
+| Nahomi Aparicio|                  |                  |             |
 | Nombre 5    |                  |                  |             |
 
 
