@@ -95,7 +95,6 @@ const editProduct = async ({ id_producto, descripcion, precio_venta, cantidad })
         return { success: false, message: 'Error interno del servidor.' };
     }
 };
-
 const deleteProduct = async (id_producto) => {
     try {
         const result = await db.query(
@@ -113,6 +112,7 @@ const deleteProduct = async (id_producto) => {
         return { success: false, message: 'Error interno del servidor.' };
     }
 }
+
 
 module.exports = {
     addProduct,

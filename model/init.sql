@@ -107,6 +107,7 @@ CREATE TABLE empleados (
     fotografia               MEDIUMBLOB NOT NULL,
     supervisores_id_supervisor INT NOT NULL,
     verificado               INT NOT NULL,
+    eliminado               INT NOT NULL DEFAULT 0,
     PRIMARY KEY (empleados_id)
 );
 
@@ -132,7 +133,8 @@ CREATE TABLE facturas (
     cuenta_id_cuenta   INT NOT NULL,
     empleados_id       INT NOT NULL,
     PRIMARY KEY (id_facturas),
-    FOREIGN KEY (cuenta_id_cuenta) REFERENCES cuenta (id_cuenta)
+    FOREIGN KEY (cuenta_id_cuenta) REFERENCES cuenta (id_cuenta),
+    FOREIGN KEY (empleados_id) REFERENCES empleados (empleados_id)
 );
 
 CREATE TABLE detalle_factura (
@@ -207,7 +209,8 @@ INSERT INTO facturas (nombre_vendedor, fecha_hora, total_venta, nombre_comprador
 VALUES 
 ('Ricardo Garcoa', '2024-03-10 14:30:00', 1035.00, 'Juan Perez', 1, 1),
 ('Fernanda Lopez', '2024-03-11 09:45:00', 750.00, 'María Gomez', 2, 2),
-('David Martinez', '2024-03-12 17:15:00', 70.00, 'Carlos Lopez', 3, 3);
+('David Martinez', '2024-03-12 17:15:00', 70.00, 'Carlos Lopez', 3, 3),
+('David Martinez', '2024-03-12 17:15:00', 800.00, 'Carlos Cux', 3, 3);
 
 
 INSERT INTO detalle_factura (factura_id, unidades_compradas, precio_producto, producto_id, libro_id) 

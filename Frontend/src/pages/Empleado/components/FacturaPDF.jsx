@@ -96,7 +96,7 @@ const FacturaPDF = ({ factura, id_factura }) => {
                         
 
                         <View style={styles.tableHeader}>
-                            <Text style={styles.tableCell}>Producto ID</Text>
+                            <Text style={styles.tableCell}>Producto o Libro ID</Text>
                             <Text style={styles.tableCell}>Unidades</Text>
                             <Text style={styles.tableCell}>Precio Unitario</Text>
                             <Text style={styles.tableCell}>Subtotal</Text>
@@ -105,7 +105,7 @@ const FacturaPDF = ({ factura, id_factura }) => {
                         {/* Filas de productos */}
                         {factura.detalles.map((detalle, index) => (
                             <View key={index} style={styles.tableRow}>
-                                <Text style={styles.tableCell}>{detalle.producto_id}</Text>
+                                <Text style={styles.tableCell}>{detalle.producto_id || detalle.libro_id}</Text>
                                 <Text style={styles.tableCell}>{detalle.unidades_compradas}</Text>
                                 <Text style={styles.tableCell}>Q {detalle.precio_producto}</Text>
                                 <Text style={styles.tableCell}>
