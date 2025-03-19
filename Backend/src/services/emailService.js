@@ -4,18 +4,12 @@ const sendVerificationEmail = async ({ email, subject, html }) => {
     const transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
         port: 465,
-        secure: true, // true for port 465, false for other ports
+        secure: true,
         auth: {
           user: "alvarezdiego9714@gmail.com",
           pass: "kmwz nsgc bavc jffn ",
         },
       });
-
-      console.log('email:', email);
-      console.log('subject:', subject);
-      console.log('html:', html);
-      
-
 
       const info = await transporter.sendMail({
         from: '"No reply" <alvarezdiego9714@gmail.com>', // sender address

@@ -4,7 +4,7 @@ CREATE DATABASE IF NOT EXISTS ayd2_proyecto;
 USE ayd2_proyecto;
 CREATE TABLE cuenta (
     id_cuenta  INT NOT NULL AUTO_INCREMENT,
-    correo     VARCHAR(255) NOT NULL,
+    correo     VARCHAR(255) NOT NULL UNIQUE,
     contrasenia VARCHAR(255) NOT NULL,
     nombre     VARCHAR(100) NOT NULL,
     edad       INT NOT NULL,
