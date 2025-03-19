@@ -8,4 +8,7 @@ router.post('/getProductByName', productController.getProductById);
 router.post('/editProduct',  productController.editProduct);
 router.post('/getProductById', productController.getProduct);
 router.post('/deleteProduct', productController.deleteProduct);
+router.post('/stockGeneral', productController.StockGeneral);
+router.post('/stockPorProducto', productController.StockPorProducto);
+router.get('/alertasStock', productController.AlertaStock);
 module.exports = router;
