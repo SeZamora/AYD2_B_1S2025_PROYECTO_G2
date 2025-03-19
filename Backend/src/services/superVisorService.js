@@ -36,7 +36,7 @@ const editInfo = async ({ old_email, new_email, phone_number }) => {
 
 const createSupervisor = async ({ gerente_id_gerente, nombre, email, contrasenia, telefono, fecha_ingreso, verificado }) => {
     try {
-        const hashedPassword = await encrypter.sha256(contrasenia);
+        const hashedPassword = encrypter.encrypt(contrasenia);
         
 
         const result = await db.query(

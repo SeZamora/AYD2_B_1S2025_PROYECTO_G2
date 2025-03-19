@@ -1,6 +1,4 @@
-Aquí tienes las retrospectivas siguiendo solo las tres preguntas que les pidieron:  
 ### **Retrospectiva del Sprint 1**  
-
 #### **¿Qué se hizo bien durante el Sprint?**  
 - Se configuró correctamente el inicio de sesión del empleado.  
 - Se implementó la navbar para mejorar la navegación en la vista del empleado.  
