@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 
 const DeleteLibroModal = ({ showDeleteModal, toggleDeleteModal, Idato }) => {
-    const [razon, setRazon] = useState(''); // Estado para capturar la razón
+    const [razon, setRazon] = useState(''); 
 
-    if (!showDeleteModal) return null; // Evita renderizar el modal si no está activo
+    if (!showDeleteModal) return null;
 
     const handleRazonChange = (e) => {
-        setRazon(e.target.value); // Actualiza la razón cuando se escribe en el campo de texto
+        setRazon(e.target.value); 
     };
 
     const Eliminar = async () => {
-        console.log(Idato, razon); // Muestra el ID y la razón en la consola para depuración
+        console.log(Idato, razon); 
         try {
             const response = await fetch("http://localhost:3000/employee/deleteEmployee", {
                 method: "POST",
@@ -19,7 +19,7 @@ const DeleteLibroModal = ({ showDeleteModal, toggleDeleteModal, Idato }) => {
                 },
                 body: JSON.stringify({ 
                     empleados_id: Idato,
-                    reason_fired: razon // Enviar la razón junto con el ID
+                    reason_fired: razon 
                 })
             });
             if (response.ok) {
@@ -46,7 +46,7 @@ const DeleteLibroModal = ({ showDeleteModal, toggleDeleteModal, Idato }) => {
                     backgroundColor: 'rgba(0, 0, 0, 0.5)',
                     zIndex: 1040
                 }}
-                onClick={toggleDeleteModal} // Cierra el modal si se hace clic fuera de él
+                onClick={toggleDeleteModal} 
             />
 
             <div
@@ -97,7 +97,7 @@ const DeleteLibroModal = ({ showDeleteModal, toggleDeleteModal, Idato }) => {
                                 className="form-control"
                                 id="employeeHireDate"
                                 value={razon}
-                                onChange={handleRazonChange} // Captura el cambio en el campo de texto
+                                onChange={handleRazonChange} 
                             />
                         </div>
                         <p style={{ color: "orange", fontSize: "14px" }}>

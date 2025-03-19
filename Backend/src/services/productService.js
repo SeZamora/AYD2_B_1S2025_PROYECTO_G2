@@ -40,7 +40,7 @@ const getAllProducts = async () => {
 
 const getProduct = async (id_producto) => {
     try {
-        const rows = await db.query(`SELECT * FROM producto WHERE id_producto = ? AND WHERE disponible = 1`, [id_producto]);
+        const rows = await db.query(`SELECT * FROM producto WHERE id_producto = ? AND disponible = 1`, [id_producto]);
 
         if (rows.length > 0) {
             const product = rows[0];
@@ -58,7 +58,7 @@ const getProduct = async (id_producto) => {
 
 const getProductById = async (nombre_producto) => {
     try {
-        const rows = await db.query(`SELECT * FROM producto WHERE nombre = ? AND WHERE disponible = 1`, [nombre_producto]);
+        const rows = await db.query(`SELECT * FROM producto WHERE nombre = ? AND disponible = 1`, [nombre_producto]);
 
         if (rows.length > 0) {
             const product = rows[0];
@@ -113,12 +113,75 @@ const deleteProduct = async (id_producto) => {
     }
 }
 
+const StockGeneral = async (stockGeneral) => {
+    try {
+        if (stockGeneral === undefined) {
+            return { success: false, message: 'Se requiere un valor para stockGeneral' };
+        }
 
+        const result = await db.query(
+            `UPDATE producto SET stock_minimo = ? WHERE stock_minimo IS NULL OR stock_minimo <> ?`,
+            [stockGeneral, stockGeneral]
+        );
+
+        if (result.affectedRows > 0) {
+            return { success: true, message: 'Stock general configurado correctamente.' };
+        } else {
+            return { success: false, message: 'No se pudo actualizar el stock general.' };
+        }
+    } catch (error) {
+        console.error('Database Error:', error.sqlMessage || error);
+        return { success: false, message: 'Error interno del servidor.' };
+    }
+};
+
+const StockPorProducto = async (id_producto, stock_minimo ) => {
+    try {
+       
+        const result = await db.query(
+            `UPDATE producto SET stock_minimo = ? WHERE id_producto = ?`,
+            [stock_minimo, id_producto]
+        );
+
+        if (result.affectedRows > 0) {
+            return { success: true, message: `Stock mínimo actualizado para el producto ${id_producto}.` };
+        } else {
+            return { success: false, message: 'No se pudo actualizar el stock mínimo del producto.' };
+        }
+    } catch (error) {
+        console.error('Database Error:', error.sqlMessage || error);
+        return { success: false, message: 'Error interno del servidor.' };
+    }
+};
+
+const alertasStock = async () => {
+    try {
+        const result = await db.query(`
+            SELECT id_producto, nombre, cantidad, stock_minimo
+            FROM producto
+            WHERE cantidad < stock_minimo
+        `);
+
+
+        if (result !== undefined) {
+            return { success: true, alertas: result };
+        } else {
+            return { success: false, message: 'No hay alertas de stock.' };
+        }
+    } catch (error) {
+        console.error('Database Error:', error.sqlMessage || error);
+        return { success: false, message: 'Error interno del servidor.' };
+    }
+};
 module.exports = {
     addProduct,
     getAllProducts,
     getProductById,
     editProduct,
     getProduct,
-    deleteProduct
+    deleteProduct,
+    StockGeneral,
+    StockPorProducto,
+    StockPorProducto,
+    alertasStock
 };
