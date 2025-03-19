@@ -18,13 +18,13 @@ const AddLibrosModal = ({ showModal, toggleModal, role ,id_libro}) => {
     }, [showModal, role]);
 
 
-    // Manejar cambios en inputs de texto y números
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
     };
 
-    // Enviar datos al backend
+ 
     const handleSubmit = async (e) => {
 
         e.preventDefault();
@@ -39,9 +39,9 @@ const AddLibrosModal = ({ showModal, toggleModal, role ,id_libro}) => {
                 const response = await fetch("http://localhost:3000/book/createbook", {
                     method: "POST",
                     headers: {
-                        "Content-Type": "application/json", // Asegúrate de indicar que los datos son JSON
+                        "Content-Type": "application/json", 
                     },
-                    body: JSON.stringify(formData), // Convierte el objeto formData a JSON
+                    body: JSON.stringify(formData), 
                 });
                 
 
@@ -136,7 +136,7 @@ const AddLibrosModal = ({ showModal, toggleModal, role ,id_libro}) => {
                 />
             )}
 
-            {/* Modal */}
+            
             <div
                 className={`modal fade ${showModal ? 'show' : ''}`}
                 tabIndex="-1"
