@@ -1,15 +1,66 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "./components/Navbar";
 import "./styles/alertaStock.css";
 
 const AlertasStock = () => {
     const [stockGeneral, setStockGeneral] = useState(10); // Stock mínimo general
-    const [productos, setProductos] = useState([
-        { id: 1, nombre: "Lapicero", stock: 15, stockMinimo: null },
-        { id: 2, nombre: "Cuaderno", stock: 8, stockMinimo: null },
-        { id: 3, nombre: "Borrador", stock: 20, stockMinimo: null },
-    ]);
-    const [alertas, setAlertas] = useState([]);
+    const [productos, setProductos] = useState([]); // Lista de productos
+    const [alertas, setAlertas] = useState([]); // Alertas activas
+
+    // Obtener los productos al cargar el componente
+    useEffect(() => {
+        const obtenerProductos = async () => {
+            try {
+                const response = await fetch("http://localhost:3000/product/getAllProducts");
+                if (!response.ok) {
+                    throw new Error("Error al obtener los productos");
+                }
+                const data = await response.json();
+                if (data.success) {
+                    // Mapear los datos de la API al formato esperado por el componente
+                    const productosFormateados = data.data.map((producto) => ({
+                        id: producto.id_producto,
+                        nombre: producto.nombre,
+                        stock: producto.cantidad,
+                        stockMinimo: producto.stock_minimo || 0, // Si no tiene stock mínimo, se establece en 0
+                    }));
+                    setProductos(productosFormateados);
+                    actualizarAlertas(stockGeneral, productosFormateados); // Actualizar alertas al cargar productos
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                alert("Hubo un error al obtener los productos.");
+            }
+        };
+        obtenerProductos();
+    }, []);
+
+    // Obtener las alertas activas
+    useEffect(() => {
+        const obtenerAlertas = async () => {
+            try {
+                const response = await fetch("http://localhost:3000/product/alertasStock");
+                if (!response.ok) {
+                    throw new Error("Error al obtener las alertas");
+                }
+                const data = await response.json();
+                if (data.success) {
+                    // Mapear los datos de la API al formato esperado por el componente
+                    const alertasFormateadas = data.alertas.map((alerta) => ({
+                        id: alerta.id_producto,
+                        nombre: alerta.nombre,
+                        stock: alerta.cantidad,
+                        stockMinimo: alerta.stock_minimo,
+                    }));
+                    setAlertas(alertasFormateadas);
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                alert("Hubo un error al obtener las alertas.");
+            }
+        };
+        obtenerAlertas();
+    }, []);
 
     // Función para actualizar el stock mínimo general
     const handleStockGeneralChange = (e) => {
@@ -18,18 +69,64 @@ const AlertasStock = () => {
     };
 
     // Función para guardar o aplicar el stock mínimo general
-    const handleGuardarStockGeneral = () => {
-        actualizarAlertas(stockGeneral, productos);
-        alert(`Stock mínimo general actualizado a ${stockGeneral} unidades.`);
+    const handleGuardarStockGeneral = async () => {
+        try {
+            const response = await fetch("http://localhost:3000/product/stockGeneral", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ stockGeneral }),
+            });
+
+            if (!response.ok) {
+                throw new Error("Error al establecer el stock mínimo general");
+            }
+
+            const data = await response.json();
+            console.log(data); // Puedes manejar la respuesta del servidor aquí
+
+            // Actualizar las alertas después de establecer el stock mínimo general
+            actualizarAlertas(stockGeneral, productos);
+            alert(`Stock mínimo general actualizado a ${stockGeneral} unidades.`);
+        } catch (error) {
+            console.error("Error:", error);
+            alert("Hubo un error al establecer el stock mínimo general.");
+        }
     };
 
     // Función para actualizar el stock mínimo de un producto específico
-    const handleStockProductoChange = (id, nuevoStockMinimo) => {
-        const nuevosProductos = productos.map((producto) =>
-            producto.id === id ? { ...producto, stockMinimo: nuevoStockMinimo } : producto
-        );
-        setProductos(nuevosProductos);
-        actualizarAlertas(stockGeneral, nuevosProductos);
+    const handleEstablecerStockProducto = async (id, nuevoStockMinimo) => {
+        console.log("Estableciendo stock mínimo para el producto", id, "a", nuevoStockMinimo);
+        try {
+            const response = await fetch("http://localhost:3000/product/stockPorProducto", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ id_producto: id, stock_minimo: nuevoStockMinimo }),
+            });
+
+            if (!response.ok) {
+                throw new Error("Error al establecer el stock mínimo del producto");
+            }
+
+            const data = await response.json();
+            console.log(data); // Puedes manejar la respuesta del servidor aquí
+
+            // Actualizar el estado local de los productos
+            const nuevosProductos = productos.map((producto) =>
+                producto.id === id ? { ...producto, stockMinimo: nuevoStockMinimo } : producto
+            );
+            setProductos(nuevosProductos);
+
+            // Actualizar las alertas después de establecer el stock mínimo del producto
+            actualizarAlertas(stockGeneral, nuevosProductos);
+            alert(`Stock mínimo del producto actualizado a ${nuevoStockMinimo} unidades.`);
+        } catch (error) {
+            console.error("Error:", error);
+            alert("Hubo un error al establecer el stock mínimo del producto.");
+        }
     };
 
     // Función para actualizar las alertas
@@ -88,21 +185,33 @@ const AlertasStock = () => {
                                     <td className="border p-2">
                                         <input
                                             type="number"
-                                            value={producto.stockMinimo !== null ? producto.stockMinimo : ""}
-                                            onChange={(e) =>
-                                                handleStockProductoChange(producto.id, parseInt(e.target.value, 10))
-                                            }
+                                            defaultValue={producto.stockMinimo !== null ? producto.stockMinimo : 0}
                                             className="w-20 p-2 border rounded"
                                             min="0"
-                                            placeholder={stockGeneral}
+                                            onChange={(e) => {
+                                                // Actualizar el valor temporalmente en el estado local
+                                                const nuevosProductos = productos.map((p) =>
+                                                    p.id === producto.id
+                                                        ? { ...p, stockMinimo: parseInt(e.target.value, 10) }
+                                                        : p
+                                                );
+                                                setProductos(nuevosProductos);
+                                            }}
                                         />
                                     </td>
                                     <td className="border p-2">
                                         <button
-                                            className="text-red-500"
-                                            onClick={() => handleStockProductoChange(producto.id, null)}
+                                            className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+                                            onClick={() => {
+                                                const nuevoStockMinimo = producto.stockMinimo;
+                                                if (!isNaN(nuevoStockMinimo) && nuevoStockMinimo >= 0) {
+                                                    handleEstablecerStockProducto(producto.id, nuevoStockMinimo);
+                                                } else {
+                                                    alert("Por favor, ingrese un valor válido.");
+                                                }
+                                            }}
                                         >
-                                            Establecer
+                                            Establecer Stock
                                         </button>
                                     </td>
                                 </tr>
@@ -128,9 +237,7 @@ const AlertasStock = () => {
                                     <tr key={alerta.id} className="text-center">
                                         <td className="border p-2">{alerta.nombre}</td>
                                         <td className="border p-2 text-red-500">{alerta.stock}</td>
-                                        <td className="border p-2">
-                                            {alerta.stockMinimo !== null ? alerta.stockMinimo : stockGeneral}
-                                        </td>
+                                        <td className="border p-2">{alerta.stockMinimo}</td>
                                     </tr>
                                 ))}
                             </tbody>
