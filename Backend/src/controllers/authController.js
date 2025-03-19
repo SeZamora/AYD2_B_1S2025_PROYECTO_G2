@@ -70,9 +70,38 @@ const verifyEmail = async (req, res) => {
 };
 
 
+const recoverPassword = async (req, res) => {
+    const { email } = req.body;
+    try {
+        const resultado = await authService.recoverPassword(email);
+        if (resultado.success) {
+            const result = await emailService.sendVerificationEmail({
+                email,
+                subject: 'Recuperación de contraseña',
+                html: `
+                    <p> Hola! </p>
+                    <p> Tu contraseña es: ${resultado.password} </p>
+                    <p> Te recomendamos cambiar tu contraseña una vez que hayas iniciado sesión. </p>
+                `
+            });
+            if (!result.success) {
+                return res.status(400).json({ status: 'error', message: result.message || 'Error al enviar el correo electrónico.' });
+            }
+        }
+
+        res.status(200).json(resultado);
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ message: 'Error al recuperar la contraseña' });
+    }
+};
+
+
+
 module.exports = {
     
     login,
     register,
-    verifyEmail
+    verifyEmail,
+    recoverPassword
 };
