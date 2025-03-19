@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'; 
 import '../../../styles/Employetable.css';
 import AddLibrosModal from './AddLibrosModal';
 import DeleteLibroModal from './Eliminar';
@@ -6,21 +6,20 @@ import DeleteLibroModal from './Eliminar';
 const LibrosTable = () => {
     const [showModal, setShowModal] = useState(false);
     const [role2, setRole] = useState('');
-    const [showDeleteModal, setShowDeleteModal] = useState(false); // Estado para el modal de eliminación
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [estado, setEstado] = useState('');
     const [selectedProductId, setSelectedProductId] = useState(null);
 
-
-
-    const [libros, setlibros] = useState([]);
+    const [libros, setLibros] = useState([]);
+    const [searchTerm, setSearchTerm] = useState(""); 
 
     const fetchLibros = async () => {
         try {
             const response = await fetch("http://localhost:3000/book/getallbooks");
             const data = await response.json();
-            console.log(data);  // Verifica el contenido de data
+            console.log(data);
             if (data.success && Array.isArray(data.books)) {
-                setlibros(data.books);
+                setLibros(data.books);
             } else {
                 console.error("Error obteniendo libros:", data.message);
             }
@@ -29,38 +28,19 @@ const LibrosTable = () => {
         }
     };
 
-
-
     useEffect(() => {
         fetchLibros();
     }, []);
 
-
-
     const toggleModal = () => {
-        setShowModal(prev => {
-            const newShowModal = !prev;
-            if (newShowModal) {
-                setRole('add');
-            } else {
-                setRole('');
-            }
-            return newShowModal;
-        });
+        setShowModal(prev => !prev);
+        setRole(prev => (prev ? '' : 'add'));
     };
 
     const toggleModalM = (id) => {
-        setSelectedProductId(id);  
-        setShowModal(prev => {
-            const newShowModal = !prev;
-            if (newShowModal) {
-                setRole('edit');
-            } else {
-                setRole('');
-                setSelectedProductId(null); 
-            }
-            return newShowModal;
-        });
+        setSelectedProductId(id);
+        setShowModal(prev => !prev);
+        setRole('edit');
     };
 
     const toggleDeleteModal = (elemento, id) => {
@@ -68,17 +48,23 @@ const LibrosTable = () => {
         setEstado(elemento);
         setShowDeleteModal(prev => !prev);
     };
-    
 
 
-
-    
+    const filteredLibros = libros.filter(libro =>
+        libro.titulo.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
     return (
         <>
             <div className="d-flex justify-content-center" style={{ height: "20%" }}>
                 <div className="search">
-                    <input type="text" className="search-input" name="" />
+                    <input 
+                        type="text" 
+                        className="search-input" 
+                        placeholder="Buscar por título..." 
+                        value={searchTerm} 
+                        onChange={(e) => setSearchTerm(e.target.value)} 
+                    />
                     <a href="#" className="search-icon">
                         <i className="fa fa-search"></i>
                     </a>
@@ -95,7 +81,7 @@ const LibrosTable = () => {
                                 </div>
                                 <div className="col-xs-6 text-right">
                                     <button className="btn btn-success" onClick={toggleModal}>
-                                        <i className="material-icons">&#xE147;</i> <span>Add New Produto</span>
+                                        <i className="material-icons">&#xE147;</i> <span>Add New Producto</span>
                                     </button>
                                 </div>
                             </div>
@@ -104,17 +90,17 @@ const LibrosTable = () => {
                         <table className="table table-striped table-hover">
                             <thead>
                                 <tr>
-                                    <th style={{ textAlign: 'center' }}>titulo del libro</th>
+                                    <th style={{ textAlign: 'center' }}>Título del libro</th>
                                     <th style={{ textAlign: 'center', width: '20%' }}>Autor</th>
                                     <th style={{ textAlign: 'center' }}>Fecha de lanzamiento</th>
-                                    <th style={{ textAlign: 'center' }}>género</th>
-                                    <th style={{ textAlign: 'center' }}>stock</th>
+                                    <th style={{ textAlign: 'center' }}>Género</th>
+                                    <th style={{ textAlign: 'center' }}>Stock</th>
                                     <th style={{ textAlign: 'center' }}>Precio</th>
                                     <th style={{ textAlign: 'center' }}></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {libros.map((libro) => (
+                                {filteredLibros.map((libro) => (
                                     <tr key={libro.codigo}>
                                         <td style={{ textAlign: 'center' }}>{libro.titulo}</td>
                                         <td style={{ textAlign: 'center' }}>{libro.autor}</td>
@@ -123,17 +109,16 @@ const LibrosTable = () => {
                                         <td style={{ textAlign: 'center' }}>{libro.stock}</td>
                                         <td style={{ textAlign: 'center' }}>{libro.precio}</td>
                                         <td style={{ textAlign: 'center' }}>
-                                        <a onClick={() => toggleModalM(libro.id_libro)} className="edit" data-toggle="modal">
-                                        <i className="fa fa-pencil" aria-hidden="true"></i>
+                                            <a onClick={() => toggleModalM(libro.id_libro)} className="edit" data-toggle="modal">
+                                                <i className="fa fa-pencil" aria-hidden="true"></i>
                                             </a>
-                                            <a onClick={() => toggleDeleteModal('Libro',libro.id_libro)} className="delete" data-toggle="modal">
+                                            <a onClick={() => toggleDeleteModal('Libro', libro.id_libro)} className="delete" data-toggle="modal">
                                                 <i className="fa fa-trash" aria-hidden="true"></i>
                                             </a>
                                         </td>
                                     </tr>
                                 ))}
                             </tbody>
-
                         </table>
                     </div>
                 </div>

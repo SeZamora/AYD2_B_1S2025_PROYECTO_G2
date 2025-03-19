@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "../../ui/componets/NabSupervisor";
 import "./../../styles/SPrincipal.css";
-import LibrosTable from './components/LibrosTable'; // Importamos el nuevo componente
+import LibrosTable from './components/LibrosTable'; 
 
 const Libros = () => {
   return (
