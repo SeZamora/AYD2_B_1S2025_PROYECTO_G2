@@ -1,12 +1,12 @@
 # Documentación Sprint
 
-# Semana del 16 al 22 de marzo
+# Semana del 16 al 21 de marzo
 
 ## Integrantes
 1. **Diego Andres Huite Alvarez** - Carnet: 202003585
 2. **Nombre 2** - Carnet: XXXXXXX
 3. **Nombre 3** - Carnet: XXXXXXX
-4. **Nombre 4** - Carnet: XXXXXXX
+4. **Genesis Nahomi Aparicio Acan** - Carnet: 202113293
 5. **Nombre 5** - Carnet: XXXXXXX
 
 ## Daily Standup
