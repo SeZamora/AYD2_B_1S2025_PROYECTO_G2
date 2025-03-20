@@ -278,18 +278,20 @@ Consideramos como grupo que es la mejor arquitectura a escoger ya que también e
 [prototipos realizados](https://github.com/SeZamora/AYD2_B_1S2025_PROYECTO_G2/blob/feature/202113293/Prototipos/Prototipos.md)
 ## 10. Patrones de diseño
 
-### Patron Adapter
-Uno de los patrones que se utiliza en este sistema es el Adapter, que es un patrón de diseño estructural. Este patrón tiene la capacidad de facilitar la colaboración entre objetos con interfaces incompatibles. En nuestro caso, se aplica para manejar el almacenamiento de imágenes de productos y empleados, las cuales se reciben en formato Base64.Por consiguiente, se utiliza una clase que permita adaptar estos elementos a un enlace de s3 para poder almacenar dicho enlace en la base de datos y poder acceder a el posteriormente. Además, resalta cómo este patrón facilita el almacenamiento de la URL de la imagen en lugar del archivo mismo, mejorando la eficiencia en la base de datos.
+### Patron controller-service
+En el desarrollo backend, el patrón Controller - Service se utiliza para separar la lógica de negocio de la gestión de solicitudes HTTP. El Controller actúa como intermediario entre el cliente y el sistema, recibiendo las peticiones y delegando el procesamiento al Service. El Service encapsula la lógica de negocio y, cuando es necesario, interactúa con la base de datos a través de un Repository. Esta estructura mejora la organización del código, facilita la reutilización de la lógica de negocio y permite realizar cambios en las reglas de negocio sin afectar los controladores
 
 
-![alt text](./DesignPatterns/adapter.png)
+![image](https://github.com/user-attachments/assets/5e93e002-c4be-4232-8357-e58b4825d006)
+
 
 
 ### Patron Factory Method
-El patron Factory Method al ser de diseño creacional proporciona una interfaz para crear objetos en una superclase, por lo que permite a las subclases alterar el tipo de objetos que se van a crear. En el contexto de este proyecto, se utiliza el patrón Factory Method para la creación de notificaciones por correo, que varían según el contexto de la operación. Por ejemplo, las notificaciones pueden ser de creación de empleados, creación de productos, eliminación de empleados, o cualquier otro tipo de evento relacionado con el sistema. Al utilizar este patrón, la lógica de notificación se centraliza en un único punto de creación, permitiendo que se agreguen o modifiquen tipos de notificación de forma sencilla, sin afectar otras partes del sistema. 
+El patrón Factory Method, al ser un patrón de diseño creacional, proporciona una interfaz para la creación de objetos en una superclase, permitiendo que las subclases determinen el tipo exacto de objeto a instanciar. En este proyecto, se aplica el patrón Factory Method para la creación del servicio de correo electrónico (EmailService). A través de EmailServiceFactory, se encapsula la lógica de inicialización del transporte SMTP, garantizando que todas las instancias de EmailService se creen de manera consistente y centralizada. Esto permite flexibilidad en la configuración del transporte de correo y facilita la integración con diferentes proveedores de email sin afectar otras partes del sistema
 
 
-![alt text](./DesignPatterns/factorymethod.png)
+![image](https://github.com/user-attachments/assets/d3cecc71-1614-435a-8430-7470726ab201)
+
 
 
 ### Patron Singleton
