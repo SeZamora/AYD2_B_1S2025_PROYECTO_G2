@@ -17,7 +17,6 @@ class MailTransportFactory {
   }
 }
 
-// Clase que representa el servicio de email
 class EmailService {
   constructor(transporter) {
     this.transporter = transporter;
@@ -41,7 +40,6 @@ class EmailService {
   }
 }
 
-// **Factory Method** que crea instancias de EmailService
 class EmailServiceFactory {
   static createEmailService(host, port, secure, user, pass) {
     const transporter = MailTransportFactory.createTransport(host , port, secure, user, pass);
