@@ -11,6 +11,7 @@ const addEmployee = async (req, res) => {
         const { nombre, apellido, cui, telefono, correo, contrasenia, edad, genero, fecha, supervisores_id_supervisor, verificado } = req.body;
         const imagen = req.file ? req.file.buffer : null; 
         // Validar campos obligatorios
+        
         if (!nombre || !apellido || !cui || !telefono || !correo || !contrasenia || !edad || !genero || !fecha || !supervisores_id_supervisor || !verificado || !imagen) {
             return res.status(400).json({ message: 'Todos los campos son obligatorios' });
         }
@@ -87,7 +88,45 @@ const getAllEmployees = async (req, res) => {
         res.status(500).json({ message: 'Error al obtener los empleados' });
     }
 };
+const getAllEmployeeData = async (req, res) => {
+    try {
+        const result = await employeeService.getAllEmployeeData();
+        
+        if (result.success) {
+            res.status(200).json(result);
+        } else {
+            res.status(404).json({ message: 'No hay empleados disponibles' });
+        }
+
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ message: 'Error al obtener los empleados' });
+    }
+};
+
+
 const getEmployeeById = async (req, res) => {
+    try {
+        const { empleado_nombre } = req.body; // Se obtiene el empleado_nombre desde el cuerpo de la solicitud
+
+        if (!empleado_nombre) {
+            return res.status(400).json({ message: 'El empleado_nombre del empleado es obligatorio' });
+        }
+
+        const result = await employeeService.getEmployeeById(empleado_nombre);
+
+        if (result.success) {
+            res.status(200).json(result);
+        } else {
+            res.status(404).json(result);
+        }
+
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ message: 'Error al obtener el empleado' });
+    }
+};
+const getEmployee = async (req, res) => {
     try {
         const { empleados_id } = req.body; // Se obtiene el ID desde el cuerpo de la solicitud
 
@@ -95,7 +134,7 @@ const getEmployeeById = async (req, res) => {
             return res.status(400).json({ message: 'El ID del empleado es obligatorio' });
         }
 
-        const result = await employeeService.getEmployeeById(empleados_id);
+        const result = await employeeService.getEmployee(empleados_id);
 
         if (result.success) {
             res.status(200).json(result);
@@ -109,12 +148,31 @@ const getEmployeeById = async (req, res) => {
     }
 };
 
+const deleteEmployee = async(req, res) => {
+    try {
+        const { empleados_id, reason_fired } = req.body;
+        if (!empleados_id || !reason_fired) {
+            return res.status(400).json({ message: 'El ID del empleado y la razón del despido son obligatorios' });
+        }
+        const result = await employeeService.deleteEmployee({ empleados_id, reason_fired });
+        res.status(200).json(result);
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ message: 'Error al eliminar el empleado' });
+    }
+
+}
+
+
 module.exports = {
     
     editInfo,
     addEmployee,
     getAllEmployees,
     getEmployeeById, 
-    upload
+    upload,
+    getEmployee,
+    deleteEmployee,
+    getAllEmployeeData
 };
 

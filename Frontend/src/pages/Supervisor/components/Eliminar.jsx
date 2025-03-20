@@ -1,22 +1,69 @@
 import React from 'react';
 
-const DeleteLibroModal = ({ showDeleteModal, toggleDeleteModal, estado }) => {
-    if (!showDeleteModal) return null; // Evita renderizar el modal si no está activo
+const DeleteLibroModal = ({ showDeleteModal, toggleDeleteModal, estado ,Idato}) => {
+    if (!showDeleteModal) return null; 
 
-    
+
     console.log(estado);
     const mensajes = {
         libro: '¿Estás seguro de que deseas eliminar este libro?',
          producto: '¿Estás seguro de que deseas eliminar este producto?',
-        default: '¿Estás seguro de que deseas eliminar este elemento?' // Mensaje por defecto
+        default: '¿Estás seguro de que deseas eliminar este elemento?' 
     };
 
-    // Obtener el mensaje según el estado (en minúsculas para evitar problemas con mayúsculas)
+    
+    const Eliminar = async () => {
+        if (estado === 'Libro') {
+        console.log(Idato);
+        try {
+            const response = await fetch("http://localhost:3000/book/deletebook", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ id_libro: Idato })
+            });
+            if (response.ok) {
+                alert("Libro eliminado con éxito");
+                window.location.reload();
+            } else {
+                alert("Error al editar el producto");
+            }
+        } catch (error) {
+            console.error("Error al enviar la solicitud", error);
+        }
+    }else if (estado === 'Producto') {
+        console.log(Idato);
+        
+        try {
+            const response = await fetch("http://localhost:3000/product/deleteProduct", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ id_producto: Idato })
+            });
+            if (response.ok) {
+                alert("Producto eliminado  con éxito");
+                window.location.reload();
+            } else {
+                alert("Error al editar el producto");
+            }
+        } catch (error) {
+            console.error("Error al enviar la solicitud", error);
+        }
+    }
+    };
+            
+   
+
+
+
     const mensaje = mensajes[estado?.toLowerCase()] || mensajes.default;
 
     return (
         <>
-            {/* Fondo gris semi-transparente */}
+       
             <div
                 className="modal-backdrop show"
                 style={{
@@ -28,10 +75,10 @@ const DeleteLibroModal = ({ showDeleteModal, toggleDeleteModal, estado }) => {
                     backgroundColor: 'rgba(0, 0, 0, 0.5)',
                     zIndex: 1040
                 }}
-                onClick={toggleDeleteModal} // Cierra el modal si se hace clic fuera de él
+                onClick={toggleDeleteModal} 
             />
 
-            {/* Modal */}
+   
             <div
                 className="modal show"
                 tabIndex="-1"
@@ -100,6 +147,7 @@ const DeleteLibroModal = ({ showDeleteModal, toggleDeleteModal, estado }) => {
                                 borderRadius: "5px",
                                 cursor: "pointer"
                             }}
+                            onClick={Eliminar}
                         >
                             Eliminar
                         </button>

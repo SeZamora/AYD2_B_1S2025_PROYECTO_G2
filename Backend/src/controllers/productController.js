@@ -47,13 +47,34 @@ const getAllProducts = async (req, res) => {
 };
 const getProductById = async (req, res) => {
     try {
+        const { nombre_producto } = req.body;
+
+        if (!nombre_producto) {
+            return res.status(400).json({ message: 'El nombre del producto es obligatorio' });
+        }
+
+        const result = await productService.getProductById(nombre_producto);
+
+        if (result.success) {
+            res.status(200).json(result);
+        } else {
+            res.status(404).json(result);
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ message: 'Error al obtener el producto' });
+    }
+};
+
+const getProduct = async (req, res) => {
+    try {
         const { id_producto } = req.body;
 
         if (!id_producto) {
             return res.status(400).json({ message: 'El ID del producto es obligatorio' });
         }
 
-        const result = await productService.getProductById(id_producto);
+        const result = await productService.getProduct(id_producto);
 
         if (result.success) {
             res.status(200).json(result);
@@ -67,25 +88,23 @@ const getProductById = async (req, res) => {
 };
 
 
+
 const editProduct = async (req, res) => {
     try {
-        const { id_producto, nombre, descripcion, codigo, categoria, precio_compra, precio_venta, cantidad } = req.body;
-        const imagen = req.file ? req.file.buffer : null;
-        if (!id_producto || !nombre || !codigo || !categoria || !precio_compra || !precio_venta || !cantidad) {
+        const { id_producto,descripcion, precio_venta, cantidad } = req.body;
+        
+        if (!id_producto || !precio_venta || !cantidad) {
 
             return res.status(400).json({ message: 'Todos los campos son obligatorios' });
         }
 
         const result = await productService.editProduct({
             id_producto,
-            nombre,
+            
             descripcion,
-            codigo,
-            categoria,
-            precio_compra,
+            
             precio_venta,
-            cantidad,
-            imagen
+            cantidad
         });
 
         res.status(200).json(result);
@@ -97,12 +116,76 @@ const editProduct = async (req, res) => {
 
 }
 
+const deleteProduct = async (req, res) => {
+    try {
+        const { id_producto } = req.body;
 
+        if (!id_producto) {
+            return res.status(400).json({ message: 'El ID del producto es obligatorio' });
+        }
+
+        const result = await productService.deleteProduct(id_producto);
+
+        res.status(200).json(result);
+
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ message: 'Error al eliminar el producto' });
+    }
+}
+
+const StockGeneral = async (req, res) => {
+    try {
+        const { stockGeneral } = req.body;
+
+        if (stockGeneral === undefined) {
+            return res.status(400).json({ message: 'Se requiere un valor para stockGeneral' });
+        }
+
+        const result = await productService.StockGeneral(stockGeneral);
+        res.status(200).json(result);
+
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ message: 'Error al configurar stock general' });
+    }
+};
+
+const StockPorProducto = async (req, res) => {
+    try {
+        const { id_producto, stock_minimo } = req.body;
+
+        if (!id_producto || stock_minimo === undefined) {
+            return res.status(400).json({ message: 'Se requieren id_producto y stock_minimo' });
+        }
+
+        const result = await productService.StockPorProducto(id_producto, stock_minimo);
+        res.status(200).json(result);
+
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ message: 'Error al configurar stock por producto' });
+    }
+};
+const AlertaStock = async (req, res) => {
+    try {
+        const alertas = await productService.alertasStock();
+        res.status(200).json(alertas);
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ message: 'Error al obtener alertas de stock' });
+    }
+};
 
 module.exports = {
     addProduct,
     upload,
     getAllProducts,
     getProductById,
-    editProduct
+    editProduct,
+    getProduct,
+    deleteProduct,
+    StockGeneral,
+    StockPorProducto,
+    AlertaStock
 };

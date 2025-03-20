@@ -13,7 +13,9 @@ const employeeRoutes = require('./routes/employee')
 const productRoutes = require('./routes/product')
 const billRoutes = require('./routes/bill')
 const bookRoutes = require('./routes/book')
+const logsRoutes = require('./routes/logs')
 
+const reportsRoutes = require('./routes/reports')
 
 
 app.use(cors({
@@ -33,7 +35,9 @@ app.use('/employee',employeeRoutes);
 app.use('/product',productRoutes);
 app.use('/bill',billRoutes);
 app.use('/book',bookRoutes);
+app.use('/logs',logsRoutes);
 
+app.use('/reports',reportsRoutes);
 app.use(bodyParser.json({limit: '15mb'}));
 
 //app.use(cors());

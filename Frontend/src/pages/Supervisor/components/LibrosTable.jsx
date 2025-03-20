@@ -1,93 +1,70 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react'; 
 import '../../../styles/Employetable.css';
-import AddLibrosModal from './AddLibrosModal'; 
+import AddLibrosModal from './AddLibrosModal';
 import DeleteLibroModal from './Eliminar';
 
 const LibrosTable = () => {
     const [showModal, setShowModal] = useState(false);
     const [role2, setRole] = useState('');
-    const [showDeleteModal, setShowDeleteModal] = useState(false); // Estado para el modal de eliminación
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [estado, setEstado] = useState('');
+    const [selectedProductId, setSelectedProductId] = useState(null);
 
+    const [libros, setLibros] = useState([]);
+    const [searchTerm, setSearchTerm] = useState(""); 
 
-    const libros = [
-        { 
-            codigo: "B001", 
-            titulo: "El Gran Libro", 
-            autor: "Autor A", 
-            fechaLanzamiento: "2025-01-01", 
-            descripcion: "Una novela épica de aventuras y fantasía", 
-            genero: "Fantasía", 
-            stock: 50, 
-            precio: 20.00 
-        },
-        { 
-            codigo: "B002", 
-            titulo: "La Aventura Secreta", 
-            autor: "Autor B", 
-            fechaLanzamiento: "2024-11-15", 
-            descripcion: "Un thriller emocionante que te mantendrá al borde de tu asiento", 
-            genero: "Thriller", 
-            stock: 30, 
-            precio: 15.00 
-        },
-        { 
-            codigo: "B003", 
-            titulo: "Recetas Mágicas", 
-            autor: "Autor C", 
-            fechaLanzamiento: "2023-07-30", 
-            descripcion: "Recetas deliciosas para chefs novatos y expertos", 
-            genero: "Cocina", 
-            stock: 100, 
-            precio: 10.00 
-        },
-        { 
-            codigo: "B004", 
-            titulo: "El Último Secreto", 
-            autor: "Autor D", 
-            fechaLanzamiento: "2022-09-12", 
-            descripcion: "Un misterio sin resolver, hasta ahora", 
-            genero: "Misterio", 
-            stock: 15, 
-            precio: 25.00 
+    const fetchLibros = async () => {
+        try {
+            const response = await fetch("http://localhost:3000/book/getallbooks");
+            const data = await response.json();
+            console.log(data);
+            if (data.success && Array.isArray(data.books)) {
+                setLibros(data.books);
+            } else {
+                console.error("Error obteniendo libros:", data.message);
+            }
+        } catch (error) {
+            console.error("Fetch error:", error);
         }
-    ];
+    };
+
+    useEffect(() => {
+        fetchLibros();
+    }, []);
 
     const toggleModal = () => {
-        setShowModal(prev => {
-            const newShowModal = !prev;
-            if (newShowModal) {
-                setRole('add');
-            } else {
-                setRole('');
-            }
-            return newShowModal;
-        });
+        setShowModal(prev => !prev);
+        setRole(prev => (prev ? '' : 'add'));
     };
 
-    const toggleModalM = () => {
-        setShowModal(prev => {
-            const newShowModal = !prev;
-            if (newShowModal) {
-                setRole('Produto');
-            } else {
-                setRole('');
-            }
-            return newShowModal;
-        });
+    const toggleModalM = (id) => {
+        setSelectedProductId(id);
+        setShowModal(prev => !prev);
+        setRole('edit');
     };
 
-    // Cambié esta parte para actualizar el estado antes de pasar la prop
-    const toggleDeleteModal = (elemento) => {
+    const toggleDeleteModal = (elemento, id) => {
+        setSelectedProductId(id);
+        setEstado(elemento);
         setShowDeleteModal(prev => !prev);
-        setEstado(elemento);  // Actualizar el estado con el valor correcto
     };
+
+
+    const filteredLibros = libros.filter(libro =>
+        libro.titulo.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
     return (
         <>
             <div className="d-flex justify-content-center" style={{ height: "20%" }}>
                 <div className="search">
-                    <input type="text" className="search-input" name="" />
+                    <input 
+                        type="text" 
+                        className="search-input" 
+                        placeholder="Buscar por título..." 
+                        value={searchTerm} 
+                        onChange={(e) => setSearchTerm(e.target.value)} 
+                    />
                     <a href="#" className="search-icon">
                         <i className="fa fa-search"></i>
                     </a>
@@ -104,7 +81,7 @@ const LibrosTable = () => {
                                 </div>
                                 <div className="col-xs-6 text-right">
                                     <button className="btn btn-success" onClick={toggleModal}>
-                                        <i className="material-icons">&#xE147;</i> <span>Add New Produto</span>
+                                        <i className="material-icons">&#xE147;</i> <span>Add New Producto</span>
                                     </button>
                                 </div>
                             </div>
@@ -113,29 +90,29 @@ const LibrosTable = () => {
                         <table className="table table-striped table-hover">
                             <thead>
                                 <tr>
-                                    <th style={{ textAlign: 'center' }}>titulo del libro</th>
+                                    <th style={{ textAlign: 'center' }}>Título del libro</th>
                                     <th style={{ textAlign: 'center', width: '20%' }}>Autor</th>
                                     <th style={{ textAlign: 'center' }}>Fecha de lanzamiento</th>
-                                    <th style={{ textAlign: 'center' }}>género</th>
-                                    <th style={{ textAlign: 'center' }}>stock</th>
+                                    <th style={{ textAlign: 'center' }}>Género</th>
+                                    <th style={{ textAlign: 'center' }}>Stock</th>
                                     <th style={{ textAlign: 'center' }}>Precio</th>
                                     <th style={{ textAlign: 'center' }}></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {libros.map((libro) => (
+                                {filteredLibros.map((libro) => (
                                     <tr key={libro.codigo}>
                                         <td style={{ textAlign: 'center' }}>{libro.titulo}</td>
                                         <td style={{ textAlign: 'center' }}>{libro.autor}</td>
-                                        <td style={{ textAlign: 'center' }}>{libro.fechaLanzamiento}</td>
+                                        <td style={{ textAlign: 'center' }}>{libro.fecha_lanzamiento}</td>
                                         <td style={{ textAlign: 'center' }}>{libro.genero}</td>
                                         <td style={{ textAlign: 'center' }}>{libro.stock}</td>
                                         <td style={{ textAlign: 'center' }}>{libro.precio}</td>
                                         <td style={{ textAlign: 'center' }}>
-                                            <a onClick={toggleModalM} className="edit" data-toggle="modal">
+                                            <a onClick={() => toggleModalM(libro.id_libro)} className="edit" data-toggle="modal">
                                                 <i className="fa fa-pencil" aria-hidden="true"></i>
                                             </a>
-                                            <a onClick={() => toggleDeleteModal('Libro')} className="delete" data-toggle="modal">
+                                            <a onClick={() => toggleDeleteModal('Libro', libro.id_libro)} className="delete" data-toggle="modal">
                                                 <i className="fa fa-trash" aria-hidden="true"></i>
                                             </a>
                                         </td>
@@ -146,8 +123,8 @@ const LibrosTable = () => {
                     </div>
                 </div>
 
-                <AddLibrosModal showModal={showModal} toggleModal={toggleModal} role={role2} />
-                <DeleteLibroModal showDeleteModal={showDeleteModal} toggleDeleteModal={toggleDeleteModal} estado={estado} />
+                <AddLibrosModal showModal={showModal} toggleModal={toggleModal} role={role2} id_libro={selectedProductId}/>
+                <DeleteLibroModal showDeleteModal={showDeleteModal} toggleDeleteModal={toggleDeleteModal} estado={estado} Idato={selectedProductId} />
             </div>
         </>
     );

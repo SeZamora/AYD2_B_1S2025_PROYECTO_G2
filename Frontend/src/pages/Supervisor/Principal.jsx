@@ -2,7 +2,7 @@ import React from "react";
 
 import Navbar from "../../ui/componets/NabSupervisor";
 import "./../../styles/SPrincipal.css";
-import EmployeeTable from './components/EmployeeTable'; // Importamos el nuevo componente
+import EmployeeTable from './components/EmployeeTable'; 
 
 const SuperPrincipal = () => {
   return (
@@ -19,12 +19,7 @@ const SuperPrincipal = () => {
         
         <EmployeeTable />
       </div>
-      {/* 
-        
-
-       
-      */}
-
+      
 
     </div>
   );

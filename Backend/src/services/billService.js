@@ -1,4 +1,4 @@
-const db = require('../services/DBService').default;
+const {db} = require('../services/DBService');
 const addBill = async ({ nombre_vendedor, fecha_hora, total_venta, nombre_comprador, cuenta_id_cuenta, empleados_id, detalles }) => {
     try {
         // Insertar factura
@@ -12,13 +12,26 @@ const addBill = async ({ nombre_vendedor, fecha_hora, total_venta, nombre_compra
 
         // Preparar inserción de detalles
         const detalleQueries = detalles.map(({ unidades_compradas, precio_producto, producto_id, libro_id }) => {
-            return db.query(
+            const result = db.query(
                 `INSERT INTO detalle_factura (factura_id, unidades_compradas, precio_producto, producto_id, libro_id) 
                  VALUES (?, ?, ?, ?, ?)`,
                 [facturaId, unidades_compradas, precio_producto, producto_id || null, libro_id || null]
             );
+                // Actualizar el stock si es producto o libro
+            if (producto_id) {
+                db.query(
+                    `UPDATE producto SET cantidad = cantidad - ? WHERE id_producto = ?`,
+                    [unidades_compradas, producto_id]
+                );
+            } else if (libro_id) {
+                db.query(
+                    `UPDATE libros SET stock = stock - ? WHERE id_libro = ?`,
+                    [unidades_compradas, libro_id]
+                );
+            }
+            return result;
         });
-
+       
         // Ejecutar todas las inserciones de detalles en paralelo
         await Promise.all(detalleQueries);
 

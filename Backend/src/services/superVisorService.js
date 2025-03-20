@@ -1,7 +1,5 @@
-
-const db = require('../services/DBService').default;
+const {db} = require('../services/DBService');
 const encrypter = require('../services/encryptService');
-
 
 
 
@@ -38,7 +36,7 @@ const editInfo = async ({ old_email, new_email, phone_number }) => {
 
 const createSupervisor = async ({ gerente_id_gerente, nombre, email, contrasenia, telefono, fecha_ingreso, verificado }) => {
     try {
-        const hashedPassword = await encrypter.sha256(contrasenia);
+        const hashedPassword = encrypter.encrypt(contrasenia);
         
 
         const result = await db.query(
@@ -88,10 +86,64 @@ const getSupervisorById = async (id_supervisor) => {
         return { success: false, message: 'Error interno del servidor.' };
     }
 };
+const deleteSupervisor = async ({ id_supervisor, reason_fired }) => {
+    try {
+        const [supervisor] = await db.query(
+            `SELECT * FROM supervisores WHERE id_supervisor = ?`,
+            [id_supervisor]
+        );
+
+        if (!supervisor) {
+            return { success: false, message: 'Supervisor no encontrado.' };
+        }
+
+        const fechaBaja = new Date().toLocaleString('es-ES', { 
+            timeZone: 'America/Mexico_City', 
+            year: 'numeric', month: '2-digit', day: '2-digit' 
+        }).split('/').reverse().join('-');
+        
+
+        await db.query(
+            `INSERT INTO auditoria_supervisores 
+            (id_supervisor, nombre_completo, correo, telefono, fecha_alta, fecha_baja, razon_desvinculacion) 
+            VALUES (?, ?, ?, ?, ?, ?, ?)`,
+            [
+                supervisor.id_supervisor,
+                supervisor.nombre_completo,
+                supervisor.correo,
+                supervisor.telefono,
+                supervisor.fecha, 
+                fechaBaja,
+                reason_fired || 'Razón no especificada',
+            ]
+        );
+
+        // Eliminar el supervisor de la tabla principal
+        const result = await db.query(
+            `DELETE FROM supervisores WHERE id_supervisor = ?`,
+            [id_supervisor]
+        );
+
+        if (result.affectedRows > 0) {
+            return { success: true, message: 'Supervisor eliminado exitosamente y registrado en auditoría.' };
+        } else {
+            return { success: false, message: 'No se pudo eliminar el supervisor.' };
+        }
+    } catch (error) {
+        console.error('Database Error:', error.sqlMessage || error);
+        return { success: false, message: 'Error interno del servidor.' };
+    }
+};
+
+
+
+
 module.exports = {
    
     editInfo,
     createSupervisor,
     getAllSupervisors,
-    getSupervisorById
+    getSupervisorById,
+    deleteSupervisor
 };
+

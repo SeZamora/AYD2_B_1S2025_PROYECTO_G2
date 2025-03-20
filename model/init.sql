@@ -4,13 +4,48 @@ CREATE DATABASE IF NOT EXISTS ayd2_proyecto;
 USE ayd2_proyecto;
 CREATE TABLE cuenta (
     id_cuenta  INT NOT NULL AUTO_INCREMENT,
-    correo     VARCHAR(255) NOT NULL,
+    correo     VARCHAR(255) NOT NULL UNIQUE,
     contrasenia VARCHAR(255) NOT NULL,
     nombre     VARCHAR(100) NOT NULL,
     edad       INT NOT NULL,
     verificado INT NOT NULL,
     PRIMARY KEY (id_cuenta)
 );
+
+
+CREATE TABLE auditoria_supervisores (
+    id_auditoria       INT NOT NULL AUTO_INCREMENT,
+    id_supervisor      INT NOT NULL,
+    nombre_completo    VARCHAR(255) NOT NULL,
+    correo             VARCHAR(255) NOT NULL,
+    telefono           VARCHAR(20) NOT NULL,
+    fecha_alta         DATE NOT NULL,
+    fecha_baja         DATE NOT NULL,
+    razon_desvinculacion TEXT NOT NULL,
+    PRIMARY KEY (id_auditoria)
+);
+
+CREATE TABLE auditoria_empleados (
+    id_auditoria     INT NOT NULL AUTO_INCREMENT,
+    empleados_id     INT NOT NULL,
+    nombre           VARCHAR(100) NOT NULL,
+    apellido         VARCHAR(100) NOT NULL,
+    cui              BIGINT NOT NULL,
+    telefono         VARCHAR(20) NOT NULL,
+    correo           VARCHAR(255) NOT NULL,
+    edad            INT NOT NULL,
+    genero          VARCHAR(10) NOT NULL,
+    fecha_alta       DATE NOT NULL,
+    fecha_baja       DATE NOT NULL,
+    fotografia       MEDIUMBLOB NOT NULL,
+    razon_desvinculacion TEXT NOT NULL,
+    PRIMARY KEY (id_auditoria)
+);
+
+
+
+
+
 CREATE TABLE libros (
     id_libro          INT NOT NULL AUTO_INCREMENT,
     titulo            VARCHAR(255) NOT NULL,
@@ -20,6 +55,7 @@ CREATE TABLE libros (
     genero           VARCHAR(100) NOT NULL,
     stock             INT NOT NULL,
     precio           DECIMAL(10,2) NOT NULL,
+    disponible       INT NOT NULL DEFAULT 1,
     PRIMARY KEY (id_libro)
 );
 
@@ -32,7 +68,9 @@ CREATE TABLE producto (
     precio_compra DECIMAL(10,2) NOT NULL,
     precio_venta  DECIMAL(10,2) NOT NULL,
     cantidad      INT NOT NULL,
-    imagen        VARCHAR(100) NOT NULL,
+    stock_minimo  INT,
+    imagen        MEDIUMBLOB NOT NULL,
+    disponible       INT NOT NULL DEFAULT 1,
     PRIMARY KEY (id_producto)
 );
 CREATE TABLE gerente (
@@ -55,6 +93,7 @@ CREATE TABLE supervisores (
     FOREIGN KEY (gerente_id_gerente) REFERENCES gerente (id_gerente)
 );
 
+
 CREATE TABLE empleados (
     empleados_id             INT NOT NULL AUTO_INCREMENT,
     nombre                   VARCHAR(100) NOT NULL,
@@ -66,12 +105,13 @@ CREATE TABLE empleados (
     edad                     INT NOT NULL,
     genero                   VARCHAR(10) NOT NULL,
     fecha                    DATE NOT NULL,
-    fotografia               VARCHAR(100) NOT NULL,
+    fotografia               MEDIUMBLOB NOT NULL,
     supervisores_id_supervisor INT NOT NULL,
     verificado               INT NOT NULL,
-    PRIMARY KEY (empleados_id),
-    FOREIGN KEY (supervisores_id_supervisor) REFERENCES supervisores (id_supervisor)
+    eliminado               INT NOT NULL DEFAULT 0,
+    PRIMARY KEY (empleados_id)
 );
+
 CREATE TABLE deseos (
     id_deseo             INT NOT NULL AUTO_INCREMENT,
     cuenta_id_cuenta     INT NOT NULL,
@@ -118,7 +158,7 @@ CREATE TABLE resenias (
     id_resenia        INT NOT NULL AUTO_INCREMENT,
     calificacion     INT NOT NULL CHECK (calificacion BETWEEN 1 AND 5),
     comentario       TEXT NOT NULL,
-    fecha            DATE NOT NULL,
+    fecha            DATE NOT NULL,     
     cuenta_id_cuenta INT NOT NULL,
     libros_id_libro  INT NOT NULL,
     PRIMARY KEY (id_resenia),
@@ -130,9 +170,9 @@ CREATE TABLE resenias (
 -- Insertar datos en la tabla cuenta
 INSERT INTO cuenta (correo, contrasenia, nombre, edad, verificado) 
 VALUES 
-('usuario1@example.com', 'd8542114d7d40f3c82fc0919efc644df30f4e827c2bd6b83b9dbec8358b2fbc4', 'Juan Perez', 30, 1),
-('usuario2@example.com', 'd8542114d7d40f3c82fc0919efc644df30f4e827c2bd6b83b9dbec8358b2fbc4', 'María Gomez', 25, 0),
-('usuario3@example.com', 'd8542114d7d40f3c82fc0919efc644df30f4e827c2bd6b83b9dbec8358b2fbc4', 'Carlos Lopez', 40, 1);
+('consumidorfinal@example.com', '7a5773355deaf942f99617a5c9bc2938', 'consumidor final', 1, 1), -- password: 1234
+('usuario2@example.com', 'bae5c4117773806c436e03728005d022', 'María Gomez', 25, 0),
+('usuario3@example.com', 'bae5c4117773806c436e03728005d022', 'Carlos Lopez', 40, 1);
 
 -- Insertar datos en la tabla gerente
 INSERT INTO gerente (nombre, correo) -- ??????? considerar password
@@ -144,17 +184,17 @@ VALUES
 -- Insertar datos en la tabla supervisores
 INSERT INTO supervisores (gerente_id_gerente, nombre_completo, correo, telefono, fecha, verificado, contrasenia) 
 VALUES 
-(1, 'Pedro Ramirez', 'pedro.supervisor@example.com', '555-1234', '2024-03-01', 1, 'b221d9dbb083a7f33428d7c2a3c3198ae925614d70210e28716ccaa7cd4ddb79'), -- password:hola
-(2, 'Sofia Herrera', 'sofia.supervisor@example.com', '555-5678', '2024-03-02', 0, 'b221d9dbb083a7f33428d7c2a3c3198ae925614d70210e28716ccaa7cd4ddb79'), -- password:hola
-(3, 'Andres Medina', 'andres.supervisor@example.com', '555-9101', '2024-03-03', 1, 'b221d9dbb083a7f33428d7c2a3c3198ae925614d70210e28716ccaa7cd4ddb79'); -- password:hola
+(1, 'Pedro Ramirez', 'pedro.supervisor@example.com', '555-1234', '2024-03-01', 1, 'bae5c4117773806c436e03728005d022'), -- password:hola
+(2, 'Sofia Herrera', 'sofia.supervisor@example.com', '555-5678', '2024-03-02', 0, 'bae5c4117773806c436e03728005d022'), -- password:hola
+(3, 'Andres Medina', 'andres.supervisor@example.com', '555-9101', '2024-03-03', 1, 'bae5c4117773806c436e03728005d022'); -- password:hola
 
 
 -- Insertar datos en la tabla empleados
 INSERT INTO empleados (nombre, apellido, cui, telefono, correo, edad, genero, fecha, fotografia, supervisores_id_supervisor, verificado, contrasenia) 
 VALUES 
-('Ricardo', 'Garcoa', 1234567890123, '555-0001', 'ricardo.empleado@example.com', 28, 'Masculino', '2024-03-05', 'foto1.jpg', 1,1, 'b221d9dbb083a7f33428d7c2a3c3198ae925614d70210e28716ccaa7cd4ddb79'), -- password:hola
-('Fernanda', 'Lopez', 9876543210987, '555-0002', 'fernanda.empleado@example.com', 32, 'Femenino', '2024-03-06', 'foto2.jpg', 2, 0, 'd8542114d7d40f3c82fc0919efc644df30f4e827c2bd6b83b9dbec8358b2fbc4'), -- password:adios
-('David', 'Martinez', 4567891230456, '555-0003', 'david.empleado@example.com', 26, 'Masculino', '2024-03-07', 'foto3.jpg', 3, 1, 'd8542114d7d40f3c82fc0919efc644df30f4e827c2bd6b83b9dbec8358b2fbc4'); -- password:adios
+('compra en línea', 'compra en línea', 1234567890123, '555-0001', 'compraenlínea.empleado@example.com', 1, 'Masculino', '2024-03-05', 'foto1.jpg', 1, 1, '7a5773355deaf942f99617a5c9bc2938'), -- password:1234
+('Fernanda', 'Lopez', 9876543210987, '555-0002', 'fernanda.empleado@example.com', 32, 'Femenino', '2024-03-06', 'foto2.jpg', 2, 0, 'bae5c4117773806c436e03728005d022'), -- password:adios
+('David', 'Martinez', 4567891230456, '555-0003', 'david.empleado@example.com', 26, 'Masculino', '2024-03-07', 'foto3.jpg', 3, 1, 'bae5c4117773806c436e03728005d022'); -- password:adios
 
 -- INSERTAR PRODUCTOS
 INSERT INTO producto (nombre, descripcion, codigo, categoria, precio_compra, precio_venta, cantidad, imagen) 
@@ -170,7 +210,8 @@ INSERT INTO facturas (nombre_vendedor, fecha_hora, total_venta, nombre_comprador
 VALUES 
 ('Ricardo Garcoa', '2024-03-10 14:30:00', 1035.00, 'Juan Perez', 1, 1),
 ('Fernanda Lopez', '2024-03-11 09:45:00', 750.00, 'María Gomez', 2, 2),
-('David Martinez', '2024-03-12 17:15:00', 70.00, 'Carlos Lopez', 3, 3);
+('David Martinez', '2024-03-12 17:15:00', 70.00, 'Carlos Lopez', 3, 3),
+('David Martinez', '2024-03-12 17:15:00', 800.00, 'Carlos Cux', 3, 3);
 
 
 INSERT INTO detalle_factura (factura_id, unidades_compradas, precio_producto, producto_id, libro_id) 

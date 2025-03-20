@@ -1,14 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const DeleteLibroModal = ({ showDeleteModal, toggleDeleteModal }) => {
-    if (!showDeleteModal) return null; // Evita renderizar el modal si no está activo
+const DeleteLibroModal = ({ showDeleteModal, toggleDeleteModal, Idato }) => {
+    const [razon, setRazon] = useState(''); 
 
-    
-   
+    if (!showDeleteModal) return null;
+
+    const handleRazonChange = (e) => {
+        setRazon(e.target.value); 
+    };
+
+    const Eliminar = async () => {
+        console.log(Idato, razon); 
+        try {
+            const response = await fetch("http://localhost:3000/employee/deleteEmployee", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ 
+                    empleados_id: Idato,
+                    reason_fired: razon 
+                })
+            });
+            if (response.ok) {
+                alert("Empleado eliminado con éxito");
+                window.location.reload();
+            } else {
+                alert("Error al eliminar el empleado");
+            }
+        } catch (error) {
+            console.error("Error al enviar la solicitud", error);
+        }
+    };
 
     return (
         <>
-            {/* Fondo gris semi-transparente */}
             <div
                 className="modal-backdrop show"
                 style={{
@@ -20,10 +46,9 @@ const DeleteLibroModal = ({ showDeleteModal, toggleDeleteModal }) => {
                     backgroundColor: 'rgba(0, 0, 0, 0.5)',
                     zIndex: 1040
                 }}
-                onClick={toggleDeleteModal} // Cierra el modal si se hace clic fuera de él
+                onClick={toggleDeleteModal} 
             />
 
-            {/* Modal */}
             <div
                 className="modal show"
                 tabIndex="-1"
@@ -64,10 +89,16 @@ const DeleteLibroModal = ({ showDeleteModal, toggleDeleteModal }) => {
                         </button>
                     </div>
                     <div style={{ padding: '15px 0', fontSize: '16px' }}>
-                        <p>Esta seguro que desea eliminar el empleado </p>
+                        <p>¿Está seguro de que desea eliminar el empleado?</p>
                         <div className="form-group">
-                        <label htmlFor="employeeHireDate">Razon de el la eliminacion</label>
-                        <input type="text" className="form-control" id="employeeHireDate" />
+                            <label htmlFor="employeeHireDate">Razón de la eliminación</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="employeeHireDate"
+                                value={razon}
+                                onChange={handleRazonChange} 
+                            />
                         </div>
                         <p style={{ color: "orange", fontSize: "14px" }}>
                             <small>Esta acción no se puede deshacer.</small>
@@ -96,6 +127,7 @@ const DeleteLibroModal = ({ showDeleteModal, toggleDeleteModal }) => {
                                 borderRadius: "5px",
                                 cursor: "pointer"
                             }}
+                            onClick={Eliminar}
                         >
                             Eliminar
                         </button>

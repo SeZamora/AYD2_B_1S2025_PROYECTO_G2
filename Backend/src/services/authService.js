@@ -1,5 +1,5 @@
 
-const db = require('../services/DBService').default;
+const {db} = require('../services/DBService');
 const encrypter = require('../services/encryptService');
 
 
@@ -15,7 +15,7 @@ const register = async ({ email, password, fullName, age }) => {
         }
 
       // encriptar contraseña
-        const hashedPassword = await encrypter.sha256(password);
+        const hashedPassword = encrypter.encrypt(password);
 
       
         const result = await db.query(
@@ -39,7 +39,7 @@ const register = async ({ email, password, fullName, age }) => {
 const login = async ({ username, password, userType }) => {
     try {
 
-        const users = await db.query(`SELECT * FROM ${userType} WHERE correo = ? AND contrasenia = ? AND verificado = 1`, [username, await encrypter.sha256(password)]);
+        const users = await db.query(`SELECT * FROM ${userType} WHERE correo = ? AND contrasenia = ? AND verificado = 1`, [username, encrypter.encrypt(password)]);
 
 
 
@@ -78,6 +78,25 @@ const verifyEmail = async (email, usertype) => {
 };
 
 
+const recoverPassword = async (email) => {
+    try {
+        const rows = await db.query(`SELECT * FROM cuenta WHERE correo = ?`, [email]);
+
+        if (rows.length === 0) {
+            return { success: false, message: 'No se encontró una cuenta con este correo.' };
+        }
+        // recover password
+
+        const contrasenia = encrypter.decrypt(rows[0].contrasenia); 
+        
+
+        return { success: true, message: 'Correo enviado exitosamente.', password: contrasenia  };
+    } catch (error) {
+        console.error('Error al recuperar contraseña:', error);
+        return { success: false, message: 'Error interno del servidor.' };
+    }
+};
+
 
 
 
@@ -86,5 +105,6 @@ module.exports = {
    
     login,
     register,
-    verifyEmail
+    verifyEmail,
+    recoverPassword
 };

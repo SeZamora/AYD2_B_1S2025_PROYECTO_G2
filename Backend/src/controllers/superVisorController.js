@@ -1,5 +1,5 @@
-const superVisorService = require('../services/superVisorService');
-const emailService = require('../services/emailService');
+const superVisorService = require('../services/superVisorService.js');
+const emailService = require('../services/emailService.js');
 
 
 
@@ -79,11 +79,28 @@ const getSupervisorById = async (req, res) => {
     }
 };
 
+const deleteSupervisor = async (req, res) => {
+    try {
+        const { id_supervisor, reason_fired } = req.body;
+
+        if (!id_supervisor || !reason_fired) {
+            return res.status(400).json({ message: 'Todos los campos son obligatorios' });
+        }
+
+        const result = await superVisorService.deleteSupervisor({ id_supervisor, reason_fired });
+        res.status(200).json(result);
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ message: 'Error al eliminar el supervisor' });
+    }
+};
+
+
+
 module.exports = {
-    
     editInfo,
     createSupervisor,
     getAllSupervisors,
-    getSupervisorById
+    getSupervisorById,
+    deleteSupervisor
 };
-
