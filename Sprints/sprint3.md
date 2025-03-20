@@ -15,7 +15,7 @@
 | Integrante  | ¿Qué se hizo ayer? | ¿Qué se hará hoy? | Impedimentos |
 |-------------|------------------|------------------|-------------|
 | Diego Huite | Revisión de todos los delete por parte del backend            |         Eliminación de libros y productos        |         Algunas referencias a libros y a productos hacen problema con el detalle de las facturas   |
-| Nombre 2    |                  |                  |             |
+| Jorge Zamora  |  - Visualizar Facturas | - Se pueden ver los libros en la area de compra y tambien se pueden agregar al carrito |    Existian libros y productos con el mismo id entonces daba error al momento de crear las cards |
 | Nombre 3    |                  |                  |             |
 | Nombre 4    |                  |                  |             |
 | Nombre 5    |                  |                  |             |
@@ -25,7 +25,7 @@
 | Integrante  | ¿Qué se hizo ayer? | ¿Qué se hará hoy? | Impedimentos |
 |-------------|------------------|------------------|-------------|
 | Diego Huite | Endpoint para el manejo de recibos por cada empleado   | Recuperación de contraseña de los usuarios      |    -         |
-| Nombre 2    |                  |                  |             |
+| Jorge Zamora |  - Terminar los requisitos de la vista empleado | - Crear la vista usuario <br> - Ajustar el carrito de empleado para carrito usuario | - Diferencias entre carritos |
 | Nombre 3    |                  |                  |             |
 | Nombre 4    |                  |                  |             |
 | Nombre 5    |                  |                  |             |
