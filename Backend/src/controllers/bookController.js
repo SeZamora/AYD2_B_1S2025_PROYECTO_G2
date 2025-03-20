@@ -1,6 +1,10 @@
 const bookService = require('../services/bookService');
-
-
+const { AddReseniaCommand } = require('../commands/addResenia');
+const { Command } = require('../commands/command');
+const { GetReseniaCommand } = require('../commands/getResenia');
+const {EditarComentarioCommand} = require('../commands/EditarComentario');
+const {EliminarComentarioCommand} = require('../commands/EliminarComentario');
+const incommand = new Command();
 const addBook = async (req, res) => {
     try {
         const { titulo, autor, fecha_lanzamiento, descripcion, genero, stock, precio } = req.body;
@@ -42,7 +46,7 @@ const getAllBooks = async (req, res) => {
 
 const getBookById = async (req, res) => {
     try {
-        const { id_libro } = req.body; // Se obtiene el ID desde el cuerpo de la solicitud
+        const { id_libro } = req.body; 
 
         if (!id_libro) {
             return res.status(400).json({ message: 'El ID del libro es obligatorio' });
@@ -103,13 +107,15 @@ const addResenia = async (req, res) => {
             return res.status(400).json({ message: 'La calificación debe estar entre 1 y 5' });
         }
 
-        const resultado = await bookService.addResenia({
+        const comando = new AddReseniaCommand(bookService, {
             calificacion,
             comentario,
             fecha,
             cuenta_id_cuenta,
             libros_id_libro
         });
+
+        const resultado = await incommand.executeCommand(comando);
 
         if (!resultado.success) {
             return res.status(400).json({ status: 'error', message: resultado.message });
@@ -124,8 +130,9 @@ const addResenia = async (req, res) => {
 
 const getAllResenias = async (req, res) => {
     try {
-        const result = await bookService.getAllResenias();
-
+        const comando = new GetReseniaCommand(bookService);
+        const result = await incommand.executeCommand(comando);
+        
         if (!result.success) {
             return res.status(400).json({ status: 'error', message: result.message });
         }
@@ -159,5 +166,62 @@ const deleteBook = async (req, res) => {
     }
 }
 
+const updateResenia = async (req, res) => {
+    try {
+        const { id_resenia, calificacion, comentario, fecha } = req.body;
 
-module.exports = { addBook, getAllBooks, getBookById, updateBook, addResenia, getAllResenias, deleteBook};
+        if (!id_resenia || !calificacion || !comentario || !fecha) {
+            return res.status(400).json({ message: 'Todos los campos son obligatorios' });
+        }
+
+        if (calificacion < 1 || calificacion > 5) {
+            return res.status(400).json({ message: 'La calificación debe estar entre 1 y 5' });
+        }
+
+        const comando = new EditarComentarioCommand(bookService, id_resenia, { calificacion, comentario, fecha });
+        const result = await incommand.executeCommand(comando);
+
+        if (!result.success) {
+            return res.status(400).json({ status: 'error', message: result.message });
+        }
+
+        res.status(200).json(result);
+    } catch (error) {
+        console.error('Error :', error);
+        res.status(500).json({ message: 'Error interno del servidor' });
+    }
+};
+
+const deleteResenia = async (req, res) => {
+    try {
+        const { id_resenia } = req.body; 
+
+        if (!id_resenia) {
+            return res.status(400).json({ message: 'El ID de la reseña es obligatorio' });
+        }
+
+        const comando = new EliminarComentarioCommand(bookService, id_resenia);
+        const result = await incommand.executeCommand(comando);
+
+        if (!result.success) {
+            return res.status(400).json({ status: 'error', message: result.message });
+        }
+
+        res.status(200).json(result);
+    } catch (error) {
+        console.error('Error :', error);
+        res.status(500).json({ message: 'Error interno del servidor' });
+    }
+};
+
+module.exports = { addBook, 
+    getAllBooks, 
+    getBookById, 
+    updateBook, 
+    addResenia, 
+    getAllResenias, 
+    deleteBook
+    ,updateResenia,
+    deleteResenia
+
+};

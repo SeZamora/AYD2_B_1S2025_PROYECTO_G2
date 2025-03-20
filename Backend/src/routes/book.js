@@ -10,4 +10,6 @@ router.post('/updatebook', bookController.updateBook);
 router.post('/addResenia', bookController.addResenia);
 router.get('/resenias', bookController.getAllResenias);
 router.post('/deletebook', bookController.deleteBook);
+router.delete('/deleteResenia', bookController.deleteResenia);
+router.post('/updateResenia', bookController.updateResenia);
 module.exports = router;
