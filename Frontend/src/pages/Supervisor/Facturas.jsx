@@ -146,11 +146,15 @@ export const VerFacturasSupervisor = () => {
                 </div>
 
                 <div className="mt-4 grid grid-cols-3 p-4 gap-4" style={{
-                    overflowY: 'auto',
-                    maxHeight: 'calc(100vh - 160px)',
-                    paddingBottom: '20px'
-                }}>
-                    {filteredFacturas.map((factura) => (
+    overflowY: 'scroll',
+    maxHeight: 'calc(90vh - 160px)',
+    paddingBottom: '20px',
+    scrollbarWidth: 'none', // Para Firefox
+    msOverflowStyle: 'none'  // Para Internet Explorer y Edge
+}}>
+    {filteredFacturas.map((factura) => (
+    
+
                         <CardEmpleado key={factura.id_facturas}>
                             <div className="flex">
                                 <label className="text-xl font-bold mr-2">ID Factura:</label>

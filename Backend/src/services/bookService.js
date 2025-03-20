@@ -35,7 +35,7 @@ const getAllBooks = async () => {
 
 const getBookById = async (id_libro) => {
     try {
-        const result = await db.query(`SELECT * FROM libros WHERE id_libro = ? AND WHERE disponible = 1`, [id_libro]);
+        const result = await db.query(`SELECT * FROM libros WHERE id_libro = ? AND disponible = 1`, [id_libro]);
 
         if (result.length > 0) {
             return { success: true, book: result[0] }; // Retorna el libro encontrado
@@ -121,6 +121,43 @@ const deleteBook = async (id_libro) => {
 }
 
 
+const updateResenia = async (id_resenia, { calificacion, comentario, fecha }) => {
+    try {
+        const result = await db.query(
+            `UPDATE resenias SET calificacion = ?, comentario = ?, fecha = ? WHERE id_resenia = ?`,
+            [calificacion, comentario, fecha, id_resenia]
+        );
+
+        if (result.affectedRows === 0) {
+            return { success: false, message: 'Reseña no encontrada o sin cambios' };
+        }
+
+        return { success: true, message: 'Reseña actualizada exitosamente' };
+    } catch (error) {
+        console.error('Database Error:', error.sqlMessage || error);
+        return { success: false, message: 'Error al actualizar la reseña.' };
+    }
+};
+
+const deleteResenia = async (id_resenia) => {
+    try {
+        const result = await db.query(
+            `DELETE FROM resenias WHERE id_resenia = ?`,
+            [id_resenia]
+        );
+
+        if (result.affectedRows === 0) {
+            return { success: false, message: 'Reseña no encontrada' };
+        }
+
+        return { success: true, message: 'Reseña eliminada exitosamente' };
+    } catch (error) {
+        console.error('Database Error:', error.sqlMessage || error);
+        return { success: false, message: 'Error al eliminar la reseña.' };
+    }
+};
+
+
 module.exports = { 
     addBook,
     getAllBooks,
@@ -128,6 +165,7 @@ module.exports = {
     updateBook,
     addResenia,
     getAllResenias,
-    deleteBook
-
+    deleteBook,
+    updateResenia,
+    deleteResenia
 };

@@ -38,6 +38,9 @@ const LoginPage = () => {
                 if (data.userType === 'empleados') {
                     navigate('/empleado'); 
                 }
+                if (data.userType == 'cuenta'){
+                    navigate('/usuario')
+                }
                 
 
             } else {

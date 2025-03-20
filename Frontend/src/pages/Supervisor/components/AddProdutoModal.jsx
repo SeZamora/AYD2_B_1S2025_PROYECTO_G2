@@ -18,18 +18,18 @@ const AddProdutoModal = ({ showModal, toggleModal, role, productId }) => {
         }
     }, [showModal, role]);
 
-    // Manejar cambios en inputs de texto y números
+   
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
     };
 
-    // Manejar selección de archivo
+
     const handleFileChange = (e) => {
         setFormData({ ...formData, imagen: e.target.files[0] });
     };
 
-    // Enviar datos al backend
+
     const handleSubmit = async (e) => {
 
         e.preventDefault();
@@ -110,7 +110,7 @@ const AddProdutoModal = ({ showModal, toggleModal, role, productId }) => {
 
     return (
         <>
-            {/* Fondo gris semi-transparente */}
+           
             {showModal && (
                 <div
                     className="modal-backdrop fade show"
@@ -127,7 +127,7 @@ const AddProdutoModal = ({ showModal, toggleModal, role, productId }) => {
                 />
             )}
 
-            {/* Modal */}
+           
             <div
                 className={`modal fade ${showModal ? 'show' : ''}`}
                 tabIndex="-1"
