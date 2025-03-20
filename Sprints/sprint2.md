@@ -15,7 +15,7 @@
 | Integrante  | ¿Qué se hizo ayer? | ¿Qué se hará hoy? | Impedimentos |
 |-------------|------------------|------------------|-------------|
 | Diego Huite |   Revisión del modelo de la base de datos y comenzar con las funcionalidades del backend (principalmente la parde de edición de cada una de las entidades como libros, usuarios, adminstradores, supervisores, etc.)             |         Tratar de establecer las conexiones en los tres contenedores        |         -   |
-| Nombre 2    |                  |                  |             |
+| Jorge Zamora | - Revision que los productos se listen correctamente | - Configure la funcionalidad de agregar productos al carrito empleado |  - No tener el suficiente dominio de React |
 | Nombre 3    |                  |                  |             |
 | Nahomi Aparicio|                  |                  |             |
 | Nombre 5    |                  |                  |             |
@@ -25,7 +25,8 @@
 | Integrante  | ¿Qué se hizo ayer? | ¿Qué se hará hoy? | Impedimentos |
 |-------------|------------------|------------------|-------------|
 | Diego Huite | Se terminó la parte de editar supervisor y empleado, así como también el uso de blobs en atributos de la db mysql para almacenar fotos   | Averiguar como gestionar el envío de correos cuando los usuarios se registren.       |    -         |
-| Nombre 2    |                  |                  |             |
+| Jorge Zamora | - Configurar el carrito | - Implemente la opcion de pagar, donde se ingresan los datos del vendedor y cliente <br> - Enviar la estructura para que se cree la factura en la base de datos.
+| - No genera el pdf de la factura luego de realizar el pago |
 | Nombre 3    |                  |                  |             |
 | Nahomi Aparicio|                  |                  |             |
 | Nombre 5    |                  |                  |             |
@@ -34,7 +35,7 @@
 | Integrante  | ¿Qué se hizo ayer? | ¿Qué se hará hoy? | Impedimentos |
 |-------------|------------------|------------------|-------------|
 | Diego Huite | Se logró enviar correos y agregar la verificación a través de un correo a los usuarios que se registren        | Edición de libros y productos en el backend                       |   - |
-| Nombre 2    |                  |                  |             |
+| Jorge Zamora | - Configurar el sistema de pago | - Crea la factura en pdf y se visualiza en el frontend cuando termina la compra |  - Manejo de la libreria para crear el pdf |
 | Nombre 3    |                  |                  |             |
 | Nahomi Aparicio|                  |                  |             |
 | Nombre 5    |                  |                  |             |
@@ -44,7 +45,7 @@
 | Integrante  | ¿Qué se hizo ayer? | ¿Qué se hará hoy? | Impedimentos |
 |-------------|------------------|------------------|-------------|
 | Diego Huite | Se finalizó las ediciones de cada una de las entidades y se hicieron algunas modificaciones a la base de datos.         |        Tratar de gestionar las diferencias entre productos y libros en la base de datos, ya que algunas relaciones están causando conflictos cuando se trata de hacer un delete por las llaves foráneas.       |        Relaciones causan problemas al tratar de eliminar registros de una tabla.     |
-| Nombre 2    |                  |                  |             |
+| Jorge Zamora | - Generar una factura | - Existian libros y productos con el mismo id entonces daba error al momento de crear las cards | |
 | Nombre 3    |                  |                  |             |
 | Nahomi Aparicio|                  |                  |             |
 | Nombre 5    |                  |                  |             |
@@ -89,6 +90,24 @@
 
 ---
 
+### Evaluación del Sprint - 202002591
+
+#### ¿Qué se hizo bien?
+- Se implementó la funcionalidad del carrito de compras.
+- Se añadió la opción de pago con ingreso de datos del vendedor y cliente.
+- Se almacenaron correctamente las facturas en la base de datos.
+- Se logró generar y visualizar las facturas en PDF en el frontend.
+
+#### ¿Qué se hizo mal?
+- Hubo dificultades al manejar el estado del carrito con useState en React.
+- No se generaba automáticamente el PDF de la factura al finalizar el pago.
+- Se presentaron complicaciones con la librería utilizada para generar los PDFs.
+#### ¿Qué mejoras implementar?
+- Implementar los libros al carrito
+- Configurar carrito en el Usuario
+
+---
+
 ### Evaluación del Sprint - XXXXXXXXXX
 
 #### ¿Qué se hizo bien?
@@ -102,6 +121,44 @@
 
 ---
 
+### Evaluación del Sprint - XXXXXXXXXX
+
+#### ¿Qué se hizo bien?
+- 
+
+#### ¿Qué se hizo mal?
+- 
+
+#### ¿Qué mejoras implementar?
+- 
+
+---
+
+### Evaluación del Sprint - XXXXXXXXXX
+
+#### ¿Qué se hizo bien?
+- 
+
+#### ¿Qué se hizo mal?
+- 
+
+#### ¿Qué mejoras implementar?
+- 
+
+---
+
+### Evaluación del Sprint - XXXXXXXXXX
+
+#### ¿Qué se hizo bien?
+- 
+
+#### ¿Qué se hizo mal?
+- 
+
+#### ¿Qué mejoras implementar?
+- 
+
+---
 
 
 ### Tablero Final
