@@ -43,7 +43,7 @@ const getAllBills = async (req, res) => {
 
 const getBillById = async (req, res) => {
     try {
-        const { id } = req.body; // Ahora se recibe desde el body en lugar de params
+        const { id } = req.body; 
 
         if (!id) {
             return res.status(400).json({ status: 'error', message: 'El ID de la factura es obligatorio' });
