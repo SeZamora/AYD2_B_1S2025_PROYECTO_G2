@@ -5,7 +5,7 @@
 ## Integrantes
 1. **Diego Andres Huite Alvarez** - Carnet: 202003585
 2. **Jorge Sebastian Zamora Polanco** - Carnet: 202002591
-3. **Nombre 3** - Carnet: XXXXXXX
+3. **Hugo Daniel Girón Garcia** - Carnet: 202004807
 4.  **Genesis Nahomi Aparicio Acan** - Carnet: 202113293
 5. **Nombre 5** - Carnet: XXXXXXX
 
@@ -16,41 +16,44 @@
 |-------------|------------------|------------------|-------------|
 | Diego Huite |-Empezar la estructura del backend (proyecto nodejs - express)  <br> -  Revisión del modelo de la base de datos y comenzar con las funcionalidades del backend                      |Tratar de establecer las conexiones en los tres contenedores|         -   |
 | Jorge Zamora    | - Preparar el entorno | - Configurar el Inicio de sesion empleado |     - No redirije a la pestaña home        |
-| Nombre 3    |                  |                  |             |
+| **Hugo Girón**  | - Diseñar vistas del gerente, supervisores y facturas. | - Investigar librerías para gráficos y tablas (Chart.js, D3.js). | - Dificultad para implementar gráficos y tablas. |
 | Nahomi Aparicio|Se repartieron las partes de cada integrante, tocándome a mí el Frontend de supervisor | Crear la base de frontend, así como comenzar a crear la vista de la página de login      |     -    |
 | Nombre 5    |                  |                  |             |
 
+---
 
-### Día 2 (Miercoles)
+### Día 2 (Miércoles)
 | Integrante  | ¿Qué se hizo ayer? | ¿Qué se hará hoy? | Impedimentos |
 |-------------|------------------|------------------|-------------|
 | Diego Huite |Se terminó la parte de editar supervisor y empleado, así como también el uso de blobs en atributos de la db mysql para almacenar fotos  | Averiguar como gestionar el envío de correos cuando los usuarios se registren. |    -         |
 | Jorge Zamora | - Configurar el login al home de empleado | - Configurar la vista home de empleado <br> - Creacion de una navbar de empleado | - Trabajar solo con muckups |
-| Nombre 3    |                  |                  |             |
+| **Hugo Girón**  | - Implementar tablas funcionales para supervisores (CRUD básico). | - Conectar frontend con API usando fetch. | - Errores de conexión con la base de datos. |
 | Nahomi Aparicio|- Se creo la base de el Frontend ordenando las carpetas para un mejor ordenamiento a el proyecto  <br> - Se comenzo con la vista del login y el uso del contexto para que los usuarios no puedan acceder a paginas que no les corresponden  |Se creara las primeras vistas de el supervisor y sus respectivas tablas| -   |
 | Nombre 5    |                  |                  |             |
+
+---
 
 ### Día 3 (Viernes)
 | Integrante  | ¿Qué se hizo ayer? | ¿Qué se hará hoy? | Impedimentos |
 |-------------|------------------|------------------|-------------|
 | Diego Huite | Se creo un endpoint para el login muy básico, así como también un endpoint para registrarse.| enviar correos y agregar la verificación a través de un correo a los usuarios que se registren  |        -     |
 | Jorge Zamora |  - Configurar la vista home | - Listar los productos en cards <br> - Configurar el boton para ver los detalles de los productos | - Los botones de los productos aun no tiene interaccion |
-| Nombre 3    |                  |                  |             |
+| **Hugo Girón**  | - Visualización de facturas con filtros frontend. | - Implementar gráficos de ventas. | - Filtrado desde backend no funcionaba. |
 | Nahomi Aparicio|- Se crearon las vistas y las tablas que el super visor necesita<br> -Se crearon modals para los datos de agregar, eliminar y editar| Usar los Endpoints para poder logear el Supervisor |  -   |
 | Nombre 5    |                  |                  |             |
 
+---
 
-### Día 4 (Sabado)
+### Día 4 (Sábado)
 | Integrante  | ¿Qué se hizo ayer? | ¿Qué se hará hoy? | Impedimentos |
 |-------------|------------------|------------------|-------------|
 | Diego Huite |Edición de libros y productos en el backend <br> - Se finalizó las ediciones de cada una de las entidades y se hicieron algunas modificaciones a la base de datos.	| Se creo un endpoint para el login muy básico, así como también un endpoint para registrarse.                 | Tratar de gestionar las diferencias entre productos y libros en la base de datos, ya que algunas relaciones están causando conflictos cuando se trata de hacer un delete por las llaves foráneas. |Relaciones causan problemas al tratar de eliminar registros de una tabla.
 | Jorge Zamora | - Comprender como funcionan las factuas |  - Creacion la vista ver las facturas en cards <br> - Creacion la vista ver factura por id |  - Aun no se puede ver en pdf |
-| Nombre 3    |                  |                  |             |
+| **Hugo Girón**  | - Implementar gráficos de barras para ventas por período. | - Agregar gráficos de ganancias. | - Gráficos desbordaban el contenedor. |
 | Nahomi Aparicio|- Se arreglo el contexto para que solo los respectivos usuarios ingresen a sus vistas<br> - Se integro el login del frontend con el backend para el supervisor | Integrar el contexto a las rutas de el supervisor|Las contraseñas de los supervisores estaban danto error|
 | Nombre 5    |                  |                  |             |
 
-
-
+---
 
 
 

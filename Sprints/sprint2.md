@@ -4,54 +4,57 @@
 
 ## Integrantes
 1. **Diego Andres Huite Alvarez** - Carnet: 202003585
-2. **Nombre 2** - Carnet: XXXXXXX
-3. **Nombre 3** - Carnet: XXXXXXX
-4. **Genesis Nahomi Aparicio Acan** - Carnet: 202113293
+2. **Jorge Sebastian Zamora Polanco** - Carnet: 202002591
+3. **Hugo Daniel Girón Garcia** - Carnet: 202004807
+4.  **Genesis Nahomi Aparicio Acan** - Carnet: 202113293
 5. **Nombre 5** - Carnet: XXXXXXX
+
 
 ## Daily Standup
 
 ### Día 1 (Lunes)
 | Integrante  | ¿Qué se hizo ayer? | ¿Qué se hará hoy? | Impedimentos |
 |-------------|------------------|------------------|-------------|
-| Diego Huite |   Revisión del modelo de la base de datos y comenzar con las funcionalidades del backend (principalmente la parde de edición de cada una de las entidades como libros, usuarios, adminstradores, supervisores, etc.)             |         Tratar de establecer las conexiones en los tres contenedores        |         -   |
-| Jorge Zamora | - Revision que los productos se listen correctamente | - Configure la funcionalidad de agregar productos al carrito empleado |  - No tener el suficiente dominio de React |
-| Nombre 3    |                  |                  |             |
-| Nahomi Aparicio|                  |                  |             |
-| Nombre 5    |                  |                  |             |
+| Diego Huite | Revisión del modelo de la base de datos y comenzar con las funcionalidades del backend (principalmente la parte de edición de cada una de las entidades como libros, usuarios, administradores, supervisores, etc.) | Tratar de establecer las conexiones en los tres contenedores | - |
+| Jorge Zamora | - Revisión que los productos se listen correctamente | - Configurar la funcionalidad de agregar productos al carrito empleado | - No tener el suficiente dominio de React |
+| **Hugo Girón** | - Implementar gráficos de pastel para ganancias por categoría. | - Configurar alertas de stock mínimo. | - Datos incorrectos en gráficos. |
+| Nahomi Aparicio | - | - | - |
+| Nombre 5 | - | - | - |
 
+---
 
-### Día 2 (Miercoles)
+### Día 2 (Miércoles)
 | Integrante  | ¿Qué se hizo ayer? | ¿Qué se hará hoy? | Impedimentos |
 |-------------|------------------|------------------|-------------|
-| Diego Huite | Se terminó la parte de editar supervisor y empleado, así como también el uso de blobs en atributos de la db mysql para almacenar fotos   | Averiguar como gestionar el envío de correos cuando los usuarios se registren.       |    -         |
-| Jorge Zamora | - Configurar el carrito | - Implemente la opcion de pagar, donde se ingresan los datos del vendedor y cliente <br> - Enviar la estructura para que se cree la factura en la base de datos.
-| - No genera el pdf de la factura luego de realizar el pago |
-| Nombre 3    |                  |                  |             |
-| Nahomi Aparicio|                  |                  |             |
-| Nombre 5    |                  |                  |             |
+| Diego Huite | Se terminó la parte de editar supervisor y empleado, así como también el uso de blobs en atributos de la db mysql para almacenar fotos | Averiguar cómo gestionar el envío de correos cuando los usuarios se registren. | - |
+| Jorge Zamora | - Configurar el carrito | - Implementar la opción de pagar, donde se ingresan los datos del vendedor y cliente <br> - Enviar la estructura para que se cree la factura en la base de datos. | - No genera el PDF de la factura luego de realizar el pago. |
+| **Hugo Girón** | - Configurar lógica para stock mínimo general y por producto. | - Pruebas de alertas con datos reales. | - Alertas no se activaban automáticamente. |
+| Nahomi Aparicio | - | - | - |
+| Nombre 5 | - | - | - |
+
+---
 
 ### Día 3 (Viernes)
 | Integrante  | ¿Qué se hizo ayer? | ¿Qué se hará hoy? | Impedimentos |
 |-------------|------------------|------------------|-------------|
-| Diego Huite | Se logró enviar correos y agregar la verificación a través de un correo a los usuarios que se registren        | Edición de libros y productos en el backend                       |   - |
-| Jorge Zamora | - Configurar el sistema de pago | - Crea la factura en pdf y se visualiza en el frontend cuando termina la compra |  - Manejo de la libreria para crear el pdf |
-| Nombre 3    |                  |                  |             |
-| Nahomi Aparicio|                  |                  |             |
-| Nombre 5    |                  |                  |             |
+| Diego Huite | Se logró enviar correos y agregar la verificación a través de un correo a los usuarios que se registren | Edición de libros y productos en el backend | - |
+| Jorge Zamora | - Configurar el sistema de pago | - Crear la factura en PDF y se visualiza en el frontend cuando termina la compra. | - Manejo de la librería para crear el PDF. |
+| **Hugo Girón** | - Pruebas de alertas de stock con datos simulados. | - Documentar casos de prueba para alertas. | - Errores en cálculos de ganancias netas. |
+| Nahomi Aparicio | - | - | - |
+| Nombre 5 | - | - | - |
 
+---
 
-### Día 4 (Sabado)
+### Día 4 (Sábado)
 | Integrante  | ¿Qué se hizo ayer? | ¿Qué se hará hoy? | Impedimentos |
 |-------------|------------------|------------------|-------------|
-| Diego Huite | Se finalizó las ediciones de cada una de las entidades y se hicieron algunas modificaciones a la base de datos.         |        Tratar de gestionar las diferencias entre productos y libros en la base de datos, ya que algunas relaciones están causando conflictos cuando se trata de hacer un delete por las llaves foráneas.       |        Relaciones causan problemas al tratar de eliminar registros de una tabla.     |
-| Jorge Zamora | - Generar una factura | - Existian libros y productos con el mismo id entonces daba error al momento de crear las cards | |
-| Nombre 3    |                  |                  |             |
-| Nahomi Aparicio|                  |                  |             |
-| Nombre 5    |                  |                  |             |
+| Diego Huite | Se finalizó las ediciones de cada una de las entidades y se hicieron algunas modificaciones a la base de datos. | Tratar de gestionar las diferencias entre productos y libros en la base de datos, ya que algunas relaciones están causando conflictos cuando se trata de hacer un delete por las llaves foráneas. | Relaciones causan problemas al tratar de eliminar registros de una tabla. |
+| Jorge Zamora | - Generar una factura | - Existían libros y productos con el mismo ID, entonces daba error al momento de crear las cards. | - |
+| **Hugo Girón** | - Implementar logs para errores críticos. | - Optimizar consultas SQL para mejorar rendimiento. | - Lentitud en carga de facturas grandes. |
+| Nahomi Aparicio | - | - | - |
+| Nombre 5 | - | - | - |
 
-
-
+---
 
 
 
