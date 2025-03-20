@@ -1,5 +1,8 @@
 const superVisorService = require('../services/superVisorService.js');
-const emailService = require('../services/emailService.js');
+const EmailServiceFactory = require("../services/emailServiceFactory");
+
+const emailService = EmailServiceFactory.createEmailService("smtp.gmail.com", 465, true, "alvarezdiego9714@gmail.com", "kmwz nsgc bavc jffn ");
+
 
 
 
@@ -28,7 +31,7 @@ const createSupervisor = async (req, res) => {
         
 
         const result = await superVisorService.createSupervisor({ gerente_id_gerente, nombre, email, contrasenia, telefono, fecha_ingreso, verificado });
-        const resultado_email = await emailService.sendVerificationEmail({ 
+        const resultado_email = await emailService.sendEmail({ 
             email, 
             subject: 'Verificación de correo electrónico supervisor', 
             html: `
