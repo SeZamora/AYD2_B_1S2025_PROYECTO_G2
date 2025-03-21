@@ -39,10 +39,10 @@ export const ProductoDetalle = () => {
                 from-indigo-500 to-teal-400 bg-clip-text text-transparent tracking-wide py-4 mb-16">
                     {producto.nombre}
                 </h1>
-                    <img 
-                        src={producto.imagen} 
-                        alt={producto.nombre} 
-                        className="w-full h-85 object-cover rounded-lg mt-2 mb-16"
+                    <img
+                        src={`data:image/jpeg;base64,${producto.imagen}`}
+                        alt={producto.nombre}
+                        className="w-full h-48 object-cover rounded-md"
                     />
                     <div className="mt-4 space-y-8 text-gray-700">
                         <p className="text-2xl"><span className="font-semibold">Descripción:</span> {producto.descripcion}</p>
