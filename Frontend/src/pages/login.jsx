@@ -107,7 +107,7 @@ const LoginPage = () => {
                     <div className="message">
                         <h2>Bienvenido de nuevo</h2>
                         <p>Si aún no tienes una cuenta, por favor regístrate aquí</p>
-                        <button className="input-button">Registrarse</button>
+                        <button className="input-button"onClick={() => navigate('/Registro')}>Registrarse</button>
                     </div>
                 </div>
                 <ToastContainer position="bottom-right" autoClose={3000} pauseOnHover theme="colored" />
