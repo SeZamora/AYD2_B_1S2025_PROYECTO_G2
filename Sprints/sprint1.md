@@ -110,18 +110,7 @@
 - Investigar más sobre React y su manejo de estado para mejorar la funcionalidad.
 
 ---
-### Evaluación del Sprint - XXXXXXXXXX
 
-#### ¿Qué se hizo bien?
-- 
-
-#### ¿Qué se hizo mal?
-- 
-
-#### ¿Qué mejoras implementar?
-- 
-
----
 ### Evaluación del Sprint - 202113293
 
 #### ¿Qué se hizo bien?

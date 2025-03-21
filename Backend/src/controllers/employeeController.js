@@ -1,6 +1,8 @@
 const employeeService = require('../services/employeeService');
 const multer = require('multer');
-const emailService = require('../services/emailService');
+const EmailServiceFactory = require("../services/emailServiceFactory");
+const emailService = EmailServiceFactory.createEmailService("smtp.gmail.com", 465, true, "alvarezdiego9714@gmail.com", "kmwz nsgc bavc jffn ");
+
 
 
 
@@ -32,7 +34,7 @@ const addEmployee = async (req, res) => {
         });
 
         // Enviar correo de verificación
-        const resultado_email = await emailService.sendVerificationEmail({
+        const resultado_email = await emailService.sendEmail({
             email: correo,
             subject: 'Verificación de correo electrónico empleado',
             html: `

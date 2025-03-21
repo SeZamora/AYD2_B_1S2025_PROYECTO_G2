@@ -15,7 +15,7 @@
 ### Día 1 (Lunes)
 | Integrante  | ¿Qué se hizo ayer? | ¿Qué se hará hoy? | Impedimentos |
 |-------------|------------------|------------------|-------------|
-| Diego Huite | Revisión del modelo de la base de datos y comenzar con las funcionalidades del backend (principalmente la parte de edición de cada una de las entidades como libros, usuarios, administradores, supervisores, etc.) | Tratar de establecer las conexiones en los tres contenedores | - |
+| Diego Huite | Creas imágenes de cada uno de los componentes de la aplicación | Tratar de establecer las conexiones en los tres contenedores y hacerlos funcionar a la vez con docker compose | - |
 | Jorge Zamora | - Revisión que los productos se listen correctamente | - Configurar la funcionalidad de agregar productos al carrito empleado | - No tener el suficiente dominio de React |
 | **Hugo Girón** | - Implementar gráficos de pastel para ganancias por categoría. | - Configurar alertas de stock mínimo. | - Datos incorrectos en gráficos. |
 | Nahomi Aparicio |- Se configuro la peticion de obtener todos los productos para mostrarlos en la tabla de productos <br> - el modal agregar produtos logra hacer petciciones a la api | hacer uso de los endpoints restantes para el supervisor | no se hizo mencion de una libreria que debia de instalarse para poder agregar las imagenes|
@@ -26,7 +26,7 @@
 ### Día 2 (Miércoles)
 | Integrante  | ¿Qué se hizo ayer? | ¿Qué se hará hoy? | Impedimentos |
 |-------------|------------------|------------------|-------------|
-| Diego Huite | Se terminó la parte de editar supervisor y empleado, así como también el uso de blobs en atributos de la db mysql para almacenar fotos | Averiguar cómo gestionar el envío de correos cuando los usuarios se registren. | - |
+| Diego Huite | Se terminó la parte de editar supervisor y empleado, así como también el uso de blobs en atributos de la db mysql para almacenar fotos | Averiguar cómo gestionar el envío de correos cuando los usuarios se registren. | Modificar la solución anteriormente implementada usando aws s3 para las imágenes. |
 | Jorge Zamora | - Configurar el carrito | - Implementar la opción de pagar, donde se ingresan los datos del vendedor y cliente <br> - Enviar la estructura para que se cree la factura en la base de datos. | - No genera el PDF de la factura luego de realizar el pago. |
 | **Hugo Girón** | - Configurar lógica para stock mínimo general y por producto. | - Pruebas de alertas con datos reales. | - Alertas no se activaban automáticamente. |
 | Nahomi Aparicio |- Se coniguraron correctamente las peticiones del front al back de agregar y ver libro ademas se arreglo ver y agregar producto |Configurar la peticion de editar libro para que solo los datos que se necesitan se editen| - |
@@ -109,18 +109,6 @@
 - Implementar los libros al carrito
 - Configurar carrito en el Usuario
 
----
-
-### Evaluación del Sprint - XXXXXXXXXX
-
-#### ¿Qué se hizo bien?
-- 
-
-#### ¿Qué se hizo mal?
-- 
-
-#### ¿Qué mejoras implementar?
-- 
 
 ---
 

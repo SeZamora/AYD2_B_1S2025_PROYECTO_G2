@@ -111,19 +111,6 @@
 - Mejorar la comunicación entre el equipo de desarrollo para establecer de mejor manera la implementacion de los patrones de diseño.
 ---
 
-### Evaluación del Sprint - XXXXXXXXXX
-
-#### ¿Qué se hizo bien?
-- 
-
-#### ¿Qué se hizo mal?
-- 
-
-#### ¿Qué mejoras implementar?
-- 
-
----
-
 ### Evaluación del Sprint - 202113293
 
 #### ¿Qué se hizo bien?
