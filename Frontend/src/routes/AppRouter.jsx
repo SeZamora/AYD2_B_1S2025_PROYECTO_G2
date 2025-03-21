@@ -2,6 +2,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import useAuth from "../hook/useAuth";
 import Login from "../pages/login";
 import Registro from "../pages/Registro";
+import Contraseña from "../pages/Contraseña";
 import SuperPrincipal from "../pages/Supervisor/Principal";
 import Productos from "../pages/Supervisor/Productos";
 import Libros from "../pages/Supervisor/Libros";
@@ -32,6 +33,7 @@ const AppRouter = () => {
     <Routes>
       <Route path="/" element={<Login />} />
       <Route path="/Registro" element={<Registro />} />
+      <Route path="/Contraseña" element={<Contraseña />} />
       <Route path="/testUpload" element={ <TestUpload />} />
 
       <Route path="/SuperPrincipal" element={role === "supervisores" ? <SuperPrincipal /> : <Navigate to="/" />} />

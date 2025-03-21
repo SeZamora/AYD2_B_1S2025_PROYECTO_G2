@@ -108,6 +108,9 @@ const LoginPage = () => {
                         <h2>Bienvenido de nuevo</h2>
                         <p>Si aún no tienes una cuenta, por favor regístrate aquí</p>
                         <button className="input-button"onClick={() => navigate('/Registro')}>Registrarse</button>
+                        <a className="recover-password-link" onClick={() => navigate('/Contraseña')}>
+                            ¿Olvidaste tu contraseña?
+                        </a>
                     </div>
                 </div>
                 <ToastContainer position="bottom-right" autoClose={3000} pauseOnHover theme="colored" />
