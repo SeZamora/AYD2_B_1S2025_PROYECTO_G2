@@ -7,7 +7,7 @@
 2. **Jorge Sebastian Zamora Polanco** - Carnet: 202002591
 3. **Hugo Daniel Girón Garcia** - Carnet: 202004807
 4.  **Genesis Nahomi Aparicio Acan** - Carnet: 202113293
-5. **Nombre 5** - Carnet: XXXXXXX
+5. **Lesther Kevin Federico López Miculax** - Carnet: 202110897
 
 
 ## Daily Standup
@@ -19,7 +19,8 @@
 | Jorge Zamora | - Revisión que los productos se listen correctamente | - Configurar la funcionalidad de agregar productos al carrito empleado | - No tener el suficiente dominio de React |
 | **Hugo Girón** | - Implementar gráficos de pastel para ganancias por categoría. | - Configurar alertas de stock mínimo. | - Datos incorrectos en gráficos. |
 | Nahomi Aparicio |- Se configuro la peticion de obtener todos los productos para mostrarlos en la tabla de productos <br> - el modal agregar produtos logra hacer petciciones a la api | hacer uso de los endpoints restantes para el supervisor | no se hizo mencion de una libreria que debia de instalarse para poder agregar las imagenes|
-| Nombre 5 | - | - | - |
+| Nahomi Aparicio | - | - | - |
+| Lesther López | Se realizó pruebas en los endpoints para crear y obtener libros y productos | Crear los primeros endpoints relacionados con las facturas, es decir, la creación de facturas | - |
 
 ---
 
@@ -30,7 +31,8 @@
 | Jorge Zamora | - Configurar el carrito | - Implementar la opción de pagar, donde se ingresan los datos del vendedor y cliente <br> - Enviar la estructura para que se cree la factura en la base de datos. | - No genera el PDF de la factura luego de realizar el pago. |
 | **Hugo Girón** | - Configurar lógica para stock mínimo general y por producto. | - Pruebas de alertas con datos reales. | - Alertas no se activaban automáticamente. |
 | Nahomi Aparicio |- Se coniguraron correctamente las peticiones del front al back de agregar y ver libro ademas se arreglo ver y agregar producto |Configurar la peticion de editar libro para que solo los datos que se necesitan se editen| - |
-| Nombre 5 | - | - | - |
+| Nahomi Aparicio | - | - | - |
+| Lesther López | Se crearon endpoints relacionados con las entidades de las facturas, por lo que se terminó la creación de las facturas con sus detalles en el backend. Además, se realizó la creación de endpoints para obtener facturas, tanto por ID como en su totalidad. | Se agregarán validaciones adicionales a la entidad de facturas para mejorar la administración del stock de productos y libros, asegurando que las cantidades disponibles se reduzcan con cada generación de factura. | Se encontraron problemas en el modelo de la base de datos en las entidades facturas y detalle factura |
 
 ---
 
@@ -41,7 +43,8 @@
 | Jorge Zamora | - Configurar el sistema de pago | - Crear la factura en PDF y se visualiza en el frontend cuando termina la compra. | - Manejo de la librería para crear el PDF. |
 | **Hugo Girón** | - Pruebas de alertas de stock con datos simulados. | - Documentar casos de prueba para alertas. | - Errores en cálculos de ganancias netas. |
 | Nahomi Aparicio |Se areglo el endpoint del back para poder editar productos <br> - Se hicieron correctamente las peticiones desde el frontend al back para editar libro , agregar libro  y ver libro  | se creara la vista de opiniones y se usaran datos simulados  |el endpoint de editar produto daba error al no ingresar datos correctamentes en el backend|
-| Nombre 5 | - | - | - |
+| Nahomi Aparicio | - | - | - |
+| Lesther López | Se terminaron de corregir ciertos atributos en el detalle de las facturas para poder tener un mejor manejo del stock y la entidad en general | Crear los primeros endpoints para las reseñas de los libros | - |
 
 ---
 
@@ -52,7 +55,8 @@
 | Jorge Zamora | - Generar una factura | - Existían libros y productos con el mismo ID, entonces daba error al momento de crear las cards. | - |
 | **Hugo Girón** | - Implementar logs para errores críticos. | - Optimizar consultas SQL para mejorar rendimiento. | - Lentitud en carga de facturas grandes. |
 | Nahomi Aparicio | se creo la vista y las tablas para las opiniones de los libros y se optienen todas las opiniones del endpoint  | se conectara el endpoint de buscar producto al frontend asi como se arreglaran algunos pequeños detalles en la vista de los supervisores | - |
-| Nombre 5 | - | - | - |
+| Nahomi Aparicio | - | - | - |
+| Lesther López | Se implementó un endpoint para la creación de reseñas y otro adicional para obtener todas las reseñas registradas. | Implementar el endpoint para la edicion y eliminacion de las reseñas para los libros | - |
 
 ---
 
@@ -155,16 +159,17 @@
 
 ---
 
-### Evaluación del Sprint - XXXXXXXXXX
-
+### Evaluación del Sprint - 202110897
 #### ¿Qué se hizo bien?
-- 
+- Se implemento las primeras funcionalidades de reseñas en el backend de manera correcta
+-  Se logró gestionar de manera correcta la generacion y obtencion de facturas.
 
 #### ¿Qué se hizo mal?
-- 
+- No se contemplo ciertos atributos fundamentales en diversas entidades como producto o detalle de factura.
+- Ciertos endpoints no devolvian la respuesta esperada.
 
 #### ¿Qué mejoras implementar?
-- 
+- Mejorar la comunicación con los encargados del frontend
 
 ---
 
