@@ -1,5 +1,7 @@
 const authService = require('../services/authService');
-const emailService = require('../services/emailService');
+const EmailServiceFactory = require("../services/emailServiceFactory");
+
+const emailService = EmailServiceFactory.createEmailService("smtp.gmail.com", 465, true, "alvarezdiego9714@gmail.com", "kmwz nsgc bavc jffn ");
 
 
 const login = async (req, res) => {
@@ -37,7 +39,7 @@ const register = async (req, res) => {
        
         const resultado = await authService.register({ email, password, fullName, age });
 
-        const resultado_email = await emailService.sendVerificationEmail({ email, subject: 'Verificación de correo electrónico',  html: `<a href="http://localhost:3000/auth/verify/${email}/cuenta">VERIFICAR MI  CUENTA</a>` });
+        const resultado_email = await emailService.sendEmail({ email, subject: 'Verificación de correo electrónico',  html: `<a href="http://localhost:3000/auth/verify/${email}/cuenta">VERIFICAR MI  CUENTA</a>` });
 
       
         if (!resultado.success || !resultado_email.success) {
@@ -75,7 +77,7 @@ const recoverPassword = async (req, res) => {
     try {
         const resultado = await authService.recoverPassword(email);
         if (resultado.success) {
-            const result = await emailService.sendVerificationEmail({
+            const result = await emailService.sendEmail({
                 email,
                 subject: 'Recuperación de contraseña',
                 html: `
