@@ -61,6 +61,13 @@ const Navbar = () => {
                                 </div>
                                 Facturas
                             </a>
+                            <a className="nav-link">
+                                <div>
+                                <i className="fa fa-exclamation-triangle fa-2x" aria-hidden="true"onClick={() => navigate('/Alertas')} ></i>
+
+                                </div>
+                                Avisos Stock
+                            </a>
                
 
 

@@ -18,44 +18,47 @@
 | Diego Huite | Revisión de todos los delete por parte del backend. | Eliminación de libros y productos. | Algunas referencias a libros y productos causan problemas con el detalle de las facturas. |
 | Jorge Zamora | - Visualizar Facturas. | - Ver libros en el área de compra y agregarlos al carrito. | - Libros y productos con el mismo ID causan errores al crear las cards. |
 | **Hugo Girón** | - Pruebas utilizando Docker Compose para verificar la integración entre servicios. | - Revisar el login del gerente. | - Implementar el inicio de sesion para el gerente. |
-| Nahomi Aparicio | - | - | - |
+| Nahomi Aparicio | Se arreglaron algunas rutas de el frontend y  algunos tablas para merjor visualizacion |Realizar la vista de las facturas que los empleados a cargo del supervisor generan| el navbar de supervisores no mostraba los iconos  y no lograban tener funcion por unas librerias  |
+
 | Lesther López | Revision de los metodos get y post del backend | Crear la eliminación y la edición de las reseñas | Errores en parametros de consultas |
 
 ---
 
-### Día 2 (Miércoles)
+### Día 2 (martes)
 | Integrante  | ¿Qué se hizo ayer? | ¿Qué se hará hoy? | Impedimentos |
 |-------------|------------------|------------------|-------------|
 | Diego Huite | Endpoint para el manejo de recibos por cada empleado. | Recuperación de contraseña de los usuarios. | - |
 | Jorge Zamora | - Terminar los requisitos de la vista empleado. | - Crear la vista usuario. <br> - Ajustar el carrito de empleado para carrito usuario. | - Diferencias entre carritos. |
-| **Hugo Girón** | - Implementar roles de usuario (gerente vs. supervisor). | - Generar reportes PDF automatizados. | - Supervisores accedían a vistas de gerente. |
-| Nahomi Aparicio | - | - | - |
+| **Hugo Girón** | - Implementar roles de usuario (gerente vs. supervisor). | - Generar reportes PDF automatizados. | - Supervisores accedían a 
+| Nahomi Aparicio | - Se creo la vista de las facturas de los empleados a cargo del supervisor <br> - las facturas se logran flintrar segun el cliente , el empleado  y la fecha  | Conectar los endpoints al front para poder lograr  la eliminacion de productos, libros y empleados  | - |
 | Lesther López | Se revisó la implementación de los endpoints de reseñas | Implementar el patron de diseño Command para los endpoints de reseñas | Falta de clases para implementar el patron Command. |
+
 
 ---
 
-### Día 3 (Viernes)
+### Día 3 (Miercoles)
 | Integrante  | ¿Qué se hizo ayer? | ¿Qué se hará hoy? | Impedimentos |
 |-------------|------------------|------------------|-------------|
 | Diego Huite | - | - | - |
 | Jorge Zamora | - | - | - |
 | **Hugo Girón** | - Generar reporte mensual de ventas en PDF. | - Preparar entorno para deploy local utilizando Docker. | - Formato PDF se desalineaba. |
-| Nahomi Aparicio | - | - | - |
+| Nahomi Aparicio | se conectaron varios endpoints de backend para los empleados al igual que los endpoints para eliminar productos y libros<br> - se agrego el mopdal para poder ver las ventas que cada empleado realizo |se ara la vista de las alertas de productos y libros a punto de agotarse| - |
 | Lesther Lopez | Se implementó el patron command en reseñas | Implementar endpoints para la generación de reportes | - |
+
 
 ---
 
-### Día 4 (Sábado)
+### Día 4 (Viernes)
 | Integrante  | ¿Qué se hizo ayer? | ¿Qué se hará hoy? | Impedimentos |
 |-------------|------------------|------------------|-------------|
 | Diego Huite | - | - | - |
 | Jorge Zamora | - | - | - |
 | **Hugo Girón** | - Deploy en un servidor local utilizando Docker. | - Monitorear rendimiento post-deploy. | - Variables de entorno no se leían correctamente en el contenedor. |
-| Nahomi Aparicio | - | - | - |
+| Nahomi Aparicio | Se agregaron las alertas de productos y libros a punto de agotarse| - | - |
 | Lesther López | Se crearon endpoints para la generación de reportes | Configurar las alertas de stock en los productos | - |
 
----
 
+---
 
 
 
@@ -108,7 +111,52 @@
 - Mejorar la comunicación entre el equipo de desarrollo para establecer de mejor manera la implementacion de los patrones de diseño.
 ---
 
+### Evaluación del Sprint - XXXXXXXXXX
 
+#### ¿Qué se hizo bien?
+- 
+
+#### ¿Qué se hizo mal?
+- 
+
+#### ¿Qué mejoras implementar?
+- 
+
+---
+
+### Evaluación del Sprint - 202113293
+
+#### ¿Qué se hizo bien?
+- Se creó la vista de facturas de los empleados a cargo del supervisor, permitiendo filtrarlas por cliente, empleado y fecha.
+
+- Se logró la conexión de varios endpoints del backend para la gestión de empleados, así como la eliminación de productos y libros.
+
+#### ¿Qué se hizo mal?
+- El navbar de supervisores no mostraba los íconos correctamente debido a problemas con librerías no contempladas previamente.
+
+- Se presentaron algunos problemas de integración con los endpoints de eliminación.
+
+#### ¿Qué mejoras implementar?
+- Revisar y verificar que todas las librerías necesarias estén correctamente instaladas antes de implementar nuevas funcionalidades.
+
+- Realizar pruebas más detalladas de la integración entre frontend y backend antes de desplegar cambios.
+
+
+
+---
+
+### Evaluación del Sprint - 202110897
+
+#### ¿Qué se hizo bien?
+- Se utilizó de manera adecuada los patrones de diseño en el backend.
+
+
+#### ¿Qué se hizo mal?
+- No tomar en cuenta el manejo adecuado del minimo de stock en las tablas, ya que algunos productos tenian menos stock que el minimo considerado. 
+
+#### ¿Qué mejoras implementar?
+- Mejorar la comunicación entre el equipo de desarrollo para establecer de mejor manera la implementacion de los patrones de diseño.
+---
 
 ### Tablero Final
 ![image](https://github.com/user-attachments/assets/1754a60e-76f2-4b3f-9e3f-b784261afbb7)
