@@ -21,7 +21,7 @@ import VerFacturas from "../pages/Empleado/VerFacturas";
 import BuscarFactura from "../pages/Empleado/BuscarFactura";
 import VerFacturasSupervisor  from "../pages/Supervisor/Facturas";
 import LibroDetalle from "../pages/Empleado/components/VerLibros";
-
+import AlertasStockSupervisor  from "../pages/Supervisor/AlertasStock";
 
 const AppRouter = () => {
   const { role } = useAuth();
@@ -36,6 +36,7 @@ const AppRouter = () => {
       <Route path="/Libros" element={role === "supervisores" ? <Libros /> : <Navigate to="/" />} />
       <Route path="/Opinion" element={role === "supervisores" ? <Opinion /> : <Navigate to="/" />} />
       <Route path="/fact" element={role === "supervisores" ? <VerFacturasSupervisor /> : <Navigate to="/" />} />
+      <Route path="/Alertas" element={role === "supervisores" ? <AlertasStockSupervisor /> : <Navigate to="/" />} />
 
       <Route path="/gerente_supervisor" element={<GerenteSupervisor /> } />
       <Route path="/gerente_facturas" element={<GerenteFacturas /> } />

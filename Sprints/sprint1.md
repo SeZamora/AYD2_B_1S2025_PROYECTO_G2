@@ -52,7 +52,7 @@
 | Jorge Zamora | - Comprender como funcionan las factuas |  - Creacion la vista ver las facturas en cards <br> - Creacion la vista ver factura por id |  - Aun no se puede ver en pdf |
 | **Hugo Girón**  | - Implementar gráficos de barras para ventas por período. | - Agregar gráficos de ganancias. | - Gráficos desbordaban el contenedor. |
 | Nahomi Aparicio|- Se arreglo el contexto para que solo los respectivos usuarios ingresen a sus vistas<br> - Se integro el login del frontend con el backend para el supervisor | Integrar el contexto a las rutas de el supervisor|Las contraseñas de los supervisores estaban danto error|
-| Nombre 5    |        Se concluyeron los endpoints para la creación de libros y productos, además se hizo modificaciones sobre estas entidades en el script de la base de datos          |   Crear los metodos get para los productos y libros, incluyendo los datos mas importantes               |   La relacion entre las entidades libros y productos con facturas causo problemas a causa de las llaves foraneas.         |
+| Lesther López   |        Se concluyeron los endpoints para la creación de libros y productos, además se hizo modificaciones sobre estas entidades en el script de la base de datos          |   Crear los metodos get para los productos y libros, incluyendo los datos mas importantes               |   La relacion entre las entidades libros y productos con facturas causo problemas a causa de las llaves foraneas.         |
 
 ---
 
