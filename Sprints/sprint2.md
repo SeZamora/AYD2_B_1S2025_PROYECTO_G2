@@ -18,7 +18,7 @@
 | Diego Huite | Revisión del modelo de la base de datos y comenzar con las funcionalidades del backend (principalmente la parte de edición de cada una de las entidades como libros, usuarios, administradores, supervisores, etc.) | Tratar de establecer las conexiones en los tres contenedores | - |
 | Jorge Zamora | - Revisión que los productos se listen correctamente | - Configurar la funcionalidad de agregar productos al carrito empleado | - No tener el suficiente dominio de React |
 | **Hugo Girón** | - Implementar gráficos de pastel para ganancias por categoría. | - Configurar alertas de stock mínimo. | - Datos incorrectos en gráficos. |
-| Nahomi Aparicio | - | - | - |
+| Nahomi Aparicio |- Se configuro la peticion de obtener todos los productos para mostrarlos en la tabla de productos <br> - el modal agregar produtos logra hacer petciciones a la api | hacer uso de los endpoints restantes para el supervisor | no se hizo mencion de una libreria que debia de instalarse para poder agregar las imagenes|
 | Nombre 5 | - | - | - |
 
 ---
@@ -29,7 +29,7 @@
 | Diego Huite | Se terminó la parte de editar supervisor y empleado, así como también el uso de blobs en atributos de la db mysql para almacenar fotos | Averiguar cómo gestionar el envío de correos cuando los usuarios se registren. | - |
 | Jorge Zamora | - Configurar el carrito | - Implementar la opción de pagar, donde se ingresan los datos del vendedor y cliente <br> - Enviar la estructura para que se cree la factura en la base de datos. | - No genera el PDF de la factura luego de realizar el pago. |
 | **Hugo Girón** | - Configurar lógica para stock mínimo general y por producto. | - Pruebas de alertas con datos reales. | - Alertas no se activaban automáticamente. |
-| Nahomi Aparicio | - | - | - |
+| Nahomi Aparicio |- Se coniguraron correctamente las peticiones del front al back de agregar y ver libro ademas se arreglo ver y agregar producto |Configurar la peticion de editar libro para que solo los datos que se necesitan se editen| - |
 | Nombre 5 | - | - | - |
 
 ---
@@ -40,7 +40,7 @@
 | Diego Huite | Se logró enviar correos y agregar la verificación a través de un correo a los usuarios que se registren | Edición de libros y productos en el backend | - |
 | Jorge Zamora | - Configurar el sistema de pago | - Crear la factura en PDF y se visualiza en el frontend cuando termina la compra. | - Manejo de la librería para crear el PDF. |
 | **Hugo Girón** | - Pruebas de alertas de stock con datos simulados. | - Documentar casos de prueba para alertas. | - Errores en cálculos de ganancias netas. |
-| Nahomi Aparicio | - | - | - |
+| Nahomi Aparicio |Se areglo el endpoint del back para poder editar productos <br> - Se hicieron correctamente las peticiones desde el frontend al back para editar libro , agregar libro  y ver libro  | se creara la vista de opiniones y se usaran datos simulados  |el endpoint de editar produto daba error al no ingresar datos correctamentes en el backend|
 | Nombre 5 | - | - | - |
 
 ---
@@ -51,7 +51,7 @@
 | Diego Huite | Se finalizó las ediciones de cada una de las entidades y se hicieron algunas modificaciones a la base de datos. | Tratar de gestionar las diferencias entre productos y libros en la base de datos, ya que algunas relaciones están causando conflictos cuando se trata de hacer un delete por las llaves foráneas. | Relaciones causan problemas al tratar de eliminar registros de una tabla. |
 | Jorge Zamora | - Generar una factura | - Existían libros y productos con el mismo ID, entonces daba error al momento de crear las cards. | - |
 | **Hugo Girón** | - Implementar logs para errores críticos. | - Optimizar consultas SQL para mejorar rendimiento. | - Lentitud en carga de facturas grandes. |
-| Nahomi Aparicio | - | - | - |
+| Nahomi Aparicio | se creo la vista y las tablas para las opiniones de los libros y se optienen todas las opiniones del endpoint  | se conectara el endpoint de buscar producto al frontend asi como se arreglaran algunos pequeños detalles en la vista de los supervisores | - |
 | Nombre 5 | - | - | - |
 
 ---
@@ -124,16 +124,21 @@
 
 ---
 
-### Evaluación del Sprint - XXXXXXXXXX
+### Evaluación del Sprint - 202113293
 
 #### ¿Qué se hizo bien?
-- 
+- Se configuraron correctamente las peticiones del frontend al backend para agregar, ver y editar libros y productos.
+- Se creó la vista de opiniones para los libros y se logró obtener las opiniones desde el endpoint.
+- Se solucionaron errores en los endpoints de edición de productos .
 
 #### ¿Qué se hizo mal?
-- 
+- No se tomó en cuenta una librería necesaria para la carga de imágenes en productos, lo que causó problemas al implementar la funcionalidad.
+- Hubo dificultades con el endpoint de edición de productos debido a errores en los datos enviados al backend.
 
 #### ¿Qué mejoras implementar?
-- 
+- Verificar con mayor detalle los requerimientos de cada endpoint antes de integrarlos con el frontend para evitar errores.
+- Mantener una mejor comunicación con el equipo para asegurarse de que se mencionen todas las dependencias necesarias desde el inicio.
+
 
 ---
 
