@@ -7,7 +7,7 @@
 2. **Jorge Sebastian Zamora Polanco** - Carnet: 202002591
 3. **Hugo Daniel Girón Garcia** - Carnet: 202004807
 4.  **Genesis Nahomi Aparicio Acan** - Carnet: 202113293
-5. **Nombre 5** - Carnet: XXXXXXX
+5. **Lesther Kevin Federico López Miculax** - Carnet: 202110897
 
 
 ## Daily Standup
@@ -19,7 +19,7 @@
 | Jorge Zamora | - Visualizar Facturas. | - Ver libros en el área de compra y agregarlos al carrito. | - Libros y productos con el mismo ID causan errores al crear las cards. |
 | **Hugo Girón** | - Pruebas utilizando Docker Compose para verificar la integración entre servicios. | - Revisar el login del gerente. | - Implementar el inicio de sesion para el gerente. |
 | Nahomi Aparicio | - | - | - |
-| Nombre 5 | - | - | - |
+| Lesther López | Revision de los metodos get y post del backend | Crear la eliminación y la edición de las reseñas | Errores en parametros de consultas |
 
 ---
 
@@ -30,7 +30,7 @@
 | Jorge Zamora | - Terminar los requisitos de la vista empleado. | - Crear la vista usuario. <br> - Ajustar el carrito de empleado para carrito usuario. | - Diferencias entre carritos. |
 | **Hugo Girón** | - Implementar roles de usuario (gerente vs. supervisor). | - Generar reportes PDF automatizados. | - Supervisores accedían a vistas de gerente. |
 | Nahomi Aparicio | - | - | - |
-| Nombre 5 | - | - | - |
+| Lesther López | Se revisó la implementación de los endpoints de reseñas | Implementar el patron de diseño Command para los endpoints de reseñas | Falta de clases para implementar el patron Command. |
 
 ---
 
@@ -41,7 +41,7 @@
 | Jorge Zamora | - | - | - |
 | **Hugo Girón** | - Generar reporte mensual de ventas en PDF. | - Preparar entorno para deploy local utilizando Docker. | - Formato PDF se desalineaba. |
 | Nahomi Aparicio | - | - | - |
-| Nombre 5 | - | - | - |
+| Lesther Lopez | Se implementó el patron command en reseñas | Implementar endpoints para la generación de reportes | - |
 
 ---
 
@@ -52,7 +52,7 @@
 | Jorge Zamora | - | - | - |
 | **Hugo Girón** | - Deploy en un servidor local utilizando Docker. | - Monitorear rendimiento post-deploy. | - Variables de entorno no se leían correctamente en el contenedor. |
 | Nahomi Aparicio | - | - | - |
-| Nombre 5 | - | - | - |
+| Lesther López | Se crearon endpoints para la generación de reportes | Configurar las alertas de stock en los productos | - |
 
 ---
 
@@ -95,17 +95,17 @@
 
 ---
 
-### Evaluación del Sprint - XXXXXXXXXX
+### Evaluación del Sprint - 202110897
 
 #### ¿Qué se hizo bien?
-- 
+- Se utilizó de manera adecuada los patrones de diseño en el backend.
+
 
 #### ¿Qué se hizo mal?
-- 
+- No tomar en cuenta el manejo adecuado del minimo de stock en las tablas, ya que algunos productos tenian menos stock que el minimo considerado. 
 
 #### ¿Qué mejoras implementar?
-- 
-
+- Mejorar la comunicación entre el equipo de desarrollo para establecer de mejor manera la implementacion de los patrones de diseño.
 ---
 
 
