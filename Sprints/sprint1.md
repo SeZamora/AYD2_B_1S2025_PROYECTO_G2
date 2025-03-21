@@ -7,7 +7,7 @@
 2. **Jorge Sebastian Zamora Polanco** - Carnet: 202002591
 3. **Hugo Daniel Girón Garcia** - Carnet: 202004807
 4.  **Genesis Nahomi Aparicio Acan** - Carnet: 202113293
-5. **Nombre 5** - Carnet: XXXXXXX
+5. **Lesther Kevin Federico López Miculax** - Carnet: 202110897
 
 ## Daily Standup
 
@@ -18,7 +18,7 @@
 | Jorge Zamora    | - Preparar el entorno | - Configurar el Inicio de sesion empleado |     - No redirije a la pestaña home        |
 | **Hugo Girón**  | - Diseñar vistas del gerente, supervisores y facturas. | - Investigar librerías para gráficos y tablas (Chart.js, D3.js). | - Dificultad para implementar gráficos y tablas. |
 | Nahomi Aparicio|Se repartieron las partes de cada integrante, tocándome a mí el Frontend de supervisor | Crear la base de frontend, así como comenzar a crear la vista de la página de login      |     -    |
-| Nombre 5    |                  |                  |             |
+| Lesther López    |   Se realizó el script inicial de la base de datos, donde se tomo en cuenta las entidades con sus relaciones               |         Ver el funcionamiento correcto del script inicial de la base de datos        |    -         |
 
 ---
 
@@ -29,7 +29,8 @@
 | Jorge Zamora | - Configurar el login al home de empleado | - Configurar la vista home de empleado <br> - Creacion de una navbar de empleado | - Trabajar solo con muckups |
 | **Hugo Girón**  | - Implementar tablas funcionales para supervisores (CRUD básico). | - Conectar frontend con API usando fetch. | - Errores de conexión con la base de datos. |
 | Nahomi Aparicio|- Se creo la base de el Frontend ordenando las carpetas para un mejor ordenamiento a el proyecto  <br> - Se comenzo con la vista del login y el uso del contexto para que los usuarios no puedan acceder a paginas que no les corresponden  |Se creara las primeras vistas de el supervisor y sus respectivas tablas| -   |
-| Nombre 5    |                  |                  |             |
+| Lesther López    |       Se realizó la creación de los endpoints para la creación de empleados y usuarios           |          Se creara los metodos get de los empleados y usuarios, para poder obtener la información de estas entidades        |      -       |
+
 
 ---
 
@@ -40,7 +41,7 @@
 | Jorge Zamora |  - Configurar la vista home | - Listar los productos en cards <br> - Configurar el boton para ver los detalles de los productos | - Los botones de los productos aun no tiene interaccion |
 | **Hugo Girón**  | - Visualización de facturas con filtros frontend. | - Implementar gráficos de ventas. | - Filtrado desde backend no funcionaba. |
 | Nahomi Aparicio|- Se crearon las vistas y las tablas que el super visor necesita<br> -Se crearon modals para los datos de agregar, eliminar y editar| Usar los Endpoints para poder logear el Supervisor |  -   |
-| Nombre 5    |                  |                  |             |
+| Lesther López    |  Se crearon exitosamente métodos get de las entidades, empleado y usuario                |      Iniciar con los endpoints para la creación de productos y libros            |         -    |
 
 ---
 
@@ -51,7 +52,7 @@
 | Jorge Zamora | - Comprender como funcionan las factuas |  - Creacion la vista ver las facturas en cards <br> - Creacion la vista ver factura por id |  - Aun no se puede ver en pdf |
 | **Hugo Girón**  | - Implementar gráficos de barras para ventas por período. | - Agregar gráficos de ganancias. | - Gráficos desbordaban el contenedor. |
 | Nahomi Aparicio|- Se arreglo el contexto para que solo los respectivos usuarios ingresen a sus vistas<br> - Se integro el login del frontend con el backend para el supervisor | Integrar el contexto a las rutas de el supervisor|Las contraseñas de los supervisores estaban danto error|
-| Nombre 5    |                  |                  |             |
+| Nombre 5    |        Se concluyeron los endpoints para la creación de libros y productos, además se hizo modificaciones sobre estas entidades en el script de la base de datos          |   Crear los metodos get para los productos y libros, incluyendo los datos mas importantes               |   La relacion entre las entidades libros y productos con facturas causo problemas a causa de las llaves foraneas.         |
 
 ---
 
@@ -134,7 +135,18 @@
 
 ---
 
+### Evaluación del Sprint - 202110897
 
+#### ¿Qué se hizo bien?
+- Se implementó de manera adecuada los endpoints para agregar datos a las diversas entidades como cuentas, empleados, libros y productos
+
+#### ¿Qué se hizo mal?
+- La mala relacion entre algunas entidades al momento de realizar el script inicial de la base de datos.
+
+#### ¿Qué mejoras implementar?
+- Optimizar la interpretación de las entidades del proyecto para diseñar un modelo de base de datos más preciso y eficiente.
+
+---
 ### Tablero Final
 ![image](https://github.com/user-attachments/assets/1754a60e-76f2-4b3f-9e3f-b784261afbb7)
 ![image](https://github.com/user-attachments/assets/a4c47ca2-3a3e-481e-94d1-421c3d9f5c6a)
