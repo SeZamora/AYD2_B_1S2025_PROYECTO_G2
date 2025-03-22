@@ -214,8 +214,8 @@ const handleSubmit = async (e) => {
                                     <input type="number" className="form-control" id="employeeAge" placeholder="supervisor" name='supervisores_id_supervisor'  value={formData.supervisores_id_supervisor} onChange={handleChange} />
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="employeeAge">Supervisor</label>
-                                    <input type="number" className="form-control" id="contrasenia" placeholder="contrasenia" name='contrasenia'  value={formData.contrasenia} onChange={handleChange} />
+                                    <label htmlFor="employeeAge">contrasenia</label>
+                                    <input type="text" className="form-control" id="contrasenia" placeholder="contrasenia" name='contrasenia'  value={formData.contrasenia} onChange={handleChange} />
                                 </div>
                                 <div className="modal-footer">
                                     <button type="button" className="btn btn-secondary" onClick={toggleModal}>
