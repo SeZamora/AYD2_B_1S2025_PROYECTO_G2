@@ -183,6 +183,13 @@
 
 #### ¿Qué mejoras implementar?
 - Mejorar la comunicación con los encargados del frontend
+#### Backlog final
+
+| ID  | Tarea | Estado Final | Justificación si no se completó |
+|----|-------|--------------|--------------------------------|
+| 2 | Implementar alertas de stock minimo | Se mantiene en progreso por revision de atributos la entidad de productos en base de datos |
+|4 | Crear endpoints para facturas y validaciones de stock | Se mantiene en progreso por revision de atributos la entidad de productos en base de datos |
+|9 | Implementar endpoints para la gestion de reseñas | No se completó por problemas con llaves foraneas en la base de datos |
 
 ---
 
