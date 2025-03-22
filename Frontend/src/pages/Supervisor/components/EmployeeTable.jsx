@@ -18,11 +18,11 @@ const EmployeeTable = () => {
 
     const fetchEmployees = async () => {
         try {
-            const response = await fetch("http://localhost:3000/employee/getAllEmployees");
+            const response = await fetch("http://localhost:3000/employee/getAllEmployee");
             const data = await response.json();
-            console.log(data.employeeInvoices);
+            console.log(data);
             if (data.success) {
-                setEmployees(data.employeeInvoices);
+                setEmployees(data.employees);
             } else {
                 console.error("Error obteniendo empleados:", data.message);
             }
@@ -52,7 +52,7 @@ const EmployeeTable = () => {
         setFacturaSeleccionada(Array.isArray(facturas) ? facturas : []);
         setModalAbierto(true);
     };
-    
+
 
     const cerrarModal = () => {
         setModalAbierto(false);
@@ -95,24 +95,31 @@ const EmployeeTable = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {employees.map((employee) => (
-                                    <tr key={employee.empleados_id}>
-                                        <td onClick={() => abrirModal(employee.facturas)}>{employee.nombre}</td>
-                                        <td>{employee.apellido}</td>
-                                        <td>{employee.cui}</td>
-                                        <td>{employee.telefono}</td>
-                                        <td>{employee.fecha}</td>
-                                        <td>
-                                            <a onClick={() => toggleModalM(employee.empleados_id)} className="edit" data-toggle="modal">
-                                                <i className="fa fa-pencil" aria-hidden="true"></i>
-                                            </a>
-                                            <a onClick={() => toggleDeleteModal(employee.empleados_id)} className="delete" data-toggle="modal">
-                                                <i className="fa fa-trash" aria-hidden="true"></i>
-                                            </a>
-                                        </td>
+                                {(employees && Array.isArray(employees)) ? (
+                                    employees.map((employee) => (
+                                        <tr key={employee.empleados_id}>
+                                            <td onClick={() => abrirModal(employee.facturas)}>{employee.nombre}</td>
+                                            <td>{employee.apellido}</td>
+                                            <td>{employee.cui}</td>
+                                            <td>{employee.telefono}</td>
+                                            <td>{employee.fecha}</td>
+                                            <td>
+                                                <a onClick={() => toggleModalM(employee.empleados_id)} className="edit" data-toggle="modal">
+                                                    <i className="fa fa-pencil" aria-hidden="true"></i>
+                                                </a>
+                                                <a onClick={() => toggleDeleteModal(employee.empleados_id)} className="delete" data-toggle="modal">
+                                                    <i className="fa fa-trash" aria-hidden="true"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    ))
+                                ) : (
+                                    <tr>
+                                        <td colSpan="6" className="text-center">No hay empleados disponibles</td>
                                     </tr>
-                                ))}
+                                )}
                             </tbody>
+
                         </table>
                     </div>
                 </div>
@@ -139,19 +146,19 @@ const EmployeeTable = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                {Array.isArray(facturaSeleccionada) && facturaSeleccionada.length > 0 ? (
-    facturaSeleccionada.map((factura, index) => (
-        <tr key={index} className="hover:bg-gray-50 transition-colors">
-            <td className="py-3 px-4 border-b text-sm text-gray-700">{factura.fecha_hora}</td>
-            <td className="py-3 px-4 border-b text-sm text-gray-700">{factura.nombre_comprador}</td>
-            <td className="py-3 px-4 border-b text-sm text-gray-700">Q {factura.total_venta}</td>
-        </tr>
-    ))
-) : (
-    <tr>
-        <td colSpan="3" className="py-3 px-4 text-center text-gray-500">No hay detalles disponibles</td>
-    </tr>
-)}
+                                    {Array.isArray(facturaSeleccionada) && facturaSeleccionada.length > 0 ? (
+                                        facturaSeleccionada.map((factura, index) => (
+                                            <tr key={index} className="hover:bg-gray-50 transition-colors">
+                                                <td className="py-3 px-4 border-b text-sm text-gray-700">{factura.fecha_hora}</td>
+                                                <td className="py-3 px-4 border-b text-sm text-gray-700">{factura.nombre_comprador}</td>
+                                                <td className="py-3 px-4 border-b text-sm text-gray-700">Q {factura.total_venta}</td>
+                                            </tr>
+                                        ))
+                                    ) : (
+                                        <tr>
+                                            <td colSpan="3" className="py-3 px-4 text-center text-gray-500">No hay detalles disponibles</td>
+                                        </tr>
+                                    )}
 
                                 </tbody>
 
