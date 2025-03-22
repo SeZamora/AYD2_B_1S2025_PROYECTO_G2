@@ -31,6 +31,7 @@ const LoginPage = () => {
             console.log(data);
             if (data.success) {
                 notifySuccess(data.message);
+                console.log(data);
                 login(data.userType);
                 if (data.userType === 'supervisores') {
                     navigate('/SuperPrincipal'); 
