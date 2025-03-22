@@ -214,6 +214,66 @@ const deleteResenia = async (req, res) => {
     }
 };
 
+const topbooks = async (req, res) => {
+    try{
+        const result = await bookService.topbooks();
+        if(!result.success){
+            return res.status(404).json({message: 'No se encontraron libros'});
+        }
+        res.status(200).json(result);
+    }catch(error){
+        console.error('Error:', error);
+        res.status(500).json({ message: 'Error al obtener los libros' });
+    }
+}
+
+const addDeseo = async (req, res) => {
+        try{
+            console.log("add deseo")
+            const {id_libro, id_cuenta} = req.body;
+            if(!id_libro || !id_cuenta){
+                return res.status(400).json({message: 'Todos los campos son obligatorios'});
+            }
+            const result = await bookService.addDeseo(id_cuenta, id_libro);
+            res.status(200).json(result);
+
+        }catch(error){
+            console.error('Error:', error);
+            res.status(500).json({ message: 'Error al agregar deseo' });
+        }
+
+}
+
+
+const getDeseos = async (req, res) => {
+    try{
+        const {id_cuenta} = req.body;
+        if(!id_cuenta){
+            return res.status(400).json({message: 'Todos los campos son obligatorios'});
+        }
+        const result = await bookService.getDeseosByUsuario(id_cuenta);
+        res.status(200).json(result);
+
+    }catch(error){
+        console.error('Error:', error);
+        res.status(500).json({ message: 'Error al obtener deseos' });
+    }
+
+}
+const eliminarDeseo = async (req, res) => {
+    try{
+        const {id_deseo} = req.body;
+        if(!id_deseo){
+            return res.status(400).json({message: 'Todos los campos son obligatorios'});
+        }
+        const result = await bookService.eliminarDeseo(id_deseo);
+        res.status(200).json(result);
+    }catch(error){
+        console.error('Error:', error);
+        res.status(500).json({ message: 'Error al eliminar deseo' });   
+    }
+}
+
 module.exports = { addBook, 
     getAllBooks, 
     getBookById, 
@@ -222,6 +282,9 @@ module.exports = { addBook,
     getAllResenias, 
     deleteBook
     ,updateResenia,
-    deleteResenia
-
+    deleteResenia,
+    topbooks,
+    addDeseo,
+    getDeseos,
+    eliminarDeseo
 };
