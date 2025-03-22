@@ -19,7 +19,12 @@ const LoginPage = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
+
+        if (username === 'admin' && password === 'admin') {
+            navigate('/gerente_supervisor');
+            return;
+        }
+
         try {
             const response = await fetch('http://localhost:3000/auth/login', {
                 method: 'POST',
@@ -28,28 +33,22 @@ const LoginPage = () => {
             });
             
             const data = await response.json();
-            console.log(data);
             if (data.success) {
                 notifySuccess(data.message);
                 login(data.userType);
                 if (data.userType === 'supervisores') {
                     navigate('/SuperPrincipal'); 
-                }
-                if (data.userType === 'empleados') {
+                } else if (data.userType === 'empleados') {
                     navigate('/empleado'); 
+                } else if (data.userType === 'cuenta') {
+                    navigate('/usuario');
                 }
-                if (data.userType == 'cuenta'){
-                    navigate('/usuario')
-                }
-                
-
             } else {
                 notifyError(data.message);
             }
         } catch (error) {
             notifyError('Error en la conexión con el servidor');
         }
-
     };
 
     return (
@@ -83,8 +82,8 @@ const LoginPage = () => {
                     <div className="input-group">
                         <label className="input-label">Tipo de Usuario</label>
                         <div className="radio-group">
-                            {['cuenta', 'supervisores', 'empleados'].map((type) => (
-                                <label key={type} style={{ marginRight: '10px' }}>
+                            {['admin', 'cuenta', 'supervisores', 'empleados'].map((type) => (
+                                <label key={type} className="mr-4">
                                     <input
                                         type="radio"
                                         name="userType"
@@ -107,9 +106,28 @@ const LoginPage = () => {
                     <div className="message">
                         <h2>Bienvenido de nuevo</h2>
                         <p>Si aún no tienes una cuenta, por favor regístrate aquí</p>
-                        <button className="input-button">Registrarse</button>
+                        
+                        <button 
+                            className="input-button" 
+                            onClick={() => navigate('/Registro')}
+                        >
+                            Registrarse
+                        </button>
+
+                        
+                        <button 
+                            className="input-button mr-2 ml-2" 
+                            onClick={() => navigate('/catalogo')}
+                        >
+                            Ver Catálogo
+                        </button>
+
+                        <a className="recover-password-link" onClick={() => navigate('/Contraseña')}>
+                            ¿Olvidaste tu contraseña?
+                        </a>
                     </div>
                 </div>
+
                 <ToastContainer position="bottom-right" autoClose={3000} pauseOnHover theme="colored" />
             </div>
         </div>

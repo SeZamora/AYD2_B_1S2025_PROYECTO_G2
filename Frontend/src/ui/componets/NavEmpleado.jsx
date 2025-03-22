@@ -7,7 +7,10 @@ const Navbar = () => {
     return (
         <nav className="bg-gradient-to-r from-teal-600 to-indigo-600 fixed top-0 left-0 w-full z-50 shadow-lg">
             <div className="container mx-auto flex items-center justify-between py-1 px-1">
-                <a className="text-2xl font-bold text-orange-400 cursor-pointer" onClick={() => navigate('/')}>NebookVault</a>
+                
+                <a className="text-2xl font-bold text-orange-400 cursor-pointer mr-auto" onClick={() => navigate('/usuario')}>
+                    NebookVault
+                </a>
                 
                 <button className="lg:hidden text-white text-1xl">
                     <i className="fas fa-bars"></i>
@@ -28,7 +31,7 @@ const Navbar = () => {
                     </li>
                 </ul>
                 
-                <button className="text-white flex flex-col items-center hover:text-red-400" onClick={() => navigate('/')}> 
+                <button className="text-white flex flex-col items-center hover:text-red-400 ml-auto" onClick={() => navigate('/')}>
                     <i className="fa fa-sign-out text-1xl"></i>
                     <span>Cerrar sesión</span>
                 </button>

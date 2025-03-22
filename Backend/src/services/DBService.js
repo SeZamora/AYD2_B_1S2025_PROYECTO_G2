@@ -1,6 +1,6 @@
 const mysql = require('mysql2/promise');
 
-// Implementación de Singleton para la conexión con la base de datos
+
 class DBService {
     static instance;
 
@@ -20,7 +20,7 @@ class DBService {
                 this.pool = mysql.createPool({
                     host,
                     user: 'root',
-                    password: 'root',
+                    password: '123456789',
                     database: 'ayd2_proyecto',
                     waitForConnections: true,
                     connectionLimit: 10,

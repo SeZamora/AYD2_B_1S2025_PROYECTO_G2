@@ -13,7 +13,7 @@ const AddEmployeeModal = ({ showModal, toggleModal, role,productId }) => {
         imagen: null,
         supervisores_id_supervisor: '',
         verificado:0,
-        contrasenia: null
+        contrasenia: ''
 
     });
 
@@ -66,7 +66,7 @@ const handleSubmit = async (e) => {
         imagen: null,
         supervisores_id_supervisor: '',
         verificado:0,
-        contrasenia: null
+        contrasenia: ''
                 });
                 toggleModal();
                 window.location.reload();
@@ -109,7 +109,7 @@ const handleSubmit = async (e) => {
                     imagen: null,
                     supervisores_id_supervisor: '',
                     verificado:0,
-                    contrasenia: null
+                    contrasenia: ''
                 });
                 toggleModal();
                 window.location.reload();
@@ -162,7 +162,7 @@ const handleSubmit = async (e) => {
                     <div className="modal-content">
                         <div className="modal-header">
                             <h5 className="modal-title" id="addEmployeeModalLabel">
-                                {role === 'edit' ? 'Editar Empleado' : 'Agregar Nuevo Empleado'}
+                                {role === 'modify' ? 'Editar Empleado' : 'Agregar Nuevo Empleado'}
                             </h5>
                         </div>
                         <div className="modal-body">
@@ -212,6 +212,10 @@ const handleSubmit = async (e) => {
                                 <div className="form-group">
                                     <label htmlFor="employeeAge">Supervisor</label>
                                     <input type="number" className="form-control" id="employeeAge" placeholder="supervisor" name='supervisores_id_supervisor'  value={formData.supervisores_id_supervisor} onChange={handleChange} />
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="employeeAge">contrasenia</label>
+                                    <input type="text" className="form-control" id="contrasenia" placeholder="contrasenia" name='contrasenia'  value={formData.contrasenia} onChange={handleChange} />
                                 </div>
                                 <div className="modal-footer">
                                     <button type="button" className="btn btn-secondary" onClick={toggleModal}>

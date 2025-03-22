@@ -69,6 +69,7 @@ const updateBook = async ({ id_libro, descripcion, stock, precio }) => {
 };
 
 const addResenia = async ({ calificacion, comentario, fecha, cuenta_id_cuenta, libros_id_libro }) => {
+    console.log(calificacion);
     try {
         const result = await db.query(
             `INSERT INTO resenias (calificacion, comentario, fecha, cuenta_id_cuenta, libros_id_libro) 
