@@ -77,9 +77,9 @@
 
 
 ### Tablero Inicial
-![image](https://github.com/user-attachments/assets/30590f44-647e-41b7-a504-7132a7e58e46)
+![image](https://github.com/user-attachments/assets/789fb6d5-7839-4db6-9032-32273173510c)
 
-![image](https://github.com/user-attachments/assets/d000aa14-944a-4798-9f73-bdc483bea419)
+![image](https://github.com/SeZamora/AYD2_B_1S2025_PROYECTO_G2/blob/feature/202113293/Sprints/Imagenes/202113293.PNG)
 
 
 ## Sprint Retrospective
@@ -108,6 +108,11 @@
 | 4  | Implementar verificación por correo para usuarios registrados | Completado | - |
 | 5  | Edición de libros y productos en el backend | Pendiente | Dependencia de modelos de datos y endpoints existentes |
 | 6  | Gestionar diferencias entre productos y libros en la base de datos para evitar conflictos | Pendiente | Dependencia de esquema de base de datos actual |
+
+
+#### tablero final
+
+![image](https://github.com/user-attachments/assets/a90b32b9-2db6-44b0-9ad7-1e82c6758044)
 
 
 ---
