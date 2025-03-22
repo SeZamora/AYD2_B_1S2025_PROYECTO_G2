@@ -155,6 +155,19 @@
 #### ¿Qué mejoras implementar?
 - mas comunicacion entre el equipo para poder cordinarnos de mejor forma
 
+#### Sprint backlog final
+
+| ID | Tarea | Estado Final | Justificación si no se completó |
+|----|-------|--------------|--------------------------------|
+| 6 | Creación de la base del frontend (Supervisor)| Finalizada | - |
+| 10 |Integración de endpoints en el frontend|Pendiente| algunos endpoints necesarios no estan implementados|
+| 16 | Implementación de botones interactivos en productos |Pendiente | se esta buscando un mejor estilo para la vista de lso botones|
+| 22 |Corrección de errores en autenticación de supervisores| Pendiente| Falta investigar una mejor solucion para que el contexto se guarde de una merjor forma|
+
+
+#### Foto tablero
+![image](https://github.com/user-attachments/assets/789fb6d5-7839-4db6-9032-32273173510c)
+
 ---
 
 ### Evaluación del Sprint - 202110897
