@@ -106,6 +106,20 @@
 #### ¿Qué mejoras implementar?
 - Más comuniación con el equipo
 
+#### Sprint backlog final
+
+| ID | Tarea | Estado Final | Justificación si no se completó |
+|----|-------|--------------|--------------------------------|
+| 4  | Creación de la estructura del backend (Node.js - Express) | Finalizada | - |
+| 5  | Revisión y ajuste del modelo de la base de datos | Finalizada | - |
+| 7  | Implementación de CRUD para supervisores y empleados | Finalizada | - |
+| 16 | Gestión de envío de correos al registrarse | Pendiente | Falta investigar y probar la funcionalidad de envío de correos. |
+| 19 | Manejo de relaciones entre productos, libros y facturas en la BD | Pendiente | Problemas con llaves foráneas que generan errores al eliminar registros. |
+
+#### Foto tablero
+![image](https://github.com/user-attachments/assets/789fb6d5-7839-4db6-9032-32273173510c)
+
+
 ---
 
 ### Evaluación del Sprint - 202002591
@@ -155,15 +169,7 @@
 - Optimizar la interpretación de las entidades del proyecto para diseñar un modelo de base de datos más preciso y eficiente.
 
 ---
-### Tablero Final
-![image](https://github.com/user-attachments/assets/1754a60e-76f2-4b3f-9e3f-b784261afbb7)
-![image](https://github.com/user-attachments/assets/a4c47ca2-3a3e-481e-94d1-421c3d9f5c6a)
 
 
 
-### Sprint Backlog Final
-| ID | Tarea | Estado Final | Justificación si no se completó |
-|----|-------|-------------|---------------------------------|
-| 1  | Registrarse (Backend)      | Completada  |  - |
-| 2  | Login (Backend)       | Completada  |  - |
 
