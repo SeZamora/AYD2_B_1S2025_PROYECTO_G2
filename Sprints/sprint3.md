@@ -195,6 +195,19 @@
 
 #### ¿Qué mejoras implementar?
 - Mejorar la comunicación entre el equipo de desarrollo para establecer de mejor manera la implementacion de los patrones de diseño.
+
+
+#### Sprint backlog final
+
+| ID | Tarea | Estado Final | Justificación si no se completó |
+|----|-------|--------------|--------------------------------|
+| 9 | Revisión de métodos GET y POST del backend | Finalizada |-|
+| 10 |Crear eliminación y edición de reseñas| Finalizada |
+| 11 | Endpoint para el manejo de recibos por cada empleado | Finalizada|-|
+| 19 |Implementar patron command para los endpoints de reseñas | Finalizada| -|
+| 25 |Implementar endpoints para la generacion de reportes| Finalizada| -|
+| 29 |Configurar alertas de stock en los productos| Finalizada| -|
+
 ---
 
 

@@ -181,6 +181,17 @@
 #### ¿Qué mejoras implementar?
 - Optimizar la interpretación de las entidades del proyecto para diseñar un modelo de base de datos más preciso y eficiente.
 
+#### Sprint backlog final
+
+| ID | Tarea | Estado Final | Justificación si no se completó |
+|----|-------|--------------|--------------------------------|
+| 1  | Registrarse | Finalizada
+| 17  | Integración del contexto en las rutas de supervisores | Finalizada | No se completó debido a la revisión de las entidades en la base de datos |
+| 18  | Creación de métodos GET para productos y libros | Finalizada | No se terminó por configuracion de las entidades en la base de datos |
+
+
+
+
 ---
 
 
