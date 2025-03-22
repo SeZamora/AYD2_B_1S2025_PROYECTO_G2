@@ -162,6 +162,9 @@
 |11 | Implementar Agregar Productos, Actualizar Productos Frontend| Finalizada | -|
 |11 | Implementar Ver Opinion Frontend| Finalizada | - |
 
+
+#### Foto tablero
+![image](https://github.com/SeZamora/AYD2_B_1S2025_PROYECTO_G2/blob/feature/202113293/Sprints/Imagenes/202113293_2.PNG)
 ---
 
 ### Evaluación del Sprint - 202110897
