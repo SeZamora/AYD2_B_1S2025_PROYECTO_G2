@@ -73,7 +73,9 @@
 | 8  | Gestionar diferencias entre productos y libros en la base de datos | Alta | Pendiente |
 | 9  | Implementar endpoints para la gestión de reseñas | Media | Pendiente |
 | 10 | Crear la vista de opiniones y conectar el endpoint correspondiente | Media | Pendiente |
-
+| 11 | Implementar Agregar Productos, Actualizar Productos Frontend | Media | En progreso |
+| 12 | Implementar Ver y Agregar Libros Frontend | Media | En progreso |
+| 13 | Implementar Ver Opinion Frontend | Media | En progreso |
 
 
 ### Tablero Inicial
@@ -150,6 +152,15 @@
 - Verificar con mayor detalle los requerimientos de cada endpoint antes de integrarlos con el frontend para evitar errores.
 - Mantener una mejor comunicación con el equipo para asegurarse de que se mencionen todas las dependencias necesarias desde el inicio.
 
+
+#### Backlog final
+
+
+| ID  | Tarea | Estado Final | Justificación si no se completó |
+|----|-------|--------------|--------------------------------|
+| 10 | Crear la vista de opiniones y conectar el endpoint correspondiente| En Finalizada | - |
+|11 | Implementar Agregar Productos, Actualizar Productos Frontend| Finalizada | -|
+|11 | Implementar Ver Opinion Frontend| Finalizada | - |
 
 ---
 
