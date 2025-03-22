@@ -95,13 +95,21 @@ export const EmpleadoHome = () => {
             });
     
             const data = await response.json();
-            console.log('Factura creada:', data);
+            
+            const response2 = await fetch(`http://localhost:3000/bill/getBillById`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ id: Number(data.id_factura) })
+            })
+
+            const facturacompleta = await response2.json()
+
     
             setCarrito([]);
             setTotal(0);
             
             setIdFactura(data.id_factura);
-            setFactura(pdffactura);
+            setFactura(facturacompleta.data);
     
         } catch (error) {
             console.error('Error al crear la factura:', error);
