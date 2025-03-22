@@ -25,6 +25,9 @@ import BuscarFactura from "../pages/Empleado/BuscarFactura";
 import VerFacturasSupervisor  from "../pages/Supervisor/Facturas";
 import LibroDetalle from "../pages/Empleado/components/VerLibros";
 import AlertasStockSupervisor  from "../pages/Supervisor/AlertasStock";
+import ProductosMasVotados from "../pages/Usuario/ProductosMasVotados";
+import ListaDeseos from "../pages/Usuario/ListaDeseos";
+import AgregarLibrosDeseos from "../pages/Usuario/AgregarLibrosDeseos";
 
 
 const AppRouter = () => {
@@ -59,6 +62,10 @@ const AppRouter = () => {
       <Route path="/facturas" element={role == "empleados" ? <VerFacturas /> : <Navigate to="/"/>} />
       <Route path="/buscarFactura" element={role == "empleados" ? <BuscarFactura /> : <Navigate to="/"/>} />
       <Route path="/libro/:id" element={role == "empleados" ? <LibroDetalle /> : <Navigate to="/"/>} />
+    
+      <Route path="/masVotados" element={ <ProductosMasVotados />} />
+      <Route path="/listaDeseos" element={ <ListaDeseos />} />
+      <Route path="/agregarLibrosDeseos" element={ <AgregarLibrosDeseos />} />
     </Routes>
   );
 };

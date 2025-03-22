@@ -14,6 +14,6 @@ router.delete('/deleteResenia', bookController.deleteResenia);
 router.post('/updateResenia', bookController.updateResenia);
 router.get('/topbooks', bookController.topbooks);
 router.post('/addDeseo', bookController.addDeseo);
-router.get('/getDeseos', bookController.getDeseos);
+router.post('/getDeseos', bookController.getDeseos);
 router.delete('/eliminarDeseo', bookController.eliminarDeseo);
 module.exports = router;
