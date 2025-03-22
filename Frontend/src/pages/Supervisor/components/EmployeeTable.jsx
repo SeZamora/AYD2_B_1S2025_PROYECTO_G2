@@ -18,7 +18,7 @@ const EmployeeTable = () => {
 
     const fetchEmployees = async () => {
         try {
-            const response = await fetch("http://localhost:3000/employee/getAllEmployeeData");
+            const response = await fetch("http://localhost:3000/employee/getAllEmployees");
             const data = await response.json();
             console.log(data.employeeInvoices);
             if (data.success) {

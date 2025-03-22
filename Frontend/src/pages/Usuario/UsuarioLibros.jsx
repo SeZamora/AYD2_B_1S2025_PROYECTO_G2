@@ -10,7 +10,7 @@ export const UsuarioLibros = () => {
     calificacion: '',
     comentario: '',
     fecha: '', 
-    cuenta_id_cuenta: '', // Ahora es editable por el usuario
+    cuenta_id_cuenta: '', 
     libros_id_libro: ''
   });
 
@@ -53,18 +53,17 @@ export const UsuarioLibros = () => {
   };
 
   const handleSubmitOpinion = () => {
-    // Convierte la fecha al formato adecuado para la base de datos
     const date = new Date(opinion.fecha);
-    const formattedDate = date.toISOString().slice(0, 19).replace('T', ' '); // '2025-03-22 00:10:12'
+    const formattedDate = date.toISOString().slice(0, 19).replace('T', ' '); 
   
     const opinionToSend = {
       ...opinion,
-      fecha: formattedDate, // Asigna la fecha con el formato correcto
-      calificacion: parseInt(opinion.calificacion, 10), // Convierte a entero
-      cuenta_id_cuenta: parseInt(opinion.cuenta_id_cuenta, 10), // Convierte a entero
+      fecha: formattedDate, 
+      calificacion: parseInt(opinion.calificacion, 10), 
+      cuenta_id_cuenta: parseInt(opinion.cuenta_id_cuenta, 10), 
     };
   
-    console.log('Enviando reseña:', opinionToSend);  // Depuración: Verifica los datos enviados
+    console.log('Enviando reseña:', opinionToSend); 
     
     fetch('http://localhost:3000/book/addResenia', {
       method: 'POST',
@@ -75,7 +74,7 @@ export const UsuarioLibros = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log('Respuesta del servidor:', data);  // Depuración: Verifica la respuesta del servidor
+        console.log('Respuesta del servidor:', data);  
         if (data.success) {
           alert(data.message);
           setIsModalOpen(false);
