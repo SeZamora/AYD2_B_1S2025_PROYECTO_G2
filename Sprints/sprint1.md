@@ -63,9 +63,28 @@
 ### Sprint Backlog
 | ID | Tarea | Prioridad | Estado |
 |----|-------|----------|--------|
-| 1  | Registrarse (Backend)      | Alta | Finalizada |
-| 2  | Login (Backend)      | Alta | Finalizada |
-| 3  |       | Alta/Media/Baja | Pendiente |
+| 1  | Registrarse (Backend) | Alta | Finalizada |
+| 2  | Login (Backend) | Alta | Finalizada |
+| 3  | Configuración del entorno | Alta | Finalizada |
+| 4  | Creación de la estructura del backend (Node.js - Express) | Alta | Finalizada |
+| 5  | Revisión y ajuste del modelo de la base de datos | Alta | Finalizada |
+| 6  | Creación de la base del frontend (Supervisor) | Alta | Finalizada |
+| 7  | Implementación de CRUD para supervisores y empleados | Alta | Finalizada |
+| 8  | Implementación de vistas (Gerente, Supervisores, Facturas) | Alta | Finalizada |
+| 9  | Implementación de gráficos y tablas (Chart.js, D3.js) | Media | En progreso |
+| 10 | Integración de endpoints en el frontend | Alta | Pendiente |
+| 11 | Creación de la vista Home para empleados | Alta | En progreso |
+| 12 | Implementación de Navbar en la vista de empleados | Media | En progreso |
+| 13 | Listado y visualización de productos | Alta | En progreso |
+| 14 | Creación de facturas y visualización con filtros | Alta | En progreso |
+| 15 | Implementación de gráficos de ventas y ganancias | Media | En progreso |
+| 16 | Gestión de envío de correos al registrarse | Alta | Pendiente |
+| 17 | Integración del contexto en las rutas de supervisores | Media | Pendiente |
+| 18 | Creación de métodos GET para productos y libros | Alta | En progreso |
+| 19 | Manejo de relaciones entre productos, libros y facturas en la BD | Alta | Pendiente |
+| 20 | Implementación de botones interactivos en productos | Media | En progreso |
+| 21 | Generación de facturas en PDF | Alta | Pendiente |
+| 22 | Corrección de errores en autenticación de supervisores | Alta | Pendiente |
 
 ### Tablero Inicial
 ![image](https://github.com/user-attachments/assets/30590f44-647e-41b7-a504-7132a7e58e46)
