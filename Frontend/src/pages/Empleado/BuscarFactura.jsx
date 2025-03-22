@@ -80,6 +80,7 @@ export const BuscarFactura = () => {
                                 <thead className="bg-gray-50">
                                     <tr>
                                         <th className="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">Producto o Libro ID</th>
+                                        <th className="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">Nombre</th>
                                         <th className="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">Unidades Compradas</th>
                                         <th className="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">Precio Unitario</th>
                                         <th className="py-3 px-4 border-b text-left text-sm font-semibold text-gray-600">Subtotal</th>
@@ -89,6 +90,7 @@ export const BuscarFactura = () => {
                                     {facturaEncontrada.detalles.map((detalle, index) => (
                                         <tr key={index} className="hover:bg-gray-50 transition-colors">
                                             <td className="py-3 px-4 border-b text-sm text-gray-700">{detalle.producto_id || detalle.libro_id}</td>
+                                            <td className="py-3 px-4 border-b text-sm text-gray-700">{detalle.nombre || detalle.titulo}</td>
                                             <td className="py-3 px-4 border-b text-sm text-gray-700">{detalle.unidades_compradas}</td>
                                             <td className="py-3 px-4 border-b text-sm text-gray-700">Q {detalle.precio_producto}</td>
                                             <td className="py-3 px-4 border-b text-sm text-gray-700">Q {(detalle.unidades_compradas * parseFloat(detalle.precio_producto)).toFixed(2)}</td>
