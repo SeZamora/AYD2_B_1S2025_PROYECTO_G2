@@ -169,6 +169,18 @@
 - Realizar pruebas más detalladas de la integración entre frontend y backend antes de desplegar cambios.
 
 
+#### Sprint backlog final
+
+| ID | Tarea | Estado Final | Justificación si no se completó |
+|----|-------|--------------|--------------------------------|
+| 2 | Eliminación de libros y productos | Finalizada |-|
+| 3 |Visualizar Facturas|Finalizada| -|
+| 7 | Arreglar rutas del frontend y mejorar tablas| Finalizada|-|
+| 12 |Recuperación de contraseña de los usuarios| Finalizada| -|
+| 17 |Crear vista de facturas de empleados a cargo del supervisor| Finalizada| -|
+| 18 |Conectar los endpoints al frontend para eliminación de productos| Finalizada| -|
+| 29 |Configurar alertas de stock en los productos| Finalizada| -|
+
 
 ---
 
