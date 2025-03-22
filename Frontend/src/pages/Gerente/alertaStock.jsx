@@ -9,30 +9,45 @@ const AlertasStock = () => {
 
     // Obtener los productos al cargar el componente
     useEffect(() => {
-        const obtenerProductos = async () => {
+        const obtenerDatos = async () => {
             try {
-                const response = await fetch("http://localhost:3000/product/getAllProducts");
-                if (!response.ok) {
-                    throw new Error("Error al obtener los productos");
+                const [productosResponse, alertasResponse] = await Promise.all([
+                    fetch("http://localhost:3000/product/getAllProducts"),
+                    fetch("http://localhost:3000/product/alertasStock"),
+                ]);
+    
+                if (!productosResponse.ok || !alertasResponse.ok) {
+                    throw new Error("Error al obtener los datos");
                 }
-                const data = await response.json();
-                if (data.success) {
-                    // Mapear los datos de la API al formato esperado por el componente
-                    const productosFormateados = data.data.map((producto) => ({
+    
+                const productosData = await productosResponse.json();
+                const alertasData = await alertasResponse.json();
+    
+                if (productosData.success && alertasData.success) {
+                    const productosFormateados = productosData.data.map((producto) => ({
                         id: producto.id_producto,
                         nombre: producto.nombre,
                         stock: producto.cantidad,
-                        stockMinimo: producto.stock_minimo || 0, // Si no tiene stock mínimo, se establece en 0
+                        stockMinimo: producto.stock_minimo || 0,
                     }));
                     setProductos(productosFormateados);
-                    actualizarAlertas(stockGeneral, productosFormateados); // Actualizar alertas al cargar productos
+                    actualizarAlertas(stockGeneral, productosFormateados);
+    
+                    const alertasFormateadas = alertasData.alertas.map((alerta) => ({
+                        id: alerta.id_producto,
+                        nombre: alerta.nombre,
+                        stock: alerta.cantidad,
+                        stockMinimo: alerta.stock_minimo,
+                    }));
+                    setAlertas(alertasFormateadas);
                 }
             } catch (error) {
                 console.error("Error:", error);
-                alert("Hubo un error al obtener los productos.");
+                alert("Hubo un error al obtener los datos.");
             }
         };
-        obtenerProductos();
+    
+        obtenerDatos();
     }, []);
 
     // Obtener las alertas activas
@@ -78,14 +93,14 @@ const AlertasStock = () => {
                 },
                 body: JSON.stringify({ stockGeneral }),
             });
-
+    
             if (!response.ok) {
                 throw new Error("Error al establecer el stock mínimo general");
             }
-
+    
             const data = await response.json();
             console.log(data); // Puedes manejar la respuesta del servidor aquí
-
+    
             // Actualizar las alertas después de establecer el stock mínimo general
             actualizarAlertas(stockGeneral, productos);
             alert(`Stock mínimo general actualizado a ${stockGeneral} unidades.`);
@@ -106,20 +121,20 @@ const AlertasStock = () => {
                 },
                 body: JSON.stringify({ id_producto: id, stock_minimo: nuevoStockMinimo }),
             });
-
+    
             if (!response.ok) {
                 throw new Error("Error al establecer el stock mínimo del producto");
             }
-
+    
             const data = await response.json();
             console.log(data); // Puedes manejar la respuesta del servidor aquí
-
+    
             // Actualizar el estado local de los productos
             const nuevosProductos = productos.map((producto) =>
                 producto.id === id ? { ...producto, stockMinimo: nuevoStockMinimo } : producto
             );
             setProductos(nuevosProductos);
-
+    
             // Actualizar las alertas después de establecer el stock mínimo del producto
             actualizarAlertas(stockGeneral, nuevosProductos);
             alert(`Stock mínimo del producto actualizado a ${nuevoStockMinimo} unidades.`);

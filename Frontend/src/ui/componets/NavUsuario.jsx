@@ -7,7 +7,7 @@ const Navbar = () => {
     return (
         <nav className="bg-gradient-to-r from-teal-600 to-indigo-600 fixed top-0 left-0 w-full z-50 shadow-lg">
             <div className="container mx-auto flex items-center py-1 px-4">
-                
+
                 {/* Asegura que el texto esté completamente a la izquierda */}
                 <a className="text-2xl font-bold text-orange-400 cursor-pointer mr-auto" onClick={() => navigate('/usuario')}>
                     NebookVault
@@ -22,21 +22,27 @@ const Navbar = () => {
                         <i className="fa fa-shopping-cart text-1xl"></i>
                         <span>Home</span>
                     </li>
-                    <li className="flex flex-col items-center cursor-pointer hover:text-orange-300" onClick={() => navigate('/usuario')}>
+                    <li className="flex flex-col items-center cursor-pointer hover:text-orange-300" onClick={() => navigate('/masVotados')}>
                         <i className="fa fa-star text-1xl"></i>
-                        <span>x</span>
+                        <span>Más votados</span>
                     </li>
-                    <li className="flex flex-col items-center cursor-pointer hover:text-orange-300" onClick={() => navigate('/usuario')}>
+                    <li className="flex flex-col items-center cursor-pointer hover:text-orange-300" onClick={() => navigate('/UsuarioLibros')}>
                         <i className="fa fa-book text-1xl"></i>
-                        <span>x</span>
+                        <span>Ver libros</span>
+                    </li>
+                    {/* Nueva opción: Lista de deseos */}
+                    <li className="flex flex-col items-center cursor-pointer hover:text-orange-300" onClick={() => navigate('/listaDeseos')}>
+                        <i className="fa fa-heart text-1xl"></i>
+                        <span>Lista de deseos</span>
                     </li>
                 </ul>
-                
+
                 {/* Asegura que el botón esté completamente a la derecha */}
                 <button className="text-white flex flex-col items-center hover:text-red-400 ml-auto" onClick={() => navigate('/')}>
                     <i className="fa fa-sign-out text-1xl"></i>
                     <span>Cerrar sesión</span>
                 </button>
+
             </div>
         </nav>
     );

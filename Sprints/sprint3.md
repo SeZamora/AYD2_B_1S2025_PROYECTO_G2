@@ -4,65 +4,104 @@
 
 ## Integrantes
 1. **Diego Andres Huite Alvarez** - Carnet: 202003585
-2. **Nombre 2** - Carnet: XXXXXXX
-3. **Nombre 3** - Carnet: XXXXXXX
-4. **Genesis Nahomi Aparicio Acan** - Carnet: 202113293
-5. **Nombre 5** - Carnet: XXXXXXX
+2. **Jorge Sebastian Zamora Polanco** - Carnet: 202002591
+3. **Hugo Daniel Girón Garcia** - Carnet: 202004807
+4.  **Genesis Nahomi Aparicio Acan** - Carnet: 202113293
+5. **Lesther Kevin Federico López Miculax** - Carnet: 202110897
+
 
 ## Daily Standup
 
 ### Día 1 (Lunes)
 | Integrante  | ¿Qué se hizo ayer? | ¿Qué se hará hoy? | Impedimentos |
 |-------------|------------------|------------------|-------------|
-| Diego Huite | Revisión de todos los delete por parte del backend            |         Eliminación de libros y productos        |         Algunas referencias a libros y a productos hacen problema con el detalle de las facturas   |
-| Jorge Zamora  |  - Visualizar Facturas | - Se pueden ver los libros en la area de compra y tambien se pueden agregar al carrito |    Existian libros y productos con el mismo id entonces daba error al momento de crear las cards |
-| Nombre 3    |                  |                  |             |
-| Nombre 4    |                  |                  |             |
-| Nombre 5    |                  |                  |             |
+| Diego Huite | Revisión de todos los delete por parte del backend. | Eliminación de libros y productos. | Algunas referencias a libros y productos causan problemas con el detalle de las facturas. |
+| Jorge Zamora | - Visualizar Facturas. | - Ver libros en el área de compra y agregarlos al carrito. | - Libros y productos con el mismo ID causan errores al crear las cards. |
+| **Hugo Girón** | - Pruebas utilizando Docker Compose para verificar la integración entre servicios. | - Revisar el login del gerente. | - Implementar el inicio de sesión para el gerente. |
+| Nahomi Aparicio | Se arreglaron algunas rutas de el frontend y algunas tablas para mejor visualización. | Realizar la vista de las facturas que los empleados a cargo del supervisor generan. | El navbar de supervisores no mostraba los iconos y no lograban tener función por unas librerías. |
+| Lesther López | Revisión de los métodos get y post del backend. | Crear la eliminación y la edición de las reseñas. | Errores en parámetros de consultas. |
 
+---
 
-### Día 2 (Miercoles)
+### Día 2 (Martes)
 | Integrante  | ¿Qué se hizo ayer? | ¿Qué se hará hoy? | Impedimentos |
 |-------------|------------------|------------------|-------------|
-| Diego Huite | Endpoint para el manejo de recibos por cada empleado   | Recuperación de contraseña de los usuarios      |    -         |
-| Jorge Zamora |  - Terminar los requisitos de la vista empleado | - Crear la vista usuario <br> - Ajustar el carrito de empleado para carrito usuario | - Diferencias entre carritos |
-| Nombre 3    |                  |                  |             |
-| Nombre 4    |                  |                  |             |
-| Nombre 5    |                  |                  |             |
+| Diego Huite | Endpoint para el manejo de recibos por cada empleado. | Recuperación de contraseña de los usuarios. | - |
+| Jorge Zamora | - Terminar los requisitos de la vista empleado. | - Crear la vista usuario. <br> - Ajustar el carrito de empleado para carrito usuario. | - Diferencias entre carritos. |
+| **Hugo Girón** | - Implementar roles de usuario (gerente vs. supervisor). | - Trabajar en la vista de **libros más votados**. | - Obtener el ID del usuario desde el localStorage. |
+| Nahomi Aparicio | - Se creó la vista de las facturas de los empleados a cargo del supervisor. <br> - Las facturas se logran filtrar según el cliente, el empleado y la fecha. | Conectar los endpoints al front para poder lograr la eliminación de productos, libros y empleados. | - |
+| Lesther López | Se revisó la implementación de los endpoints de reseñas. | Implementar el patrón de diseño Command para los endpoints de reseñas. | Falta de clases para implementar el patrón Command. |
 
-### Día 3 (Viernes)
+---
+
+### Día 3 (Miércoles)
 | Integrante  | ¿Qué se hizo ayer? | ¿Qué se hará hoy? | Impedimentos |
 |-------------|------------------|------------------|-------------|
-| Diego Huite | -       | -                      |   - |
-| Nombre 2    |                  |                  |             |
-| Nombre 3    |                  |                  |             |
-| Nombre 4    |                  |                  |             |
-| Nombre 5    |                  |                  |             |
+| Diego Huite | - | - | - |
+| Jorge Zamora | - | - | - |
+| **Hugo Girón** | - Trabajar en la vista de **libros más votados**. | - Implementar la funcionalidad de **lista de deseos**. | - Integrar el ID del usuario en la lista de deseos. |
+| Nahomi Aparicio | Se conectaron varios endpoints de backend para los empleados, al igual que los endpoints para eliminar productos y libros. <br> - Se agregó el modal para poder ver las ventas que cada empleado realizó. | Se hará la vista de las alertas de productos y libros a punto de agotarse. | - |
+| Lesther López | Se implementó el patrón Command en reseñas. | Implementar endpoints para la generación de reportes. | - |
 
+---
 
+### Día 4 (Viernes)
+| Integrante  | ¿Qué se hizo ayer? | ¿Qué se hará hoy? | Impedimentos |
+|-------------|------------------|------------------|-------------|
+| Diego Huite | - | - | - |
+| Jorge Zamora | - | - | - |
+| **Hugo Girón** | - Implementar la funcionalidad de **lista de deseos**. | - Finalizar la integración de la lista de deseos con el frontend. | - Problemas al enviar el ID del usuario desde el frontend. |
+| Nahomi Aparicio | Se agregaron las alertas de productos y libros a punto de agotarse. | - | - |
+| Lesther López | Se crearon endpoints para la generación de reportes. | Configurar las alertas de stock en los productos. | - |
 
-
+---
 
 
 
 ## Sprint Planning
 
 ### Sprint Backlog
-| ID | Tarea | Prioridad | Estado |
-|----|-------|----------|--------|
-| 1  | Eliminación de empleado (Backend)      | Alta | Pendiente |
-| 2  | Eliminación de supervisor (Backend)      | Alta | Pendiente |
-| 3  | Eliminación de libros (Backend)      | Media | Pendiente |
-| 4  | Eliminación de productos (Backend)      | Media | Pendiente |
-| 5  | Obtener logs de empleados y supervisores (Backend)      | Media | Pendiente |
-| 6  | Recuperación de contraseña de usuarios (Backend)      | Alta | Pendiente |
+## Sprint Planning
+
+| ID   | Tarea                                                          | Prioridad | Estado      |
+|------|----------------------------------------------------------------|-----------|-------------|
+| 1    | Revisión de todos los "delete" por parte del backend           | Alta      | Completado  |
+| 2    | Eliminación de libros y productos                              | Alta      | En Proceso  |
+| 3    | Visualizar Facturas                                            | Alta      | Completado  |
+| 4    | Ver libros en el área de compra y agregarlos al carrito         | Alta      | En Proceso  |
+| 5    | Pruebas con Docker Compose para la integración                 | Media     | Completado  |
+| 6    | Revisar el login del gerente                                   | Alta      | En Proceso  |
+| 7    | Arreglar rutas del frontend y mejorar tablas                   | Alta      | Completado  |
+| 8    | Realizar la vista de facturas generadas por empleados          | Alta      | En Proceso  |
+| 9    | Revisión de métodos GET y POST del backend                     | Media     | Completado  |
+| 10   | Crear eliminación y edición de reseñas                         | Alta      | En Proceso  |
+| 11   | Endpoint para el manejo de recibos por cada empleado           | Alta      | En Proceso  |
+| 12   | Recuperación de contraseña de los usuarios                    | Alta      | En Proceso  |
+| 13   | Terminar requisitos de la vista empleado                       | Alta      | Completado  |
+| 14   | Crear la vista usuario y ajustar el carrito de empleado        | Alta      | En Proceso  |
+| 15   | Implementar roles de usuario (gerente vs. supervisor)          | Alta      | Completado  |
+| 16   | Generar reportes PDF automatizados                            | Alta      | En Proceso  |
+| 17   | Crear vista de facturas de empleados a cargo del supervisor    | Alta      | Completado  |
+| 18   | Conectar los endpoints al frontend para eliminación de productos| Alta     | En Proceso  |
+| 19   | Implementar patrón Command para los endpoints de reseñas       | Alta      | En Proceso  |
+| 20   | Generar reporte mensual de ventas en PDF                       | Alta      | En Proceso  |
+| 21   | Preparar entorno para deploy local utilizando Docker          | Alta      | En Proceso  |
+| 22   | Conectar varios endpoints de backend para empleados            | Alta      | Completado  |
+| 23   | Agregar modal para visualizar ventas realizadas por empleados | Alta      | Completado  |
+| 24   | Crear vista de alertas de productos y libros a punto de agotarse| Alta      | En Proceso  |
+| 25   | Implementar endpoints para la generación de reportes          | Alta      | En Proceso  |
+| 26   | Deploy en servidor local utilizando Docker                     | Alta      | En Proceso  |
+| 27   | Monitorear rendimiento post-deploy                             | Alta      | En Proceso  |
+| 28   | Agregar alertas de productos y libros a punto de agotarse      | Alta      | Completado  |
+| 29   | Configurar alertas de stock en los productos                   | Alta      | En Proceso  |
+
 
 
 
 ### Tablero Inicial
-![image](https://github.com/user-attachments/assets/30590f44-647e-41b7-a504-7132a7e58e46)
+![image](https://github.com/SeZamora/AYD2_B_1S2025_PROYECTO_G2/blob/feature/202113293/Sprints/Imagenes/202113293_2.PNG)
 
-![image](https://github.com/user-attachments/assets/d000aa14-944a-4798-9f73-bdc483bea419)
+![image](https://github.com/user-attachments/assets/a90b32b9-2db6-44b0-9ad7-1e82c6758044)
 
 
 ## Sprint Retrospective
@@ -79,39 +118,95 @@
 #### ¿Qué mejoras implementar?
 - Analizar más a profundiad el modelo de la base de datos y considerar situaciones como eliminaciones, ediciones, etc.
 
+#### Backlog final
+
+
+| ID   | Tarea                                                          | Estado Final  | Justificación si no se completó                  |
+|------|----------------------------------------------------------------|---------------|---------------------------------------------------|
+| 1    | Revisión de todos los "delete" por parte del backend           | Completado    |                                                   |
+| 2    | Eliminación de libros y productos                              | Completada  |  |
+| 11   | Endpoint para el manejo de recibos por cada empleado           | Completada   | |
+
+
+#### tablero final
+![image](https://github.com/user-attachments/assets/9b733d3e-18c3-4c99-b707-e1bbd3fc5cc9)
+
+
 ---
 
-### Evaluación del Sprint - XXXXXXXXXX
+### Evaluación del Sprint - 202110897
 
 #### ¿Qué se hizo bien?
-- 
+- Se utilizó de manera adecuada los patrones de diseño en el backend.
+
 
 #### ¿Qué se hizo mal?
-- 
+- No tomar en cuenta el manejo adecuado del minimo de stock en las tablas, ya que algunos productos tenian menos stock que el minimo considerado. 
 
 #### ¿Qué mejoras implementar?
-- 
+- Mejorar la comunicación entre el equipo de desarrollo para establecer de mejor manera la implementacion de los patrones de diseño.
+---
+
+### Evaluación del Sprint - 202113293
+
+#### ¿Qué se hizo bien?
+- Se creó la vista de facturas de los empleados a cargo del supervisor, permitiendo filtrarlas por cliente, empleado y fecha.
+
+- Se logró la conexión de varios endpoints del backend para la gestión de empleados, así como la eliminación de productos y libros.
+
+#### ¿Qué se hizo mal?
+- El navbar de supervisores no mostraba los íconos correctamente debido a problemas con librerías no contempladas previamente.
+
+- Se presentaron algunos problemas de integración con los endpoints de eliminación.
+
+#### ¿Qué mejoras implementar?
+- Revisar y verificar que todas las librerías necesarias estén correctamente instaladas antes de implementar nuevas funcionalidades.
+
+- Realizar pruebas más detalladas de la integración entre frontend y backend antes de desplegar cambios.
+
+
+#### Sprint backlog final
+
+| ID | Tarea | Estado Final | Justificación si no se completó |
+|----|-------|--------------|--------------------------------|
+| 2 | Eliminación de libros y productos | Finalizada |-|
+| 3 |Visualizar Facturas|Finalizada| -|
+| 7 | Arreglar rutas del frontend y mejorar tablas| Finalizada|-|
+| 12 |Recuperación de contraseña de los usuarios| Finalizada| -|
+| 17 |Crear vista de facturas de empleados a cargo del supervisor| Finalizada| -|
+| 18 |Conectar los endpoints al frontend para eliminación de productos| Finalizada| -|
+| 29 |Configurar alertas de stock en los productos| Finalizada| -|
+
+
+---
+
+### Evaluación del Sprint - 202110897
+
+#### ¿Qué se hizo bien?
+- Se utilizó de manera adecuada los patrones de diseño en el backend.
+
+
+#### ¿Qué se hizo mal?
+- No tomar en cuenta el manejo adecuado del minimo de stock en las tablas, ya que algunos productos tenian menos stock que el minimo considerado. 
+
+#### ¿Qué mejoras implementar?
+- Mejorar la comunicación entre el equipo de desarrollo para establecer de mejor manera la implementacion de los patrones de diseño.
+
+
+#### Sprint backlog final
+
+| ID | Tarea | Estado Final | Justificación si no se completó |
+|----|-------|--------------|--------------------------------|
+| 9 | Revisión de métodos GET y POST del backend | Finalizada |-|
+| 10 |Crear eliminación y edición de reseñas| Finalizada |
+| 11 | Endpoint para el manejo de recibos por cada empleado | Finalizada|-|
+| 19 |Implementar patron command para los endpoints de reseñas | Finalizada| -|
+| 25 |Implementar endpoints para la generacion de reportes| Finalizada| -|
+| 29 |Configurar alertas de stock en los productos| Finalizada| -|
 
 ---
 
 
-
-### Tablero Final
-![image](https://github.com/user-attachments/assets/1754a60e-76f2-4b3f-9e3f-b784261afbb7)
-![image](https://github.com/user-attachments/assets/a4c47ca2-3a3e-481e-94d1-421c3d9f5c6a)
-
-
-
-### Sprint Backlog Final
-
-| ID | Tarea | Estado Final | Justificación si no se completó |
-|----|-------|-------------|---------------------------------|
-| 1  | Eliminación de empleado (Backend)       | Completada  |  - |
-| 2  | Eliminación de supervisor (Backend)   | Completada  |  - |
-| 3  |  Eliminación de libros (Backend)     | Completada  |  - |
-| 4  |Eliminación de productos (Backend)      | Completada  |  - |
-| 5  | Obtener logs de empleados y supervisores (Backend)     | Completada  | 
-| 6  | Recuperación de contraseña de usuarios (Backend)    | Completada  | 
 
 
 

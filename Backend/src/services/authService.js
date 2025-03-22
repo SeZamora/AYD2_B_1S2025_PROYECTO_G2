@@ -14,7 +14,7 @@ const register = async ({ email, password, fullName, age }) => {
             return { success: false, message: 'El correo electrónico ya está registrado.' };
         }
 
-      // encriptar contraseña
+
         const hashedPassword = encrypter.encrypt(password);
 
       
@@ -47,7 +47,7 @@ const login = async ({ username, password, userType }) => {
             return { success: false, message: 'Usuario o contraseña incorrectos' };
         }
         // add user email to the response
-        return { success: true , message: 'wujuuu', userType, email: username };
+        return { success: true , message: 'Inicio de sesión exitoso', userType, email: username };
 
 
     } catch (error) {
