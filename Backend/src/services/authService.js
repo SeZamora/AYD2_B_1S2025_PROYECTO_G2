@@ -14,7 +14,7 @@ const register = async ({ email, password, fullName, age }) => {
             return { success: false, message: 'El correo electrónico ya está registrado.' };
         }
 
-      // encriptar contraseña
+
         const hashedPassword = encrypter.encrypt(password);
 
       

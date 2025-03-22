@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Importa useNavigate
+import { useNavigate } from 'react-router-dom'; 
 import './login.css';
 
 const Registro = () => {
@@ -8,9 +8,9 @@ const Registro = () => {
   const [fullName, setFullName] = useState("");
   const [age, setAge] = useState("");
 
-  const navigate = useNavigate(); // Usa useNavigate para obtener la función navigate
+  const navigate = useNavigate();
 
-  // Marca la función como 'async'
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
    
@@ -22,15 +22,15 @@ const Registro = () => {
       });
 
       if (response.ok) {
-        window.alert("Registro exitoso"); // Cambié Alert por window.alert()
-        navigate('/'); // Redirige a la página principal después del registro exitoso
+        window.alert("Registro exitoso"); 
+        navigate('/'); 
       } else {
-        window.alert("Error en el registro"); // Cambié Alert por window.alert()
+        window.alert("Error en el registro"); 
       }
 
     } catch (error) {
       console.error('Error en la conexión con el servidor', error);
-      window.alert("Error en la conexión con el servidor"); // Mostramos un alert en caso de error
+      window.alert("Error en la conexión con el servidor"); 
     }
   };
 

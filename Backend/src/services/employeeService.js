@@ -20,6 +20,7 @@ const addEmployee = async ({ nombre, apellido, cui, telefono, correo, contraseni
 };
 
 const editInfo = async ({ old_email, new_email, phone_number }) => {
+    console.log(old_email, new_email, phone_number);
     try {
         const rows = await db.query(`SELECT * FROM empleados WHERE correo = ? AND eliminado = 0`, [old_email]);
         if (!rows.length) return { success: false, message: 'Usuario no encontrado.' };
@@ -109,6 +110,7 @@ const getEmployeeById = async (nombre) => {
 };
 
 const deleteEmployee = async ({ empleados_id, reason_fired }) => {
+    console.log(empleados_id, reason_fired);
     try {
         const rows = await db.query(`SELECT * FROM empleados WHERE empleados_id = ? AND eliminado = 0`, [empleados_id]);
         if (!rows.length) return { success: false, message: 'Empleado no encontrado.' };
