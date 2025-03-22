@@ -10,6 +10,7 @@ import GerenteSupervisor from "../pages/Gerente/gerente_supervisor";
 import GerenteFacturas from "../pages/Gerente/gerente_facturas";
 import GerenteGanancias from "../pages/Gerente/gerente_ganancias";
 import GerenteVentas from "../pages/Gerente/gerente_ventas";
+import Catalogo from "../pages/Catalogo";
 
 import AlertasStock from "../pages/Gerente/alertaStock";
 import SupervisorView from "../pages/Supervisor/SupervisorView";
@@ -36,6 +37,7 @@ const AppRouter = () => {
       <Route path="/Registro" element={<Registro />} />
       <Route path="/Contraseña" element={<Contraseña />} />
       <Route path="/testUpload" element={ <TestUpload />} />
+      <Route path="/Catalogo" element={<Catalogo />} />
 
       <Route path="/SuperPrincipal" element={role === "supervisores" ? <SuperPrincipal /> : <Navigate to="/" />} />
       <Route path="/Productos" element={role === "supervisores" ? <Productos /> : <Navigate to="/" />} />
