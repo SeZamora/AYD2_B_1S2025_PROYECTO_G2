@@ -166,7 +166,7 @@
 
 
 #### Foto tablero
-![image](https://github.com/user-attachments/assets/789fb6d5-7839-4db6-9032-32273173510c)
+![image](https://github.com/SeZamora/AYD2_B_1S2025_PROYECTO_G2/blob/feature/202113293/Sprints/Imagenes/202113293.PNG)
 
 ---
 
