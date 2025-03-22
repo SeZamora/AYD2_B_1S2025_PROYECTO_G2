@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import useAuth from '../hook/useAuth';
 import { useNavigate } from 'react-router-dom'; 
-
 import './login.css';
 
 const LoginPage = () => {
@@ -18,13 +17,13 @@ const LoginPage = () => {
     const isFormValid = username.trim() !== '' && password.trim() !== '' && userType.trim() !== '';
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
-
         if (username === 'admin' && password === 'admin') {
             navigate('/gerente_supervisor');
             return;
         }
 
+        e.preventDefault();
+        
         try {
             const response = await fetch('http://localhost:3000/auth/login', {
                 method: 'POST',
@@ -33,14 +32,26 @@ const LoginPage = () => {
             });
             
             const data = await response.json();
+            console.log(data);
             if (data.success) {
                 notifySuccess(data.message);
+                console.log(data);
+
+                // Guardar el ID del usuario en el localStorage
+                if (data.user && data.user.id) {
+                    localStorage.setItem('userId', data.user.id); // Guardar el ID del usuario
+                }
+
                 login(data.userType);
+
+                // Redirigir según el tipo de usuario
                 if (data.userType === 'supervisores') {
                     navigate('/SuperPrincipal'); 
-                } else if (data.userType === 'empleados') {
+                }
+                if (data.userType === 'empleados') {
                     navigate('/empleado'); 
-                } else if (data.userType === 'cuenta') {
+                }
+                if (data.userType === 'cuenta') {
                     navigate('/usuario');
                 }
             } else {
@@ -83,7 +94,7 @@ const LoginPage = () => {
                         <label className="input-label">Tipo de Usuario</label>
                         <div className="radio-group">
                             {['admin', 'cuenta', 'supervisores', 'empleados'].map((type) => (
-                                <label key={type} className="mr-4">
+                                <label key={type} style={{ marginRight: '10px' }}>
                                     <input
                                         type="radio"
                                         name="userType"
@@ -106,28 +117,12 @@ const LoginPage = () => {
                     <div className="message">
                         <h2>Bienvenido de nuevo</h2>
                         <p>Si aún no tienes una cuenta, por favor regístrate aquí</p>
-                        
-                        <button 
-                            className="input-button" 
-                            onClick={() => navigate('/Registro')}
-                        >
-                            Registrarse
-                        </button>
-
-                        
-                        <button 
-                            className="input-button mr-2 ml-2" 
-                            onClick={() => navigate('/catalogo')}
-                        >
-                            Ver Catálogo
-                        </button>
-
+                        <button className="input-button" onClick={() => navigate('/Registro')}>Registrarse</button>
                         <a className="recover-password-link" onClick={() => navigate('/Contraseña')}>
                             ¿Olvidaste tu contraseña?
                         </a>
                     </div>
                 </div>
-
                 <ToastContainer position="bottom-right" autoClose={3000} pauseOnHover theme="colored" />
             </div>
         </div>
