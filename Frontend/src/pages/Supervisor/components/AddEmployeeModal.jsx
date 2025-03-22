@@ -162,7 +162,7 @@ const handleSubmit = async (e) => {
                     <div className="modal-content">
                         <div className="modal-header">
                             <h5 className="modal-title" id="addEmployeeModalLabel">
-                                {role === 'edit' ? 'Editar Empleado' : 'Agregar Nuevo Empleado'}
+                                {role === 'modify' ? 'Editar Empleado' : 'Agregar Nuevo Empleado'}
                             </h5>
                         </div>
                         <div className="modal-body">

@@ -4,13 +4,13 @@ import { CardEmpleado } from './../../ui/CardEmpleado';
 
 export const UsuarioLibros = () => {
   const [libros, setLibros] = useState([]);
-  const [searchTerm, setSearchTerm] = useState(""); 
-  const [isModalOpen, setIsModalOpen] = useState(false); 
+  const [searchTerm, setSearchTerm] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [opinion, setOpinion] = useState({
     calificacion: '',
     comentario: '',
-    fecha: '', 
-    cuenta_id_cuenta: '', 
+    fecha: '',
+    cuenta_id_cuenta: '',
     libros_id_libro: ''
   });
 
@@ -54,17 +54,17 @@ export const UsuarioLibros = () => {
 
   const handleSubmitOpinion = () => {
     const date = new Date(opinion.fecha);
-    const formattedDate = date.toISOString().slice(0, 19).replace('T', ' '); 
-  
+    const formattedDate = date.toISOString().slice(0, 19).replace('T', ' ');
+
     const opinionToSend = {
       ...opinion,
-      fecha: formattedDate, 
-      calificacion: parseInt(opinion.calificacion, 10), 
-      cuenta_id_cuenta: parseInt(opinion.cuenta_id_cuenta, 10), 
+      fecha: formattedDate,
+      calificacion: parseInt(opinion.calificacion, 10),
+      cuenta_id_cuenta: parseInt(opinion.cuenta_id_cuenta, 10),
     };
-  
-    console.log('Enviando reseña:', opinionToSend); 
-    
+
+    console.log('Enviando reseña:', opinionToSend);
+
     fetch('http://localhost:3000/book/addResenia', {
       method: 'POST',
       headers: {
@@ -74,7 +74,7 @@ export const UsuarioLibros = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log('Respuesta del servidor:', data);  
+        console.log('Respuesta del servidor:', data);
         if (data.success) {
           alert(data.message);
           setIsModalOpen(false);
@@ -86,8 +86,8 @@ export const UsuarioLibros = () => {
         console.error('Error al guardar la opinión:', error);
       });
   };
-  
-  
+
+
 
   return (
     <>
@@ -101,7 +101,7 @@ export const UsuarioLibros = () => {
             className="search-input"
             placeholder="Buscar por título, autor, género o precio"
             value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)} 
+            onChange={(e) => setSearchTerm(e.target.value)}
           />
           <span className="search-icon">
             <i className="fa fa-search"></i>
@@ -131,7 +131,7 @@ export const UsuarioLibros = () => {
             <div className="flex items-center justify-center mt-4">
               <button
                 className="bg-green-400 px-4 py-1 rounded-md my-2 disabled:bg-primary-300 w-full text-text-100 font-bold mr-2"
-                onClick={() => openModal(libro.id_libro)} 
+                onClick={() => openModal(libro.id_libro)}
               >
                 Comentar y Calificar
               </button>
@@ -172,8 +172,17 @@ export const UsuarioLibros = () => {
               name="cuenta_id_cuenta"
               value={opinion.cuenta_id_cuenta}
               onChange={handleInputChange}
-              style={{ width: '100%', padding: '8px', marginBottom: '10px' }}
+              style={{
+                width: '100%',
+                padding: '8px',
+                marginBottom: '10px',
+                backgroundColor: '#f0f0f0', // Color de fondo
+                color: '#333', // Color del texto
+                border: '1px solid #ccc', // Borde más suave
+                borderRadius: '4px', // Bordes redondeados
+              }}
             />
+
             <label htmlFor="calificacion">Calificación</label>
             <input
               type="number"
@@ -183,7 +192,15 @@ export const UsuarioLibros = () => {
               onChange={handleInputChange}
               min="1"
               max="5"
-              style={{ width: '100%', padding: '8px', marginBottom: '10px' }}
+              style={{
+                width: '100%',
+                padding: '8px',
+                marginBottom: '10px',
+                backgroundColor: '#f0f0f0', // Color de fondo
+                color: '#333', // Color del texto
+                border: '1px solid #ccc', // Borde más suave
+                borderRadius: '4px', // Bordes redondeados
+              }}
             />
             <label htmlFor="comentario">Comentario</label>
             <textarea
@@ -195,8 +212,10 @@ export const UsuarioLibros = () => {
                 width: '100%',
                 padding: '8px',
                 marginBottom: '10px',
-                height: '100px',
-                resize: 'none',
+                backgroundColor: '#f0f0f0', // Color de fondo
+                color: '#333', // Color del texto
+                border: '1px solid #ccc', // Borde más suave
+                borderRadius: '4px', // Bordes redondeados
               }}
             ></textarea>
             <div>
