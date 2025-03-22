@@ -19,11 +19,11 @@ const addEmployee = async ({ nombre, apellido, cui, telefono, correo, contraseni
     }
 };
 
-const editInfo = async ({ id, email, phone_number }) => {
+const editInfo = async ({ id, email, phone_number, edad }) => {
     try {
         const result = await db.query(
-            `UPDATE empleados SET correo = ?, telefono = ? WHERE empleados_id = ? AND eliminado = 0`,
-            [email, phone_number, id]
+            `UPDATE empleados SET correo = ?, telefono = ?, edad = ? WHERE empleados_id = ? AND eliminado = 0`,
+            [email, phone_number, edad, id]
         );
 
         return result.affectedRows > 0
