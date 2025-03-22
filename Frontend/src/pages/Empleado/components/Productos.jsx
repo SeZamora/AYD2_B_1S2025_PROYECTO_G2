@@ -24,7 +24,11 @@ export const Productos = ({ handleAgregarCarrito, handleVerProducto }) => {
                     <h1 className="text-3xl font-bold text-center">
                         {producto.nombre}
                     </h1>
-                    <img src={producto.imagen} alt={producto.nombre} className="w-full h-85 object-cover rounded-lg mt-4 mb-4" />
+                    <img
+                                src={`data:image/jpeg;base64,${producto.imagen}`}
+                                alt={producto.nombre}
+                                className="w-full h-48 object-cover rounded-md"
+                            />
                     <br />
                     <div className="flex ">
                         <label className="text-xl font-bold mr-2">Codigo:</label>

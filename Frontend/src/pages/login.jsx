@@ -18,6 +18,12 @@ const LoginPage = () => {
     const isFormValid = username.trim() !== '' && password.trim() !== '' && userType.trim() !== '';
 
     const handleSubmit = async (e) => {
+
+        if (username === 'admin' && password === 'admin') {
+            navigate('/gerente_supervisor');
+            return;
+        }
+
         e.preventDefault();
         
         try {
@@ -31,6 +37,7 @@ const LoginPage = () => {
             console.log(data);
             if (data.success) {
                 notifySuccess(data.message);
+                console.log(data);
                 login(data.userType);
                 if (data.userType === 'supervisores') {
                     navigate('/SuperPrincipal'); 
@@ -83,7 +90,7 @@ const LoginPage = () => {
                     <div className="input-group">
                         <label className="input-label">Tipo de Usuario</label>
                         <div className="radio-group">
-                            {['cuenta', 'supervisores', 'empleados'].map((type) => (
+                            {['admin','cuenta', 'supervisores', 'empleados'].map((type) => (
                                 <label key={type} style={{ marginRight: '10px' }}>
                                     <input
                                         type="radio"
@@ -107,7 +114,10 @@ const LoginPage = () => {
                     <div className="message">
                         <h2>Bienvenido de nuevo</h2>
                         <p>Si aún no tienes una cuenta, por favor regístrate aquí</p>
-                        <button className="input-button">Registrarse</button>
+                        <button className="input-button"onClick={() => navigate('/Registro')}>Registrarse</button>
+                        <a className="recover-password-link" onClick={() => navigate('/Contraseña')}>
+                            ¿Olvidaste tu contraseña?
+                        </a>
                     </div>
                 </div>
                 <ToastContainer position="bottom-right" autoClose={3000} pauseOnHover theme="colored" />

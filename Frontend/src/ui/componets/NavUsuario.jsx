@@ -26,9 +26,9 @@ const Navbar = () => {
                         <i className="fa fa-star text-1xl"></i>
                         <span>x</span>
                     </li>
-                    <li className="flex flex-col items-center cursor-pointer hover:text-orange-300" onClick={() => navigate('/usuario')}>
+                    <li className="flex flex-col items-center cursor-pointer hover:text-orange-300" onClick={() => navigate('/UsuarioLibros')}>
                         <i className="fa fa-book text-1xl"></i>
-                        <span>x</span>
+                        <span>Ver libros</span>
                     </li>
                 </ul>
                 

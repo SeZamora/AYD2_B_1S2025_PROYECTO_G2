@@ -1,6 +1,8 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import useAuth from "../hook/useAuth";
 import Login from "../pages/login";
+import Registro from "../pages/Registro";
+import Contraseña from "../pages/Contraseña";
 import SuperPrincipal from "../pages/Supervisor/Principal";
 import Productos from "../pages/Supervisor/Productos";
 import Libros from "../pages/Supervisor/Libros";
@@ -14,6 +16,7 @@ import SupervisorView from "../pages/Supervisor/SupervisorView";
 import EmpleadoHome from "../pages/Empleado/EmpleadoHome";
 import GerenteView from "../pages/Gerente/GerenteView";
 import UsuarioView from "../pages/Usuario/UsuarioView";
+import UsuarioLibros from "../pages/Usuario/UsuarioLibros";
 import TestUpload from "../pages/TestUpload/TestUpload";
 import Opinion from "../pages/Supervisor/Opiniones";
 import VerProducto from "../pages/Empleado/components/VerProducto";
@@ -23,12 +26,15 @@ import VerFacturasSupervisor  from "../pages/Supervisor/Facturas";
 import LibroDetalle from "../pages/Empleado/components/VerLibros";
 import AlertasStockSupervisor  from "../pages/Supervisor/AlertasStock";
 
+
 const AppRouter = () => {
   const { role } = useAuth();
 
   return (
     <Routes>
       <Route path="/" element={<Login />} />
+      <Route path="/Registro" element={<Registro />} />
+      <Route path="/Contraseña" element={<Contraseña />} />
       <Route path="/testUpload" element={ <TestUpload />} />
 
       <Route path="/SuperPrincipal" element={role === "supervisores" ? <SuperPrincipal /> : <Navigate to="/" />} />
@@ -47,6 +53,7 @@ const AppRouter = () => {
       <Route path="/empleado" element={role == "empleados" ? <EmpleadoHome /> : <Navigate to="/"/>} />
       <Route path="/gerente" element={<GerenteView /> } />
       <Route path="/usuario" element={ <UsuarioView />} />
+      <Route path="/UsuarioLibros" element={ <UsuarioLibros />} />
 
       <Route path="/producto/:id" element={role == "empleados" ? <VerProducto /> : <Navigate to="/"/>} />
       <Route path="/facturas" element={role == "empleados" ? <VerFacturas /> : <Navigate to="/"/>} />
