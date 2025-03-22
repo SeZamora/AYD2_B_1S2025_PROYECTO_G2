@@ -65,21 +65,47 @@
 ## Sprint Planning
 
 ### Sprint Backlog
-| ID | Tarea | Prioridad | Estado |
-|----|-------|----------|--------|
-| 1  | Eliminación de empleado (Backend)      | Alta | Pendiente |
-| 2  | Eliminación de supervisor (Backend)      | Alta | Pendiente |
-| 3  | Eliminación de libros (Backend)      | Media | Pendiente |
-| 4  | Eliminación de productos (Backend)      | Media | Pendiente |
-| 5  | Obtener logs de empleados y supervisores (Backend)      | Media | Pendiente |
-| 6  | Recuperación de contraseña de usuarios (Backend)      | Alta | Pendiente |
+## Sprint Planning
+
+| ID   | Tarea                                                          | Prioridad | Estado      |
+|------|----------------------------------------------------------------|-----------|-------------|
+| 1    | Revisión de todos los "delete" por parte del backend           | Alta      | Completado  |
+| 2    | Eliminación de libros y productos                              | Alta      | En Proceso  |
+| 3    | Visualizar Facturas                                            | Alta      | Completado  |
+| 4    | Ver libros en el área de compra y agregarlos al carrito         | Alta      | En Proceso  |
+| 5    | Pruebas con Docker Compose para la integración                 | Media     | Completado  |
+| 6    | Revisar el login del gerente                                   | Alta      | En Proceso  |
+| 7    | Arreglar rutas del frontend y mejorar tablas                   | Alta      | Completado  |
+| 8    | Realizar la vista de facturas generadas por empleados          | Alta      | En Proceso  |
+| 9    | Revisión de métodos GET y POST del backend                     | Media     | Completado  |
+| 10   | Crear eliminación y edición de reseñas                         | Alta      | En Proceso  |
+| 11   | Endpoint para el manejo de recibos por cada empleado           | Alta      | En Proceso  |
+| 12   | Recuperación de contraseña de los usuarios                    | Alta      | En Proceso  |
+| 13   | Terminar requisitos de la vista empleado                       | Alta      | Completado  |
+| 14   | Crear la vista usuario y ajustar el carrito de empleado        | Alta      | En Proceso  |
+| 15   | Implementar roles de usuario (gerente vs. supervisor)          | Alta      | Completado  |
+| 16   | Generar reportes PDF automatizados                            | Alta      | En Proceso  |
+| 17   | Crear vista de facturas de empleados a cargo del supervisor    | Alta      | Completado  |
+| 18   | Conectar los endpoints al frontend para eliminación de productos| Alta     | En Proceso  |
+| 19   | Implementar patrón Command para los endpoints de reseñas       | Alta      | En Proceso  |
+| 20   | Generar reporte mensual de ventas en PDF                       | Alta      | En Proceso  |
+| 21   | Preparar entorno para deploy local utilizando Docker          | Alta      | En Proceso  |
+| 22   | Conectar varios endpoints de backend para empleados            | Alta      | Completado  |
+| 23   | Agregar modal para visualizar ventas realizadas por empleados | Alta      | Completado  |
+| 24   | Crear vista de alertas de productos y libros a punto de agotarse| Alta      | En Proceso  |
+| 25   | Implementar endpoints para la generación de reportes          | Alta      | En Proceso  |
+| 26   | Deploy en servidor local utilizando Docker                     | Alta      | En Proceso  |
+| 27   | Monitorear rendimiento post-deploy                             | Alta      | En Proceso  |
+| 28   | Agregar alertas de productos y libros a punto de agotarse      | Alta      | Completado  |
+| 29   | Configurar alertas de stock en los productos                   | Alta      | En Proceso  |
+
 
 
 
 ### Tablero Inicial
-![image](https://github.com/user-attachments/assets/30590f44-647e-41b7-a504-7132a7e58e46)
+![image](https://github.com/SeZamora/AYD2_B_1S2025_PROYECTO_G2/blob/feature/202113293/Sprints/Imagenes/202113293_2.PNG)
 
-![image](https://github.com/user-attachments/assets/d000aa14-944a-4798-9f73-bdc483bea419)
+![image](https://github.com/user-attachments/assets/a90b32b9-2db6-44b0-9ad7-1e82c6758044)
 
 
 ## Sprint Retrospective
@@ -95,6 +121,20 @@
 
 #### ¿Qué mejoras implementar?
 - Analizar más a profundiad el modelo de la base de datos y considerar situaciones como eliminaciones, ediciones, etc.
+
+#### Backlog final
+
+
+| ID   | Tarea                                                          | Estado Final  | Justificación si no se completó                  |
+|------|----------------------------------------------------------------|---------------|---------------------------------------------------|
+| 1    | Revisión de todos los "delete" por parte del backend           | Completado    |                                                   |
+| 2    | Eliminación de libros y productos                              | Completada  |  |
+| 11   | Endpoint para el manejo de recibos por cada empleado           | Completada   | |
+
+
+#### tablero final
+![image](https://github.com/user-attachments/assets/9b733d3e-18c3-4c99-b707-e1bbd3fc5cc9)
+
 
 ---
 
@@ -145,22 +185,7 @@
 - Mejorar la comunicación entre el equipo de desarrollo para establecer de mejor manera la implementacion de los patrones de diseño.
 ---
 
-### Tablero Final
-![image](https://github.com/user-attachments/assets/1754a60e-76f2-4b3f-9e3f-b784261afbb7)
-![image](https://github.com/user-attachments/assets/a4c47ca2-3a3e-481e-94d1-421c3d9f5c6a)
 
-
-
-### Sprint Backlog Final
-
-| ID | Tarea | Estado Final | Justificación si no se completó |
-|----|-------|-------------|---------------------------------|
-| 1  | Eliminación de empleado (Backend)       | Completada  |  - |
-| 2  | Eliminación de supervisor (Backend)   | Completada  |  - |
-| 3  |  Eliminación de libros (Backend)     | Completada  |  - |
-| 4  |Eliminación de productos (Backend)      | Completada  |  - |
-| 5  | Obtener logs de empleados y supervisores (Backend)     | Completada  | 
-| 6  | Recuperación de contraseña de usuarios (Backend)    | Completada  | 
 
 
 
