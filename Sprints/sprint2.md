@@ -73,7 +73,9 @@
 | 8  | Gestionar diferencias entre productos y libros en la base de datos | Alta | Pendiente |
 | 9  | Implementar endpoints para la gestión de reseñas | Media | Pendiente |
 | 10 | Crear la vista de opiniones y conectar el endpoint correspondiente | Media | Pendiente |
-
+| 11 | Implementar Agregar Productos, Actualizar Productos Frontend | Media | En progreso |
+| 12 | Implementar Ver y Agregar Libros Frontend | Media | En progreso |
+| 13 | Implementar Ver Opinion Frontend | Media | En progreso |
 
 
 ### Tablero Inicial
@@ -156,6 +158,18 @@
 - Mantener una mejor comunicación con el equipo para asegurarse de que se mencionen todas las dependencias necesarias desde el inicio.
 
 
+#### Backlog final
+
+
+| ID  | Tarea | Estado Final | Justificación si no se completó |
+|----|-------|--------------|--------------------------------|
+| 10 | Crear la vista de opiniones y conectar el endpoint correspondiente| En Finalizada | - |
+|11 | Implementar Agregar Productos, Actualizar Productos Frontend| Finalizada | -|
+|11 | Implementar Ver Opinion Frontend| Finalizada | - |
+
+
+#### Foto tablero
+![image](https://github.com/SeZamora/AYD2_B_1S2025_PROYECTO_G2/blob/feature/202113293/Sprints/Imagenes/202113293_2.PNG)
 ---
 
 ### Evaluación del Sprint - 202110897
