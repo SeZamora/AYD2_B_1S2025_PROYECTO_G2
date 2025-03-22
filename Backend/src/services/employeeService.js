@@ -19,25 +19,26 @@ const addEmployee = async ({ nombre, apellido, cui, telefono, correo, contraseni
     }
 };
 
-const editInfo = async ({ old_email, new_email, phone_number }) => {
-    console.log(old_email, new_email, phone_number);
-    try {
-        const rows = await db.query(`SELECT * FROM empleados WHERE correo = ? AND eliminado = 0`, [old_email]);
-        if (!rows.length) return { success: false, message: 'Usuario no encontrado.' };
 
+const editInfo = async ({ id, email, phone_number, edad }) => {
+
+
+    try {
         const result = await db.query(
-            `UPDATE empleados SET correo = ?, telefono = ? WHERE correo = ?`,
-            [new_email, phone_number, old_email]
+            `UPDATE empleados SET correo = ?, telefono = ?, edad = ? WHERE empleados_id = ? AND eliminado = 0`,
+            [email, phone_number, edad, id]
         );
 
         return result.affectedRows > 0
             ? { success: true, message: 'Información actualizada exitosamente.' }
-            : { success: false, message: 'No se realizaron cambios.' };
+            : { success: false, message: 'Usuario no encontrado o sin cambios.' };
     } catch (error) {
         console.error('Database Error:', error.sqlMessage || error);
         return { success: false, message: 'Error interno del servidor.' };
     }
 };
+
+
 
 const getAllEmployees = async () => {
     try {
