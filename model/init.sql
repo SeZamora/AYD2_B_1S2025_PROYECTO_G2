@@ -116,13 +116,9 @@ CREATE TABLE deseos (
     id_deseo             INT NOT NULL AUTO_INCREMENT,
     cuenta_id_cuenta     INT NOT NULL,
     libro_id             INT,
-    producto_id          INT,
     PRIMARY KEY (id_deseo),
     FOREIGN KEY (cuenta_id_cuenta) REFERENCES cuenta (id_cuenta),
-    FOREIGN KEY (libro_id) REFERENCES libros (id_libro),
-    FOREIGN KEY (producto_id) REFERENCES producto (id_producto),
-    CHECK ((producto_id IS NOT NULL AND libro_id IS NULL) 
-        OR (producto_id IS NULL AND libro_id IS NOT NULL))
+    FOREIGN KEY (libro_id) REFERENCES libros (id_libro)
 );
 
 CREATE TABLE facturas (
@@ -192,7 +188,7 @@ VALUES
 -- Insertar datos en la tabla empleados
 INSERT INTO empleados (nombre, apellido, cui, telefono, correo, edad, genero, fecha, fotografia, supervisores_id_supervisor, verificado, contrasenia) 
 VALUES 
-('compra en línea', 'compra en línea', 1234567890123, '555-0001', 'compraenlínea.empleado@example.com', 1, 'Masculino', '2024-03-05', 'foto1.jpg', 1, 1, '7a5773355deaf942f99617a5c9bc2938'), -- password:1234
+('compra en línea', 'compra en línea', 1234567890123, '555-0001', 'compraenlinea.empleado@example.com', 1, 'Masculino', '2024-03-05', 'foto1.jpg', 1, 1, '7a5773355deaf942f99617a5c9bc2938'), -- password:1234
 ('Fernanda', 'Lopez', 9876543210987, '555-0002', 'fernanda.empleado@example.com', 32, 'Femenino', '2024-03-06', 'foto2.jpg', 2, 0, 'bae5c4117773806c436e03728005d022'), -- password:adios
 ('David', 'Martinez', 4567891230456, '555-0003', 'david.empleado@example.com', 26, 'Masculino', '2024-03-07', 'foto3.jpg', 3, 1, 'bae5c4117773806c436e03728005d022'); -- password:adios
 
@@ -233,13 +229,13 @@ VALUES
 ('Don Quijote de la Mancha', 'Miguel de Cervantes', '1605-01-16', 'Historia de un caballero loco', 'Clásico', 15, 22.00);
 
 -- Insertar datos en la tabla deseos
-INSERT INTO deseos (cuenta_id_cuenta, libro_id, producto_id) 
+INSERT INTO deseos (cuenta_id_cuenta, libro_id) 
 VALUES 
-(1, 1, NULL), -- Usuario 1 desea "Cien años de soledad"
-(2, NULL, 3), -- Usuario 2 desea el Mouse Logitech
-(3, 3, NULL), -- Usuario 3 desea "1984"
-(1, NULL, 2), -- Usuario 1 desea el Smartphone Samsung
-(2, 5, NULL); -- Usuario 2 desea "Don Quijote"
+(1, 1), -- Usuario 1 desea "Cien años de soledad"
+(2, 3), -- Usuario 2 desea el Mouse Logitech
+(3, 3), -- Usuario 3 desea "1984"
+(1, 2), -- Usuario 1 desea el Smartphone Samsung
+(2, 5); -- Usuario 2 desea "Don Quijote"
 
 -- Insertar datos en la tabla resenias
 INSERT INTO resenias (calificacion, comentario, fecha, cuenta_id_cuenta, libros_id_libro) 
