@@ -5,7 +5,7 @@ import Navbar from '../../ui/componets/NavUsuario'; // Ajusta la ruta según tu 
 const AgregarLibrosDeseos = () => {
     const navigate = useNavigate();
     const [librosDisponibles, setLibrosDisponibles] = useState([]);
-    const idCuenta = 1; // Cambia esto por el ID de la cuenta del usuario actual
+    const [idCuenta, setIdCuenta] = useState(''); // Estado para almacenar el ID de la cuenta
 
     // Obtener todos los libros disponibles
     useEffect(() => {
@@ -29,6 +29,11 @@ const AgregarLibrosDeseos = () => {
 
     // Agregar un libro a la lista de deseos
     const agregarAListaDeseos = async (idLibro) => {
+        if (!idCuenta) {
+            alert('Por favor, ingresa tu ID de cuenta.');
+            return;
+        }
+
         try {
             const response = await fetch('http://localhost:3000/book/addDeseo', {
                 method: 'POST',
@@ -60,6 +65,21 @@ const AgregarLibrosDeseos = () => {
                 from-indigo-500 to-teal-400 bg-clip-text text-transparent tracking-wide py-4 mt-16">
                 Agregar Libros a la Lista de Deseos
             </h1>
+
+            {/* Campo para ingresar el ID de la cuenta */}
+            <div className="text-center mt-4">
+                <label htmlFor="idCuenta" className="block text-lg font-medium text-gray-700">
+                    Ingresa tu ID de cuenta:
+                </label>
+                <input
+                    type="text"
+                    id="idCuenta"
+                    value={idCuenta}
+                    onChange={(e) => setIdCuenta(e.target.value)}
+                    className="mt-2 p-2 border border-gray-300 rounded-md"
+                    placeholder="Ejemplo: 1"
+                />
+            </div>
 
             {/* Lista de libros disponibles */}
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6">
