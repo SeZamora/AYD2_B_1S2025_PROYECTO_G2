@@ -61,19 +61,27 @@
 ## Sprint Planning
 
 ### Sprint Backlog
-| ID | Tarea | Prioridad | Estado |
-|----|-------|----------|--------|
-| 1  | Verificación de cuenta por email (Backend)      | Alta | Pendiente |
-| 2  | Edición de libros (Backend)      | Media | Pendiente |
-| 3  | Edición de productos (Backend)      | Media | Pendiente |
-| 3  | Eliminación de usuarios (Backend)      | Media | Pendiente |
-
+| ID  | Tarea | Prioridad | Estado |
+|----|--------|------------|--------|
+| 1  | Configurar las conexiones en los contenedores y hacerlos funcionar con Docker Compose | Alta | En progreso |
+| 2  | Implementar alertas de stock mínimo | Alta | En progreso |
+| 3  | Configurar la funcionalidad de agregar productos al carrito | Alta | En progreso |
+| 4  | Crear endpoints para facturas y validaciones de stock | Alta | Pendiente |
+| 5  | Configurar la petición para editar libros correctamente | Media | Pendiente |
+| 6  | Implementar la opción de pago y generación de facturas en PDF | Alta | En progreso |
+| 7  | Optimizar consultas SQL para mejorar rendimiento | Media | Pendiente |
+| 8  | Gestionar diferencias entre productos y libros en la base de datos | Alta | Pendiente |
+| 9  | Implementar endpoints para la gestión de reseñas | Media | Pendiente |
+| 10 | Crear la vista de opiniones y conectar el endpoint correspondiente | Media | Pendiente |
+| 11 | Implementar Agregar Productos, Actualizar Productos Frontend | Media | En progreso |
+| 12 | Implementar Ver y Agregar Libros Frontend | Media | En progreso |
+| 13 | Implementar Ver Opinion Frontend | Media | En progreso |
 
 
 ### Tablero Inicial
-![image](https://github.com/user-attachments/assets/30590f44-647e-41b7-a504-7132a7e58e46)
+![image](https://github.com/user-attachments/assets/789fb6d5-7839-4db6-9032-32273173510c)
 
-![image](https://github.com/user-attachments/assets/d000aa14-944a-4798-9f73-bdc483bea419)
+![image](https://github.com/SeZamora/AYD2_B_1S2025_PROYECTO_G2/blob/feature/202113293/Sprints/Imagenes/202113293.PNG)
 
 
 ## Sprint Retrospective
@@ -90,6 +98,24 @@
 
 #### ¿Qué mejoras implementar?
 - Usar de mejor forma el tablero kanban ya que a veces algunas tareas las estaban trabajando dos personas a la vez.
+
+#### Backlog final
+
+
+| ID  | Tarea | Estado Final | Justificación si no se completó |
+|----|-------|--------------|--------------------------------|
+| 1  | Configurar las conexiones en los contenedores y hacerlos funcionar con Docker Compose | En progreso | - |
+| 2  | Modificar la solución para almacenar imágenes usando AWS S3 | Pendiente | Dependencia de implementación previa de almacenamiento |
+| 3  | Averiguar cómo gestionar el envío de correos cuando los usuarios se registren | En progreso | - |
+| 4  | Implementar verificación por correo para usuarios registrados | Completado | - |
+| 5  | Edición de libros y productos en el backend | Pendiente | Dependencia de modelos de datos y endpoints existentes |
+| 6  | Gestionar diferencias entre productos y libros en la base de datos para evitar conflictos | Pendiente | Dependencia de esquema de base de datos actual |
+
+
+#### tablero final
+
+![image](https://github.com/user-attachments/assets/a90b32b9-2db6-44b0-9ad7-1e82c6758044)
+
 
 ---
 
@@ -110,6 +136,10 @@
 - Configurar carrito en el Usuario
 
 
+
+
+
+
 ---
 
 ### Evaluación del Sprint - 202113293
@@ -128,6 +158,18 @@
 - Mantener una mejor comunicación con el equipo para asegurarse de que se mencionen todas las dependencias necesarias desde el inicio.
 
 
+#### Backlog final
+
+
+| ID  | Tarea | Estado Final | Justificación si no se completó |
+|----|-------|--------------|--------------------------------|
+| 10 | Crear la vista de opiniones y conectar el endpoint correspondiente| En Finalizada | - |
+|11 | Implementar Agregar Productos, Actualizar Productos Frontend| Finalizada | -|
+|11 | Implementar Ver Opinion Frontend| Finalizada | - |
+
+
+#### Foto tablero
+![image](https://github.com/SeZamora/AYD2_B_1S2025_PROYECTO_G2/blob/feature/202113293/Sprints/Imagenes/202113293_2.PNG)
 ---
 
 ### Evaluación del Sprint - 202110897
@@ -143,23 +185,6 @@
 - Mejorar la comunicación con los encargados del frontend
 
 ---
-
-
-### Tablero Final
-![image](https://github.com/user-attachments/assets/1754a60e-76f2-4b3f-9e3f-b784261afbb7)
-![image](https://github.com/user-attachments/assets/a4c47ca2-3a3e-481e-94d1-421c3d9f5c6a)
-
-
-
-### Sprint Backlog Final
-| ID | Tarea | Estado Final | Justificación si no se completó |
-|----|-------|-------------|---------------------------------|
-| 1  | Verificación de cuenta por email (Backend)       | Completada  |  - |
-| 2  | Edición de libros (Backend)   | Completada  |  - |
-| 3  | Edición de productos (Backend)   | Completada  |  - |
-| 4  | Eliminación de usuarios (Backend)   | Completada  |  - |
-| 5  | Edición de libros (Backend)   | Pendiente  |  Algunos atributos debían ser cambiados por modificaciones a la arquitectura. |
-
 
 
 

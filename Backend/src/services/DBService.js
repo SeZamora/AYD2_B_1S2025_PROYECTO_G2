@@ -1,6 +1,6 @@
 const mysql = require('mysql2/promise');
 
-// Implementación de Singleton para la conexión con la base de datos
+
 class DBService {
     static instance;
 

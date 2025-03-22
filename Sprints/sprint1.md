@@ -63,9 +63,28 @@
 ### Sprint Backlog
 | ID | Tarea | Prioridad | Estado |
 |----|-------|----------|--------|
-| 1  | Registrarse (Backend)      | Alta | Finalizada |
-| 2  | Login (Backend)      | Alta | Finalizada |
-| 3  |       | Alta/Media/Baja | Pendiente |
+| 1  | Registrarse (Backend) | Alta | Finalizada |
+| 2  | Login (Backend) | Alta | Finalizada |
+| 3  | Configuración del entorno | Alta | Finalizada |
+| 4  | Creación de la estructura del backend (Node.js - Express) | Alta | Finalizada |
+| 5  | Revisión y ajuste del modelo de la base de datos | Alta | Finalizada |
+| 6  | Creación de la base del frontend (Supervisor) | Alta | Finalizada |
+| 7  | Implementación de CRUD para supervisores y empleados | Alta | Finalizada |
+| 8  | Implementación de vistas (Gerente, Supervisores, Facturas) | Alta | Finalizada |
+| 9  | Implementación de gráficos y tablas (Chart.js, D3.js) | Media | En progreso |
+| 10 | Integración de endpoints en el frontend | Alta | Pendiente |
+| 11 | Creación de la vista Home para empleados | Alta | En progreso |
+| 12 | Implementación de Navbar en la vista de empleados | Media | En progreso |
+| 13 | Listado y visualización de productos | Alta | En progreso |
+| 14 | Creación de facturas y visualización con filtros | Alta | En progreso |
+| 15 | Implementación de gráficos de ventas y ganancias | Media | En progreso |
+| 16 | Gestión de envío de correos al registrarse | Alta | Pendiente |
+| 17 | Integración del contexto en las rutas de supervisores | Media | Pendiente |
+| 18 | Creación de métodos GET para productos y libros | Alta | En progreso |
+| 19 | Manejo de relaciones entre productos, libros y facturas en la BD | Alta | Pendiente |
+| 20 | Implementación de botones interactivos en productos | Media | En progreso |
+| 21 | Generación de facturas en PDF | Alta | Pendiente |
+| 22 | Corrección de errores en autenticación de supervisores | Alta | Pendiente |
 
 ### Tablero Inicial
 ![image](https://github.com/user-attachments/assets/30590f44-647e-41b7-a504-7132a7e58e46)
@@ -86,6 +105,20 @@
 
 #### ¿Qué mejoras implementar?
 - Más comuniación con el equipo
+
+#### Sprint backlog final
+
+| ID | Tarea | Estado Final | Justificación si no se completó |
+|----|-------|--------------|--------------------------------|
+| 4  | Creación de la estructura del backend (Node.js - Express) | Finalizada | - |
+| 5  | Revisión y ajuste del modelo de la base de datos | Finalizada | - |
+| 7  | Implementación de CRUD para supervisores y empleados | Finalizada | - |
+| 16 | Gestión de envío de correos al registrarse | Pendiente | Falta investigar y probar la funcionalidad de envío de correos. |
+| 19 | Manejo de relaciones entre productos, libros y facturas en la BD | Pendiente | Problemas con llaves foráneas que generan errores al eliminar registros. |
+
+#### Foto tablero
+![image](https://github.com/user-attachments/assets/789fb6d5-7839-4db6-9032-32273173510c)
+
 
 ---
 
@@ -122,6 +155,19 @@
 #### ¿Qué mejoras implementar?
 - mas comunicacion entre el equipo para poder cordinarnos de mejor forma
 
+#### Sprint backlog final
+
+| ID | Tarea | Estado Final | Justificación si no se completó |
+|----|-------|--------------|--------------------------------|
+| 6 | Creación de la base del frontend (Supervisor)| Finalizada | - |
+| 10 |Integración de endpoints en el frontend|Pendiente| algunos endpoints necesarios no estan implementados|
+| 16 | Implementación de botones interactivos en productos |Pendiente | se esta buscando un mejor estilo para la vista de lso botones|
+| 22 |Corrección de errores en autenticación de supervisores| Pendiente| Falta investigar una mejor solucion para que el contexto se guarde de una merjor forma|
+
+
+#### Foto tablero
+![image](https://github.com/SeZamora/AYD2_B_1S2025_PROYECTO_G2/blob/feature/202113293/Sprints/Imagenes/202113293.PNG)
+
 ---
 
 ### Evaluación del Sprint - 202110897
@@ -136,15 +182,7 @@
 - Optimizar la interpretación de las entidades del proyecto para diseñar un modelo de base de datos más preciso y eficiente.
 
 ---
-### Tablero Final
-![image](https://github.com/user-attachments/assets/1754a60e-76f2-4b3f-9e3f-b784261afbb7)
-![image](https://github.com/user-attachments/assets/a4c47ca2-3a3e-481e-94d1-421c3d9f5c6a)
 
 
 
-### Sprint Backlog Final
-| ID | Tarea | Estado Final | Justificación si no se completó |
-|----|-------|-------------|---------------------------------|
-| 1  | Registrarse (Backend)      | Completada  |  - |
-| 2  | Login (Backend)       | Completada  |  - |
 

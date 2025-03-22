@@ -37,6 +37,7 @@ const LoginPage = () => {
             console.log(data);
             if (data.success) {
                 notifySuccess(data.message);
+                console.log(data);
                 login(data.userType);
                 if (data.userType === 'supervisores') {
                     navigate('/SuperPrincipal'); 
@@ -114,6 +115,9 @@ const LoginPage = () => {
                         <h2>Bienvenido de nuevo</h2>
                         <p>Si aún no tienes una cuenta, por favor regístrate aquí</p>
                         <button className="input-button"onClick={() => navigate('/Registro')}>Registrarse</button>
+                        <a className="recover-password-link" onClick={() => navigate('/Contraseña')}>
+                            ¿Olvidaste tu contraseña?
+                        </a>
                     </div>
                 </div>
                 <ToastContainer position="bottom-right" autoClose={3000} pauseOnHover theme="colored" />

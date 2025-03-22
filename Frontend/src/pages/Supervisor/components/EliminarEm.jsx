@@ -23,7 +23,7 @@ const DeleteLibroModal = ({ showDeleteModal, toggleDeleteModal, Idato }) => {
                 })
             });
             if (response.ok) {
-                alert("Empleado eliminado con éxito");
+                console.log("Empleado eliminado con éxito");
                 window.location.reload();
             } else {
                 alert("Error al eliminar el empleado");

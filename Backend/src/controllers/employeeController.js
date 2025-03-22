@@ -67,8 +67,8 @@ const addEmployee = async (req, res) => {
 
 const editInfo = async (req, res) => {
     try {
-        const {old_email, new_email, phone_number } = req.body;
-        const result = await employeeService.editInfo({ old_email, new_email, phone_number });
+        const {id, email, phone_number, edad } = req.body;
+        const result = await employeeService.editInfo({ id, email, phone_number, edad });
         res.status(200).json(result);
     } catch (error) {
         console.error('Error :', error);

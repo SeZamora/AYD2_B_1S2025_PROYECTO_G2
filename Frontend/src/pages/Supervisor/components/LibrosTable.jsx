@@ -81,7 +81,7 @@ const LibrosTable = () => {
                                 </div>
                                 <div className="col-xs-6 text-right">
                                     <button className="btn btn-success" onClick={toggleModal}>
-                                        <i className="material-icons">&#xE147;</i> <span>Add New Producto</span>
+                                        <i className="material-icons">&#xE147;</i> <span>Add New libros </span>
                                     </button>
                                 </div>
                             </div>
